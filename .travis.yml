@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - '7'
+install: yarn
+cache:
+  yarn: true
+  directories:
+    - "node_modules"
+script: yarn run build
+after_success: echo mfr.flavienpensato.ovh > ./dist/CNAME
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist
+  user: Flavien-Pensato
+  on:
+    branch: master
