@@ -1,14 +1,24 @@
 import slug from "slug";
 
-import { FETCH_DATE, ADD_DATE, REMOVE_DATE,	FETCH_TASKS, ADD_TASK, REMOVE_TASK } from "./calendar.constants";
+import { FETCH_DATES, ADD_DATE, REMOVE_DATE,	FETCH_TASKS, ADD_TASK, REMOVE_TASK } from "./calendar.constants";
 import firebase from "../../firebase";
 
-export const fetchDates = () => ({
-	type: FETCH_DATE,
-});
+export const fetchDatesAction = () => dispatch => 
+	firebase
+		.database()
+		.ref("dates")
+		.once("value")
+		.then(function(snapshot) {
+			dispatch({
+				type: FETCH_DATES,
+				dates: snapshot.val() ? Object.values(snapshot.val()) : []
+			});
+		});
 
-export const addDate = date => dispatch => {
-	firebase.database().ref("dates/" + slug(date._id))
+export const addDateAction = date => dispatch => {
+	firebase
+		.database()
+		.ref("dates/" + slug(date._id))
 		.set(date)
 		.then(() => dispatch({
 			type: ADD_DATE,
@@ -16,8 +26,9 @@ export const addDate = date => dispatch => {
 		}));
 };
 
-export const removeDate = date => dispatch => {
-	firebase.database()
+export const removeDateAction = date => dispatch => {
+	firebase
+		.database()
 		.ref("dates/" + slug(date._id))
 		.remove()
 		.then(() => {
@@ -30,12 +41,16 @@ export const removeDate = date => dispatch => {
 
 export function fetchTasksAction() {
 	return function(dispatch) {
-		firebase.database().ref("tasks").once("value").then(function(snapshot) {
-			dispatch({
-				type: FETCH_TASKS,
-				tasks: snapshot.val() ? Object.values(snapshot.val()) : []
+		firebase
+			.database()
+			.ref("tasks")
+			.once("value")
+			.then(function(snapshot) {
+				dispatch({
+					type: FETCH_TASKS,
+					tasks: snapshot.val() ? Object.values(snapshot.val()) : []
+				});
 			});
-		});
 	};
 }
 

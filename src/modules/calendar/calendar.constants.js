@@ -1,6 +1,6 @@
 // DATES
 
-export const FETCH_DATE = "calendar/FETCH_DATE";
+export const FETCH_DATES = "calendar/FETCH_DATES";
 
 export const ADD_DATE = "calendar/ADD_DATE";
 
