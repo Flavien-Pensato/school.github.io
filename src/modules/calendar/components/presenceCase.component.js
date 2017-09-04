@@ -7,28 +7,24 @@ class PresenceCase extends Component {
 	onClickTogglePresence(e) {
 		e.preventDefault();
     
-		const { addDate, toggle, removeDate, week, classeId } = this.props;
+		const { addDate, date, removeDate, week, classeId } = this.props;
     
-		if (!toggle) {
+		if (!date) {
 			addDate({
 				_id: uuidv4(),
 				week,
 				classeId
 			});  
 		} else {
-			removeDate({
-				_id: uuidv4(),
-				week,
-				classeId
-			});        
+			removeDate(date);        
 		}
     
 	}
 
 	render() {    
-		const { toggle } = this.props;
+		const { date } = this.props;
     
-		return <td onClick={this.onClickTogglePresence.bind(this)}>{toggle.toString()}</td>;
+		return <td onClick={this.onClickTogglePresence.bind(this)}>{date ? "true": "false"}</td>;
 	}
 }
 
@@ -37,7 +33,7 @@ PresenceCase.propTypes = {
 	addDate: PropTypes.func.isRequired,
 	week: PropTypes.string.isRequired,
 	classeId: PropTypes.string.isRequired,
-	toggle: PropTypes.bool.isRequired,
+	date: PropTypes.object,
 };
 
 export default PresenceCase;

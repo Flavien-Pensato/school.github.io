@@ -5,7 +5,7 @@ import { uuidv4 } from "../../../utils";
 
 class StudentInput extends Component {
 	render() {
-		const { name, group, _id, editStudent, removeStudent } = this.props;
+		const { name, group, classeId, _id, editStudent, removeStudent } = this.props;
         
 		return <div>
 			<input
@@ -16,6 +16,7 @@ class StudentInput extends Component {
 					editStudent({
 						_id,
 						group,
+						classeId,
 						name: e.currentTarget.value
 					});
 				}}
@@ -28,6 +29,7 @@ class StudentInput extends Component {
 					editStudent({
 						_id,
 						group: parseInt(e.currentTarget.value),
+						classeId,
 						name
 					});
 				}}
@@ -35,7 +37,12 @@ class StudentInput extends Component {
 			<button
 				onClick={e => {
 					e.preventDefault();
-					removeStudent(_id);
+					removeStudent({
+						_id,
+						group: parseInt(e.currentTarget.value),
+						classeId,
+						name
+					});
 				}}
 			>Delete</button>
 		</div>;
@@ -46,7 +53,8 @@ StudentInput.propTypes = {
 	_id: PropTypes.string.isRequired,
 	name: PropTypes.string.isRequired,
 	group: PropTypes.number.isRequired,
-    
+	classeId: PropTypes.string.isRequired,
+	
 	editStudent: PropTypes.func.isRequired,
 	removeStudent: PropTypes.func.isRequired,
 };

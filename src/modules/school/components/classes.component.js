@@ -36,7 +36,7 @@ class Classes extends Component {
 										pathname: "/eleves/".concat(classe._id)
 									}}
 								>
-									{classe.name}
+									{`${classe.name}`}
 								</Link>
 							</li>
 						)}
@@ -46,7 +46,7 @@ class Classes extends Component {
 					<ul>
 						{_.filter(students, student => student.classeId === _.get(match, "params.id")).map((student, index) =>
 							<li key={index}>
-								{student.name}
+								{`${student.name} ${student.group >= 0 ? student.group : ""}`} 
 							</li>
 						)}
 					</ul>

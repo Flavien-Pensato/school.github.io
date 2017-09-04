@@ -30,7 +30,7 @@ class ClasseInput extends Component {
 ClasseInput.propTypes = {
 	_id: PropTypes.string.isRequired,
 	name: PropTypes.string.isRequired,
-    
+	
 	editClasse: PropTypes.func.isRequired,
 };
 

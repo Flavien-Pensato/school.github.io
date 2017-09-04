@@ -77,7 +77,7 @@ export default function school(state = initialeState, action) {
 		};
 	case REMOVE_STUDENT:
 		students = [...state.students];
-		students.splice(_.findIndex(students, student => student._id === action.studentId), 1);
+		students.splice(_.findIndex(students, student => student._id === action.student._id), 1);
 
 		return {
 			...state,

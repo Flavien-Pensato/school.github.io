@@ -67,21 +67,6 @@ export function fetchClassesAction() {
 	};
 }
 
-export function fetchStudentsAction(classeId) {
-	return function(dispatch) {
-		firebase.database().ref("students").orderByChild("classeId").equalTo(classeId).once("value").then(function(snapshot) {
-			dispatch({
-				type: FETCH_STUDENTS,
-				students: snapshot.val() ? Object.values(snapshot.val()) : []
-			});
-		});
-	};
-}
-
-export const resetClasseAction = () => ({
-	type: RESET_PREVIEW_CLASSE
-});
-
 export function addClasseAction(classe) {
 	return function(dispatch) {
 		firebase
@@ -127,6 +112,20 @@ export function removeClasseAction(classe) {
 	};
 }
 
+export const resetPreviewClasseAction = () => ({
+	type: RESET_PREVIEW_CLASSE
+});
+
+export function fetchStudentsAction(classeId) {
+	return function(dispatch) {
+		firebase.database().ref("students").orderByChild("classeId").equalTo(classeId).once("value").then(function(snapshot) {
+			dispatch({
+				type: FETCH_STUDENTS,
+				students: snapshot.val() ? Object.values(snapshot.val()) : []
+			});
+		});
+	};
+}
 
 export function addStudentAction(student) {
 	return function(dispatch) {
@@ -148,7 +147,7 @@ export function editStudentAction(student) {
 		firebase
 			.database()
 			.ref("students/" + slug(student._id))
-			.set(student)
+			.update(student)
 			.then(() => {
 				dispatch({
 					type: EDIT_STUDENT,
@@ -158,16 +157,16 @@ export function editStudentAction(student) {
 	};
 }
 
-export function removeStudentAction(studentId) {
+export function removeStudentAction(student) {
 	return function(dispatch) {
 		firebase
 			.database()
-			.ref("students/" + slug(studentId))
+			.ref("students/" + slug(student._id))
 			.remove()
 			.then(() => {
 				dispatch({
 					type: REMOVE_STUDENT,
-					studentId
+					student
 				});
 			});
 	};

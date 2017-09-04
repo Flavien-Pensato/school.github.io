@@ -6,32 +6,13 @@ import ClasseInput from "./classeInput.connector";
 import StudentInput from "./studentInput.connector";
 
 class Preview extends Component {
-	submitClasse(event) {
-		event.preventDefault();
-
-		// const { preview } = this.props;
-
-		// editClasse({
-		// 	_id: uuidv4(),
-		// 	name: event.target.name.value,
-		// 	createdAt: new Date()
-		// });
-
-		// _.each(preview.students, student => {
-		// 	editStudent({
-		// 		_id: uuidv4(),
-		// 		...student
-		// 	});
-		// });
-	}
-
 	render() {
 		const {
 			preview,
 			classe,
 			students,
 			addStudent,
-			resetClasse
+			resetPreviewClasse
 		} = this.props;
 
 		if (!preview) {
@@ -40,38 +21,35 @@ class Preview extends Component {
 
 		return (
 			<div>
-				<form onSubmit={this.submitClasse.bind(this)}>
-					<a
-						href="#"
-						onClick={e => {
-							e.preventDefault();
-							resetClasse();
-						}}
-					>
+				<a
+					href="#"
+					onClick={e => {
+						e.preventDefault();
+						resetPreviewClasse();
+					}}
+				>
             Close
-					</a>
-					<ul>
-						<li>
-							<ClasseInput {...classe} />
+				</a>
+				<ul>
+					<li>
+						<ClasseInput {...classe} />
+					</li>
+					{students.map((student, key) =>
+						<li key={key}>
+							<StudentInput {...student} />
 						</li>
-						{students.map((student, key) =>
-							<li key={key}>
-								<StudentInput {...student} />
-							</li>
-						)}
-						<li>
-							<button
-								onClick={e => {
-									e.preventDefault();
-									addStudent();
-								}}
-							>
+					)}
+					<li>
+						<button
+							onClick={e => {
+								e.preventDefault();
+								addStudent();
+							}}
+						>
                 Add Student
-							</button>
-						</li>
-					</ul>
-					<input type="submit" value="Enregistrer" />
-				</form>
+						</button>
+					</li>
+				</ul>
 			</div>
 		);
 	}
@@ -79,12 +57,14 @@ class Preview extends Component {
 
 Preview.propTypes = {
 	preview: PropTypes.string,
-	classe: PropTypes.object.isRequired,
+	classe: PropTypes.object,
 	students: PropTypes.arrayOf(PropTypes.object).isRequired,
+
 	addStudent: PropTypes.func.isRequired,
 	editStudent: PropTypes.func.isRequired,
 	removeStudent: PropTypes.func.isRequired,
-	resetClasse: PropTypes.func.isRequired,
+
+	resetPreviewClasse: PropTypes.func.isRequired,
 };
 
 export default Preview;

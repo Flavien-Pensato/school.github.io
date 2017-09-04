@@ -7,7 +7,7 @@ import StudentInput from "./studentInput.component";
 
 const mapDispatchToProps = dispatch => ({
 	editStudent: student => dispatch(editStudentAction(student)),
-	removeStudent: _id => dispatch(removeStudentAction(_id)),
+	removeStudent: student => dispatch(removeStudentAction(student)),
 });
 
 export default withRouter(

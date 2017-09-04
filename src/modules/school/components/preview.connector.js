@@ -4,14 +4,13 @@ import { withRouter } from "react-router-dom";
 import Preview from "./preview.component";
 import { getPreview, getClasse, getStudents } from "../school.selectors";
 import {
+	
+	addStudentAction,
+	editStudentAction,
+	removeStudentAction,
+	
 	editClasseAction,
-
-	createStudent,
-	addStudent,
-	removeStudent,
-	editStudent,
-	editClassname,
-	resetClasseAction
+	resetPreviewClasseAction
 } from "../school.actions";
 
 const mapStateToProps = state => ({
@@ -21,14 +20,13 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+	addStudent: student => dispatch(addStudentAction(student)),
+	removeStudent: student => dispatch(removeStudentAction(student)),
+	editStudent: student => dispatch(editStudentAction(student)),
+
 	editClasse: classe => dispatch(editClasseAction(classe)),
-	createStudent: student => dispatch(createStudent(student)),
-	addStudent: () => dispatch(addStudent()),
-	removeStudent: studentIndex => dispatch(removeStudent(studentIndex)),
-	editClassname: className => dispatch(editClassname(className)),
-	resetClasse: () => dispatch(resetClasseAction()),
-	editStudent: (student, studentIndex) =>
-		dispatch(editStudent(student, studentIndex))
+
+	resetPreviewClasse: () => dispatch(resetPreviewClasseAction()),
 });
 
 export default withRouter(
