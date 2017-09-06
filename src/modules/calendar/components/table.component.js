@@ -16,7 +16,7 @@ class Table extends Component {
 	renderClassesHeader() {
 		const { classes } = this.props;
 
-		return _.map(_.orderBy(classes, [classe => classe.name.toLowerCase()], ["async"]), classe => <th key={classe.name}>{classe.name}</th>);
+		return _.map(_.orderBy(classes, [classe => classe.name.toLowerCase()], ["async"]), classe => <th className="fw6 bb b--black-20 pb3 pr3" key={classe.name}>{classe.name}</th>);
 	}
 
 	renderTasksBody() {
@@ -25,14 +25,14 @@ class Table extends Component {
 		let weekOfYear = moment().week() - 1;
 
 		return (
-			<tbody>
+			<tbody className="lh-copy tc">
 				{_.map(tab, (res, index) => {
 					weekOfYear += 1;
 					return <tr key={index}>
-						<td>
-        du&nbsp;{moment().week(weekOfYear).startOf("week").format("dddd D MMMM")}
+						<td className="pv3 pr3 bb b--black-20 tl">
+        Du&nbsp;{moment().week(weekOfYear).startOf("week").format("dddd D MMMM")}
 							<br/>
-        au&nbsp;
+        Au&nbsp;
 							{moment().week(weekOfYear).startOf("week").add("days", 4).format("dddd D MMMM")}
 						</td>
 						{_.map(classes, (classe, index) => <PresenceCase key={index} date={_.find(dates, date => date.week === moment().week(weekOfYear).format("w/YYYY"))} classeId={classe._id} week={moment().week(weekOfYear).format("w/YYYY")} />)}
@@ -47,15 +47,20 @@ class Table extends Component {
 	render() {
     
 		return (
-			<table>
-				<thead>
-					<tr>
-						<th>Semaine</th>
-						{this.renderClassesHeader()}
-					</tr>
-				</thead>
-				{this.renderTasksBody()}
-			</table>
+			<div className="pa4">
+				<div className="overflow-auto">
+					<table className="f6 w-100 mw8 center" cellSpacing="0">
+						<thead>
+							<tr>
+								<th className="fw6 bb b--black-20 pb3 pr3 tl">Semaine</th>
+								{this.renderClassesHeader()}
+							</tr>
+						</thead>
+						{this.renderTasksBody()}
+					</table>
+				</div>
+			</div>
+		
 		);
 	}
 }

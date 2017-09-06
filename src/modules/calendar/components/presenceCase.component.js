@@ -24,7 +24,11 @@ class PresenceCase extends Component {
 	render() {    
 		const { date } = this.props;
     
-		return <td onClick={this.onClickTogglePresence.bind(this)}>{date ? "true": "false"}</td>;
+		return <td className="pv3 pr3 bb b--black-20">
+			<a href="#0" onClick={this.onClickTogglePresence.bind(this)} className={`f5 no-underline ${date ? "green": "black"} bg-animate hover-bg-black hover-white inline-flex items-center pa3 center`}>
+				<span className="pl1">{date ? "Présent": "Absent"}</span>
+			</a>
+		</td>;
 	}
 }
 

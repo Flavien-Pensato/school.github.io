@@ -10,6 +10,10 @@ import {
 	EDIT_CLASSE,
 	REMOVE_CLASSE,
 
+	FETCH_TASKS,
+	ADD_TASK,
+	REMOVE_TASK,
+
 	ADD_STUDENT,
 	EDIT_STUDENT,
 	REMOVE_STUDENT,
@@ -18,13 +22,15 @@ import {
 const initialeState = {
 	classes: [],
 	students: [],
+	tasks: [],
 	preview: null,
 };
 
 export default function school(state = initialeState, action) {
 	let students;
 	let classes;
-
+	let tasks;
+	
 	switch (action.type) {
 	case IMPORT_CLASSE:
 		return { ...state, preview: action.preview };
@@ -83,6 +89,23 @@ export default function school(state = initialeState, action) {
 			...state,
 			students
 		};
+
+	case FETCH_TASKS:
+		return { ...state, tasks: action.tasks };
+	case ADD_TASK:
+		return {
+			...state,
+			tasks: [...state.tasks, action.task],
+		};
+	case REMOVE_TASK:
+		tasks = [...state.tasks];
+		tasks.splice(_.findIndex(tasks, task => task._id === action.task._id), 1);
+
+		return {
+			...state,
+			tasks
+		};
+
 	default:
 		return state;
 	}

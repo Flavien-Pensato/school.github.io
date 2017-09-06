@@ -6,7 +6,7 @@ import Classes from "../../modules/school/components/classes.connector";
 class Students extends Component {
 	render() {
 		return (
-			<div>
+			<div className="pa3 pa5-ns">
 				<Importation />
 				<Classes />
 			</div>

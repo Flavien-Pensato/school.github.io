@@ -8,7 +8,6 @@ import {
 } from "./calendar.constants";
 
 const initialeState = {
-	tasks: [],
 	dates: [],
 };
 

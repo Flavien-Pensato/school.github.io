@@ -9,6 +9,8 @@ import {
 	editStudentAction,
 	removeStudentAction,
 	
+	fetchStudentsAction,
+	
 	editClasseAction,
 	resetPreviewClasseAction
 } from "../school.actions";
@@ -26,6 +28,8 @@ const mapDispatchToProps = dispatch => ({
 
 	editClasse: classe => dispatch(editClasseAction(classe)),
 
+	fetchStudents: classeId => dispatch(fetchStudentsAction(classeId)),
+	
 	resetPreviewClasse: () => dispatch(resetPreviewClasseAction()),
 });
 

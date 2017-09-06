@@ -14,6 +14,10 @@ import {
 	ADD_CLASSE,
 	EDIT_CLASSE,
 	REMOVE_CLASSE,
+
+	FETCH_TASKS,
+	ADD_TASK,
+	REMOVE_TASK,
 	
 	ADD_STUDENT,
 	EDIT_STUDENT,
@@ -116,6 +120,8 @@ export const resetPreviewClasseAction = () => ({
 	type: RESET_PREVIEW_CLASSE
 });
 
+/* #### STUDENTS #### */
+
 export function fetchStudentsAction(classeId) {
 	return function(dispatch) {
 		firebase.database().ref("students").orderByChild("classeId").equalTo(classeId).once("value").then(function(snapshot) {
@@ -171,3 +177,46 @@ export function removeStudentAction(student) {
 			});
 	};
 }
+
+/* #### TASKS #### */
+
+export function fetchTasksAction() {
+	return function(dispatch) {
+		firebase
+			.database()
+			.ref("tasks")
+			.once("value")
+			.then(function(snapshot) {
+				dispatch({
+					type: FETCH_TASKS,
+					tasks: snapshot.val() ? Object.values(snapshot.val()) : []
+				});
+			});
+	};
+}
+
+export const addTaskAction = task => dispatch => {
+	firebase
+		.database()
+		.ref("tasks/" + slug(task._id))
+		.set(task)
+		.then(() => {
+			dispatch({
+				type: ADD_TASK,
+				task
+			});
+		});
+};
+
+export const removeTaskAction = task => dispatch => {
+	firebase
+		.database()
+		.ref("tasks/" + slug(task._id))
+		.remove()
+		.then(() => {
+			dispatch({
+				type: REMOVE_TASK,
+				task
+			});
+		});
+};

@@ -9,3 +9,5 @@ export const getClasse = ({ school }, classeId) => _.find(
 export const getStudents = ({ school }) => _.get(school, "students", []);
 
 export const getClasses = ({ school }) => _.get(school, "classes", []);
+
+export const getTasks = ({ school }) => _.orderBy(_.get(school, "tasks"), [task => task.name.toLowerCase()], ["asyn"]);

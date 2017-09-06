@@ -4,26 +4,27 @@ import PropTypes from "prop-types";
 import { uuidv4 } from "../../../utils";
 
 class ClasseInput extends Component {
-	render() {
-		const { name, _id, editClasse } = this.props;
-        
-		return <div>
-			<input
-				type="text"
-				placeholder="Nom de la classe"
-				value={name}
-				onChange={e => {
-					e.preventDefault();
+	onChangeClassName(e) {
+		const { editClasse, _id } = this.props;
 
-					editClasse({
-						_id,
-						name: e.currentTarget.value
-					});
-				}}
-				name="name"
-				required
-			/>
-		</div>;
+		editClasse({
+			_id,
+			name: e.currentTarget.value
+		});
+	}
+
+	render() {
+		const { name } = this.props;
+        
+		return (
+			<form className="measure center br2-ns ba b--black-10" onSubmit={e => e.preventDefault()}>
+				<fieldset className="cf bn ma0 pa0">
+					<div className="cf">
+						<input name="name" type="text" className="f6 f5-l input-reset bn fl black-80 bg-white pa3 lh-solid w-100 w-100-m w-100-l br2-ns br--left-ns" defaultValue={name} onChange={this.onChangeClassName.bind(this)}/>
+					</div>
+				</fieldset>
+			</form>
+		);
 	}
 }
 
