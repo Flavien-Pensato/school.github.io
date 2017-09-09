@@ -47,13 +47,13 @@ class Preview extends Component {
 
 				<ClasseInput {...classe} />
 
-				<div className="overflow-auto">
+				<div className="measure center overflow-auto">
 					<table className="f6 w-100 mw8 center" cellSpacing="0">
 						<thead>
 							<tr>
-								<th className="fw6 bb b--black-20 tl pb3 pr3">Nom</th>
-								<th className="fw6 bb b--black-20 tl pb3 pr3">Groue</th>
-								<th className="fw6 bb b--black-20 tl pb3 pr3">Action</th>
+								<th className="fw6 bb b--black-20 tl pb3 pr3 w-60">Nom</th>
+								<th className="fw6 bb b--black-20 tl pb3 pr3 w-20">Groue</th>
+								<th className="fw6 bb b--black-20 tl pb3 pr3 w-20">Action</th>
 							</tr>
 						</thead>
 						<tbody className="lh-copy">
@@ -65,7 +65,7 @@ class Preview extends Component {
 				</div>
 				<div className="measure center br2-ns ba b--black-10" >
 					<input type="submit" className="f6 link dim ba bw2 ph3 pv2 mb2 dib dark-green" onClick={this.onClickAddStudent.bind(this)} value="Ajouter un eleve"/>
-				</div>
+				</div> 
 			</div>
 		);
 	}

@@ -1,14 +1,19 @@
 import _ from "lodash";
+import moment from "moment";
 
 import {
 	FETCH_DATES,
 
 	ADD_DATE,
 	REMOVE_DATE,
+
+	GO_NEXT_WEEK,
+	GO_PREVIOUS_WEEK,
 } from "./calendar.constants";
 
 const initialeState = {
 	dates: [],
+	selectedWeek: moment().startOf("week"),
 };
 
 export default function tasks(state = initialeState, action) {
@@ -29,6 +34,16 @@ export default function tasks(state = initialeState, action) {
 		return {
 			...state,
 			dates
+		};
+	case GO_NEXT_WEEK:
+		return {
+			...state,
+			selectedWeek: state.selectedWeek.add("weeks", 1),
+		};
+	case GO_PREVIOUS_WEEK:
+		return {
+			...state,
+			selectedWeek: state.selectedWeek.add("weeks", -1),
 		};
 
 	default:
