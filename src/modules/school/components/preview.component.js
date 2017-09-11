@@ -3,35 +3,40 @@ import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 import _ from "lodash";
 
-import ClasseInput from "./classeInput.connector";
-import StudentInput from "./studentInput.connector";
+import { uuidv4 } from "../../../utils";
+
+import ClasseInput from "./classeInput.component";
+import StudentInput from "./studentInput.component";
+
+import { addStudentAction } from "../school.actions";
 
 class Preview extends Component {
-	componentWillMount() {
-		const { fetchStudents, preview } = this.props;
-
-		fetchStudents(preview);
-	}
-
 	onClickAddStudent(e) {
 		e.preventDefault();
 
-		const { addStudent } = this.props;
+		const { preview } = this.props;
 
-		addStudent();
+		addStudentAction({
+			_id: uuidv4(),
+			name: "XXX",
+			classeId: preview 
+		});
 	}
 
 	render() {
 		const {
 			preview,
 			classe,
-			students,
 			resetPreviewClasse
 		} = this.props;
 
-		if (!preview) {
+		if (!preview && !classe) {
 			return <Redirect to="/eleves" />;
 		}
+
+		const students = _.orderBy(
+			classe.students,
+			[student => student.name.toLowerCase()], ["asyn"]);
 
 		return (
 			<div className="pa4">
@@ -58,7 +63,7 @@ class Preview extends Component {
 						</thead>
 						<tbody className="lh-copy">
 							{
-								_.map(students, (student, index) => <StudentInput key={index} {...student} />)
+								_.map(students, student => <StudentInput key={student._id} {...student} />)
 							}
 						</tbody>
 					</table>
@@ -74,13 +79,6 @@ class Preview extends Component {
 Preview.propTypes = {
 	preview: PropTypes.string,
 	classe: PropTypes.object,
-	students: PropTypes.arrayOf(PropTypes.object).isRequired,
-
-	addStudent: PropTypes.func.isRequired,
-	editStudent: PropTypes.func.isRequired,
-	removeStudent: PropTypes.func.isRequired,
-
-	fetchStudents: PropTypes.func.isRequired,
 	
 	resetPreviewClasse: PropTypes.func.isRequired,
 };

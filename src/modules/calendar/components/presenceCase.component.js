@@ -2,21 +2,22 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { uuidv4 } from "../../../utils";
+import { addDateAction, removeDateAction } from "../calendar.actions";
 
 class PresenceCase extends Component {
 	onClickTogglePresence(e) {
 		e.preventDefault();
     
-		const { addDate, date, removeDate, week, classeId } = this.props;
+		const { date, week, classeId } = this.props;
     
 		if (!date) {
-			addDate({
+			addDateAction({
 				_id: uuidv4(),
 				week,
 				classeId
 			});  
 		} else {
-			removeDate(date);        
+			removeDateAction(date._id);        
 		}
     
 	}
@@ -33,8 +34,6 @@ class PresenceCase extends Component {
 }
 
 PresenceCase.propTypes = {
-	removeDate: PropTypes.func.isRequired,
-	addDate: PropTypes.func.isRequired,
 	week: PropTypes.string.isRequired,
 	classeId: PropTypes.string.isRequired,
 	date: PropTypes.object,

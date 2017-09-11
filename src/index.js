@@ -8,7 +8,12 @@ import thunkMiddleware from "redux-thunk";
 import { createLogger } from "redux-logger";
 import { createStore, applyMiddleware, compose } from "redux";
 import moment from "moment";
+
+import firebase from "./firebase";
 import epics from "./modules/epics";
+
+import { fetchStudentsAction, fetchClassesAction, fetchTasksAction } from "./modules/school/school.actions";
+import { fetchDatesAction, fetchWeeksAction } from "./modules/calendar/calendar.actions";
 
 import "./main.css";
 
@@ -34,6 +39,27 @@ let store = createStore(
 	),
 	applyMiddleware(...middleware)
 );
+
+const tabCollections = [{
+	ref: firebase.database().ref("2017-2018/classes"),
+	action: fetchClassesAction,
+}, {
+	ref: firebase.database().ref("2017-2018/dates"),
+	action: fetchDatesAction,
+}, {
+	ref: firebase.database().ref("2017-2018/students"),
+	action: fetchStudentsAction,
+}, {
+	ref: firebase.database().ref("2017-2018/tasks"),
+	action: fetchTasksAction,
+}];
+
+tabCollections.forEach(collection => {
+	collection.ref.on("value", function(snapshot) {
+		store.dispatch(collection.action(snapshot.val() ? Object.values(snapshot.val()) : []));
+	});
+});
+
 
 const Main = () =>
 	<main>

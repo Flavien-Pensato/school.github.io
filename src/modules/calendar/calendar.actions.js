@@ -5,8 +5,6 @@ import { uuidv4 } from "../../utils";
 
 import {
 	FETCH_DATES,
-	ADD_DATE,
-	REMOVE_DATE,
 	
 	GO_NEXT_WEEK,
 	GO_PREVIOUS_WEEK,
@@ -15,40 +13,23 @@ import {
 	FETCH_WEEKS
 } from "./calendar.constants";
 
-export const fetchDatesAction = () => dispatch => 
-	firebase
-		.database()
-		.ref("dates")
-		.once("value")
-		.then(function(snapshot) {
-			dispatch({
-				type: FETCH_DATES,
-				dates: snapshot.val() ? Object.values(snapshot.val()) : []
-			});
-		});
+export const fetchDatesAction = dates => 	({
+	type: FETCH_DATES,
+	dates
+});
 
-export const addDateAction = date => dispatch => {
+export const addDateAction = date => {
 	firebase
 		.database()
-		.ref("dates/" + slug(date._id))
-		.set(date)
-		.then(() => dispatch({
-			type: ADD_DATE,
-			date
-		}));
+		.ref(`2017-2018/dates/${date._id}`)
+		.set(date);
 };
 
-export const removeDateAction = date => dispatch => {
+export const removeDateAction = dateId => {
 	firebase
 		.database()
-		.ref("dates/" + slug(date._id))
-		.remove()
-		.then(() => {
-			dispatch({
-				type: REMOVE_DATE,
-				date
-			});
-		});
+		.ref(`2017-2018/dates/${dateId}`)
+		.remove();
 };
 
 export const goNextWeekAction = () => ({
@@ -59,7 +40,7 @@ export const goPreviousWeekAction = () => ({
 	type: GO_PREVIOUS_WEEK
 });
 
-export const createWeekAction = date => dispatch => {
+export const createWeekAction = date => {
 	const week = {
 		_id: uuidv4()
 	};
@@ -67,24 +48,10 @@ export const createWeekAction = date => dispatch => {
 	firebase
 		.database()
 		.ref("weeks/" + slug(week._id))
-		.remove()
-		.then(() => {
-			dispatch({
-				type: CREATE_WEEK,
-				week
-			});
-		});
+		.remove();
 };
 
-export const fetchWeeksAction = () => dispatch => {
-	firebase
-		.database()
-		.ref("weeks")
-		.once("value")
-		.then(function(snapshot) {
-			dispatch({
-				type: FETCH_WEEKS,
-				weeks: snapshot.val() ? Object.values(snapshot.val()) : []
-			});
-		});
-};
+export const fetchWeeksAction = weeks => ({
+	type: FETCH_WEEKS,
+	weeks
+});

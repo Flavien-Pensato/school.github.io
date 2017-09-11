@@ -3,16 +3,9 @@ import PropTypes from "prop-types";
 import _ from "lodash";
 import moment from "moment";
 
-import PresenceCase from "./presenceCase.connector";
+import PresenceCase from "./presenceCase.component";
 
 class Table extends Component {
-	componentWillMount() {
-		const { fetchClasses, fetchDates } = this.props;
-
-		fetchClasses();
-		fetchDates();
-	}
-
 	renderClassesHeader() {
 		const { classes } = this.props;
 
@@ -35,7 +28,7 @@ class Table extends Component {
         Au&nbsp;
 							{moment().week(weekOfYear).startOf("week").add("days", 4).format("dddd D MMMM")}
 						</td>
-						{_.map(classes, (classe, index) => <PresenceCase key={index} date={_.find(dates, date => date.week === moment().week(weekOfYear).format("w/YYYY"))} classeId={classe._id} week={moment().week(weekOfYear).format("w/YYYY")} />)}
+						{_.map(classes, (classe, index) => <PresenceCase key={index} date={_.find(dates, date => date.week === moment().week(weekOfYear).format("w/YYYY") && date.classeId === classe._id)} classeId={classe._id} week={moment().week(weekOfYear).format("w/YYYY")} />)}
 					</tr>
 					;
 				})}
@@ -66,10 +59,7 @@ class Table extends Component {
 }
 
 Table.propTypes = {
-	fetchClasses: PropTypes.func.isRequired,
 	classes: PropTypes.arrayOf(PropTypes.object).isRequired,
-
-	fetchDates: PropTypes.func.isRequired,
 	dates: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

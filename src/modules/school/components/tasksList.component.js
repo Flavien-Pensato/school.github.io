@@ -4,37 +4,25 @@ import _ from "lodash";
 
 import { uuidv4 } from "../../../utils";
 
-class TasksList extends Component {
-	componentDidMount() {
-		const { fetchTasks } = this.props;
+import { addTaskAction, removeTaskAction } from "../school.actions";
 
-		fetchTasks();
-	}
-  
+class TasksList extends Component {
 	onSubmitAddTask(e) {
 		e.preventDefault();
-
-		const { addTask } = this.props;
     
-		addTask({
+		addTaskAction({
 			_id: uuidv4(),
 			name: e.target.name.value,
 		});
 	}
-  
-	onClickRemoveTask(task) {    
-		const { removeTask } = this.props;
-    
-		removeTask(task);
-	}
-
+	
 	render() {
 		const { tasks } = this.props;
     
 		return (
 			<div className="pa3 pa5-ns">
 				<ul className="list pl0 measure center">
-					{_.map(tasks, (task, index) => <li className="lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30" key={index}>{task.name} <button className="bn fr f6 grow no-underline br-pill ph3 pv2 mb2 dib white bg-light-purple" onClick={this.onClickRemoveTask.bind(this, task)}>Supprimer</button></li>)}
+					{_.map(tasks, (task, index) => <li className="lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30" key={index}>{task.name} <button className="bn fr f6 grow no-underline br-pill ph3 pv2 mb2 dib white bg-light-purple" onClick={removeTaskAction.bind(this, task._id)}>Supprimer</button></li>)}
 				</ul>
 
 				<form className="measure center br2-ns ba b--black-10" onSubmit={this.onSubmitAddTask.bind(this)}>
@@ -53,9 +41,6 @@ class TasksList extends Component {
 
 TasksList.propTypes = {
 	tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
-	fetchTasks: PropTypes.func.isRequired,
-	addTask: PropTypes.func.isRequired,
-	removeTask: PropTypes.func.isRequired,
 };
 
 export default TasksList;

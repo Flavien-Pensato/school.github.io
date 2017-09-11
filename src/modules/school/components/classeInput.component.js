@@ -2,15 +2,14 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { uuidv4 } from "../../../utils";
+import { editClasseAction } from "../school.actions";
 
 class ClasseInput extends Component {
 	onChangeClassName(e) {
-		const { editClasse, _id } = this.props;
+		const { _id } = this.props;
 
-		editClasse({
-			_id,
-			name: e.currentTarget.value
-		});
+		console.log(e.currentTarget.value, _id);
+		editClasseAction(_id, "name", e.currentTarget.value);
 	}
 
 	render() {
@@ -31,8 +30,6 @@ class ClasseInput extends Component {
 ClasseInput.propTypes = {
 	_id: PropTypes.string.isRequired,
 	name: PropTypes.string.isRequired,
-	
-	editClasse: PropTypes.func.isRequired,
 };
 
 ClasseInput.defaultProps = {

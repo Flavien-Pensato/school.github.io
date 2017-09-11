@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import { editStudentAction, removeStudentAction } from "../school.actions";
+
 import { uuidv4 } from "../../../utils";
 
 class StudentInput extends Component {
 	render() {
-		const { name, group, classeId, _id, editStudent, removeStudent } = this.props;
+		const { name, group, classeId, _id } = this.props;
         
 		return (
 			<tr>
@@ -14,36 +16,28 @@ class StudentInput extends Component {
 						className="pa2 input-reset ba bg-transparent w-100 measure"
 						type="text"
 						name="name"
-						defaultValue={name} onChange={e => {
+						value={name} onChange={e => {
 							e.preventDefault();
-							editStudent({
-								_id,
-								group,
-								classeId,
-								name: e.currentTarget.value
-							});
+
+							if (e.currentTarget.value) {
+								editStudentAction(classeId, _id, "name", e.currentTarget.value);
+							}
 						}}/>
 				</td>
 				<td className="pv3 pr3 bb b--black-20">
-					<input className="pa2 input-reset ba bg-transparent w-100 measure" type="number" name="name" defaultValue={group} onChange={e => {
+					<input className="pa2 input-reset ba bg-transparent w-100 measure" type="number" name="name" value={group} onChange={e => {
 						e.preventDefault();
-						editStudent({
-							_id,
-							group: parseInt(e.currentTarget.value),
-							classeId,
-							name
-						});
+
+						if (parseInt(e.currentTarget.value)) {
+							editStudentAction(classeId, _id, "group", parseInt(e.currentTarget.value));
+						}
 					}}/>
 				</td>
 				<td className="pv3 pr3 bb b--black-20">
 					<input className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6" type="button" onClick={e => {
 						e.preventDefault();
-						removeStudent({
-							_id,
-							group: parseInt(e.currentTarget.value),
-							classeId,
-							name
-						});
+						
+						removeStudentAction(classeId, _id);
 					}} value="Supprimer"/>
 				</td>
 			</tr>
@@ -56,9 +50,6 @@ StudentInput.propTypes = {
 	name: PropTypes.string.isRequired,
 	group: PropTypes.number.isRequired,
 	classeId: PropTypes.string.isRequired,
-	
-	editStudent: PropTypes.func.isRequired,
-	removeStudent: PropTypes.func.isRequired,
 };
 
 StudentInput.defaultProps = {

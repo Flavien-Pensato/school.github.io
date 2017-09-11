@@ -6,22 +6,11 @@ import { uuidv4 } from "../../utils";
 import firebase from "../../firebase";
 
 import {
-	IMPORT_CLASSE,
+	SELECT_CLASSE,
 	FETCH_CLASSES,
 	FETCH_STUDENTS,
 	RESET_PREVIEW_CLASSE,
-	
-	ADD_CLASSE,
-	EDIT_CLASSE,
-	REMOVE_CLASSE,
-
 	FETCH_TASKS,
-	ADD_TASK,
-	REMOVE_TASK,
-	
-	ADD_STUDENT,
-	EDIT_STUDENT,
-	REMOVE_STUDENT,
 } from "./school.constants";
 
 export function importFileAction(binary) {
@@ -39,82 +28,56 @@ export function importFileAction(binary) {
 
 		const classeId = uuidv4();
 
-		dispatch(addClasseAction({
+		addClasseAction;
+
+		addClasseAction({
 			_id: classeId,
 			name: "",
-			createdAt: new Date()
-		}));
-		
-		_.split(text, "\n").map(line => dispatch(addStudentAction({
+			createdAt: new Date(),
+		});
+
+		_.split(text, "\n").map(line => addStudentAction({
 			_id: uuidv4(),
 			name: line.trim(),
-			classeId,
-		})));
+			classeId
+		}));
+
+		dispatch(setPreviewAction(classeId));
 	};
 }
 
 export function setPreviewAction(preview) {
 	return {
-		type: IMPORT_CLASSE,
+		type: SELECT_CLASSE,
 		preview
 	};
 }
 
-export function fetchClassesAction() {
-	return function(dispatch) {
-		firebase.database().ref("classes").once("value").then(function(snapshot) {
-			dispatch({
-				type: FETCH_CLASSES,
-				classes: snapshot.val() ? Object.values(snapshot.val()) : []
-			});
-		});
-	};
-}
+export const fetchClassesAction = classes => ({
+	type: FETCH_CLASSES,
+	classes
+});
 
-export function addClasseAction(classe) {
-	return function(dispatch) {
-		firebase
-			.database()
-			.ref("classes/" + slug(classe._id))
-			.set(classe)
-			.then(() => {
-				dispatch({
-					type: ADD_CLASSE,
-					classe
-				});
-			});
-	};
-}
+export const addClasseAction = classe => {
+	firebase
+		.database()
+		.ref("2017-2018/classes/" + slug(classe._id))
+		.set(classe);
+};
 
-export function editClasseAction(classe) {
-	return function(dispatch) {
-		firebase
-			.database()
-			.ref("classes/" + slug(classe._id))
-			.set(classe)
-			.then(() => {
-				dispatch({
-					type: EDIT_CLASSE,
-					classe
-				});
-			});
-	};
-}
+export const editClasseAction = (classeId, key, value) => {
+	firebase
+		.database()
+		.ref(`2017-2018/classes/${classeId}/${key}`)
+		.set(value);
+};
 
-export function removeClasseAction(classe) {
-	return function(dispatch) {
-		firebase
-			.database()
-			.ref("classes/" + slug(classe._id))
-			.set(classe)
-			.then(() => {
-				dispatch({
-					type: REMOVE_CLASSE,
-					classe
-				});
-			});
-	};
-}
+export const removeClasseAction = classeId => {
+	firebase
+		.database()
+		.ref(`2017-2018/classes/${classeId}`)
+		.remove();
+};
 
 export const resetPreviewClasseAction = () => ({
 	type: RESET_PREVIEW_CLASSE
@@ -122,101 +85,49 @@ export const resetPreviewClasseAction = () => ({
 
 /* #### STUDENTS #### */
 
-export function fetchStudentsAction(classeId) {
-	return function(dispatch) {
-		firebase.database().ref("students").orderByChild("classeId").equalTo(classeId).once("value").then(function(snapshot) {
-			dispatch({
-				type: FETCH_STUDENTS,
-				students: snapshot.val() ? Object.values(snapshot.val()) : []
-			});
-		});
-	};
-}
+export const fetchStudentsAction = students => ({
+	type: FETCH_STUDENTS,
+	students,
+});
 
-export function addStudentAction(student) {
-	return function(dispatch) {
-		firebase
-			.database()
-			.ref("students/" + slug(student._id))
-			.set(student)
-			.then(() => {
-				dispatch({
-					type: ADD_STUDENT,
-					student
-				});
-			});
-	};
-}
+export const addStudentAction = student => {
+	firebase
+		.database()
+		.ref(`2017-2018/classes/${student.classeId}/students/${student._id}`)
+		.set(student);
+};
 
-export function editStudentAction(student) {
-	return function(dispatch) {
-		firebase
-			.database()
-			.ref("students/" + slug(student._id))
-			.update(student)
-			.then(() => {
-				dispatch({
-					type: EDIT_STUDENT,
-					student
-				});
-			});
-	};
-}
+export const editStudentAction = (classeId, studentId, key, value) => {
+	firebase
+		.database()
+		.ref(`2017-2018/classes/${classeId}/students/${studentId}/${key}`)
+		.set(value);
+};
 
-export function removeStudentAction(student) {
-	return function(dispatch) {
-		firebase
-			.database()
-			.ref("students/" + slug(student._id))
-			.remove()
-			.then(() => {
-				dispatch({
-					type: REMOVE_STUDENT,
-					student
-				});
-			});
-	};
-}
+export const removeStudentAction = (classeId, studentId) => {
+	firebase
+		.database()
+		.ref(`2017-2018/classes/${classeId}/students/${studentId}`)
+		.remove();
+};
 
 /* #### TASKS #### */
 
-export function fetchTasksAction() {
-	return function(dispatch) {
-		firebase
-			.database()
-			.ref("tasks")
-			.once("value")
-			.then(function(snapshot) {
-				dispatch({
-					type: FETCH_TASKS,
-					tasks: snapshot.val() ? Object.values(snapshot.val()) : []
-				});
-			});
-	};
-}
+export const fetchTasksAction = tasks => ({
+	type: FETCH_TASKS,
+	tasks
+});
 
-export const addTaskAction = task => dispatch => {
+export const addTaskAction = task => {
 	firebase
 		.database()
-		.ref("tasks/" + slug(task._id))
-		.set(task)
-		.then(() => {
-			dispatch({
-				type: ADD_TASK,
-				task
-			});
-		});
+		.ref("2017-2018/tasks/" + slug(task._id))
+		.set(task);
 };
 
-export const removeTaskAction = task => dispatch => {
+export const removeTaskAction = taskId => {
 	firebase
 		.database()
-		.ref("tasks/" + slug(task._id))
-		.remove()
-		.then(() => {
-			dispatch({
-				type: REMOVE_TASK,
-				task
-			});
-		});
+		.ref(`2017-2018/tasks/${taskId}`)
+		.remove();
 };
