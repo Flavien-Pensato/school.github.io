@@ -12,6 +12,11 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 	inject: "body"
 });
 
+const HtmlWebpackPluginConfig404 = new HtmlWebpackPlugin({
+	template: "./src/client/404.html",
+	filename: "404.html",
+});
+
 module.exports = {
 	entry: "./src/index.js",
 	output: {
@@ -43,5 +48,5 @@ module.exports = {
 	devServer: {
 		historyApiFallback: true
 	},
-	plugins: [HtmlWebpackPluginConfig]
+	plugins: [HtmlWebpackPluginConfig, HtmlWebpackPluginConfig404]
 };
