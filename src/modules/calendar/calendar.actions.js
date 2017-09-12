@@ -1,4 +1,5 @@
 import slug from "slug";
+import _ from "lodash";
 import firebase from "../../firebase";
 
 import { uuidv4 } from "../../utils";
@@ -40,15 +41,19 @@ export const goPreviousWeekAction = () => ({
 	type: GO_PREVIOUS_WEEK
 });
 
-export const createWeekAction = date => {
-	const week = {
-		_id: uuidv4()
-	};
+export const createWeekAction = (currentDate, classes, tasks, dates) => {
+	const classesId = _.map(_.filter(dates, date => date.week === currentDate), date => date.classeId);
+	const allTasks = [...tasks, ..._.filter(classes, classe => classesId.indexOf(classe._id) >= 0)];
 
-	firebase
-		.database()
-		.ref("weeks/" + slug(week._id))
-		.remove();
+	console.log(allTasks);
+	// const week = {
+	// 	_id: uuidv4()
+	// };
+
+	// firebase
+	// 	.database()
+	// 	.ref("weeks/" + slug(week._id))
+	// 	.remove();
 };
 
 export const fetchWeeksAction = weeks => ({

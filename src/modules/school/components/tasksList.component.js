@@ -9,11 +9,15 @@ import { addTaskAction, removeTaskAction } from "../school.actions";
 class TasksList extends Component {
 	onSubmitAddTask(e) {
 		e.preventDefault();
-    
-		addTaskAction({
-			_id: uuidv4(),
-			name: e.target.name.value,
-		});
+		
+		if (e.target.name.value) {
+			addTaskAction({
+				_id: uuidv4(),
+				name: e.target.name.value,
+			});
+	
+			e.target.name.value = "";	
+		}
 	}
 	
 	render() {

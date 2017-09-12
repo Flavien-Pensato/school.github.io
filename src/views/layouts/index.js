@@ -27,7 +27,7 @@ class LayoutDefault extends Component {
 		return (
 			<header className="vh-15">
 				<div className="cover bg-left bg-center-l">
-					<div className="pb6-m">
+					<div className="pb1-m">
 						<nav className="dt w-100 mw8 center"> 
 							<div className="dtc v-mid tr pa3 fl">
 								Nous sommes le {moment().format("LL")}
