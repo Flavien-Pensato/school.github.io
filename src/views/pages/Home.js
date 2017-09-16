@@ -6,7 +6,7 @@ import BodyCalendar from "../../modules/calendar/components/bodyCalendar.connect
 class Home extends Component {
 	render() {
 		return (
-			<div>
+			<div className="w-100 mw8 center">
 				<HeaderCalendar/>
 				<BodyCalendar/>
 			</div>

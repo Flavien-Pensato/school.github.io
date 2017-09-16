@@ -9,10 +9,10 @@ class BodyCalendar extends Component {
 		const week = _.find(weeks, week => week._id === currentWeek.format("WY"));
 
 		return (
-			<div className="pa3" id="planning">
+			<div id="planning">
 				{
 					week ?
-						<table className="f7 w-100 mw8 center" cellSpacing="0">
+						<table className="f7 w-100 center" cellSpacing="0">
 							<thead>
 								<tr>
 									<th className="fw6 bb b--black-20 tl pb3 pr3">Tâche</th>

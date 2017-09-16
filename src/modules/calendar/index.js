@@ -12,6 +12,8 @@ import {
 	GO_PREVIOUS_WEEK,
 } from "./calendar.constants";
 
+moment.locale("fr");
+
 const initialeState = {
 	dates: [],
 	weeks: [],

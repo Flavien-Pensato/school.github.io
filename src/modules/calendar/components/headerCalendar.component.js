@@ -16,7 +16,7 @@ class HeaderCalendar extends Component {
 
 		return (
 			<div>
-				<div className="flex items-center justify-around pa2">
+				<div className="flex items-center justify-between w-100 mv3">
 					<a href="#0" onClick={goPreviousWeek.bind(this)} className="f5 no-underline black bg-animate white bg-dark-blue inline-flex items-center pa2 ba border-box mr4">
 						<span className="pl1">Semaine precedente</span>
 					</a>
