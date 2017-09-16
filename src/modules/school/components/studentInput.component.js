@@ -28,7 +28,7 @@ class StudentInput extends Component {
 					<input className="pa2 input-reset ba bg-transparent w-100 measure" type="number" name="name" value={group} onChange={e => {
 						e.preventDefault();
 
-						if (parseInt(e.currentTarget.value)) {
+						if (e.currentTarget.value) {
 							editStudentAction(classeId, _id, "group", parseInt(e.currentTarget.value));
 						}
 					}}/>
