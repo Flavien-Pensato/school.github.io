@@ -24,7 +24,7 @@ class BodyCalendar extends Component {
 							<tbody className="lh-copy">
 								{week.tasks.map((task, index) => <tr key={index}>
 									<td className="pv2 pr3 bb b--black-20">{task.task.name}</td>
-									<td className="pv2 pr3 bb b--black-20">{task.className}</td>
+									<td className="pv2 pr3 bb b--black-20">{task.classe.replace(/ /g, "\u00a0")}</td>
 									<td className="pv2 pr3 bb b--black-20">{task.groupe}</td>
 									<td className="pv2 pr3 bb b--black-20">{task.students ? task.students.join(", ") : ""}</td>
 								</tr>)}
