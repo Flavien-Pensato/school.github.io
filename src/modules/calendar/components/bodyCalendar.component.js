@@ -12,7 +12,7 @@ class BodyCalendar extends Component {
 			<div className="pa3" id="planning">
 				{
 					week ?
-						<table className="f6 w-100 mw8 center" cellSpacing="0">
+						<table className="f7 w-100 mw8 center" cellSpacing="0">
 							<thead>
 								<tr>
 									<th className="fw6 bb b--black-20 tl pb3 pr3">Tâche</th>
@@ -23,7 +23,7 @@ class BodyCalendar extends Component {
 							</thead>
 							<tbody className="lh-copy">
 								{week.tasks.map((task, index) => <tr key={index}>
-									<td className="pv2 pr3 bb b--black-20">{task.task.name}</td>
+									<td className="pv2 pr3 bb b--black-20">{task.task.name.replace(/ /g, "\u00a0")}</td>
 									<td className="pv2 pr3 bb b--black-20">{task.classe.replace(/ /g, "\u00a0")}</td>
 									<td className="pv2 pr3 bb b--black-20">{task.groupe}</td>
 									<td className="pv2 pr3 bb b--black-20">{task.students ? task.students.join(", ") : ""}</td>
