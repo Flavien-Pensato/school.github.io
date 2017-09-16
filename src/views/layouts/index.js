@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { Redirect, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import moment from "moment";
 import { withRouter } from "react-router-dom";
 
 import { autoLogin, signOut } from "../../modules/account/account.actions";
 import { getUid, getAutoLoginDone } from "../../modules/account/account.selectors";
+import { getSelectedWeek } from "../../modules/calendar/calendar.selectors";
 
 class LayoutDefault extends Component {
 	componentWillMount() {
@@ -18,7 +18,7 @@ class LayoutDefault extends Component {
 	}
 
 	render() {
-		const { uid, autoLoginDone } = this.props;
+		const { uid, autoLoginDone, currentWeek } = this.props;
 
 		if (!uid && autoLoginDone) {
 			return <Redirect to={{ pathname: "/login" }} />;
@@ -30,7 +30,7 @@ class LayoutDefault extends Component {
 					<div className="pb1-m">
 						<nav className="dt w-100 mw8 center"> 
 							<div className="dtc v-mid tr pa3 fl">
-								Nous sommes le {moment().format("LL")}
+								Semaine du {currentWeek.format("LL")}
 							</div>
 							<div className="dtc v-mid tr pa3 pv2 ph3">
 								<NavLink to="/" className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3">
@@ -61,13 +61,15 @@ LayoutDefault.propTypes = {
 	autoLogin: PropTypes.func.isRequired,
 	signOut: PropTypes.func.isRequired,
 
+	currentWeek: PropTypes.object,
 	uid: PropTypes.string,
 	autoLoginDone: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
 	uid: getUid(state),
-	autoLoginDone: getAutoLoginDone(state)
+	autoLoginDone: getAutoLoginDone(state),
+	currentWeek: getSelectedWeek(state)
 });
 
 const mapDispatchToProps = dispatch => ({

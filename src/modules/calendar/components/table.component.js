@@ -28,7 +28,7 @@ class Table extends Component {
         Au&nbsp;
 							{moment().week(weekOfYear).startOf("week").add("days", 4).format("dddd D MMMM")}
 						</td>
-						{_.map(classes, (classe, index) => <PresenceCase key={index} date={_.find(dates, date => date.week === moment().week(weekOfYear).format("w/YYYY") && date.classeId === classe._id)} classeId={classe._id} week={moment().week(weekOfYear).format("w/YYYY")} />)}
+						{_.map(_.orderBy(classes, [classe => classe.name.toLowerCase()], ["async"]), (classe, index) => <PresenceCase key={index} date={_.find(dates, date => date.week === moment().week(weekOfYear).format("w/YYYY") && date.classeId === classe._id)} classeId={classe._id} week={moment().week(weekOfYear).format("w/YYYY")} />)}
 					</tr>
 					;
 				})}

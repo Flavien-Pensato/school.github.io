@@ -52,6 +52,9 @@ const tabCollections = [{
 }, {
 	ref: firebase.database().ref("2017-2018/tasks"),
 	action: fetchTasksAction,
+}, {
+	ref: firebase.database().ref("2017-2018/weeks"),
+	action: fetchWeeksAction,
 }];
 
 tabCollections.forEach(collection => {
