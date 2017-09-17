@@ -13,7 +13,7 @@ class Table extends Component {
 	}
 
 	renderTasksBody() {
-		const tab = new Array(10);
+		const tab = new Array(50);
 		const { classes, dates } = this.props;
 		let weekOfYear = moment().week() - 1;
 
