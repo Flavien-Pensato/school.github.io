@@ -70,7 +70,7 @@ const getInfos = (groupe, classes) => {
 
 export const createWeekAction = (currentWeek, classes, tasks, dates, weeks) => {
 	const classesId = _.map(_.filter(dates, date => date.week === currentWeek.format("W/Y")), date => date.classeId);
-	const allTasks = [...tasks, ..._.filter(classes, classe => classesId.indexOf(classe._id) >= 0)];
+	const allTasks = [..._.filter(classes, classe => classesId.indexOf(classe._id) >= 0), ...tasks];
 	const newWeek = {
 		_id: currentWeek.format("WY"),
 		date: currentWeek.format("WY"),
