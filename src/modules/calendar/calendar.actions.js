@@ -38,9 +38,11 @@ export const goPreviousWeekAction = () => ({
 
 const findGroupeTaskCounter = (weeks, groupe, task) => {
 	let counter = 0;
-
+	
 	weeks.forEach(week => {
-		let tmpTask = _.find(week.tasks, tas => { tas === task; });
+		let tmpTask = _.find(week.tasks, tas => {
+			return tas.task._id === task._id;
+		});
 
 		if (_.get(tmpTask, "groupe") === groupe) {
 			counter += 1;
@@ -87,7 +89,7 @@ export const createWeekAction = (currentWeek, classes, tasks, dates, weeks) => {
 			
 			_.filter(groupsAvailable, group => newWeek.tasks.map(task => task.groupe).indexOf(group) === -1).forEach(groupe => {
 				const counter = findGroupeTaskCounter(weeks, groupe, task);
-
+				console.log(counter);
 				if (counter <= max) {
 					max = counter;
 					groupeSelected = groupe;
