@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
+import { Button } from "ui.github.io";
 
 class Signin extends Component {
 	signin(event) {
@@ -32,7 +33,8 @@ class Signin extends Component {
 					</div>
 				</fieldset>
 				<div className="">
-					<input className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Se connecter"/>
+				
+					<Button type="submit">Se connecter</Button>
 				</div>
 			</form>
 		);
