@@ -1,18 +1,23 @@
 language: node_js
 node_js:
-  - '7'
+  - '9'
 install: yarn
 cache:
   yarn: true
   directories:
-    - "node_modules"
-script: yarn run build
+    - "./packages/school/node_modules"
+    - "./packages/ui/node_modules"
+script: 
+  - lerna bootstrap
+  - mkdir public
+  - cp -rf packages/school/dist/* ./public
+  - cp -rf packages/ui/dist/* ./public
 after_success: echo mfr.flavienpensato.ovh > ./dist/CNAME
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
-  local_dir: dist
+  local_dir: public
   user: Flavien-Pensato
   on:
     branch: master
