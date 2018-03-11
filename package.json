@@ -2,6 +2,9 @@
 	"name": "main",
 	"version": "0.0.1",
 	"devDependencies": {
-		"lerna": "^2.9.0"
+		"eslint": "4.18.2",
+		"eslint-plugin-m6web-tools": "1.4.0",
+		"lerna": "2.9.0",
+		"prettier": "1.11.1"
 	}
 }

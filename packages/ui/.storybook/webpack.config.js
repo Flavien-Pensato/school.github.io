@@ -5,8 +5,9 @@ const genDefaultConfig = require('@storybook/react/dist/server/config/defaults/w
 module.exports = (baseConfig, env) => {
   const config = genDefaultConfig(baseConfig, env);
 
-  config.plugins[0].options.filename = 'storybook.html'
+  if (env === 'PRODUCTION') {
+    config.plugins[0].options.filename = 'storybook.html'
+  }
 
-  console.log(config.plugins[0].options.filename);
   return config;
 };
