@@ -18,7 +18,15 @@ class GR {
   };
 
   getValue = (key) => {
+    if (key === '.') {
+      return this._data;
+    }
+
     return _.get(this._data, key, undefined);
+  };
+
+  getNodes = (key) => {
+    return _.keys(this.getValue(key));
   };
 };
 
