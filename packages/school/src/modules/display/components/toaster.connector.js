@@ -1,12 +1,11 @@
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
 
-import Toaster from "./toaster.component";
+import { Toaster } from './toaster.component';
 
-import { getToaster } from "../display.selectors";
+import { getToaster } from '../display.selectors';
 
 const mapStateToProps = state => ({
-	toaster: getToaster(state)
+  toaster: getToaster(state),
 });
 
-export default withRouter(connect(mapStateToProps)(Toaster));
+export const ToasterConnected = connect(mapStateToProps)(Toaster);

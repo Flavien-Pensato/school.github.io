@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { SIGNIN, SIGNOUT, AUTO_LOGIN_DONE } from './account.constants';
 
 const initialeState = {
-  autoLoginDone: false
+  autoLoginDone: false,
 };
 
 export default function account(state = initialeState, action) {

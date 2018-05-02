@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const TitleForm = styled.h2`
   font-size: 2rem;
+  font-family: sans-serif;
   padding: 0.5rem 1rem;
   background-color: transparent;
   text-transform: uppercase;
@@ -10,4 +11,4 @@ const TitleForm = styled.h2`
   display: inline-block;
 `;
 
-export default props => <TitleForm {...props} />;
+export const Title = props => <TitleForm {...props} />;
