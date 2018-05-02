@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Button = styled.button`
+const ButtonStyle = styled.button`
   font-size: 0.875rem;
   padding: 0.5rem 1rem;
   background-color: transparent;
@@ -12,4 +12,4 @@ const Button = styled.button`
   border-width: 1px;
 `;
 
-export default props => <Button {...props} />;
+export const Button = props => <ButtonStyle {...props} />;

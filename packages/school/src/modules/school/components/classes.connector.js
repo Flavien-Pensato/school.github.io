@@ -1,20 +1,17 @@
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
 
-import { setPreviewAction } from "../school.actions";
+import { setPreviewAction } from '../school.actions';
 
-import { getClasses } from "../school.selectors";
+import { getClasses } from '../school.selectors';
 
-import Classes from "./classes.component";
+import { Classes } from './classes.component';
 
 const mapStateoProps = state => ({
-	classes: getClasses(state)
+  classes: getClasses(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-	setPreview: classe => dispatch(setPreviewAction(classe))
+  setPreview: classe => dispatch(setPreviewAction(classe)),
 });
 
-export default withRouter(
-	connect(mapStateoProps, mapDispatchToProps)(Classes)
-);
+export default connect(mapStateoProps, mapDispatchToProps)(Classes);

@@ -1,3 +1,3 @@
-import _ from "lodash";
+import _ from 'lodash';
 
-export const getToaster = ({ display }) => _.get(display, "toaster", {});
+export const getToaster = ({ display }) => _.get(display, 'toaster', {});

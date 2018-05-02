@@ -1,7 +1,19 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-const Input = styled.input`
+const DivContent = styled.div`
+  margin: 1rem 0;
+`;
+
+const LabelForm = styled.label`
+  font-size: .875rem;
+  line-height: 1.5;
+  font-weight: 600;
+  font-family: sans-serif;
+  color: black;
+`;
+
+const InputStyle = styled.input`
   padding: 0.5rem;
   background-color: transparent;
   width: 100%;
@@ -18,8 +30,14 @@ const Input = styled.input`
   }
 `;
 
-export default props => (
-  <Fragment>
-    <Input {...props} />
-  </Fragment>
+
+export const Input = props => (
+	<InputStyle {...props} />
+);
+
+export const InputForm = ({ type, name, textLabel }) => (
+	<DivContent>
+		<LabelForm htmlFor={name}>{textLabel}</LabelForm>
+		<InputStyle type={type} name={name} id={name} />
+	</DivContent>
 );

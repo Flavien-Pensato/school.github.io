@@ -1,0 +1,3 @@
+const Theme = ({ color }) => (
+	<div />
+);

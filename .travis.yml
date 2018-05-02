@@ -8,7 +8,10 @@ cache:
     - "./packages/school/node_modules"
     - "./packages/ui/node_modules"
 script: 
-  - lerna bootstrap
+  - yarn
+  - yarn test
+  - yarn lint
+  - yarn build:prod
   - mkdir public
   - cp -rf packages/school/dist/* ./public
   - cp -rf packages/ui/dist/* ./public
