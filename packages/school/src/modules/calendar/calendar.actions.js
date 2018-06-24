@@ -1,13 +1,16 @@
+import moment from 'moment';
 import _ from 'lodash';
 import firebase from '../../config/firebase';
 
 import {
   FETCH_DATES,
-  FETCH_WEEKS,
+  FETCH_WEEK,
 
   GO_NEXT_WEEK,
   GO_PREVIOUS_WEEK,
+  SET_SELECTED_WEEK,
 } from './calendar.constants';
+import { getSelectedWeek } from './calendar.selectors';
 
 export const fetchDatesAction = dates => 	({
   type: FETCH_DATES,
@@ -34,6 +37,11 @@ export const goNextWeekAction = () => ({
 
 export const goPreviousWeekAction = () => ({
   type: GO_PREVIOUS_WEEK,
+});
+
+export const setSelectedWeek = selectedWeek => ({
+  type: SET_SELECTED_WEEK,
+  selectedWeek,
 });
 
 const findGroupeTaskCounter = (weeks, groupe, task) => {
@@ -131,7 +139,24 @@ export const createWeekAction = (currentWeek, classes, tasks, dates, weeks) => {
     .set(newWeek);
 };
 
-export const fetchWeeksAction = weeks => ({
-  type: FETCH_WEEKS,
-  weeks,
-});
+export const fetchWeeksAction = weekId => (dispatch, getState) => {
+  let ref = `2017-2018/weeks/${weekId}`;
+
+  if (!weekId) {
+    const state = getState();
+
+    ref = `2017-2018/weeks/${getSelectedWeek(state).startOf('week').format('WY')}`;
+  }
+
+
+  firebase.database().ref(ref).once('value', (snapshot) => {
+    const week = snapshot.val();
+
+    if (week) {
+      dispatch({
+        type: FETCH_WEEK,
+        week,
+      });
+    }
+  });
+};
