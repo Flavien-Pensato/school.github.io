@@ -1,6 +1,6 @@
-// WEEKS
+// WEEK
 
-export const FETCH_WEEKS = 'calendar/FETCH_WEEKS';
+export const FETCH_WEEK = 'calendar/FETCH_WEEK';
 
 // DATES
 

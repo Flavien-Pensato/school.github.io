@@ -1,8 +1,9 @@
 import _ from 'lodash';
 import moment from 'moment';
+import Immutable from 'immutable';
 
 import {
-  FETCH_WEEKS,
+  FETCH_WEEK,
   FETCH_DATES,
 
   ADD_DATE,
@@ -12,11 +13,9 @@ import {
   GO_PREVIOUS_WEEK,
 } from './calendar.constants';
 
-moment.locale('fr');
-
 const initialeState = {
   dates: [],
-  weeks: [],
+  weeks: Immutable.Map({}),
   selectedWeek: moment().startOf('week'),
 };
 
@@ -26,8 +25,8 @@ export default function tasks(state = initialeState, action) {
   switch (action.type) {
     case FETCH_DATES:
       return { ...state, dates: action.dates };
-    case FETCH_WEEKS:
-      return { ...state, weeks: action.weeks };
+    case FETCH_WEEK:
+      return { ...state, weeks: state.weeks.set(action.week._id, action.week) };
     case ADD_DATE:
       return {
         ...state,

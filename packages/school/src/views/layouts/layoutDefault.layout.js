@@ -39,7 +39,7 @@ class LayoutDefault extends Component {
     return (
       <div>
         <HeaderDefaultConnected />
-        <Route path="/" exact component={LoadableHomePage} />
+        <Route path="/:_id?" exact component={LoadableHomePage} />
         <Route path="/eleves/:id?" component={Students} />
         <Route path="/preview" component={Preview} />
         <Route path="/calendrier" component={Calendar} />
