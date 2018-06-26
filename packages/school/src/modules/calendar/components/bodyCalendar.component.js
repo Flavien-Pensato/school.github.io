@@ -46,9 +46,7 @@ export class BodyCalendar extends Component {
 }
 
 BodyCalendar.defaultProps = {
-  week: {
-    tasks: [],
-  },
+  week: {},
 };
 
 BodyCalendar.propTypes = {
