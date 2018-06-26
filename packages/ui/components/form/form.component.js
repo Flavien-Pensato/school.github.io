@@ -10,17 +10,17 @@ const FormStyle = styled.form`
 `;
 
 export const Form = ({ className, onSubmit, children }) => (
-	<FormStyle className={className} onSubmit={onSubmit}>
-		{children}
-	</FormStyle>
+  <FormStyle className={className} onSubmit={onSubmit}>
+    {children}
+  </FormStyle>
 );
 
 Form.defaultProps = {
-	className: '',
+  className: '',
 };
 
 Form.propTypes = {
-	className: PropTypes.string,
-	onSubmit: PropTypes.func.isRequired,
-	children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  onSubmit: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
 };

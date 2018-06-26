@@ -10,7 +10,8 @@
     "build": "babel --config-file .storybook/.babelrc components -d lib"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0"
+    "babel-cli": "^6.26.0",
+    "react-router-dom": "^4.3.1"
   },
   "dependencies": {
     "@storybook/addon-actions": "^3.4.6",
