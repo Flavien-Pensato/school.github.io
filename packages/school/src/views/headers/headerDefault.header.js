@@ -2,49 +2,55 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { HeaderLink, HeaderButton } from '@school/ui';
+import { HeaderLink, LogoutButton, HeaderTitle } from '@school/ui';
 
 import { signOut } from '../../modules/account/account.actions';
 
 import { getSelectedWeek } from '../../modules/calendar/calendar.selectors';
 
-const HeaderNav = styled.nav`
-  display: flex;
+const HeaderContent = styled.header`
   justify-content: center;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+`;
 
-  > * {
-    padding: .5rem 1rem;
-  }
+const HeaderNav = styled.nav`
+  margin: 0 auto;
+  width: 100%;
+  max-width: 48rem;
+  height: 46px;
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  align-items: center;
+  border-top: solid 1px black;
+  border-bottom: solid 1px black;
 `;
 
 export const HeaderDefault = ({ currentWeek, signOutAction }) => (
-  <header className="vh-15">
-    <div className="cover bg-left bg-center-l">
-      <div className="pb1-m">
-        <HeaderNav>
-          <HeaderLink to="/">
-            Semaine du {currentWeek.format('LL')}
-          </HeaderLink>
-          <HeaderLink to="/">
+  <HeaderContent>
+    <LogoutButton onClick={signOutAction}>
+      Se déconnecter
+    </LogoutButton>
+    <HeaderTitle>Planning de la MFR de chatte</HeaderTitle>
+    <HeaderNav>
+      <HeaderLink to="/">
             Accueil
-          </HeaderLink>
-          <HeaderLink to="/eleves">
+      </HeaderLink>
+      <HeaderLink to="/eleves">
             Élèves
-          </HeaderLink>
-          <HeaderLink to="/calendrier">
+      </HeaderLink>
+      <HeaderLink to="/calendrier">
             Calendrier
-          </HeaderLink>
-          <HeaderLink to="/taches">
+      </HeaderLink>
+      <HeaderLink to="/taches">
             Taches
-          </HeaderLink>
-          <HeaderButton onClick={signOutAction}>
-            Se déconnecter
-          </HeaderButton>
-        </HeaderNav>
-      </div>
-    </div>
-  </header>
+      </HeaderLink>
+      <HeaderLink to="/" style={{ 'text-decoration': 'none' }}>
+            Semaine du {currentWeek.format('LL')}
+      </HeaderLink>
+    </HeaderNav>
+  </HeaderContent>
 );
 
 
