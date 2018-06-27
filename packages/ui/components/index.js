@@ -1,9 +1,8 @@
-import { Button } from './button/button.component';
-import { HeaderButton } from './button/headerButton.component';
-import { Input, InputForm } from './input/input.component';
-import { Legend } from './legend/legend.component';
-import { Title } from './title/title.component';
-import { Form } from './form/form.component';
-import { HeaderLink } from './headerLink/headerLink.component';
-
-export { Button, Input, InputForm, Legend, Title, Form, HeaderLink, HeaderButton };
+export { Button } from './button/button.component';
+export { LogoutButton } from './button/logoutButton.component';
+export { Input, InputForm } from './input/input.component';
+export { Legend } from './legend/legend.component';
+export { Title } from './title/title.component';
+export { HeaderTitle } from './title/headerTitle.component';
+export { Form } from './form/form.component';
+export { HeaderLink } from './headerLink/headerLink.component';

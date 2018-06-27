@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 const HeaderLinkStyle = styled(NavLink)`
-  font-size: .875rem;
+  font-size: 1rem;
   text-decoration: underline;
-  padding: .5rem 1rem;
   font-weight: 400;
 `;
 
