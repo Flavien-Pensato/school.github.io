@@ -5,8 +5,8 @@ const LogoutButtonStyle = styled.button`
   position: absolute;
   font-size: 0.875rem;
   font-weight: 700;
-  top: 0;
-  right: 0;
+  top: 20px;
+  right: 20px;
 `;
 
 export const LogoutButton = props => <LogoutButtonStyle {...props} />;
