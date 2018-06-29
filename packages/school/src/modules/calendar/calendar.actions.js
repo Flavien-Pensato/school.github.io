@@ -5,8 +5,6 @@ import {
   FETCH_DATES,
   FETCH_WEEK,
 
-  GO_NEXT_WEEK,
-  GO_PREVIOUS_WEEK,
   SET_SELECTED_WEEK,
 } from './calendar.constants';
 import { getSelectedWeek } from './calendar.selectors';
@@ -29,14 +27,6 @@ export const removeDateAction = (dateId) => {
     .ref(`2017-2018/dates/${dateId}`)
     .remove();
 };
-
-export const goNextWeekAction = () => ({
-  type: GO_NEXT_WEEK,
-});
-
-export const goPreviousWeekAction = () => ({
-  type: GO_PREVIOUS_WEEK,
-});
 
 export const setSelectedWeek = selectedWeek => ({
   type: SET_SELECTED_WEEK,
