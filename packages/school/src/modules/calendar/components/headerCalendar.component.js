@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+import { CalendarButton, CalendarLink } from '@school/ui';
 
 import { createWeekAction } from '../calendar.actions';
+
+const WrapperStyle = styled.div`
+  display: flex;
+  max-width: 48rem;
+  width: 100%;
+  margin: 20px auto;
+  justify-content: space-evenly;
+`;
 
 class HeaderCalendar extends Component {
 	onClickPrint = (e) => {
@@ -12,39 +23,30 @@ class HeaderCalendar extends Component {
 
 	render() {
 	  const {
-	    currentWeek, goNextWeek, goPreviousWeek,
+	    week,
 	  } = this.props;
 
+	  console.log(week.format('WY'));
+	  console.log(week.clone().startOf('week').add('weeks', 1).format('WY'));
+	  console.log(week.clone().startOf('week').add('weeks', -1).format('WY'));
+
 	  return (
-  <div>
-    <div className="flex items-center justify-between w-100 mv3">
-      <a href="#0" onClick={goPreviousWeek} className="f5 no-underline black bg-animate bg-dark-blue inline-flex items-center pa2 ba border-box mr4">
-        <span className="pl1">Semaine precedente</span>
-      </a>
-      <a href="#0" onClick={() => createWeekAction(currentWeek)} className="f5 no-underline black bg-animate white bg-dark-blue inline-flex items-center pa2 ba border-box">
-        <span className="pr1">Création de la semaine</span>
-      </a>
-      <a href="#0" onClick={goNextWeek} className="f5 no-underline black bg-animate bg-dark-blue inline-flex items-center pa2 ba border-box">
-        <span className="pr1">Semaine suivante</span>
-      </a>
-      <a href="#0" onClick={this.onClickPrint} className="f5 no-underline black bg-animate bg-dark-blue inline-flex items-center pa2 ba border-box">
-        <span className="pr1">Imprimer</span>
-      </a>
-    </div>
-  </div>
+  <WrapperStyle>
+    <CalendarLink to={week.clone().startOf('week').add('weeks', -1).format('WY')}>Semaine precedente</CalendarLink>
+    <CalendarButton onClick={() => createWeekAction(week)}>Création de la semaine</CalendarButton>
+    <CalendarLink to={week.clone().startOf('week').add('weeks', 1).format('WY')}>Semaine suivante</CalendarLink>
+    <CalendarButton onClick={this.onClickPrint}>Imprimer</CalendarButton>
+  </WrapperStyle>
 	  );
 	}
 }
 
 HeaderCalendar.defaultProps = {
-  currentWeek: {},
+  week: {},
 };
 
 HeaderCalendar.propTypes = {
-  currentWeek: PropTypes.object,
-
-  goNextWeek: PropTypes.func.isRequired,
-  goPreviousWeek: PropTypes.func.isRequired,
+  week: PropTypes.object,
 };
 
 export default HeaderCalendar;
