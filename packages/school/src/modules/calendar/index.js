@@ -8,9 +8,6 @@ import {
 
   ADD_DATE,
   REMOVE_DATE,
-
-  GO_NEXT_WEEK,
-  GO_PREVIOUS_WEEK,
 } from './calendar.constants';
 
 const initialeState = {
@@ -40,17 +37,6 @@ export default function tasks(state = initialeState, action) {
         ...state,
         dates,
       };
-    case GO_NEXT_WEEK:
-      return {
-        ...state,
-        selectedWeek: state.selectedWeek.add('weeks', 1),
-      };
-    case GO_PREVIOUS_WEEK:
-      return {
-        ...state,
-        selectedWeek: state.selectedWeek.add('weeks', -1),
-      };
-
     default:
       return state;
   }

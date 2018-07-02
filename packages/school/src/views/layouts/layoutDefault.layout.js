@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -14,6 +15,7 @@ import { Students } from '../pages/students.page';
 import { Calendar } from '../pages/calendar.page';
 import { LoadableHomePage } from '../pages/home.loadable';
 import { Tasks } from '../pages/tasks.page';
+import { ToasterConnected } from '../../modules/display/components/toaster.connector';
 
 
 class LayoutDefault extends Component {
@@ -28,7 +30,6 @@ class LayoutDefault extends Component {
       uid, autoLoginDone,
     } = this.props;
 
-
     if (!autoLoginDone) {
       return <Loader />;
     }
@@ -37,14 +38,16 @@ class LayoutDefault extends Component {
     }
 
     return (
-      <div>
+      <React.Fragment>
+        <ToasterConnected />
         <HeaderDefaultConnected />
-        <Route path="/:_id?" exact component={LoadableHomePage} />
+        <Route path="/home/:_id?" render={({ match }) => <LoadableHomePage match={match} />} />
         <Route path="/eleves/:id?" component={Students} />
         <Route path="/preview" component={Preview} />
         <Route path="/calendrier" component={Calendar} />
         <Route path="/taches" component={Tasks} />
-      </div>
+        <Route path="/" exact render={() => <Redirect to="/home" from="/" />} />
+      </React.Fragment>
     );
   }
 }
@@ -70,6 +73,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-const LayoutDefaultConnected = connect(mapStateToProps, mapDispatchToProps)(LayoutDefault);
+const LayoutDefaultConnected = withRouter(connect(mapStateToProps, mapDispatchToProps)(LayoutDefault));
 
 export { LayoutDefaultConnected };

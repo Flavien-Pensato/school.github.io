@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.InputForm = exports.Input = undefined;
 
 var _templateObject = _taggedTemplateLiteral(['\n  margin: 1rem 0;\n'], ['\n  margin: 1rem 0;\n']),
-    _templateObject2 = _taggedTemplateLiteral(['\n  font-size: .875rem;\n  line-height: 1.5;\n  font-weight: 600;\n  font-family: sans-serif;\n'], ['\n  font-size: .875rem;\n  line-height: 1.5;\n  font-weight: 600;\n  font-family: sans-serif;\n']),
+    _templateObject2 = _taggedTemplateLiteral(['\n  font-size: .875rem;\n  line-height: 1.5;\n  font-weight: 600;\n  font-family: sans-serif;\n  color: black;\n'], ['\n  font-size: .875rem;\n  line-height: 1.5;\n  font-weight: 600;\n  font-family: sans-serif;\n  color: black;\n']),
     _templateObject3 = _taggedTemplateLiteral(['\n  padding: 0.5rem;\n  background-color: transparent;\n  width: 100%;\n  border-style: solid;\n  border-width: 1px;\n  font-family: sans-serif;\n  font-size: 100%;\n  line-height: 1.15;\n  margin: 0;\n\n  &:hover {\n    background-color: #000;\n    color: #fff;\n  }\n'], ['\n  padding: 0.5rem;\n  background-color: transparent;\n  width: 100%;\n  border-style: solid;\n  border-width: 1px;\n  font-family: sans-serif;\n  font-size: 100%;\n  line-height: 1.15;\n  margin: 0;\n\n  &:hover {\n    background-color: #000;\n    color: #fff;\n  }\n']);
 
 var _react = require('react');

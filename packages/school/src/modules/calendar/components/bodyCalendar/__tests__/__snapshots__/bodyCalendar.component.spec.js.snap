@@ -8,7 +8,9 @@ ShallowWrapper {
     fetchWeeksAction={
       [MockFunction] {
         "calls": Array [
-          Array [],
+          Array [
+            "",
+          ],
         ],
         "results": Array [
           Object {
@@ -23,6 +25,7 @@ ShallowWrapper {
         "params": Object {},
       }
     }
+    selectedWeek=""
     week={Object {}}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -74,7 +77,9 @@ ShallowWrapper {
     fetchWeeksAction={
       [MockFunction] {
         "calls": Array [
-          Array [],
+          Array [
+            "",
+          ],
         ],
         "results": Array [
           Object {
@@ -89,6 +94,7 @@ ShallowWrapper {
         "params": Object {},
       }
     }
+    selectedWeek=""
     week={
       Object {
         "tasks": Array [],
