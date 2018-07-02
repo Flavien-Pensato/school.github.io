@@ -7,20 +7,16 @@ import moment from 'moment';
 import { store } from './config/store';
 
 import { LayoutDefaultConnected } from './views/layouts/layoutDefault.layout';
-import { ToasterConnected } from './modules/display/components/toaster.connector';
 
 import './main.css';
 
 moment.locale('fr');
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Provider store={store}>
-      <div>
-        <ToasterConnected />
-        <LayoutDefaultConnected />
-      </div>
-    </Provider>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <LayoutDefaultConnected />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root'),
 );

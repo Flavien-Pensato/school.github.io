@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { Button, InputForm, Legend, Form } from '@school/ui';
 
@@ -20,7 +20,7 @@ class Login extends Component {
 	  const { uid } = this.props;
 
 	  if (uid) {
-	    return <Redirect to={{ pathname: '/' }} />;
+	    return <Redirect to={{ pathname: '/home' }} />;
 	  }
 
 	  return (

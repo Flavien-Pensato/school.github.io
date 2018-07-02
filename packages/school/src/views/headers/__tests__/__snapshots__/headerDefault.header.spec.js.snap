@@ -18,809 +18,383 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "class",
     "props": Object {
-      "children": <div
-        className="cover bg-left bg-center-l"
-      >
-        <div
-          className="pb1-m"
+      "children": Array [
+        <LogoutButton
+          onClick={[MockFunction]}
         >
-          <nav
-            className="dt w-100 mw8 center"
+          Se déconnecter
+        </LogoutButton>,
+        <HeaderTitle>
+          Planning de la MFR de chatte
+        </HeaderTitle>,
+        <styled.nav>
+          <HeaderLink
+            to="/home"
           >
-            <div
-              className="dtc v-mid tr pa3 fl"
-            >
-              Semaine du 
-              February 14, 2017
-            </div>
-            <div
-              className="dtc v-mid tr pa3 pv2 ph3"
-            >
-              <NavLink
-                activeClassName="active"
-                ariaCurrent="true"
-                className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                to="/"
-              >
-                Accueil
-              </NavLink>
-              <NavLink
-                activeClassName="active"
-                ariaCurrent="true"
-                className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                to="/eleves"
-              >
-                Élèves
-              </NavLink>
-              <NavLink
-                activeClassName="active"
-                ariaCurrent="true"
-                className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                to="/calendrier"
-              >
-                Calendrier
-              </NavLink>
-              <NavLink
-                activeClassName="active"
-                ariaCurrent="true"
-                className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                to="/taches"
-              >
-                Taches
-              </NavLink>
-              <button
-                className="f6 fw4 hover-white no-underline white-70 dib ml2 pv2 ph3 ba"
-                onClick={[MockFunction]}
-              >
-                Se déconnecter
-              </button>
-            </div>
-          </nav>
-        </div>
-      </div>,
-      "className": "vh-15",
+            Accueil
+          </HeaderLink>
+          <HeaderLink
+            to="/eleves"
+          >
+            Élèves
+          </HeaderLink>
+          <HeaderLink
+            to="/calendrier"
+          >
+            Calendrier
+          </HeaderLink>
+          <HeaderLink
+            to="/taches"
+          >
+            Taches
+          </HeaderLink>
+          <HeaderLink
+            style={
+              Object {
+                "textDecoration": "none",
+              }
+            }
+            to="/home"
+          >
+            Semaine du 
+            February 14, 2017
+          </HeaderLink>
+        </styled.nav>,
+      ],
     },
     "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": <div
-          className="pb1-m"
-        >
-          <nav
-            className="dt w-100 mw8 center"
-          >
-            <div
-              className="dtc v-mid tr pa3 fl"
-            >
-              Semaine du 
-              February 14, 2017
-            </div>
-            <div
-              className="dtc v-mid tr pa3 pv2 ph3"
-            >
-              <NavLink
-                activeClassName="active"
-                ariaCurrent="true"
-                className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                to="/"
-              >
-                Accueil
-              </NavLink>
-              <NavLink
-                activeClassName="active"
-                ariaCurrent="true"
-                className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                to="/eleves"
-              >
-                Élèves
-              </NavLink>
-              <NavLink
-                activeClassName="active"
-                ariaCurrent="true"
-                className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                to="/calendrier"
-              >
-                Calendrier
-              </NavLink>
-              <NavLink
-                activeClassName="active"
-                ariaCurrent="true"
-                className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                to="/taches"
-              >
-                Taches
-              </NavLink>
-              <button
-                className="f6 fw4 hover-white no-underline white-70 dib ml2 pv2 ph3 ba"
-                onClick={[MockFunction]}
-              >
-                Se déconnecter
-              </button>
-            </div>
-          </nav>
-        </div>,
-        "className": "cover bg-left bg-center-l",
-      },
-      "ref": null,
-      "rendered": Object {
+    "rendered": Array [
+      Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "function",
         "props": Object {
-          "children": <nav
-            className="dt w-100 mw8 center"
-          >
-            <div
-              className="dtc v-mid tr pa3 fl"
+          "children": "Se déconnecter",
+          "onClick": [MockFunction],
+        },
+        "ref": null,
+        "rendered": "Se déconnecter",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": "Planning de la MFR de chatte",
+        },
+        "ref": null,
+        "rendered": "Planning de la MFR de chatte",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <HeaderLink
+              to="/home"
+            >
+              Accueil
+            </HeaderLink>,
+            <HeaderLink
+              to="/eleves"
+            >
+              Élèves
+            </HeaderLink>,
+            <HeaderLink
+              to="/calendrier"
+            >
+              Calendrier
+            </HeaderLink>,
+            <HeaderLink
+              to="/taches"
+            >
+              Taches
+            </HeaderLink>,
+            <HeaderLink
+              style={
+                Object {
+                  "textDecoration": "none",
+                }
+              }
+              to="/home"
             >
               Semaine du 
               February 14, 2017
-            </div>
-            <div
-              className="dtc v-mid tr pa3 pv2 ph3"
+            </HeaderLink>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "Accueil",
+              "to": "/home",
+            },
+            "ref": null,
+            "rendered": "Accueil",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "Élèves",
+              "to": "/eleves",
+            },
+            "ref": null,
+            "rendered": "Élèves",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "Calendrier",
+              "to": "/calendrier",
+            },
+            "ref": null,
+            "rendered": "Calendrier",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "Taches",
+              "to": "/taches",
+            },
+            "ref": null,
+            "rendered": "Taches",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": Array [
+                "Semaine du ",
+                "February 14, 2017",
+              ],
+              "style": Object {
+                "textDecoration": "none",
+              },
+              "to": "/home",
+            },
+            "ref": null,
+            "rendered": Array [
+              "Semaine du ",
+              "February 14, 2017",
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <LogoutButton
+            onClick={[MockFunction]}
+          >
+            Se déconnecter
+          </LogoutButton>,
+          <HeaderTitle>
+            Planning de la MFR de chatte
+          </HeaderTitle>,
+          <styled.nav>
+            <HeaderLink
+              to="/home"
             >
-              <NavLink
-                activeClassName="active"
-                ariaCurrent="true"
-                className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                to="/"
+              Accueil
+            </HeaderLink>
+            <HeaderLink
+              to="/eleves"
+            >
+              Élèves
+            </HeaderLink>
+            <HeaderLink
+              to="/calendrier"
+            >
+              Calendrier
+            </HeaderLink>
+            <HeaderLink
+              to="/taches"
+            >
+              Taches
+            </HeaderLink>
+            <HeaderLink
+              style={
+                Object {
+                  "textDecoration": "none",
+                }
+              }
+              to="/home"
+            >
+              Semaine du 
+              February 14, 2017
+            </HeaderLink>
+          </styled.nav>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": "Se déconnecter",
+            "onClick": [MockFunction],
+          },
+          "ref": null,
+          "rendered": "Se déconnecter",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": "Planning de la MFR de chatte",
+          },
+          "ref": null,
+          "rendered": "Planning de la MFR de chatte",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <HeaderLink
+                to="/home"
               >
                 Accueil
-              </NavLink>
-              <NavLink
-                activeClassName="active"
-                ariaCurrent="true"
-                className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
+              </HeaderLink>,
+              <HeaderLink
                 to="/eleves"
               >
                 Élèves
-              </NavLink>
-              <NavLink
-                activeClassName="active"
-                ariaCurrent="true"
-                className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
+              </HeaderLink>,
+              <HeaderLink
                 to="/calendrier"
               >
                 Calendrier
-              </NavLink>
-              <NavLink
-                activeClassName="active"
-                ariaCurrent="true"
-                className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
+              </HeaderLink>,
+              <HeaderLink
                 to="/taches"
               >
                 Taches
-              </NavLink>
-              <button
-                className="f6 fw4 hover-white no-underline white-70 dib ml2 pv2 ph3 ba"
-                onClick={[MockFunction]}
-              >
-                Se déconnecter
-              </button>
-            </div>
-          </nav>,
-          "className": "pb1-m",
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              <div
-                className="dtc v-mid tr pa3 fl"
+              </HeaderLink>,
+              <HeaderLink
+                style={
+                  Object {
+                    "textDecoration": "none",
+                  }
+                }
+                to="/home"
               >
                 Semaine du 
                 February 14, 2017
-              </div>,
-              <div
-                className="dtc v-mid tr pa3 pv2 ph3"
-              >
-                <NavLink
-                  activeClassName="active"
-                  ariaCurrent="true"
-                  className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                  to="/"
-                >
-                  Accueil
-                </NavLink>
-                <NavLink
-                  activeClassName="active"
-                  ariaCurrent="true"
-                  className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                  to="/eleves"
-                >
-                  Élèves
-                </NavLink>
-                <NavLink
-                  activeClassName="active"
-                  ariaCurrent="true"
-                  className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                  to="/calendrier"
-                >
-                  Calendrier
-                </NavLink>
-                <NavLink
-                  activeClassName="active"
-                  ariaCurrent="true"
-                  className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                  to="/taches"
-                >
-                  Taches
-                </NavLink>
-                <button
-                  className="f6 fw4 hover-white no-underline white-70 dib ml2 pv2 ph3 ba"
-                  onClick={[MockFunction]}
-                >
-                  Se déconnecter
-                </button>
-              </div>,
+              </HeaderLink>,
             ],
-            "className": "dt w-100 mw8 center",
           },
           "ref": null,
           "rendered": Array [
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "host",
+              "nodeType": "function",
+              "props": Object {
+                "children": "Accueil",
+                "to": "/home",
+              },
+              "ref": null,
+              "rendered": "Accueil",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "Élèves",
+                "to": "/eleves",
+              },
+              "ref": null,
+              "rendered": "Élèves",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "Calendrier",
+                "to": "/calendrier",
+              },
+              "ref": null,
+              "rendered": "Calendrier",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "Taches",
+                "to": "/taches",
+              },
+              "ref": null,
+              "rendered": "Taches",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
               "props": Object {
                 "children": Array [
                   "Semaine du ",
                   "February 14, 2017",
                 ],
-                "className": "dtc v-mid tr pa3 fl",
+                "style": Object {
+                  "textDecoration": "none",
+                },
+                "to": "/home",
               },
               "ref": null,
               "rendered": Array [
                 "Semaine du ",
                 "February 14, 2017",
               ],
-              "type": "div",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": Array [
-                  <NavLink
-                    activeClassName="active"
-                    ariaCurrent="true"
-                    className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                    to="/"
-                  >
-                    Accueil
-                  </NavLink>,
-                  <NavLink
-                    activeClassName="active"
-                    ariaCurrent="true"
-                    className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                    to="/eleves"
-                  >
-                    Élèves
-                  </NavLink>,
-                  <NavLink
-                    activeClassName="active"
-                    ariaCurrent="true"
-                    className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                    to="/calendrier"
-                  >
-                    Calendrier
-                  </NavLink>,
-                  <NavLink
-                    activeClassName="active"
-                    ariaCurrent="true"
-                    className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                    to="/taches"
-                  >
-                    Taches
-                  </NavLink>,
-                  <button
-                    className="f6 fw4 hover-white no-underline white-70 dib ml2 pv2 ph3 ba"
-                    onClick={[MockFunction]}
-                  >
-                    Se déconnecter
-                  </button>,
-                ],
-                "className": "dtc v-mid tr pa3 pv2 ph3",
-              },
-              "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "activeClassName": "active",
-                    "ariaCurrent": "true",
-                    "children": "Accueil",
-                    "className": "f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3",
-                    "to": "/",
-                  },
-                  "ref": null,
-                  "rendered": "Accueil",
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "activeClassName": "active",
-                    "ariaCurrent": "true",
-                    "children": "Élèves",
-                    "className": "f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3",
-                    "to": "/eleves",
-                  },
-                  "ref": null,
-                  "rendered": "Élèves",
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "activeClassName": "active",
-                    "ariaCurrent": "true",
-                    "children": "Calendrier",
-                    "className": "f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3",
-                    "to": "/calendrier",
-                  },
-                  "ref": null,
-                  "rendered": "Calendrier",
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "activeClassName": "active",
-                    "ariaCurrent": "true",
-                    "children": "Taches",
-                    "className": "f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3",
-                    "to": "/taches",
-                  },
-                  "ref": null,
-                  "rendered": "Taches",
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "Se déconnecter",
-                    "className": "f6 fw4 hover-white no-underline white-70 dib ml2 pv2 ph3 ba",
-                    "onClick": [MockFunction],
-                  },
-                  "ref": null,
-                  "rendered": "Se déconnecter",
-                  "type": "button",
-                },
-              ],
-              "type": "div",
+              "type": [Function],
             },
           ],
-          "type": "nav",
+          "type": [Function],
         },
-        "type": "div",
-      },
-      "type": "div",
-    },
-    "type": "header",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": <div
-          className="cover bg-left bg-center-l"
-        >
-          <div
-            className="pb1-m"
-          >
-            <nav
-              className="dt w-100 mw8 center"
-            >
-              <div
-                className="dtc v-mid tr pa3 fl"
-              >
-                Semaine du 
-                February 14, 2017
-              </div>
-              <div
-                className="dtc v-mid tr pa3 pv2 ph3"
-              >
-                <NavLink
-                  activeClassName="active"
-                  ariaCurrent="true"
-                  className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                  to="/"
-                >
-                  Accueil
-                </NavLink>
-                <NavLink
-                  activeClassName="active"
-                  ariaCurrent="true"
-                  className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                  to="/eleves"
-                >
-                  Élèves
-                </NavLink>
-                <NavLink
-                  activeClassName="active"
-                  ariaCurrent="true"
-                  className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                  to="/calendrier"
-                >
-                  Calendrier
-                </NavLink>
-                <NavLink
-                  activeClassName="active"
-                  ariaCurrent="true"
-                  className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                  to="/taches"
-                >
-                  Taches
-                </NavLink>
-                <button
-                  className="f6 fw4 hover-white no-underline white-70 dib ml2 pv2 ph3 ba"
-                  onClick={[MockFunction]}
-                >
-                  Se déconnecter
-                </button>
-              </div>
-            </nav>
-          </div>
-        </div>,
-        "className": "vh-15",
-      },
-      "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": <div
-            className="pb1-m"
-          >
-            <nav
-              className="dt w-100 mw8 center"
-            >
-              <div
-                className="dtc v-mid tr pa3 fl"
-              >
-                Semaine du 
-                February 14, 2017
-              </div>
-              <div
-                className="dtc v-mid tr pa3 pv2 ph3"
-              >
-                <NavLink
-                  activeClassName="active"
-                  ariaCurrent="true"
-                  className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                  to="/"
-                >
-                  Accueil
-                </NavLink>
-                <NavLink
-                  activeClassName="active"
-                  ariaCurrent="true"
-                  className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                  to="/eleves"
-                >
-                  Élèves
-                </NavLink>
-                <NavLink
-                  activeClassName="active"
-                  ariaCurrent="true"
-                  className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                  to="/calendrier"
-                >
-                  Calendrier
-                </NavLink>
-                <NavLink
-                  activeClassName="active"
-                  ariaCurrent="true"
-                  className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                  to="/taches"
-                >
-                  Taches
-                </NavLink>
-                <button
-                  className="f6 fw4 hover-white no-underline white-70 dib ml2 pv2 ph3 ba"
-                  onClick={[MockFunction]}
-                >
-                  Se déconnecter
-                </button>
-              </div>
-            </nav>
-          </div>,
-          "className": "cover bg-left bg-center-l",
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": <nav
-              className="dt w-100 mw8 center"
-            >
-              <div
-                className="dtc v-mid tr pa3 fl"
-              >
-                Semaine du 
-                February 14, 2017
-              </div>
-              <div
-                className="dtc v-mid tr pa3 pv2 ph3"
-              >
-                <NavLink
-                  activeClassName="active"
-                  ariaCurrent="true"
-                  className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                  to="/"
-                >
-                  Accueil
-                </NavLink>
-                <NavLink
-                  activeClassName="active"
-                  ariaCurrent="true"
-                  className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                  to="/eleves"
-                >
-                  Élèves
-                </NavLink>
-                <NavLink
-                  activeClassName="active"
-                  ariaCurrent="true"
-                  className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                  to="/calendrier"
-                >
-                  Calendrier
-                </NavLink>
-                <NavLink
-                  activeClassName="active"
-                  ariaCurrent="true"
-                  className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                  to="/taches"
-                >
-                  Taches
-                </NavLink>
-                <button
-                  className="f6 fw4 hover-white no-underline white-70 dib ml2 pv2 ph3 ba"
-                  onClick={[MockFunction]}
-                >
-                  Se déconnecter
-                </button>
-              </div>
-            </nav>,
-            "className": "pb1-m",
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": Array [
-                <div
-                  className="dtc v-mid tr pa3 fl"
-                >
-                  Semaine du 
-                  February 14, 2017
-                </div>,
-                <div
-                  className="dtc v-mid tr pa3 pv2 ph3"
-                >
-                  <NavLink
-                    activeClassName="active"
-                    ariaCurrent="true"
-                    className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                    to="/"
-                  >
-                    Accueil
-                  </NavLink>
-                  <NavLink
-                    activeClassName="active"
-                    ariaCurrent="true"
-                    className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                    to="/eleves"
-                  >
-                    Élèves
-                  </NavLink>
-                  <NavLink
-                    activeClassName="active"
-                    ariaCurrent="true"
-                    className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                    to="/calendrier"
-                  >
-                    Calendrier
-                  </NavLink>
-                  <NavLink
-                    activeClassName="active"
-                    ariaCurrent="true"
-                    className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                    to="/taches"
-                  >
-                    Taches
-                  </NavLink>
-                  <button
-                    className="f6 fw4 hover-white no-underline white-70 dib ml2 pv2 ph3 ba"
-                    onClick={[MockFunction]}
-                  >
-                    Se déconnecter
-                  </button>
-                </div>,
-              ],
-              "className": "dt w-100 mw8 center",
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": Array [
-                    "Semaine du ",
-                    "February 14, 2017",
-                  ],
-                  "className": "dtc v-mid tr pa3 fl",
-                },
-                "ref": null,
-                "rendered": Array [
-                  "Semaine du ",
-                  "February 14, 2017",
-                ],
-                "type": "div",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": Array [
-                    <NavLink
-                      activeClassName="active"
-                      ariaCurrent="true"
-                      className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                      to="/"
-                    >
-                      Accueil
-                    </NavLink>,
-                    <NavLink
-                      activeClassName="active"
-                      ariaCurrent="true"
-                      className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                      to="/eleves"
-                    >
-                      Élèves
-                    </NavLink>,
-                    <NavLink
-                      activeClassName="active"
-                      ariaCurrent="true"
-                      className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                      to="/calendrier"
-                    >
-                      Calendrier
-                    </NavLink>,
-                    <NavLink
-                      activeClassName="active"
-                      ariaCurrent="true"
-                      className="f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3"
-                      to="/taches"
-                    >
-                      Taches
-                    </NavLink>,
-                    <button
-                      className="f6 fw4 hover-white no-underline white-70 dib ml2 pv2 ph3 ba"
-                      onClick={[MockFunction]}
-                    >
-                      Se déconnecter
-                    </button>,
-                  ],
-                  "className": "dtc v-mid tr pa3 pv2 ph3",
-                },
-                "ref": null,
-                "rendered": Array [
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "function",
-                    "props": Object {
-                      "activeClassName": "active",
-                      "ariaCurrent": "true",
-                      "children": "Accueil",
-                      "className": "f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3",
-                      "to": "/",
-                    },
-                    "ref": null,
-                    "rendered": "Accueil",
-                    "type": [Function],
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "function",
-                    "props": Object {
-                      "activeClassName": "active",
-                      "ariaCurrent": "true",
-                      "children": "Élèves",
-                      "className": "f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3",
-                      "to": "/eleves",
-                    },
-                    "ref": null,
-                    "rendered": "Élèves",
-                    "type": [Function],
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "function",
-                    "props": Object {
-                      "activeClassName": "active",
-                      "ariaCurrent": "true",
-                      "children": "Calendrier",
-                      "className": "f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3",
-                      "to": "/calendrier",
-                    },
-                    "ref": null,
-                    "rendered": "Calendrier",
-                    "type": [Function],
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "function",
-                    "props": Object {
-                      "activeClassName": "active",
-                      "ariaCurrent": "true",
-                      "children": "Taches",
-                      "className": "f6 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3",
-                      "to": "/taches",
-                    },
-                    "ref": null,
-                    "rendered": "Taches",
-                    "type": [Function],
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "children": "Se déconnecter",
-                      "className": "f6 fw4 hover-white no-underline white-70 dib ml2 pv2 ph3 ba",
-                      "onClick": [MockFunction],
-                    },
-                    "ref": null,
-                    "rendered": "Se déconnecter",
-                    "type": "button",
-                  },
-                ],
-                "type": "div",
-              },
-            ],
-            "type": "nav",
-          },
-          "type": "div",
-        },
-        "type": "div",
-      },
-      "type": "header",
+      ],
+      "type": [Function],
     },
   ],
   Symbol(enzyme.__options__): Object {

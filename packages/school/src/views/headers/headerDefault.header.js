@@ -34,7 +34,7 @@ export const HeaderDefault = ({ currentWeek, signOutAction }) => (
     </LogoutButton>
     <HeaderTitle>Planning de la MFR de chatte</HeaderTitle>
     <HeaderNav>
-      <HeaderLink to="/">
+      <HeaderLink to="/home">
             Accueil
       </HeaderLink>
       <HeaderLink to="/eleves">
@@ -46,7 +46,7 @@ export const HeaderDefault = ({ currentWeek, signOutAction }) => (
       <HeaderLink to="/taches">
             Taches
       </HeaderLink>
-      <HeaderLink to="/" style={{ 'text-decoration': 'none' }}>
+      <HeaderLink to="/home" style={{ textDecoration: 'none' }}>
             Semaine du {currentWeek.format('LL')}
       </HeaderLink>
     </HeaderNav>

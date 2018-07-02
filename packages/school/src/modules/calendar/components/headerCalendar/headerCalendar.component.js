@@ -4,14 +4,14 @@ import styled from 'styled-components';
 
 import { CalendarButton, CalendarLink } from '@school/ui';
 
-import { createWeekAction } from '../calendar.actions';
+import { createWeekAction } from '../../calendar.actions';
 
 const WrapperStyle = styled.div`
   display: flex;
   max-width: 48rem;
   width: 100%;
   margin: 20px auto;
-  justify-content: space-evenly;
+  justify-content: space-between;
 `;
 
 class HeaderCalendar extends Component {
@@ -26,15 +26,11 @@ class HeaderCalendar extends Component {
 	    week,
 	  } = this.props;
 
-	  console.log(week.format('WY'));
-	  console.log(week.clone().startOf('week').add('weeks', 1).format('WY'));
-	  console.log(week.clone().startOf('week').add('weeks', -1).format('WY'));
-
 	  return (
   <WrapperStyle>
-    <CalendarLink to={week.clone().startOf('week').add('weeks', -1).format('WY')}>Semaine precedente</CalendarLink>
+    <CalendarLink to={`/home/${week.clone().startOf('week').add(-1, 'weeks').format('WY')}`}>Semaine precedente</CalendarLink>
     <CalendarButton onClick={() => createWeekAction(week)}>Création de la semaine</CalendarButton>
-    <CalendarLink to={week.clone().startOf('week').add('weeks', 1).format('WY')}>Semaine suivante</CalendarLink>
+    <CalendarLink to={`/home/${week.clone().startOf('week').add(1, 'weeks').format('WY')}`}>Semaine suivante</CalendarLink>
     <CalendarButton onClick={this.onClickPrint}>Imprimer</CalendarButton>
   </WrapperStyle>
 	  );

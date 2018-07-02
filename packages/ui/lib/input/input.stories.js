@@ -21,5 +21,5 @@ stories.add('Email', function () {
 });
 
 stories.add('Password form', function () {
-  return _react2.default.createElement(InputForm, { type: 'password', name: 'password', textLabel: 'Mot de passe' });
+  return _react2.default.createElement(_input.InputForm, { type: 'password', name: 'password', textLabel: 'Mot de passe' });
 });

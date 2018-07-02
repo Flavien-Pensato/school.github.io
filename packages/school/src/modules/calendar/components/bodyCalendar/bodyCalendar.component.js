@@ -4,22 +4,17 @@ import _ from 'lodash';
 
 export class BodyCalendar extends Component {
   componentDidMount() {
-    const { fetchWeeksAction, match } = this.props;
+    const { fetchWeeksAction, selectedWeek } = this.props;
 
-    if (match.params._id) {
-      fetchWeeksAction(match.params._id);
-    } else {
-      fetchWeeksAction();
-    }
+    fetchWeeksAction(selectedWeek);
   }
 
   componentWillReceiveProps(nextProps) {
-    const { fetchWeeksAction, match } = nextProps;
+    const { fetchWeeksAction, selectedWeek } = nextProps;
 
-    const weekId = _.get(match, 'params._id');
 
-    if (weekId !== this.props.match.params._id) {
-      fetchWeeksAction(weekId);
+    if (selectedWeek !== this.props.selectedWeek) {
+      fetchWeeksAction(selectedWeek);
     }
   }
 
@@ -62,10 +57,11 @@ export class BodyCalendar extends Component {
 
 BodyCalendar.defaultProps = {
   week: {},
+  selectedWeek: '',
 };
 
 BodyCalendar.propTypes = {
   week: PropTypes.object,
-  match: PropTypes.object.isRequired,
+  selectedWeek: PropTypes.string,
   fetchWeeksAction: PropTypes.func.isRequired,
 };

@@ -3,8 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.Title = undefined;
 
-var _templateObject = _taggedTemplateLiteral(['\n  font-size: 2rem;\n  padding: 0.5rem 1rem;\n  background-color: transparent;\n  text-transform: uppercase;\n  font-weight: 700;\n  display: inline-block;\n'], ['\n  font-size: 2rem;\n  padding: 0.5rem 1rem;\n  background-color: transparent;\n  text-transform: uppercase;\n  font-weight: 700;\n  display: inline-block;\n']);
+var _templateObject = _taggedTemplateLiteral(['\n  font-size: 2rem;\n  font-family: sans-serif;\n  padding: 0.5rem 1rem;\n  background-color: transparent;\n  text-transform: uppercase;\n  font-weight: 700;\n  display: inline-block;\n'], ['\n  font-size: 2rem;\n  font-family: sans-serif;\n  padding: 0.5rem 1rem;\n  background-color: transparent;\n  text-transform: uppercase;\n  font-weight: 700;\n  display: inline-block;\n']);
 
 var _react = require('react');
 
@@ -20,6 +21,6 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
 
 var TitleForm = _styledComponents2.default.h2(_templateObject);
 
-exports.default = function (props) {
+var Title = exports.Title = function Title(props) {
   return _react2.default.createElement(TitleForm, props);
 };
