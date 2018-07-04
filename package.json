@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "school:start": "cd packages/school && webpack-dev-server",
-    "school:build": "cd packages/school && webpack --config webpack.config.js",
+    "school:build": "cd packages/school && webpack --config webpack.config.js -p",
     "school:test": "cd packages/school && yarn test",
     "school:lint": "cd packages/school && eslint --color --cache 'src/*.js' '{src,config,scripts,tests}/**/*.js'",
 
