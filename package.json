@@ -5,7 +5,7 @@
     "school:start": "cd packages/school && webpack-dev-server",
     "school:build": "cd packages/school && webpack --config webpack.config.js -p",
     "school:test": "cd packages/school && yarn test",
-    "school:lint": "cd packages/school && eslint --color --cache 'src/*.js' '{src,config,scripts,tests}/**/*.js'",
+    "school:lint": "cd packages/school && yarn lint",
     "ui:watch": "cd packages/ui && yarn build --watch",
     "ui:build": "cd packages/ui && yarn build",
     "ui:storybook": "cd packages/ui && yarn storybook",
