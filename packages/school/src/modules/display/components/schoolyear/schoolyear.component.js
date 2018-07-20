@@ -13,11 +13,13 @@ export class SchoolYear extends Component {
 
   generateSchoolyears = () => {
     const schoolyears = {};
-    const date = moment().add('year', -2);
+    const date = moment().add(-2, 'year');
 
     for (let len = 0; len < 4; len += 1) {
-      schoolyears[`${date.year()}-${date.add('year', 1).year()}`] = true;
+      schoolyears[`${date.year()}-${date.add(1, 'year').year()}`] = true;
     }
+
+    return schoolyears;
   };
 
   render() {
@@ -26,7 +28,7 @@ export class SchoolYear extends Component {
     return (
       <div>
         <select>
-          {this.state.schoolyears.map(year => <option value={year} selected={year === current}>{year}</option>)}
+          {Object.keys(this.state.schoolyears).map(year => <option key={year}value={year} selected={year === current}>{year}</option>)}
         </select>
       </div>
     );
