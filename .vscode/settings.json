@@ -1,0 +1,6 @@
+{ 
+  "jest.runAllTestsFirst": false,
+  "jest.showCoverageOnLoad": true,
+  "jest.rootPath": "./packages/school",
+  "jest.pathToJest": "/packages/school/node_modules/.bin/jest",
+}

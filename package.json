@@ -5,16 +5,17 @@
     "school:start": "cd packages/school && webpack-dev-server",
     "school:build": "cd packages/school && webpack --config webpack.config.js -p",
     "school:test": "cd packages/school && yarn test",
-    "school:lint": "cd packages/school && eslint --color --cache 'src/*.js' '{src,config,scripts,tests}/**/*.js'",
-
+    "school:lint": "cd packages/school && yarn lint",
     "ui:watch": "cd packages/ui && yarn build --watch",
     "ui:build": "cd packages/ui && yarn build",
     "ui:storybook": "cd packages/ui && yarn storybook",
-    
     "start": "npm-run-all --parallel ui:watch school:start",
-    "test": "npm-run-all ui:build school:test",
+    "test": "npm-run-all --parallel ui:build school:test",
     "lint": "npm-run-all school:lint",
     "build": "npm-run-all ui:build school:build"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./config/jest/setup.js"
   },
   "workspaces": [
     "packages/*"
