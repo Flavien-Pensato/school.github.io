@@ -27,12 +27,17 @@ const HeaderNav = styled.nav`
   border-bottom: solid 1px black;
 `;
 
+const HeaderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const HeaderDefault = ({ currentWeek, signOutAction }) => (
   <HeaderContent>
-    <LogoutButton onClick={signOutAction}>
-      Se déconnecter
-    </LogoutButton>
-    <HeaderTitle>Planning de la MFR de chatte</HeaderTitle>
+    <HeaderWrapper>
+      <HeaderTitle>Planning de la MFR de chatte</HeaderTitle>
+      <LogoutButton onClick={signOutAction} />
+    </HeaderWrapper>
     <HeaderNav>
       <HeaderLink to="/home">
             Accueil
