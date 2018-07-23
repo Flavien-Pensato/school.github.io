@@ -21,14 +21,19 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <LogoutButton
-          onClick={[MockFunction]}
-        >
-          Se déconnecter
-        </LogoutButton>,
-        <HeaderTitle>
-          Planning de la MFR de chatte
-        </HeaderTitle>,
+        <styled.div>
+          <HeaderTitle>
+            Planning de la MFR de chatte
+          </HeaderTitle>
+          <LogoutButton
+            onClick={[MockFunction]}
+          >
+            <span>
+              Se déconnecter
+            </span>
+            <LogoutSvg />
+          </LogoutButton>
+        </styled.div>,
         <styled.nav>
           <HeaderLink
             to="/home"
@@ -69,24 +74,74 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "function",
+        "nodeType": "class",
         "props": Object {
-          "children": "Se déconnecter",
-          "onClick": [MockFunction],
+          "children": Array [
+            <HeaderTitle>
+              Planning de la MFR de chatte
+            </HeaderTitle>,
+            <LogoutButton
+              onClick={[MockFunction]}
+            >
+              <span>
+                Se déconnecter
+              </span>
+              <LogoutSvg />
+            </LogoutButton>,
+          ],
         },
         "ref": null,
-        "rendered": "Se déconnecter",
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "children": "Planning de la MFR de chatte",
-        },
-        "ref": null,
-        "rendered": "Planning de la MFR de chatte",
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "Planning de la MFR de chatte",
+            },
+            "ref": null,
+            "rendered": "Planning de la MFR de chatte",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": Array [
+                <span>
+                  Se déconnecter
+                </span>,
+                <LogoutSvg />,
+              ],
+              "onClick": [MockFunction],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Se déconnecter",
+                },
+                "ref": null,
+                "rendered": "Se déconnecter",
+                "type": "span",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+        ],
         "type": [Function],
       },
       Object {
@@ -212,14 +267,19 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <LogoutButton
-            onClick={[MockFunction]}
-          >
-            Se déconnecter
-          </LogoutButton>,
-          <HeaderTitle>
-            Planning de la MFR de chatte
-          </HeaderTitle>,
+          <styled.div>
+            <HeaderTitle>
+              Planning de la MFR de chatte
+            </HeaderTitle>
+            <LogoutButton
+              onClick={[MockFunction]}
+            >
+              <span>
+                Se déconnecter
+              </span>
+              <LogoutSvg />
+            </LogoutButton>
+          </styled.div>,
           <styled.nav>
             <HeaderLink
               to="/home"
@@ -260,24 +320,74 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
+          "nodeType": "class",
           "props": Object {
-            "children": "Se déconnecter",
-            "onClick": [MockFunction],
+            "children": Array [
+              <HeaderTitle>
+                Planning de la MFR de chatte
+              </HeaderTitle>,
+              <LogoutButton
+                onClick={[MockFunction]}
+              >
+                <span>
+                  Se déconnecter
+                </span>
+                <LogoutSvg />
+              </LogoutButton>,
+            ],
           },
           "ref": null,
-          "rendered": "Se déconnecter",
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": "Planning de la MFR de chatte",
-          },
-          "ref": null,
-          "rendered": "Planning de la MFR de chatte",
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "Planning de la MFR de chatte",
+              },
+              "ref": null,
+              "rendered": "Planning de la MFR de chatte",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": Array [
+                  <span>
+                    Se déconnecter
+                  </span>,
+                  <LogoutSvg />,
+                ],
+                "onClick": [MockFunction],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Se déconnecter",
+                  },
+                  "ref": null,
+                  "rendered": "Se déconnecter",
+                  "type": "span",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+          ],
           "type": [Function],
         },
         Object {
