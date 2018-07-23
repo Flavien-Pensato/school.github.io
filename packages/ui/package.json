@@ -5,8 +5,8 @@
   "module": "./components/index.js",
   "license": "MIT",
   "scripts": {
-    "storybook": "start-storybook -p 9001 -s ./public -c .storybook",
-    "postinstall": "build-storybook -c .storybook -s ./public -o dist",
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "postinstall": "build-storybook -c .storybook -o dist",
     "build": "babel --config-file .storybook/.babelrc components -d lib"
   },
   "devDependencies": {
