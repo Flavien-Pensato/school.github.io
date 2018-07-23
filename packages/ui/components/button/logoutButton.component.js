@@ -7,13 +7,13 @@ const LogoutButtonStyle = styled.button`
   font-weight: 700;
   top: 20px;
   right: 20px;
-  
-  &:after {
-    content: 'Se déconnecter';
-  }
-  
+
   @media (max-width: 700px) {
-    background-image: url('/baseline-exit_to_app-24px.svg')
+    position: inherit;
+
+    span {
+      display: none;
+    }
   }
 `;
 
