@@ -9,7 +9,3 @@ export const FETCH_CLASSES = 'school/FETCH_CLASSES';
 /* ##### STUDENT ACTIONS ##### */
 
 export const FETCH_STUDENTS = 'school/FETCH_STUDENTS';
-
-/* ##### TASKS ACTIONS ##### */
-
-export const FETCH_TASKS = 'school/FETCH_TASKS';

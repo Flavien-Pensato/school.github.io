@@ -10,7 +10,6 @@ import {
   FETCH_CLASSES,
   FETCH_STUDENTS,
   RESET_PREVIEW_CLASSE,
-  FETCH_TASKS,
 } from './school.constants';
 
 
@@ -79,26 +78,6 @@ export const removeStudentAction = (classeId, studentId) => {
     .remove();
 };
 
-/* #### TASKS #### */
-
-export const fetchTasksAction = tasks => ({
-  type: FETCH_TASKS,
-  tasks,
-});
-
-export const addTaskAction = (task) => {
-  firebase
-    .database()
-    .ref(`2017-2018/tasks/${slug(task._id)}`)
-    .set(task);
-};
-
-export const removeTaskAction = (taskId) => {
-  firebase
-    .database()
-    .ref(`2017-2018/tasks/${taskId}`)
-    .remove();
-};
 
 export function importFileAction(binary) {
   return (dispatch) => {
