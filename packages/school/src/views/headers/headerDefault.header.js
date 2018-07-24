@@ -158,7 +158,6 @@ class HeaderDefault extends Component {
   }
 }
 
-
 HeaderDefault.defaultProps = {
   currentWeek: new Date(),
 };
@@ -178,4 +177,5 @@ const mapDispatchToProps = dispatch => ({
 
 
 export const HeaderDefaultConnected = connect(mapStateToProps, mapDispatchToProps)(HeaderDefault);
+export { HeaderDefault };
 

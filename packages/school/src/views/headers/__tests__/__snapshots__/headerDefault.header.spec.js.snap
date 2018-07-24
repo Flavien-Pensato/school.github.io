@@ -22,6 +22,11 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <styled.div>
+          <styled.button
+            onClick={[Function]}
+          >
+            <MenuSvg />
+          </styled.button>
           <HeaderTitle>
             Planning de la MFR de chatte
           </HeaderTitle>
@@ -34,7 +39,14 @@ ShallowWrapper {
             <LogoutSvg />
           </LogoutButton>
         </styled.div>,
-        <styled.nav>
+        <styled.nav
+          menu={false}
+        >
+          <styled.button
+            onClick={[Function]}
+          >
+            <MenuClose />
+          </styled.button>
           <HeaderLink
             to="/home"
           >
@@ -77,6 +89,11 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
+            <styled.button
+              onClick={[Function]}
+            >
+              <MenuSvg />
+            </styled.button>,
             <HeaderTitle>
               Planning de la MFR de chatte
             </HeaderTitle>,
@@ -92,6 +109,26 @@ ShallowWrapper {
         },
         "ref": null,
         "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <MenuSvg />,
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {},
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
           Object {
             "instance": null,
             "key": undefined,
@@ -150,6 +187,11 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
+            <styled.button
+              onClick={[Function]}
+            >
+              <MenuClose />
+            </styled.button>,
             <HeaderLink
               to="/home"
             >
@@ -182,9 +224,30 @@ ShallowWrapper {
               February 14, 2017
             </HeaderLink>,
           ],
+          "menu": false,
         },
         "ref": null,
         "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <MenuClose />,
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {},
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
           Object {
             "instance": null,
             "key": undefined,
@@ -268,6 +331,11 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <styled.div>
+            <styled.button
+              onClick={[Function]}
+            >
+              <MenuSvg />
+            </styled.button>
             <HeaderTitle>
               Planning de la MFR de chatte
             </HeaderTitle>
@@ -280,7 +348,14 @@ ShallowWrapper {
               <LogoutSvg />
             </LogoutButton>
           </styled.div>,
-          <styled.nav>
+          <styled.nav
+            menu={false}
+          >
+            <styled.button
+              onClick={[Function]}
+            >
+              <MenuClose />
+            </styled.button>
             <HeaderLink
               to="/home"
             >
@@ -323,6 +398,11 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
+              <styled.button
+                onClick={[Function]}
+              >
+                <MenuSvg />
+              </styled.button>,
               <HeaderTitle>
                 Planning de la MFR de chatte
               </HeaderTitle>,
@@ -338,6 +418,26 @@ ShallowWrapper {
           },
           "ref": null,
           "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <MenuSvg />,
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
             Object {
               "instance": null,
               "key": undefined,
@@ -396,6 +496,11 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
+              <styled.button
+                onClick={[Function]}
+              >
+                <MenuClose />
+              </styled.button>,
               <HeaderLink
                 to="/home"
               >
@@ -428,9 +533,30 @@ ShallowWrapper {
                 February 14, 2017
               </HeaderLink>,
             ],
+            "menu": false,
           },
           "ref": null,
           "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <MenuClose />,
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
             Object {
               "instance": null,
               "key": undefined,
