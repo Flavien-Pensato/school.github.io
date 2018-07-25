@@ -23,7 +23,7 @@ class Importation extends Component {
           binary += String.fromCharCode(bytes[i]);
         }
 
-        importFile(binary);
+        importFile(binary, file.name);
       };
       fileReader.readAsArrayBuffer(file);
     }
