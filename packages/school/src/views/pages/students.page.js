@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Importation from '../../modules/school/components/importation.connector';
-import Classes from '../../modules/school/components/classes.connector';
+import { ConnectedClassesList } from '../../modules/classes/components/classesList.connector';
+import { ConnectedClassesForm } from '../../modules/classes/components/classeForm.connector';
 
 export const Students = () => (
   <div className="pa3 pa5-ns">
-    <Importation />
-    <Classes />
+    <ConnectedClassesList />
+    <ConnectedClassesForm />
   </div>
 );
