@@ -9,6 +9,19 @@ const ButtonStyle = styled.button`
   background-color: black;
   color: white;
   padding: 0.5rem;
+
+  @media (max-width: 700px) {
+    span {
+      display: none;
+    }
+
+    height: 24px;
+    width: 24px;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+  }
+
 `;
 
 export const CalendarButton = props => <ButtonStyle {...props} />;

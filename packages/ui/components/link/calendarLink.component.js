@@ -10,6 +10,19 @@ const LinkStyle = styled(NavLink)`
   background-color: black;
   color: white;
   padding: 0.5rem;
+
+  @media (max-width: 700px) {
+    background-color: transparent;
+    border: none;
+    display: block;
+    height: 24px;
+    width: 24px;
+    padding: 0;
+
+    span {
+      display: none;
+    }
+  }
 `;
 
 export const CalendarLink = props => <LinkStyle {...props} />;
