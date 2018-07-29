@@ -9,9 +9,9 @@ import { getUid, getAutoLoginDone } from '../../modules/account/account.selector
 import { HeaderDefaultConnected } from '../headers/headerDefault.header';
 import { Loader } from '../pages/loader.page';
 
-import Preview from '../../modules/school/components/preview.connector';
 import { LoginPage } from '../pages/login.page';
 import { Classes } from '../pages/classes.page';
+import { Students } from '../pages/students.page';
 import { Calendar } from '../pages/calendar.page';
 import { LoadableHomePage } from '../pages/home.loadable';
 import { Tasks } from '../pages/tasks.page';
@@ -42,8 +42,8 @@ class LayoutDefault extends Component {
         <ToasterConnected />
         <HeaderDefaultConnected />
         <Route path="/home/:_id?" render={({ match }) => <LoadableHomePage match={match} />} />
-        <Route path="/classes" component={Classes} />
-        <Route path="/preview" component={Preview} />
+        <Route path="/classes" exact component={Classes} />
+        <Route path="/classes/:classeId" exact component={Students} />
         <Route path="/calendrier" component={Calendar} />
         <Route path="/taches" component={Tasks} />
         <Route path="/" exact render={() => <Redirect to="/home" from="/" />} />
