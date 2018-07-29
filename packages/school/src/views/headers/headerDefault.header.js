@@ -140,8 +140,8 @@ class HeaderDefault extends Component {
           <HeaderLink to="/home">
             Accueil
           </HeaderLink>
-          <HeaderLink to="/eleves">
-            Élèves
+          <HeaderLink to="/classes">
+            Classes
           </HeaderLink>
           <HeaderLink to="/calendrier">
             Calendrier
