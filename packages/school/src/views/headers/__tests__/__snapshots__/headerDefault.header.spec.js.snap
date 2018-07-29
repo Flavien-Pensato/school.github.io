@@ -53,9 +53,9 @@ ShallowWrapper {
             Accueil
           </HeaderLink>
           <HeaderLink
-            to="/eleves"
+            to="/classes"
           >
-            Élèves
+            Classes
           </HeaderLink>
           <HeaderLink
             to="/calendrier"
@@ -198,9 +198,9 @@ ShallowWrapper {
               Accueil
             </HeaderLink>,
             <HeaderLink
-              to="/eleves"
+              to="/classes"
             >
-              Élèves
+              Classes
             </HeaderLink>,
             <HeaderLink
               to="/calendrier"
@@ -265,11 +265,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "children": "Élèves",
-              "to": "/eleves",
+              "children": "Classes",
+              "to": "/classes",
             },
             "ref": null,
-            "rendered": "Élèves",
+            "rendered": "Classes",
             "type": [Function],
           },
           Object {
@@ -362,9 +362,9 @@ ShallowWrapper {
               Accueil
             </HeaderLink>
             <HeaderLink
-              to="/eleves"
+              to="/classes"
             >
-              Élèves
+              Classes
             </HeaderLink>
             <HeaderLink
               to="/calendrier"
@@ -507,9 +507,9 @@ ShallowWrapper {
                 Accueil
               </HeaderLink>,
               <HeaderLink
-                to="/eleves"
+                to="/classes"
               >
-                Élèves
+                Classes
               </HeaderLink>,
               <HeaderLink
                 to="/calendrier"
@@ -574,11 +574,11 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "children": "Élèves",
-                "to": "/eleves",
+                "children": "Classes",
+                "to": "/classes",
               },
               "ref": null,
-              "rendered": "Élèves",
+              "rendered": "Classes",
               "type": [Function],
             },
             Object {
