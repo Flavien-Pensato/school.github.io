@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 import {
   SELECT_CLASSE,
   FETCH_TASKS,
@@ -10,7 +8,7 @@ import {
 const initialeState = {
   tasks: [],
   preview: null,
-  schoolYear: moment().format('WY'),
+  schoolYear: '2018-2019',
 };
 
 export default function school(state = initialeState, action) {

@@ -62,6 +62,7 @@
     ],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/forbid-prop-types": "off",
-    "react/no-multi-comp": "off"
+    "react/no-multi-comp": "off",
+    "jsx-a11y/anchor-is-valid": "off"
   }
 }

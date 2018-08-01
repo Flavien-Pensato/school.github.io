@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 const Item = styled.li`
   display: flex;
@@ -24,30 +24,30 @@ const Button = styled.button`
   border-width: 0;
 `;
 
-class ClasseItem extends Component {
+class StudentItem extends Component {
   handleClickItem = (event) => {
     event.preventDefault();
 
-    const { removeItem, classe } = this.props;
+    const { removeItem, student } = this.props;
 
-    removeItem(classe._id);
+    removeItem(student._id);
   }
 
   render() {
-    const { classe } = this.props;
+    const { student } = this.props;
 
     return (
       <Item >
-        <Link to={`/classes/${classe._id}`}><span>{classe.name}</span></Link>
+        <span>{student.name}</span>
         <Button onClick={this.handleClickItem}>Supprimer</Button>
       </Item>
     );
   }
 }
 
-ClasseItem.propTypes = {
+StudentItem.propTypes = {
   removeItem: PropTypes.func.isRequired,
-  classe: PropTypes.object.isRequired,
+  student: PropTypes.object.isRequired,
 };
 
 const List = styled.ul`
@@ -55,11 +55,11 @@ const List = styled.ul`
   padding: 0;
 `;
 
-export class ClassesList extends Component {
+class StudentsList extends Component {
   componentDidMount() {
-    const { fetchClasses } = this.props;
+    const { fetchStudents, match: { params } } = this.props;
 
-    this.stopFetching = fetchClasses();
+    this.stopFetching = fetchStudents(params.classeId);
   }
 
   componentWillUnmount() {
@@ -68,20 +68,25 @@ export class ClassesList extends Component {
 
 
   render() {
-	  const { classes, removeClasse } = this.props;
+	  const { students, removeStudent } = this.props;
 
     return (
       <div>
         <List>
-          {classes.map(classe => <ClasseItem key={classe.name} classe={classe} removeItem={removeClasse} />)}
+          {students.map(student => <StudentItem key={student.name} student={student} removeItem={removeStudent} />)}
         </List>
       </div>
 	  );
   }
 }
 
-ClassesList.propTypes = {
-  fetchClasses: PropTypes.func.isRequired,
-  removeClasse: PropTypes.func.isRequired,
-  classes: PropTypes.arrayOf(PropTypes.object).isRequired,
+StudentsList.propTypes = {
+  fetchStudents: PropTypes.func.isRequired,
+  removeStudent: PropTypes.func.isRequired,
+  students: PropTypes.arrayOf(PropTypes.object).isRequired,
+  match: PropTypes.object.isRequired,
 };
+
+const StudentsListRouted = withRouter(StudentsList);
+
+export { StudentsListRouted as StudentsList };
