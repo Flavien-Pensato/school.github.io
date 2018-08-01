@@ -39,6 +39,7 @@ class StudentItem extends Component {
     return (
       <Item >
         <span>{student.name}</span>
+        <input type="number" value={student.groupe} />
         <Button onClick={this.handleClickItem}>Supprimer</Button>
       </Item>
     );
