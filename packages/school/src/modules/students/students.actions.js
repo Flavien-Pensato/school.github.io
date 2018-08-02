@@ -1,4 +1,3 @@
-import slug from 'slug';
 import { database as firebase } from 'firebase';
 
 import { getSchoolYear } from '../school/school.selectors';
