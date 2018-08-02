@@ -13,7 +13,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchStudents: () => dispatch(fetchStudentsAction()),
+  fetchStudents: classeId => dispatch(fetchStudentsAction(classeId)),
   removeStudent: classeId => dispatch(removeStudentAction(classeId)),
 });
 
