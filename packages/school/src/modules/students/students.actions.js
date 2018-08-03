@@ -1,4 +1,6 @@
 import { database as firebase } from 'firebase';
+import XLSX from 'xlsx';
+import _ from 'lodash';
 
 import { getSchoolYear } from '../school/school.selectors';
 import { uuidv4 } from '../../utils';
@@ -46,6 +48,34 @@ export const removeStudentAction = studentId => async (dispatch) => {
       .ref(studentsRef + studentId)
       .remove();
     await dispatch({ type: REMOVE_STUDENT });
+  } catch (error) {
+    // eslint-disable-next-line
+    console.error(error);
+  }
+};
+
+export const IMPORT_STUDENTS = 'tasks/IMPORT_STUDENTS';
+export const importStudentsAction = (pathFile, classeId) => async (dispatch) => {
+  try {
+    const oFile = XLSX.read(pathFile, {
+      type: 'binary',
+    });
+
+    const worksheet = oFile.Sheets[oFile.SheetNames[0]];
+    const text = _.replace(
+      XLSX.utils.sheet_to_csv(worksheet, { raw: true }),
+      new RegExp(',|"', 'g'),
+      ' ',
+    );
+
+    await Promise.all(_.split(text, '\n').map(line => dispatch(addStudentAction({
+      name: line.trim(),
+      groupe: 0,
+      classeId,
+    }))));
+
+
+    await dispatch({ type: IMPORT_STUDENTS });
   } catch (error) {
     // eslint-disable-next-line
     console.error(error);
