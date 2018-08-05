@@ -6,6 +6,16 @@ import moment from 'moment';
 import PresenceCase from './presenceCase.component';
 
 class Table extends Component {
+  componentDidMount() {
+    const { fetchClasses } = this.props;
+
+    this.stopFetching = fetchClasses();
+  }
+
+  componentWillUnmount() {
+    this.stopFetching();
+  }
+
   renderClassesHeader() {
     const { classes } = this.props;
 
