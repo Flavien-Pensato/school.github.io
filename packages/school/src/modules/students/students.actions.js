@@ -54,6 +54,20 @@ export const removeStudentAction = studentId => async (dispatch) => {
   }
 };
 
+
+export const CHANGE_STUDENT = 'tasks/CHANGE_STUDENT';
+export const changeStudentAction = student => async (dispatch) => {
+  try {
+    await firebase()
+      .ref(studentsRef + student._id)
+      .set(student);
+    await dispatch({ type: CHANGE_STUDENT });
+  } catch (error) {
+    // eslint-disable-next-line
+    console.error(error);
+  }
+};
+
 export const IMPORT_STUDENTS = 'tasks/IMPORT_STUDENTS';
 export const importStudentsAction = (pathFile, classeId) => async (dispatch) => {
   try {
