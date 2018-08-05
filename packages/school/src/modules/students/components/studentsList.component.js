@@ -130,7 +130,8 @@ class StudentsList extends Component {
     return (
       <div>
         <List>
-          {students.map(student => <StudentItem key={student.name} student={student} removeItem={removeStudent} changeItem={changeStudent} />)}
+          {students.map(student =>
+            <StudentItem key={student.name} student={student} removeItem={removeStudent} changeItem={changeStudent} />)}
         </List>
       </div>
 	  );
