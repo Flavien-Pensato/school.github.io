@@ -1,29 +1,62 @@
 import _ from 'lodash';
-import firebase from '../../config/firebase';
+import { database as firebase } from 'firebase';
 
 import {
-  FETCH_DATES,
   FETCH_WEEK,
-
   SET_SELECTED_WEEK,
 } from './calendar.constants';
 import { getSelectedWeek } from './calendar.selectors';
 
-export const fetchDatesAction = dates => 	({
-  type: FETCH_DATES,
-  dates,
-});
+const dateRef = '/dates/';
 
-export const addDateAction = (date) => {
-  firebase
-    .database()
-    .ref(`2017-2018/dates/${date._id}`)
-    .set(date);
+export const FETCH_DATES = 'calendar/FETCH_DATES';
+export const fetchDatesAction = () => (dispatch) => {
+  try {
+    const ref = firebase().ref(dateRef).orderByChild('timestamp').startAt(Math.round(new Date().getTime() / 1000));
+
+    const onValueChange = ref.on('value', (snapshot) => {
+      const dates = [];
+
+      snapshot.forEach((childSnapshot) => {
+        dates.push(childSnapshot.val());
+      });
+
+      dispatch({ type: FETCH_DATES, dates });
+    });
+
+    return () => ref.off('value', onValueChange);
+  } catch (error) {
+    // eslint-disable-next-line
+    console.error(error);
+
+    return Promise.resolve();
+  }
+};
+
+export const ADD_DATE = 'calendar/ADD_DATE';
+export const addDateAction = date => async (dispatch) => {
+  try {
+    await firebase().ref(dateRef + date._id).set(date);
+    await dispatch({ type: ADD_DATE });
+  } catch (error) {
+    // eslint-disable-next-line
+    console.error(error);
+  }
+};
+
+export const EDIT_DATE = 'calendar/EDIT_DATE';
+export const editDateAction = date => async (dispatch) => {
+  try {
+    await firebase().ref(dateRef + date._id).set(date);
+    await dispatch({ type: EDIT_DATE });
+  } catch (error) {
+    // eslint-disable-next-line
+    console.error(error);
+  }
 };
 
 export const removeDateAction = (dateId) => {
-  firebase
-    .database()
+  firebase()
     .ref(`2017-2018/dates/${dateId}`)
     .remove();
 };
@@ -122,8 +155,7 @@ export const createWeekAction = (currentWeek, classes, tasks, dates, weeks) => {
     }
   });
 
-  firebase
-    .database()
+  firebase()
     .ref(`2017-2018/weeks/${newWeek.date}`)
     .set(newWeek);
 };
@@ -138,7 +170,7 @@ export const fetchWeeksAction = weekId => (dispatch, getState) => {
   }
 
 
-  firebase.database().ref(ref).once('value', (snapshot) => {
+  firebase().ref(ref).once('value', (snapshot) => {
     const week = snapshot.val();
 
     if (week) {

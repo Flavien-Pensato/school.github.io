@@ -6,8 +6,6 @@ import { uuidv4 } from '../../../utils';
 
 const Form = styled.form`
   width: 100%;
-
-  }
 `;
 
 const Input = styled.input`
