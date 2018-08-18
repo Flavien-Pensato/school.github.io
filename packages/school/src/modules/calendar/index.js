@@ -4,7 +4,7 @@ import Immutable from 'immutable';
 import {
   FETCH_WEEK,
   FETCH_DATES,
-} from './calendar.constants';
+} from './calendar.actions';
 
 const initialeState = {
   dates: [],

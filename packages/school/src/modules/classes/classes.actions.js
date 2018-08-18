@@ -10,7 +10,13 @@ export const fetchClassesAction = () => (dispatch, getState) => {
     const ref = firebase().ref(taskRef).orderByChild('schoolYear').equalTo(getSchoolYear(getState()));
 
     const onValueChange = ref.on('value', (snapshot) => {
-      dispatch({ type: FETCH_CLASSES, classes: snapshot.val() ? Object.values(snapshot.val()) : [] });
+      const classes = [];
+
+      snapshot.forEach((childSnapshot) => {
+        classes.push(childSnapshot.val());
+      });
+
+      dispatch({ type: FETCH_CLASSES, classes });
     });
 
     return () => ref.off('value', onValueChange);
