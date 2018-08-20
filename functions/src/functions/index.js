@@ -1,9 +1,12 @@
 const functions = require('firebase-functions');
+const admin = require('firebase-admin');
 const _ = require('lodash');
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
+
+admin.initializeApp();
 
 const findGroupeTaskCounter = (weeks, groupe, task) => {	
   let counter = 0;	
@@ -86,12 +89,12 @@ const createWeekAction = (classes, tasks, date, weeks) => {
 
 exports.generateNewWeek = functions.database.ref('/weeks/').onCreate(async (snapshot, context) => {
   const original = snapshot.val();
-
-  let weeks = await firebase().ref('/weeks/').on('value');
-  let students = await firebase().ref('/students/').on('value');
-  let classes = await firebase().ref('/classes/').orderByChild('schoolYear').equalTo(original.schoolYear).on('value').on('value');
-  let tasks = await firebase().ref('/tasks/').on('value');
-  let date = await firebase().ref('/dates/').orderByChild('from').equalTo(original.date).on('value');
+  console.log('Uppercasing', original);
+  let weeks = await admin.database().ref('/weeks/').once('value');
+  let students = await admin.database().ref('/students/').once('value');
+  let classes = await admin.database().ref('/classes/').orderByChild('schoolYear').equalTo(original.schoolYear).on('value').once('value');
+  let tasks = await admin.database().ref('/tasks/').once('value');
+  let date = await admin.database().ref('/dates/').orderByChild('from').equalTo(original.date).once('value');
   
   weeks = weeks.val() || [];
   students = students.val() || [];
@@ -101,5 +104,5 @@ exports.generateNewWeek = functions.database.ref('/weeks/').onCreate(async (snap
 
   const newWeek = createWeekAction(classes, tasks, date, weeks)
 
-  return firebase().ref(`/weeks/${newWeek._id}`).set({ ...original, ...newWeek });
+  return admin.database().ref(`/weeks/${newWeek._id}`).set({ ...original, ...newWeek });
 });

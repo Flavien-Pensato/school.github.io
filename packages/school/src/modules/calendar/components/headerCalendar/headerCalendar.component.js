@@ -4,8 +4,6 @@ import styled from 'styled-components';
 
 import { CalendarButton, CalendarLink } from '@school/ui';
 
-import { createWeekAction } from '../../calendar.actions';
-
 const WrapperStyle = styled.div`
   display: flex;
   max-width: 48rem;
@@ -93,7 +91,7 @@ class HeaderCalendar extends Component {
       </CalendarLink>
     </Item>
     <Item>
-      <CalendarButton onClick={() => createWeekAction(week)}>
+      <CalendarButton onClick={() => this.props.addWeek(week.clone().startOf('week').format('YYYY.MM.DD'))}>
         <span>Création de la semaine</span>
         <Refresh />
       </CalendarButton>
@@ -118,6 +116,7 @@ HeaderCalendar.defaultProps = {
 
 HeaderCalendar.propTypes = {
   week: PropTypes.object,
+  addWeek: PropTypes.func.isRequired,
 };
 
 export default HeaderCalendar;

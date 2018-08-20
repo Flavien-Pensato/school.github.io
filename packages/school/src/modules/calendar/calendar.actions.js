@@ -1,6 +1,9 @@
 import { database as firebase } from 'firebase';
 
+import { getSchoolYear } from '../school/school.selectors';
+
 const dateRef = '/dates/';
+const weeksRef = '/weeks/';
 
 export const FETCH_DATES = 'calendar/FETCH_DATES';
 export const fetchDatesAction = () => (dispatch) => {
@@ -42,6 +45,20 @@ export const editDateAction = date => async (dispatch) => {
   try {
     await firebase().ref(dateRef + date._id).set(date);
     await dispatch({ type: EDIT_DATE });
+  } catch (error) {
+    // eslint-disable-next-line
+    console.error(error);
+  }
+};
+
+export const ADD_WEEK = 'calendar/ADD_WEEK';
+export const addWeekAction = date => async (dispatch, getState) => {
+  try {
+    await firebase().ref(weeksRef).push().set({
+      date,
+      schoolYear: getSchoolYear(getState()),
+    });
+    await dispatch({ type: ADD_WEEK });
   } catch (error) {
     // eslint-disable-next-line
     console.error(error);
