@@ -5,27 +5,12 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <BodyCalendar
-    fetchWeeksAction={
-      [MockFunction] {
-        "calls": Array [
-          Array [
-            "",
-          ],
-        ],
-        "results": Array [
-          Object {
-            "isThrow": false,
-            "value": undefined,
-          },
-        ],
-      }
-    }
+    fetchWeeksAction={[MockFunction]}
     match={
       Object {
         "params": Object {},
       }
     }
-    selectedWeek=""
     week={Object {}}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -74,27 +59,12 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <BodyCalendar
-    fetchWeeksAction={
-      [MockFunction] {
-        "calls": Array [
-          Array [
-            "",
-          ],
-        ],
-        "results": Array [
-          Object {
-            "isThrow": false,
-            "value": undefined,
-          },
-        ],
-      }
-    }
+    fetchWeeksAction={[MockFunction]}
     match={
       Object {
         "params": Object {},
       }
     }
-    selectedWeek=""
     week={
       Object {
         "tasks": Array [],
