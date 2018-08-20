@@ -9,7 +9,7 @@ export class BodyCalendar extends Component {
     // fetchWeeksAction(selectedWeek);
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps() {
     // const { fetchWeeksAction, selectedWeek } = nextProps;
 
 
@@ -57,7 +57,6 @@ export class BodyCalendar extends Component {
 
 BodyCalendar.defaultProps = {
   week: {},
-  selectedWeek: '',
 };
 
 BodyCalendar.propTypes = {

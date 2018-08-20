@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { database as firebase } from 'firebase';
 
 const dateRef = '/dates/';
