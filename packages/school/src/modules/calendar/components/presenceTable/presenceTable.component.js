@@ -48,7 +48,7 @@ export class PresenceTable extends Component {
                 ))}
               </tr>
             </thead>
-            <tbody className="lh-copy tc">
+            <tbody className="">
               {dates.map(date => (
                 <tr key={date._id}>
                   <td className="pv3 pr3 bb b--black-20 tl">
