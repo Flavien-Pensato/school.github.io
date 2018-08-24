@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import styled from 'styled-components';
 
 import PresenceCase from '../presenceCase.component';
 
 import { uuidv4 } from '../../../../utils';
+
+const Container = styled.table`
+  overflow: auto;
+  margin: 0 auto;
+  font-size: .875rem;
+
+  display: block;
+
+  width: 100%;
+  max-width: 64rem;
+  max-height: 32rem;
+`;
 
 export class PresenceTable extends Component {
   componentDidMount() {
@@ -38,39 +51,39 @@ export class PresenceTable extends Component {
 
     return (
       <div className="pa4">
-        <div className="overflow-auto">
-          <table className="f6 w-100 mw8 center" cellSpacing="0">
-            <thead>
-              <tr>
-                <th className="fw6 bb b--black-20 pb3 pr3 tl">Semaine</th>
-                {classes.map(classe => (
-                  <th className="fw6 bb b--black-20 pb3 pr3" key={classe.name}>{classe.name}</th>
+        <Container>
+          <thead>
+            <tr>
+              <th className="fw6 bb b--black-20 pb3 pr3 tl">Semaine</th>
+              {classes.map(classe => (
+                <th className="fw6 bb b--black-20 pb3 pr3" key={classe.name}>{classe.name}</th>
                 ))}
-              </tr>
-            </thead>
-            <tbody className="lh-copy tc">
-              {dates.map(date => (
-                <tr key={date._id}>
-                  <td className="pv3 pr3 bb b--black-20 tl">
+            </tr>
+          </thead>
+          <tbody className="lh-copy tc">
+            {dates.map(date => (
+              <tr key={date._id}>
+                <td className="pv3 pr3 bb b--black-20 tl">
                     Du&nbsp;{moment(date.from, 'YYYY.MM.DD').format('dddd D MMMM')}
-                    <br />
+                  <br />
                     Au&nbsp;{moment(date.to, 'YYYY.MM.DD').format('dddd D MMMM')}
-                  </td>
-                  {classes.map(classe => (
-                    <PresenceCase
-                      editDate={editDate}
-                      key={classe._id}
-                      date={date}
-                      presence={date.classes.includes(classe._id)}
-                      classeId={classe._id}
-                    />
+                </td>
+                {classes.map(classe => (
+                  <PresenceCase
+                    editDate={editDate}
+                    key={classe._id}
+                    date={date}
+                    presence={date.classes.includes(classe._id)}
+                    classeId={classe._id}
+                  />
                   ))}
-                </tr>
+              </tr>
               ))}
-            </tbody>
-          </table>
-          <button onClick={this.handleAddDate}>+</button>
-        </div>
+            <tr>
+              <button onClick={this.handleAddDate}>+</button>
+            </tr>
+          </tbody>
+        </Container>
       </div>
     );
   }
