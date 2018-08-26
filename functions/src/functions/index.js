@@ -87,22 +87,36 @@ const createWeekAction = (classes, tasks, date, weeks) => {
   return newWeek; 	
 };
 
+const red = data => _.reduce(data, (acc, value, key) => {
+  acc.push(value);
+
+  return acc;
+}, []);
+
 exports.generateNewWeek = functions.database.ref('/weeks/').onCreate(async (snapshot, context) => {
-  const original = snapshot.val();
-  console.log('Uppercasing', original);
+  let original = snapshot.val();
+
+  original = original[Object.keys(original)[0]];
+
+  console.log('ORIGINAL', original);
+
   let weeks = await admin.database().ref('/weeks/').once('value');
   let students = await admin.database().ref('/students/').once('value');
-  let classes = await admin.database().ref('/classes/').orderByChild('schoolYear').equalTo(original.schoolYear).on('value').once('value');
+  let classes = await admin.database().ref('/classes/').orderByChild('schoolYear').equalTo(original.schoolYear).once('value');
   let tasks = await admin.database().ref('/tasks/').once('value');
   let date = await admin.database().ref('/dates/').orderByChild('from').equalTo(original.date).once('value');
   
-  weeks = weeks.val() || [];
-  students = students.val() || [];
-  classes = classes.val() || [];
-  tasks = tasks.val() || [];
-  date = date.val() || [];
+  weeks = red(weeks.val());
+  students = red(students.val());
+  classes = red(classes.val());
+  tasks = red(tasks.val());
+  date = red(date.val());
+
+  console.log('DATA', date);
 
   const newWeek = createWeekAction(classes, tasks, date, weeks)
+
+  console.log('NEW WEEK', newWeek);
 
   return admin.database().ref(`/weeks/${newWeek._id}`).set({ ...original, ...newWeek });
 });
