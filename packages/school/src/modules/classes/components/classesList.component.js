@@ -73,7 +73,6 @@ export class ClassesList extends Component {
 
     const classesSorted = _.sortBy(classes, ['name']);
 
-
     return (
       <div>
         <List>

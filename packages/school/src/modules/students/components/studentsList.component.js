@@ -127,10 +127,12 @@ class StudentsList extends Component {
   render() {
 	  const { students, removeStudent, changeStudent } = this.props;
 
+    const studentsSorted = _.sortBy(students, ['name']);
+
     return (
       <div>
         <List>
-          {students.map(student =>
+          {studentsSorted.map(student =>
             <StudentItem key={student.name} student={student} removeItem={removeStudent} changeItem={changeStudent} />)}
         </List>
       </div>
