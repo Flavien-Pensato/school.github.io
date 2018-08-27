@@ -96,7 +96,8 @@ const red = data => _.reduce(data, (acc, value, key) => {
 exports.generateNewWeek = functions.database.ref('/weeks/').onCreate(async (snapshot, context) => {
   let original = snapshot.val();
 
-  original = original[Object.keys(original)[0]];
+  const originalId = Object.keys(original)[0]
+  original = original[originalId];
 
   console.log('ORIGINAL', original);
 
@@ -104,19 +105,24 @@ exports.generateNewWeek = functions.database.ref('/weeks/').onCreate(async (snap
   let students = await admin.database().ref('/students/').once('value');
   let classes = await admin.database().ref('/classes/').orderByChild('schoolYear').equalTo(original.schoolYear).once('value');
   let tasks = await admin.database().ref('/tasks/').once('value');
-  let date = await admin.database().ref('/dates/').orderByChild('from').equalTo(original.date).once('value');
+  let date = await admin.database().ref('/dates/').orderByChild('from').equalTo('2018.09.24').once('value');
   
   weeks = red(weeks.val());
   students = red(students.val());
   classes = red(classes.val());
   tasks = red(tasks.val());
-  date = red(date.val());
+  date = date.val()[Object.keys(date.val())[0]];
 
-  console.log('DATA', date);
+
+  _.forEach(classes, (value, key) => {
+    value.students = _.filter(students, student => student.classeId === value._id);
+  });
+
+  console.log('DATE', date);
 
   const newWeek = createWeekAction(classes, tasks, date, weeks)
 
   console.log('NEW WEEK', newWeek);
 
-  return admin.database().ref(`/weeks/${newWeek._id}`).set({ ...original, ...newWeek });
+  return admin.database().ref(`/weeks/${originalId}`).set({ ...original, ...newWeek });
 });
