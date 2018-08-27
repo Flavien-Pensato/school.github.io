@@ -1,0 +1,28 @@
+[debug] [2018-08-27T17:39:56.145Z] ----------------------------------------------------------------------
+[debug] [2018-08-27T17:39:56.147Z] Command:       /usr/local/bin/node /usr/local/bin/firebase experimental:functions:shell
+[debug] [2018-08-27T17:39:56.147Z] CLI Version:   4.1.2
+[debug] [2018-08-27T17:39:56.147Z] Platform:      darwin
+[debug] [2018-08-27T17:39:56.147Z] Node Version:  v8.7.0
+[debug] [2018-08-27T17:39:56.147Z] Time:          Mon Aug 27 2018 19:39:56 GMT+0200 (CEST)
+[debug] [2018-08-27T17:39:56.148Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-08-27T17:39:56.156Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-08-27T17:39:56.157Z] > authorizing via signed-in user
+[debug] [2018-08-27T17:39:56.159Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-08-27T17:39:56.160Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+
+[debug] [2018-08-27T17:39:56.332Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-27T17:39:56.347Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/school-81af1  
+ 
+[debug] [2018-08-27T17:39:57.062Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-27T17:39:57.836Z] Error: EACCES: permission denied, mkdir '/usr/local/lib/node_modules/firebase-tools/node_modules/@google-cloud/functions-emulator/logs'
+    at Object.fs.mkdirSync (fs.js:892:18)
+    at Object.assertLogsPath (/usr/local/lib/node_modules/firebase-tools/node_modules/@google-cloud/functions-emulator/src/emulator/logs.js:65:10)
+    at new Controller (/usr/local/lib/node_modules/firebase-tools/node_modules/@google-cloud/functions-emulator/src/cli/controller.js:77:32)
+    at FunctionsEmulator.start (/usr/local/lib/node_modules/firebase-tools/lib/functionsEmulator.js:113:21)
+    at Command.module.exports [as _action] (/usr/local/lib/node_modules/firebase-tools/lib/functionsShellCommandAction.js:18:6)
+    at /usr/local/lib/node_modules/firebase-tools/lib/command.js:202:29
+    at <anonymous>
+    at process._tickDomainCallback (internal/process/next_tick.js:228:7)
+[error] 
+[error] Error: An unexpected error has occurred.
