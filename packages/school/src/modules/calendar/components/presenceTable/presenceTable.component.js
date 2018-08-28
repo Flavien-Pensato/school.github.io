@@ -7,17 +7,28 @@ import PresenceCase from '../presenceCase.component';
 
 import { uuidv4 } from '../../../../utils';
 
-const Container = styled.table`
-  overflow: auto;
-  margin: 0 auto;
+const Container = styled.tbody`
+  
+  margin:  auto;
   font-size: .875rem;
-
   display: block;
-
   width: 100%;
   max-width: 64rem;
   max-height: 32rem;
 `;
+
+const Fixedtable = styled.thead`
+
+  margin: 0 auto;
+  font-size: .875rem;
+  width: 100%;
+  max-width: 128rem;
+  max-height: 64rem;
+  display: block;
+  vertical-align: middle;
+`;
+
+
 
 export class PresenceTable extends Component {
   componentDidMount() {
@@ -51,39 +62,55 @@ export class PresenceTable extends Component {
 
     return (
       <div className="pa4">
-        <Container>
-          <thead>
+        <table>
+          <Fixedtable>
             <tr>
-              <th className="fw6 bb b--black-20 pb3 pr3 tl">Semaine</th>
-              {classes.map(classe => (
-                <th className="fw6 bb b--black-20 pb3 pr3" key={classe.name}>{classe.name}</th>
+                <th className="fw6 bb b--black-20 pb3 pr3 tl" >Semaine</th>
+            
+                {classes.map(classe => (
+                  <th className="fw6 bb b--black-20 pb3 pr3" key={classe.name}>{classe.name}</th>
                 ))}
             </tr>
-          </thead>
-          <tbody className="lh-copy tc">
+          </Fixedtable>        
+          {/* <tbody>
+            <Fixedtable>
             {dates.map(date => (
               <tr key={date._id}>
-                <td className="pv3 pr3 bb b--black-20 tl">
-                    Du&nbsp;{moment(date.from, 'YYYY.MM.DD').format('dddd D MMMM')}
-                  <br />
-                    Au&nbsp;{moment(date.to, 'YYYY.MM.DD').format('dddd D MMMM')}
-                </td>
-                {classes.map(classe => (
-                  <PresenceCase
-                    editDate={editDate}
-                    key={classe._id}
-                    date={date}
-                    presence={date.classes.includes(classe._id)}
-                    classeId={classe._id}
-                  />
-                  ))}
+                  Du&nbsp;{moment(date.from, 'YYYY.MM.DD').format('dddd D MMMM')}
+                <br />
+                  Au&nbsp;{moment(date.to, 'YYYY.MM.DD').format('dddd D MMMM')}
               </tr>
-              ))}
+            ))}
+            </Fixedtable>
+          </tbody> */}
+          <Container>
+          
+            {dates.map(date => (
+              <tr key={date._id}>
+                <td>
+                  Du&nbsp;{moment(date.from, 'YYYY.MM.DD').format('dddd D MMMM')}
+                  <br />
+                  Au&nbsp;{moment(date.to, 'YYYY.MM.DD').format('dddd D MMMM')}
+                </td>
+                <td>
+                  {classes.map(classe => (
+                      <PresenceCase
+                        editDate={editDate}
+                        key={classe._id}
+                        date={date}
+                        presence={date.classes.includes(classe._id)}
+                        classeId={classe._id}
+                      />
+                    ))}
+                </td>
+              </tr>
+            ))}
             <tr>
               <button onClick={this.handleAddDate}>+</button>
             </tr>
-          </tbody>
-        </Container>
+          
+          </Container>
+        </table>
       </div>
     );
   }
