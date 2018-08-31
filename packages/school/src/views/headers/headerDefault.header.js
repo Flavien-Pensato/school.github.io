@@ -132,7 +132,7 @@ class HeaderDefault extends Component {
 
     let date;
 
-    if (match.params._id) {
+    if (match && match.params._id) {
       date = moment(match.params._id, 'YYYY.MM.DD');
     } else {
       date = moment();

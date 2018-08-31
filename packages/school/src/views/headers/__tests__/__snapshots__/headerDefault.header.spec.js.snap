@@ -6,6 +6,11 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <HeaderDefault
     currentWeek={"2017-02-14T12:51:48.000Z"}
+    match={
+      Object {
+        "params": Object {},
+      }
+    }
     signOutAction={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -76,7 +81,7 @@ ShallowWrapper {
             to="/home"
           >
             Semaine du 
-            February 14, 2017
+            14 février 2017
           </HeaderLink>
         </styled.nav>,
       ],
@@ -221,7 +226,7 @@ ShallowWrapper {
               to="/home"
             >
               Semaine du 
-              February 14, 2017
+              14 février 2017
             </HeaderLink>,
           ],
           "menu": false,
@@ -303,7 +308,7 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 "Semaine du ",
-                "February 14, 2017",
+                "14 février 2017",
               ],
               "style": Object {
                 "textDecoration": "none",
@@ -313,7 +318,7 @@ ShallowWrapper {
             "ref": null,
             "rendered": Array [
               "Semaine du ",
-              "February 14, 2017",
+              "14 février 2017",
             ],
             "type": [Function],
           },
@@ -385,7 +390,7 @@ ShallowWrapper {
               to="/home"
             >
               Semaine du 
-              February 14, 2017
+              14 février 2017
             </HeaderLink>
           </styled.nav>,
         ],
@@ -530,7 +535,7 @@ ShallowWrapper {
                 to="/home"
               >
                 Semaine du 
-                February 14, 2017
+                14 février 2017
               </HeaderLink>,
             ],
             "menu": false,
@@ -612,7 +617,7 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   "Semaine du ",
-                  "February 14, 2017",
+                  "14 février 2017",
                 ],
                 "style": Object {
                   "textDecoration": "none",
@@ -622,7 +627,7 @@ ShallowWrapper {
               "ref": null,
               "rendered": Array [
                 "Semaine du ",
-                "February 14, 2017",
+                "14 février 2017",
               ],
               "type": [Function],
             },

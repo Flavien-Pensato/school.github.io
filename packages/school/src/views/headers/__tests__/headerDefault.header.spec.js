@@ -13,6 +13,7 @@ describe('Header default', () => {
     Date.now = jest.fn(() => 1487076708000);
     props.currentWeek = moment();
     props.signOutAction = jest.fn();
+    props.match = { params: {} };
   });
 
   it('should render correctly', () => {

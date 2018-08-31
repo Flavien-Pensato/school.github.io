@@ -19,7 +19,7 @@ export const getDates = ({ calendar }) => _.get(calendar, 'dates');
 
 export const getSelectedWeek = ({ calendar }, weekId) => {
   if (weekId) {
-    return moment(weekId, 'WY').startOf('week');
+    return moment(weekId, 'YYYY.MM.DD').startOf('week');
   }
 
   return _.get(calendar, 'selectedWeek');
