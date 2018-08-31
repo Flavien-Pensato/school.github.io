@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
 import { HeaderLink, LogoutButton, HeaderTitle } from '@school/ui';
 
 import { signOut } from '../../modules/account/account.actions';
@@ -126,7 +127,9 @@ class HeaderDefault extends Component {
   }
 
   render() {
-    const { currentWeek, signOutAction } = this.props;
+    const { currentWeek, signOutAction, match } = this.props;
+
+    console.log(match.params._id);
 
     return (
       <HeaderContent>
@@ -176,6 +179,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-export const HeaderDefaultConnected = connect(mapStateToProps, mapDispatchToProps)(HeaderDefault);
+export const HeaderDefaultConnected = withRouter(connect(mapStateToProps, mapDispatchToProps)(HeaderDefault));
 export { HeaderDefault };
 

@@ -85,7 +85,7 @@ class HeaderCalendar extends Component {
 	  return (
   <WrapperStyle>
     <Item>
-      <CalendarLink to={`/home/${week.clone().startOf('week').add(-1, 'weeks').format('WY')}`}>
+      <CalendarLink to={`/home/${week.clone().startOf('week').add(-1, 'weeks').format('YYYY.MM.DD')}`}>
         <span>Semaine precedente</span>
         <Previous />
       </CalendarLink>
@@ -97,7 +97,7 @@ class HeaderCalendar extends Component {
       </CalendarButton>
     </Item>
     <Item>
-      <CalendarLink to={`/home/${week.clone().startOf('week').add(1, 'weeks').format('WY')}`}>
+      <CalendarLink to={`/home/${week.clone().startOf('week').add(1, 'weeks').format('YYYY.MM.DD')}`}>
         <span>Semaine suivante</span>
         <Next />
       </CalendarLink>
