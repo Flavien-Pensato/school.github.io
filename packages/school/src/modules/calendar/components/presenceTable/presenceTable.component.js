@@ -8,6 +8,8 @@ import PresenceCase from '../presenceCase.component';
 
 import { uuidv4 } from '../../../../utils';
 
+moment.locale('fr');
+
 const Container = styled.table`
   overflow: auto;
   margin: 0 auto;

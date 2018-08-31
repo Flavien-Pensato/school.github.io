@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import moment from 'moment';
 
+moment.locale('fr');
+
 export const getWeeks = ({ calendar }) => _.get(calendar, 'weeks');
 
 export const getCurrentWeek = ({ calendar }, weekId) => {
@@ -17,7 +19,7 @@ export const getDates = ({ calendar }) => _.get(calendar, 'dates');
 
 export const getSelectedWeek = ({ calendar }, weekId) => {
   if (weekId) {
-    return moment(weekId, 'WY').startOf('week');
+    return moment(weekId, 'YYYY.MM.DD').startOf('week');
   }
 
   return _.get(calendar, 'selectedWeek');

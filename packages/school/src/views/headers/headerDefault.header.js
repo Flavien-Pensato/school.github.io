@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
 import { HeaderLink, LogoutButton, HeaderTitle } from '@school/ui';
 
 import { signOut } from '../../modules/account/account.actions';
 
-import { getSelectedWeek } from '../../modules/calendar/calendar.selectors';
+moment.locale('fr');
 
 const LogoutSvg = () => (
   <StyledLogoutSvg>
@@ -126,7 +128,15 @@ class HeaderDefault extends Component {
   }
 
   render() {
-    const { currentWeek, signOutAction } = this.props;
+    const { signOutAction, match } = this.props;
+
+    let date;
+
+    if (match && match.params._id) {
+      date = moment(match.params._id, 'YYYY.MM.DD');
+    } else {
+      date = moment();
+    }
 
     return (
       <HeaderContent>
@@ -150,7 +160,7 @@ class HeaderDefault extends Component {
             Taches
           </HeaderLink>
           <HeaderLink to="/home" style={{ textDecoration: 'none' }}>
-            Semaine du {currentWeek.format('LL')}
+            Semaine du {date.format('LL')}
           </HeaderLink>
         </HeaderNav>
       </HeaderContent>
@@ -163,19 +173,16 @@ HeaderDefault.defaultProps = {
 };
 
 HeaderDefault.propTypes = {
-  currentWeek: PropTypes.object,
+  match: PropTypes.object.isRequired,
   signOutAction: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  currentWeek: getSelectedWeek(state),
-});
 
 const mapDispatchToProps = dispatch => ({
   signOutAction: () => dispatch(signOut()),
 });
 
 
-export const HeaderDefaultConnected = connect(mapStateToProps, mapDispatchToProps)(HeaderDefault);
+export const HeaderDefaultConnected = withRouter(connect(undefined, mapDispatchToProps)(HeaderDefault));
 export { HeaderDefault };
 

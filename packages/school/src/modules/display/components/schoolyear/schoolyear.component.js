@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
+moment.locale('fr');
+
 export class SchoolYear extends Component {
   constructor(props) {
     super(props);
