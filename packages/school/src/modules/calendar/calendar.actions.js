@@ -63,7 +63,7 @@ export const fetchWeekAction = date => async (dispatch) => {
       const week = snapshot.val();
 
       if (week) {
-        dispatch({ type: FETCH_WEEK, week });
+        dispatch({ type: FETCH_WEEK, week: week[Object.keys(week)[0]] });
       }
     });
 
