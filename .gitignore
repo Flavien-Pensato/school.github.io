@@ -3,4 +3,5 @@
 **/dist
 **/.ou
 **/lib
-**/.eslintcatche
+**/.eslinctcatche
+**/firebase-debug.log
