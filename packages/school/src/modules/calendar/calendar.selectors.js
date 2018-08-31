@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import moment from 'moment';
 
+moment.locale('fr');
+
 export const getWeeks = ({ calendar }) => _.get(calendar, 'weeks');
 
 export const getCurrentWeek = ({ calendar }, weekId) => {

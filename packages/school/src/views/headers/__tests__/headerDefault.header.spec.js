@@ -3,6 +3,8 @@ import { shallow } from 'enzyme';
 import moment from 'moment';
 import { HeaderDefault } from '../headerDefault.header';
 
+moment.locale('fr');
+
 describe('Header default', () => {
   const props = {};
   const getWrapper = () => shallow(<HeaderDefault {...props} />);
