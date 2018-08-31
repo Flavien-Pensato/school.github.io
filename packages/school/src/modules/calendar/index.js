@@ -4,6 +4,7 @@ import Immutable from 'immutable';
 import {
   FETCH_WEEK,
   FETCH_DATES,
+  ADD_WEEK,
 } from './calendar.actions';
 
 moment.locale('fr');
@@ -19,7 +20,7 @@ export default function calendar(state = initialeState, action) {
     case FETCH_DATES:
       return { ...state, dates: action.dates };
     case FETCH_WEEK:
-      return { ...state, weeks: state.weeks.set(action.week._id, action.week) };
+      return { ...state, weeks: state.weeks.set(action.week.date, action.week) };
     default:
       return state;
   }
