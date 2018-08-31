@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { withRouter } from 'react-router';
+import _ from 'lodash';
 
 const Item = styled.li`
   display: flex;
@@ -127,10 +128,12 @@ class StudentsList extends Component {
   render() {
 	  const { students, removeStudent, changeStudent } = this.props;
 
+    const studentsSorted = _.sortBy(students, ['name']);
+
     return (
       <div>
         <List>
-          {students.map(student =>
+          {studentsSorted.map(student =>
             <StudentItem key={student.name} student={student} removeItem={removeStudent} changeItem={changeStudent} />)}
         </List>
       </div>

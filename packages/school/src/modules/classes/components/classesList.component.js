@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import _ from 'lodash';
 
 const Item = styled.li`
   display: flex;
@@ -68,12 +69,14 @@ export class ClassesList extends Component {
 
 
   render() {
-	  const { classes, removeClasse } = this.props;
+    const { classes, removeClasse } = this.props;
+
+    const classesSorted = _.sortBy(classes, ['name']);
 
     return (
       <div>
         <List>
-          {classes.map(classe => <ClasseItem key={classe.name} classe={classe} removeItem={removeClasse} />)}
+          {classesSorted.map(classe => <ClasseItem key={classe.name} classe={classe} removeItem={removeClasse} />)}
         </List>
       </div>
 	  );
