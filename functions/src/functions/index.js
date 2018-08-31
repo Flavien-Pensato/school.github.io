@@ -27,31 +27,37 @@ const findGroupeTaskCounter = (weeks, groupe, task) => {
   };	
    classes.forEach((classe) => {	
     _.each(classe.students, (student) => {	
-      if (student.group === groupe) {	
+      if (student.groupe === groupe) {	
         infos.students.push(student.name);	
         infos.classe = classe.name;	
       }	
     });	
   });	
    return infos;	
-};	
+};
+
+const filterClasses = (classes, classesId) => _.filter(classes, classe => classesId.includes(classe._id))
  
 const createWeekAction = (classes, tasks, date, weeks) => {	
   const classesId = date.classes;	
-  const allTasks = [...(_.filter(classes, classe => classesId.indexOf(classe._id) >= 0)), ...tasks];	
+  const allTasks = [...filterClasses(classes, classesId), ...tasks];
   const newWeek = {	
     tasks: [],
-  };	
+  };
+
+  console.log("GROUPE", _.uniq(_.flattenDeep([
+    ...filterClasses(classes, classesId).map(classe => _.map(classe.students, student => student.groupe))
+  ])))
 
    _.forEach(allTasks, (task) => {	
-    if (tasks.indexOf(task) >= 0) {	
+    if (tasks.includes(task)) {	
       const groupsAvailable = _.uniq(_.flattenDeep([
-        ..._.filter(classes, classe => classesId.indexOf(classe._id) !== -1).map(classe => _.map(classe.students, student => student.group))
+        ...filterClasses(classes, classesId).map(classe => _.map(classe.students, student => student.groupe))
       ]));	
       let groupeSelected = 'Pas de groupe disponible';	
       let max = 1000;	
-       _.filter(groupsAvailable, group =>	
-        newWeek.tasks.map(({ groupe }) => groupe).indexOf(group) === -1).forEach((groupe) => {	
+       _.filter(groupsAvailable, groupe =>	
+        newWeek.tasks.map(({ groupe }) => groupe).indexOf(groupe) === -1).forEach((groupe) => {	
         const counter = findGroupeTaskCounter(weeks, groupe, task);	
         if (counter <= max) {	
           max = counter;	
@@ -65,11 +71,11 @@ const createWeekAction = (classes, tasks, date, weeks) => {
       });	
     } else {	
       const classe = _.find(classes, ({ name }) => name === task.name);	
-      const groupsAvailable = _.uniq(_.map(classe.students, student => student.group));	
+      const groupsAvailable = _.uniq(_.map(classe.students, student => student.groupe));	
        let groupeSelected = 'Pas de groupe disponible';	
       let max = 1000;	
-       _.filter(groupsAvailable, group =>	
-        newWeek.tasks.map(({ groupe }) => groupe).indexOf(group) === -1).forEach((groupe) => {	
+       _.filter(groupsAvailable, groupe =>	
+        newWeek.tasks.map(({ groupe }) => groupe).indexOf(groupe) === -1).forEach((groupe) => {	
         const counter = findGroupeTaskCounter(weeks, groupe, task);	
          if (counter <= max) {	
           max = counter;	
@@ -113,9 +119,12 @@ exports.generateNewWeek = functions.database.ref('/weeks/').onCreate(async (snap
   tasks = red(tasks.val());
   date = date.val()[Object.keys(date.val())[0]];
 
-
-  _.forEach(classes, (value, key) => {
+  classes = _.map(classes, (value, key) => {
     value.students = _.filter(students, student => student.classeId === value._id);
+
+    console.log('STUDENTS', students);
+
+    return value;
   });
 
   console.log('DATE', date);
