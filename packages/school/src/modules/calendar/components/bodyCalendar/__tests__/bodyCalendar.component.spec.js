@@ -10,7 +10,7 @@ describe('Body calendar', () => {
   const getWrapper = () => shallow(<BodyCalendar {...props} />);
 
   beforeEach(() => {
-    props.fetchWeeksAction = jest.fn();
+    props.fetchWeek = jest.fn();
     props.match = { params: {} };
   });
 

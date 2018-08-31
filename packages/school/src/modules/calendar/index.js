@@ -6,6 +6,8 @@ import {
   FETCH_DATES,
 } from './calendar.actions';
 
+moment.locale('fr');
+
 const initialeState = {
   dates: [],
   weeks: Immutable.Map({}),

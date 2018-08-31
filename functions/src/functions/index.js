@@ -105,7 +105,7 @@ exports.generateNewWeek = functions.database.ref('/weeks/').onCreate(async (snap
   let students = await admin.database().ref('/students/').once('value');
   let classes = await admin.database().ref('/classes/').orderByChild('schoolYear').equalTo(original.schoolYear).once('value');
   let tasks = await admin.database().ref('/tasks/').once('value');
-  let date = await admin.database().ref('/dates/').orderByChild('from').equalTo('2018.09.24').once('value');
+  let date = await admin.database().ref('/dates/').orderByChild('from').equalTo(original.date).once('value');
   
   weeks = red(weeks.val());
   students = red(students.val());

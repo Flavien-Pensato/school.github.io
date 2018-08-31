@@ -67,7 +67,6 @@ export class ClassesList extends Component {
     this.stopFetching();
   }
 
-
   render() {
     const { classes, removeClasse } = this.props;
 

@@ -5,7 +5,19 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <BodyCalendar
-    fetchWeeksAction={[MockFunction]}
+    fetchWeek={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
     match={
       Object {
         "params": Object {},
@@ -59,7 +71,19 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <BodyCalendar
-    fetchWeeksAction={[MockFunction]}
+    fetchWeek={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
     match={
       Object {
         "params": Object {},
