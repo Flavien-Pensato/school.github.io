@@ -4,7 +4,6 @@ import Immutable from 'immutable';
 import {
   FETCH_WEEK,
   FETCH_DATES,
-  ADD_WEEK,
 } from './calendar.actions';
 
 moment.locale('fr');
