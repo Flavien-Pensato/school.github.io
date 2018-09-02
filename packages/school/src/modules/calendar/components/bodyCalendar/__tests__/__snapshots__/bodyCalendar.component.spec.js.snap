@@ -23,7 +23,6 @@ ShallowWrapper {
         "params": Object {},
       }
     }
-    week={Object {}}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -71,19 +70,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <BodyCalendar
-    fetchWeek={
-      [MockFunction] {
-        "calls": Array [
-          Array [],
-        ],
-        "results": Array [
-          Object {
-            "isThrow": false,
-            "value": undefined,
-          },
-        ],
-      }
-    }
+    fetchWeek={[MockFunction]}
     match={
       Object {
         "params": Object {},

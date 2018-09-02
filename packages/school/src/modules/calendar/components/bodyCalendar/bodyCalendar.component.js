@@ -4,19 +4,25 @@ import _ from 'lodash';
 
 export class BodyCalendar extends Component {
   componentDidMount() {
-    const { fetchWeek } = this.props;
+    const { week, fetchWeek } = this.props;
 
-    this.stopFetching = fetchWeek();
+    if (!week) {
+      fetchWeek();
+    }
   }
 
-  componentWillUnmount() {
-    this.stopFetching();
+  componentDidUpdate(prevProps) {
+    const { week, fetchWeek, selectedWeek } = this.props;
+
+    if (!week && selectedWeek !== prevProps.selectedWeek) {
+      fetchWeek();
+    }
   }
 
   render() {
     const { week } = this.props;
 
-    if (_.isEmpty(week)) {
+    if (!week || _.isEmpty(week)) {
       return (
         <span>Pas de semaine programmée</span>
       );
@@ -49,11 +55,8 @@ export class BodyCalendar extends Component {
   }
 }
 
-BodyCalendar.defaultProps = {
-  week: {},
-};
-
 BodyCalendar.propTypes = {
   week: PropTypes.object,
+  selectedWeek: PropTypes.string,
   fetchWeek: PropTypes.func.isRequired,
 };
