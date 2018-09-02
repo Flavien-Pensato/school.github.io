@@ -55,24 +55,20 @@ export const editDateAction = date => async (dispatch) => {
 };
 
 export const FETCH_WEEK = 'calendar/FETCH_WEEK';
-export const fetchWeekAction = date => async (dispatch) => {
+export const fetchWeekAction = date => (dispatch) => {
   try {
-    const ref = await firebase().ref(weeksRef).orderByChild('date')
-      .equalTo(date || moment().startOf('week').format('YYYY.MM.DD'));
-    const onValueChange = ref.on('value', (snapshot) => {
-      const week = snapshot.val();
+    firebase().ref(weeksRef).orderByChild('date')
+      .equalTo(date || moment().startOf('week').format('YYYY.MM.DD'))
+      .on('value', (snapshot) => {
+        const week = snapshot.val();
 
-      if (week) {
-        dispatch({ type: FETCH_WEEK, week: week[Object.keys(week)[0]] });
-      }
-    });
-
-    return () => ref.off('value', onValueChange);
+        if (week) {
+          dispatch({ type: FETCH_WEEK, week: week[Object.keys(week)[0]] });
+        }
+      });
   } catch (error) {
     // eslint-disable-next-line
     console.error(error);
-
-    return Promise.resolve();
   }
 };
 

@@ -99,11 +99,8 @@ const red = data => _.reduce(data, (acc, value, key) => {
   return acc;
 }, []);
 
-exports.generateNewWeek = functions.database.ref('/weeks/').onCreate(async (snapshot, context) => {
+exports.generateNewWeek = functions.database.ref('/weeks/{pushId}').onCreate(async (snapshot, context) => {
   let original = snapshot.val();
-
-  const originalId = Object.keys(original)[0]
-  original = original[originalId];
 
   console.log('ORIGINAL', original);
 
@@ -133,5 +130,5 @@ exports.generateNewWeek = functions.database.ref('/weeks/').onCreate(async (snap
 
   console.log('NEW WEEK', newWeek);
 
-  return admin.database().ref(`/weeks/${originalId}`).set({ ...original, ...newWeek });
+  return admin.database().ref(`/weeks/${context.params.pushId}`).set({ ...original, ...newWeek });
 });
