@@ -90,12 +90,3 @@ Object.defineProperty(exports, 'HeaderLink', {
     return _headerLink.HeaderLink;
   }
 });
-
-var _calendarLink = require('./link/calendarLink.component');
-
-Object.defineProperty(exports, 'CalendarLink', {
-  enumerable: true,
-  get: function get() {
-    return _calendarLink.CalendarLink;
-  }
-});

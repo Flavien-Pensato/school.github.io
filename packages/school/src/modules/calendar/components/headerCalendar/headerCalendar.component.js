@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
-import { CalendarButton, CalendarLink } from '@school/ui';
+import { CalendarButton } from '@school/ui';
 
 const WrapperStyle = styled.div`
   display: flex;
@@ -85,10 +86,12 @@ class HeaderCalendar extends Component {
 	  return (
   <WrapperStyle>
     <Item>
-      <CalendarLink to={`/home/${week.clone().startOf('week').add(-1, 'weeks').format('YYYY.MM.DD')}`}>
-        <span>Semaine precedente</span>
-        <Previous />
-      </CalendarLink>
+      <NavLink to={`/home/${week.clone().startOf('week').add(-1, 'weeks').format('YYYY.MM.DD')}`}>
+        <CalendarButton>
+          <span>Semaine precedente</span>
+          <Previous />
+        </CalendarButton>
+      </NavLink>
     </Item>
     <Item>
       <CalendarButton onClick={() => this.props.addWeek(week.clone().startOf('week').format('YYYY.MM.DD'))}>
@@ -97,10 +100,12 @@ class HeaderCalendar extends Component {
       </CalendarButton>
     </Item>
     <Item>
-      <CalendarLink to={`/home/${week.clone().startOf('week').add(1, 'weeks').format('YYYY.MM.DD')}`}>
-        <span>Semaine suivante</span>
-        <Next />
-      </CalendarLink>
+      <NavLink to={`/home/${week.clone().startOf('week').add(1, 'weeks').format('YYYY.MM.DD')}`}>
+        <CalendarButton>
+          <span>Semaine suivante</span>
+          <Next />
+        </CalendarButton>
+      </NavLink>
     </Item>
     <Item>
       <CalendarButton onClick={this.onClickPrint}><span>Imprimer</span><Print /></CalendarButton>
