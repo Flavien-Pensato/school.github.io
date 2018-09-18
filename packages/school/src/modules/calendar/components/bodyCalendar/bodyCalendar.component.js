@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 
 export class BodyCalendar extends Component {
   componentDidMount() {
@@ -22,7 +21,7 @@ export class BodyCalendar extends Component {
   render() {
     const { week } = this.props;
 
-    if (!week || _.isEmpty(week)) {
+    if (!week || !week.tasks) {
       return (
         <span>Pas de semaine programmée</span>
       );
