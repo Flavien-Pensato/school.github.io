@@ -22,7 +22,7 @@ export class BodyCalendar extends Component {
   render() {
     const { week } = this.props;
 
-    if (!week || _.isEmpty(week)) {
+    if (!week || !week.tasks) {
       return (
         <span>Pas de semaine programmée</span>
       );
