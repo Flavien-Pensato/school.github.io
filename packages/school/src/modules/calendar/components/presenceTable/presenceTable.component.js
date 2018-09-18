@@ -38,7 +38,7 @@ export class PresenceTable extends Component {
   handleAddDate = () => {
     const { addDate, dates } = this.props;
 
-    const date = moment().add(dates.length, 'weeks').startOf('week');
+    const date = moment(dates[dates.length - 1].from, 'YYYY.MM.DD').add(1, 'weeks');
 
     addDate({
       _id: uuidv4(),
