@@ -31,11 +31,11 @@ class PresenceCase extends Component {
 	  const { presence } = this.props;
 
 	  return (
-		<Item className="pa3 bb b--black-20">
-			<a href="#0" onClick={this.onClickTogglePresence} className={`f5 no-underline ${presence ? 'green' : 'black'} bg-animate hover-bg-black hover-white items-center center`}>
-				<span className="pl1">{presence ? 'Présent' : 'Absent'}</span>
-			</a>
-		</Item>
+  <Item className="pa3 bb b--black-20">
+    <a href="#0" onClick={this.onClickTogglePresence} className={`f5 no-underline ${presence ? 'green' : 'black'} bg-animate hover-bg-black hover-white items-center center`}>
+      <span className="pl1">{presence ? 'Présent' : 'Absent'}</span>
+    </a>
+  </Item>
 	  );
 	}
 }
