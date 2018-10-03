@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const Item = styled.div`
+  height: 50px;
+`;
 
 class PresenceCase extends Component {
 	onClickTogglePresence = (e) => {
@@ -26,11 +31,11 @@ class PresenceCase extends Component {
 	  const { presence } = this.props;
 
 	  return (
-  <td className="pv3 pr3 bb b--black-20">
-    <a href="#0" onClick={this.onClickTogglePresence} className={`f5 no-underline ${presence ? 'green' : 'black'} bg-animate hover-bg-black hover-white inline-flex items-center pa3 center`}>
-      <span className="pl1">{presence ? 'Présent' : 'Absent'}</span>
-    </a>
-  </td>
+		<Item className="pa3 bb b--black-20">
+			<a href="#0" onClick={this.onClickTogglePresence} className={`f5 no-underline ${presence ? 'green' : 'black'} bg-animate hover-bg-black hover-white items-center center`}>
+				<span className="pl1">{presence ? 'Présent' : 'Absent'}</span>
+			</a>
+		</Item>
 	  );
 	}
 }

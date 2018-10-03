@@ -13,8 +13,8 @@ moment.locale('fr');
 const Container = styled.div`
   display: grid;
   overflow: auto;
-  height: 300px;
-  width: 600px;
+  height: 500px;
+  width: 700px;
 `;
 
 const Grid = styled.div`
@@ -22,14 +22,14 @@ const Grid = styled.div`
   flex-wrap: nowrap;
 `;
 
-const Col = styled.div`
-  width: 150px;
-  min-width: 150px;
+const LittleCol = styled.div`
+  width: 100px;
+  min-width: 100px;
 `;
 
 const ItemHeader = styled.div`
-  height: 100px;
-  min-height: 100px;
+  height: 50px;
+  min-height: 50px;
   position: sticky;
   position: -webkit-sticky;
   background: white;
@@ -41,18 +41,13 @@ const ColFixedLeft = styled.div`
   left: 0;
   z-index: 9998;
   background: white;
-`;
-
-const ColFixedRight = styled.div`
-  position: sticky;
-  right: 0;
-  z-index: 9998;
-  background: white;
+  width: 250px;
+  min-width: 250px;
 `;
 
 const Item = styled.div`
   height: 50px;
-  border: 1px solid gray;
+  padding: 0.4rem;
 `;
 
 export class PresenceTable extends Component {
@@ -92,37 +87,43 @@ export class PresenceTable extends Component {
       <div className="pa4">
         <Container>
           <Grid>
-            <thead>
-              <tr>
-                <th className="fw6 bb b--black-20 pb3 pr3 tl">Semaine</th>
-                {classesSorted.map(classe => (
-                  <th className="fw6 bb b--black-20 pb3 pr3" key={classe.name}>{classe.name}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="lh-copy tc">
+            <ColFixedLeft>
+              <ItemHeader className="b--black-20 bb f5 black bg-animate items-center pa3 center fw6">
+                <span>
+                  Semaine
+                </span>
+              </ItemHeader>
               {datesSorted.map(date => (
-                <tr key={date._id}>
-                  <td className="pv3 pr3 bb b--black-20 tl">
+                <Item key={date._id} className="b--black-20 bb f5 black bg-animate items-center pa3 center">
+                  <span>
                     Du&nbsp;{moment(date.from, 'YYYY.MM.DD').format('dddd D MMMM')}
                     <br />
                     Au&nbsp;{moment(date.to, 'YYYY.MM.DD').format('dddd D MMMM')}
-                  </td>
-                  {classesSorted.map(classe => (
-                    <PresenceCase
-                      editDate={editDate}
-                      key={classe._id}
-                      date={date}
-                      presence={date.classes.includes(classe._id)}
-                      classeId={classe._id}
-                    />
-                  ))}
-                </tr>
+                  </span>
+                </Item>
               ))}
-              <tr>
-                <button onClick={this.handleAddDate}>+</button>
-              </tr>
-            </tbody>
+            </ColFixedLeft>
+
+
+            {classesSorted.map(classe => (
+              <LittleCol key={classe._id}>
+                <ItemHeader className="tc pa3 bb b--black-20 fw6">
+                  <span>
+                    {classe.name}
+                  </span>
+                </ItemHeader>
+                {datesSorted.map(date => (
+                  <PresenceCase
+                    editDate={editDate}
+                    date={date}
+                    presence={date.classes.includes(classe._id)}
+                    classeId={classe._id}
+                    key={date._id + classe._id}
+                  />
+                  ))}
+              </LittleCol>
+              ))}
+            <button onClick={this.handleAddDate}>+</button>
           </Grid>
         </Container>
       </div>
