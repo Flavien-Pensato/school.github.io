@@ -10,16 +10,44 @@ import { uuidv4 } from '../../../../utils';
 
 moment.locale('fr');
 
-const Container = styled.table`
+const Container = styled.div`
+  display: grid;
   overflow: auto;
-  margin: 0 auto;
-  font-size: .875rem;
+  height: 500px;
+  width: 700px;
+`;
 
-  display: block;
+const Grid = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+`;
 
-  width: 100%;
-  max-width: 64rem;
-  max-height: 32rem;
+const LittleCol = styled.div`
+  width: 100px;
+  min-width: 100px;
+`;
+
+const ItemHeader = styled.div`
+  height: 50px;
+  min-height: 50px;
+  position: sticky;
+  position: -webkit-sticky;
+  background: white;
+  top: 0;
+`;
+
+const ColFixedLeft = styled.div`
+  position: sticky;
+  left: 0;
+  z-index: 9998;
+  background: white;
+  width: 250px;
+  min-width: 250px;
+`;
+
+const Item = styled.div`
+  height: 50px;
+  padding: 0.4rem;
 `;
 
 export class PresenceTable extends Component {
@@ -58,37 +86,45 @@ export class PresenceTable extends Component {
     return (
       <div className="pa4">
         <Container>
-          <thead>
-            <tr>
-              <th className="fw6 bb b--black-20 pb3 pr3 tl">Semaine</th>
-              {classesSorted.map(classe => (
-                <th className="fw6 bb b--black-20 pb3 pr3" key={classe.name}>{classe.name}</th>
-                ))}
-            </tr>
-          </thead>
-          <tbody className="lh-copy tc">
-            {datesSorted.map(date => (
-              <tr key={date._id}>
-                <td className="pv3 pr3 bb b--black-20 tl">
+          <Grid>
+            <ColFixedLeft>
+              <ItemHeader className="b--black-20 bb f5 black bg-animate items-center pa3 center fw6">
+                <span>
+                  Semaine
+                </span>
+              </ItemHeader>
+              {datesSorted.map(date => (
+                <Item key={date._id} className="b--black-20 bb f5 black bg-animate items-center pa3 center">
+                  <span>
                     Du&nbsp;{moment(date.from, 'YYYY.MM.DD').format('dddd D MMMM')}
-                  <br />
+                    <br />
                     Au&nbsp;{moment(date.to, 'YYYY.MM.DD').format('dddd D MMMM')}
-                </td>
-                {classesSorted.map(classe => (
+                  </span>
+                </Item>
+              ))}
+            </ColFixedLeft>
+
+
+            {classesSorted.map(classe => (
+              <LittleCol key={classe._id}>
+                <ItemHeader className="tc pa3 bb b--black-20 fw6">
+                  <span>
+                    {classe.name}
+                  </span>
+                </ItemHeader>
+                {datesSorted.map(date => (
                   <PresenceCase
                     editDate={editDate}
-                    key={classe._id}
                     date={date}
                     presence={date.classes.includes(classe._id)}
                     classeId={classe._id}
+                    key={date._id + classe._id}
                   />
                   ))}
-              </tr>
+              </LittleCol>
               ))}
-            <tr>
-              <button onClick={this.handleAddDate}>+</button>
-            </tr>
-          </tbody>
+            <button onClick={this.handleAddDate}>+</button>
+          </Grid>
         </Container>
       </div>
     );
