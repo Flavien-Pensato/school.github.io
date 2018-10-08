@@ -90,3 +90,12 @@ Object.defineProperty(exports, 'HeaderLink', {
     return _headerLink.HeaderLink;
   }
 });
+
+var _wrapper = require('./wrapper/wrapper.style');
+
+Object.defineProperty(exports, 'Wrapper', {
+  enumerable: true,
+  get: function get() {
+    return _wrapper.Wrapper;
+  }
+});

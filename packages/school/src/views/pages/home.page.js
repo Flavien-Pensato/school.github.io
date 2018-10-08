@@ -1,15 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Wrapper } from '@school/ui';
 
 import { HeaderCalendarConnected } from '../../modules/calendar/components/headerCalendar/headerCalendar.connector';
 import { BodyCalendarConnected } from '../../modules/calendar/components/bodyCalendar/bodyCalendar.connector';
-
-const Wrapper = styled.div`
-  margin: 0 auto;
-  width: 100%;
-  max-width: 48rem;
-`;
 
 const HomePage = ({ match }) => (
   <Wrapper>
