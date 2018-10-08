@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { PurpleButton } from '@school/ui';
 import _ from 'lodash';
 
 const Item = styled.li`
@@ -40,7 +41,7 @@ class ClasseItem extends Component {
     return (
       <Item >
         <Link to={`/classes/${classe._id}`}><span>{classe.name}</span></Link>
-        <Button onClick={this.handleClickItem}>Supprimer</Button>
+        <PurpleButton onClick={this.handleClickItem}>Supprimer</PurpleButton>
       </Item>
     );
   }

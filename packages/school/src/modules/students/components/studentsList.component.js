@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { withRouter } from 'react-router';
+import { PurpleButton } from '@school/ui';
 import _ from 'lodash';
 
 const Item = styled.li`
@@ -12,23 +13,6 @@ const Item = styled.li`
   border-color: rgba(0,0,0,.2);
   border-bottom-style: solid;
   border-bottom-width: 1px;
-`;
-
-const Button = styled.button`
-  font-size: .875rem;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  background-color: #a463f2;
-  color: #fff;
-  border-radius: 9999px;
-  border-style: none;
-  border-width: 0;
-
-  @media (max-width: 700px) {
-    span {
-      display: none;
-    }
-  }
 `;
 
 const SvgLogo = styled.svg`
@@ -93,10 +77,10 @@ class StudentItem extends Component {
       <Item >
         <InputName>{student.name}</InputName>
         <InputGroupe type="number" name="groupe" value={student.groupe} onChange={this.handleChangeGroupe} />
-        <Button onClick={this.handleClickItem}>
+        <PurpleButton onClick={this.handleClickItem}>
           <span>Supprimer</span>
           <Trash />
-        </Button>
+        </PurpleButton>
       </Item>
     );
   }
