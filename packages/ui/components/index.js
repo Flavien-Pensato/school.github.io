@@ -7,3 +7,4 @@ export { Title } from './title/title.component';
 export { HeaderTitle } from './title/headerTitle.component';
 export { Form } from './form/form.component';
 export { HeaderLink } from './headerLink/headerLink.component';
+export { Wrapper } from './wrapper/wrapper.style';

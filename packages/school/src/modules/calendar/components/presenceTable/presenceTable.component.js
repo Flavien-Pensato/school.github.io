@@ -14,7 +14,8 @@ const Container = styled.div`
   display: grid;
   overflow: auto;
   height: 500px;
-  width: 700px;
+  width: 100%;
+  max-width: 48rem;
 `;
 
 const Grid = styled.div`
@@ -84,49 +85,47 @@ export class PresenceTable extends Component {
     const datesSorted = _.sortBy(dates, ['timestamp']);
 
     return (
-      <div className="pa4">
-        <Container>
-          <Grid>
-            <ColFixedLeft>
-              <ItemHeader className="b--black-20 bb f5 black bg-animate items-center pa3 center fw6">
-                <span>
+      <Container>
+        <Grid>
+          <ColFixedLeft>
+            <ItemHeader className="b--black-20 bb f5 black bg-animate items-center pa3 center fw6">
+              <span>
                   Semaine
+              </span>
+            </ItemHeader>
+            {datesSorted.map(date => (
+              <Item key={date._id} className="b--black-20 bb f5 black bg-animate items-center pa3 center">
+                <span>
+                    Du&nbsp;{moment(date.from, 'YYYY.MM.DD').format('dddd D MMMM')}
+                  <br />
+                    Au&nbsp;{moment(date.to, 'YYYY.MM.DD').format('dddd D MMMM')}
+                </span>
+              </Item>
+              ))}
+          </ColFixedLeft>
+
+
+          {classesSorted.map(classe => (
+            <LittleCol key={classe._id}>
+              <ItemHeader className="tc pa3 bb b--black-20 fw6">
+                <span>
+                  {classe.name}
                 </span>
               </ItemHeader>
               {datesSorted.map(date => (
-                <Item key={date._id} className="b--black-20 bb f5 black bg-animate items-center pa3 center">
-                  <span>
-                    Du&nbsp;{moment(date.from, 'YYYY.MM.DD').format('dddd D MMMM')}
-                    <br />
-                    Au&nbsp;{moment(date.to, 'YYYY.MM.DD').format('dddd D MMMM')}
-                  </span>
-                </Item>
-              ))}
-            </ColFixedLeft>
-
-
-            {classesSorted.map(classe => (
-              <LittleCol key={classe._id}>
-                <ItemHeader className="tc pa3 bb b--black-20 fw6">
-                  <span>
-                    {classe.name}
-                  </span>
-                </ItemHeader>
-                {datesSorted.map(date => (
-                  <PresenceCase
-                    editDate={editDate}
-                    date={date}
-                    presence={date.classes.includes(classe._id)}
-                    classeId={classe._id}
-                    key={date._id + classe._id}
-                  />
+                <PresenceCase
+                  editDate={editDate}
+                  date={date}
+                  presence={date.classes.includes(classe._id)}
+                  classeId={classe._id}
+                  key={date._id + classe._id}
+                />
                   ))}
-              </LittleCol>
+            </LittleCol>
               ))}
-            <button onClick={this.handleAddDate}>+</button>
-          </Grid>
-        </Container>
-      </div>
+          <button onClick={this.handleAddDate}>+</button>
+        </Grid>
+      </Container>
     );
   }
 }
