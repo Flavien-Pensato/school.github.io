@@ -128,15 +128,7 @@ class HeaderDefault extends Component {
   }
 
   render() {
-    const { signOutAction, match } = this.props;
-
-    let date;
-
-    if (match && match.params._id) {
-      date = moment(match.params._id, 'YYYY.MM.DD');
-    } else {
-      date = moment();
-    }
+    const { selectedWeek, signOutAction } = this.props;
 
     return (
       <HeaderContent>
@@ -160,7 +152,7 @@ class HeaderDefault extends Component {
             Taches
           </HeaderLink>
           <HeaderLink to="/home" style={{ textDecoration: 'none' }}>
-            Semaine du {date.format('LL')}
+            Semaine du {selectedWeek.format('LL')}
           </HeaderLink>
         </HeaderNav>
       </HeaderContent>
@@ -168,12 +160,8 @@ class HeaderDefault extends Component {
   }
 }
 
-HeaderDefault.defaultProps = {
-  currentWeek: new Date(),
-};
-
 HeaderDefault.propTypes = {
-  match: PropTypes.object.isRequired,
+  selectedWeek: PropTypes.object.isRequired,
   signOutAction: PropTypes.func.isRequired,
 };
 
