@@ -5,12 +5,12 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <HeaderDefault
-    currentWeek={"2017-02-14T12:51:48.000Z"}
     match={
       Object {
         "params": Object {},
       }
     }
+    selectedWeek={"2017-02-14T12:51:48.000Z"}
     signOutAction={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {

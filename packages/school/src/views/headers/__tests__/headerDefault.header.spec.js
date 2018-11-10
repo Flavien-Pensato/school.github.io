@@ -11,7 +11,7 @@ describe('Header default', () => {
 
   beforeEach(() => {
     Date.now = jest.fn(() => 1487076708000);
-    props.currentWeek = moment();
+    props.selectedWeek = moment();
     props.signOutAction = jest.fn();
     props.match = { params: {} };
   });
