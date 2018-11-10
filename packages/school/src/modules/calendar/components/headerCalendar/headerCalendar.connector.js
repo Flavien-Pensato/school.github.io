@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import HeaderCalendar from './headerCalendar.component';
 import { getSelectedWeek } from '../../calendar.selectors';
-import { addWeekAction } from '../../calendar.actions';
+import { addWeekAction, goPrevWeek, goNextWeek } from '../../calendar.actions';
 
 const mapStateToProps = (state, ownProps) => ({
   week: getSelectedWeek(state, ownProps.selectedWeek),
@@ -10,6 +10,8 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = dispatch => ({
   addWeek: week => dispatch(addWeekAction(week)),
+  goNextWeek: () => dispatch(goNextWeek()),
+  goPrevWeek: () => dispatch(goPrevWeek()),
 });
 
 export const HeaderCalendarConnected = connect(mapStateToProps, mapDispatchToProps)(HeaderCalendar);
