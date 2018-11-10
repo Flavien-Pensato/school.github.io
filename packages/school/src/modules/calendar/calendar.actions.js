@@ -14,6 +14,16 @@ export const setSelectedWeek = selectedWeek => ({
   selectedWeek,
 });
 
+export const GO_NEXT_WEEK = 'calendar/GO_NEXT_WEEK';
+export const goNextWeek = () => ({
+  type: GO_NEXT_WEEK,
+});
+
+export const GO_PREV_WEEK = 'calendar/GO_PREV_WEEK';
+export const goPrevWeek = () => ({
+  type: GO_PREV_WEEK,
+});
+
 export const FETCH_DATES = 'calendar/FETCH_DATES';
 export const fetchDatesAction = () => (dispatch) => {
   try {

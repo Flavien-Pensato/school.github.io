@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 import { HeaderLink, LogoutButton, HeaderTitle } from '@school/ui';
 
 import { signOut } from '../../modules/account/account.actions';
+import { getSelectedWeek } from '../../modules/calendar/calendar.selectors';
 
 moment.locale('fr');
 
@@ -166,11 +167,15 @@ HeaderDefault.propTypes = {
 };
 
 
+const mapStateToProps = state => ({
+  selectedWeek: getSelectedWeek(state),
+});
+
 const mapDispatchToProps = dispatch => ({
   signOutAction: () => dispatch(signOut()),
 });
 
 
-export const HeaderDefaultConnected = withRouter(connect(undefined, mapDispatchToProps)(HeaderDefault));
+export const HeaderDefaultConnected = withRouter(connect(mapStateToProps, mapDispatchToProps)(HeaderDefault));
 export { HeaderDefault };
 
