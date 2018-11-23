@@ -91,6 +91,7 @@ export const fetchWeekAction = date => (dispatch) => {
 export const ADD_WEEK = 'calendar/ADD_WEEK';
 export const addWeekAction = date => async (dispatch, getState) => {
   try {
+    await firebase().ref(dateRef + date._id).remove();
     await firebase().ref(weeksRef).push().set({
       date,
       schoolYear: getSchoolYear(getState()),
