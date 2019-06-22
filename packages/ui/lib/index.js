@@ -13,6 +13,15 @@ Object.defineProperty(exports, 'Button', {
   }
 });
 
+var _purpleButton = require('./button/purpleButton.component');
+
+Object.defineProperty(exports, 'PurpleButton', {
+  enumerable: true,
+  get: function get() {
+    return _purpleButton.PurpleButton;
+  }
+});
+
 var _logoutButton = require('./button/logoutButton.component');
 
 Object.defineProperty(exports, 'LogoutButton', {
