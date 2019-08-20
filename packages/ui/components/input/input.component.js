@@ -32,12 +32,12 @@ const InputStyle = styled.input`
 
 
 export const Input = props => (
-	<InputStyle {...props} />
+  <InputStyle {...props} />
 );
 
 export const InputForm = ({ type, name, textLabel }) => (
-	<DivContent>
-		<LabelForm htmlFor={name}>{textLabel}</LabelForm>
-		<InputStyle type={type} name={name} id={name} />
-	</DivContent>
+  <DivContent>
+    <LabelForm htmlFor={name}>{textLabel}</LabelForm>
+    <InputStyle type={type} name={name} id={name} />
+  </DivContent>
 );

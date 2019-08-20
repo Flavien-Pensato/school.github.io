@@ -3,23 +3,5 @@
   "version": "1.0.0",
   "main": "./lib/index.js",
   "module": "./components/index.js",
-  "license": "MIT",
-  "scripts": {
-    "storybook": "start-storybook -p 9001 -c .storybook",
-    "postinstall": "build-storybook -c .storybook -o dist",
-    "build": "babel --config-file .storybook/.babelrc components -d lib"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "react-router-dom": "^4.3.1"
-  },
-  "dependencies": {
-    "@storybook/addon-actions": "^3.4.6",
-    "@storybook/cli": "^3.4.3",
-    "@storybook/react": "^3.4.6",
-    "prop-types": "^15.6.1",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "styled-components": "^3.2.6"
-  }
+  "license": "MIT"
 }
