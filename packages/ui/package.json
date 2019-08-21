@@ -9,8 +9,7 @@
     "lint": "eslint ./src",
     "build": "babel src --minified --compact -d lib --ignore 'src/**/*.spec.js','src/**/*.test.js'",
     "watch": "babel src -d lib --watch --source-maps --ignore 'src/**/*.spec.js','src/**/*.test.js'",
-    "documentation": "documentation build ./** -f md -o ../../docs/intl.md",
-    "prepublish": "yarn documentation && yarn build"
+    "documentation": "documentation build ./** -f md -o ../../docs/intl.md"
   },
   "devDependencies": {
     "babel-plugin-emotion": "^10.0.14",

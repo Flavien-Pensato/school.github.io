@@ -10,7 +10,6 @@
     "logs": "firebase functions:log",
     "clean": "rimraf dist/functions",
     "copy": "cp package.json yarn.lock dist/functions",
-    "predeploy": "yarn clean && yarn build && yarn copy",
     "build": "babel src/functions --out-dir dist/functions",
     "test": "jest"
   },
