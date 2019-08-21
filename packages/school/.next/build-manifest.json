@@ -1,50 +1,16 @@
 {
-  "devFiles": [],
+  "devFiles": [
+    "static/development/dll/dll_7ddc9f1143df7e054eb5.js",
+    "static/development/dll/dll_7ddc9f1143df7e054eb5.js.map"
+  ],
   "pages": {
-    "/": [
-      "static/runtime/webpack-035ac2b14bde147cb4a8.js",
-      "static/chunks/commons.7bb9986c26861b2e65a4.js",
-      "static/runtime/main-78b3174a39014fc1b1e4.js"
-    ],
     "/_app": [
-      "static/runtime/webpack-035ac2b14bde147cb4a8.js",
-      "static/chunks/commons.7bb9986c26861b2e65a4.js",
-      "static/runtime/main-78b3174a39014fc1b1e4.js"
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
     ],
     "/_error": [
-      "static/runtime/webpack-035ac2b14bde147cb4a8.js",
-      "static/chunks/commons.7bb9986c26861b2e65a4.js",
-      "static/runtime/main-78b3174a39014fc1b1e4.js"
-    ],
-    "/calendrier": [
-      "static/runtime/webpack-035ac2b14bde147cb4a8.js",
-      "static/chunks/commons.7bb9986c26861b2e65a4.js",
-      "static/runtime/main-78b3174a39014fc1b1e4.js"
-    ],
-    "/classes": [
-      "static/runtime/webpack-035ac2b14bde147cb4a8.js",
-      "static/chunks/commons.7bb9986c26861b2e65a4.js",
-      "static/runtime/main-78b3174a39014fc1b1e4.js"
-    ],
-    "/classes/[classeId]": [
-      "static/runtime/webpack-035ac2b14bde147cb4a8.js",
-      "static/chunks/commons.7bb9986c26861b2e65a4.js",
-      "static/runtime/main-78b3174a39014fc1b1e4.js"
-    ],
-    "/index": [
-      "static/runtime/webpack-035ac2b14bde147cb4a8.js",
-      "static/chunks/commons.7bb9986c26861b2e65a4.js",
-      "static/runtime/main-78b3174a39014fc1b1e4.js"
-    ],
-    "/login": [
-      "static/runtime/webpack-035ac2b14bde147cb4a8.js",
-      "static/chunks/commons.7bb9986c26861b2e65a4.js",
-      "static/runtime/main-78b3174a39014fc1b1e4.js"
-    ],
-    "/taches": [
-      "static/runtime/webpack-035ac2b14bde147cb4a8.js",
-      "static/chunks/commons.7bb9986c26861b2e65a4.js",
-      "static/runtime/main-78b3174a39014fc1b1e4.js"
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
     ]
   }
 }
