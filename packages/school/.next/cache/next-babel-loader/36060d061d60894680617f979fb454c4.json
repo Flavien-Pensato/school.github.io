@@ -1,1 +1,0 @@
-{"ast":null,"code":"import _ from 'lodash';\nexport var getUid = function getUid(_ref) {\n  var account = _ref.account;\n  return _.get(account, 'user.uid', undefined);\n};\nexport var getAutoLoginDone = function getAutoLoginDone(_ref2) {\n  var account = _ref2.account;\n  return _.get(account, 'autoLoginDone', false);\n};","map":null,"metadata":{},"sourceType":"module"}

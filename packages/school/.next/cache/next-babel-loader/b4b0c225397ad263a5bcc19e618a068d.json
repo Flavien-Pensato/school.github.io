@@ -1,1 +1,0 @@
-{"ast":null,"code":"export var uuidv4 = function uuidv4() {\n  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {\n    var r = Math.random() * 16 | 0;\n    var v = c === 'x' ? r : r & 0x3 | 0x8;\n    return v.toString(16);\n  });\n};","map":null,"metadata":{},"sourceType":"module"}
