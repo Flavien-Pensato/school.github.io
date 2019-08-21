@@ -6,3 +6,4 @@ lib/
 firebase-debug.log
 coverage/
 .next/
+.DS_Store/
