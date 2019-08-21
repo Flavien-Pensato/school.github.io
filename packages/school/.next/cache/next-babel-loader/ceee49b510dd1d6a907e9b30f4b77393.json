@@ -1,1 +1,0 @@
-{"ast":null,"code":"export var SIGNIN = 'account/SIGNIN';\nexport var SIGNOUT = 'account/SIGNOUT';\nexport var AUTO_LOGIN_DONE = 'account/AUTO_LOGIN_DONE';","map":null,"metadata":{},"sourceType":"module"}

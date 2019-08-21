@@ -1,1 +1,0 @@
-{"ast":null,"code":"import _ from 'lodash';\nexport var getStudents = function getStudents(_ref) {\n  var students = _ref.students;\n  return _.orderBy(_.get(students, 'students'), [function (student) {\n    return student.name.toLowerCase();\n  }], ['asyn']);\n};","map":null,"metadata":{},"sourceType":"module"}

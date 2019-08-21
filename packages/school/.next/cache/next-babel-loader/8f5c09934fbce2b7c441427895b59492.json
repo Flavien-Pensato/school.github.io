@@ -1,1 +1,0 @@
-{"ast":null,"code":"export const SIGNIN = 'account/SIGNIN';\nexport const SIGNOUT = 'account/SIGNOUT';\nexport const AUTO_LOGIN_DONE = 'account/AUTO_LOGIN_DONE';","map":null,"metadata":{},"sourceType":"module"}

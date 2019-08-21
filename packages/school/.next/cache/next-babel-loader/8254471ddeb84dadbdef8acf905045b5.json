@@ -1,1 +1,0 @@
-{"ast":null,"code":"export var SELECT_CLASSE = 'school/SELECT_CLASSE';\nexport var RESET_PREVIEW_CLASSE = 'school/RESET_PREVIEW_CLASSE';\nexport var FETCH_CLASSES = 'school/FETCH_CLASSES';\nexport var FETCH_STUDENTS = 'school/FETCH_STUDENTS';\nexport var FETCH_TASKS = 'school/FETCH_TASKS';","map":null,"metadata":{},"sourceType":"module"}
