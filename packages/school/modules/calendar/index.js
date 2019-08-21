@@ -1,13 +1,7 @@
 import moment from 'moment';
 import Immutable from 'immutable';
 
-import {
-  FETCH_WEEK,
-  FETCH_DATES,
-  SET_SELECTED_WEEK,
-  GO_NEXT_WEEK,
-  GO_PREV_WEEK,
-} from './calendar.actions';
+import { FETCH_WEEK, FETCH_DATES, SET_SELECTED_WEEK, GO_NEXT_WEEK, GO_PREV_WEEK } from './calendar.actions';
 
 moment.locale('fr');
 

@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 
 import PresenceCase from '../presenceCase.component';
 
-import { uuidv4 } from '../../../../src/utils';
+import { uuidv4 } from '../../../../modules/utils';
 
 moment.locale('fr');
 
@@ -72,11 +72,17 @@ export class PresenceTable extends Component {
     addDate({
       _id: uuidv4(),
       from: date.format('YYYY.MM.DD'),
-      to: date.clone().add(4, 'days').format('YYYY.MM.DD'),
-      timestamp: date.clone().add(4, 'days').unix(),
+      to: date
+        .clone()
+        .add(4, 'days')
+        .format('YYYY.MM.DD'),
+      timestamp: date
+        .clone()
+        .add(4, 'days')
+        .unix(),
       classes: [''],
     });
-  }
+  };
 
   render() {
     const { classes, dates, editDate } = this.props;
@@ -89,28 +95,23 @@ export class PresenceTable extends Component {
         <Grid>
           <ColFixedLeft>
             <ItemHeader className="b--black-20 bb f5 black bg-animate items-center pa3 center fw6">
-              <span>
-                  Semaine
-              </span>
+              <span>Semaine</span>
             </ItemHeader>
             {datesSorted.map(date => (
               <Item key={date._id} className="b--black-20 bb f5 black bg-animate items-center pa3 center">
                 <span>
-                    Du&nbsp;{moment(date.from, 'YYYY.MM.DD').format('dddd D MMMM')}
+                  Du&nbsp;{moment(date.from, 'YYYY.MM.DD').format('dddd D MMMM')}
                   <br />
-                    Au&nbsp;{moment(date.to, 'YYYY.MM.DD').format('dddd D MMMM')}
+                  Au&nbsp;{moment(date.to, 'YYYY.MM.DD').format('dddd D MMMM')}
                 </span>
               </Item>
-              ))}
+            ))}
           </ColFixedLeft>
-
 
           {classesSorted.map(classe => (
             <LittleCol key={classe._id}>
               <ItemHeader className="tc pa3 bb b--black-20 fw6">
-                <span>
-                  {classe.name}
-                </span>
+                <span>{classe.name}</span>
               </ItemHeader>
               {datesSorted.map(date => (
                 <PresenceCase
@@ -120,9 +121,9 @@ export class PresenceTable extends Component {
                   classeId={classe._id}
                   key={date._id + classe._id}
                 />
-                  ))}
-            </LittleCol>
               ))}
+            </LittleCol>
+          ))}
           <button onClick={this.handleAddDate}>+</button>
         </Grid>
       </Container>
@@ -135,6 +136,6 @@ PresenceTable.propTypes = {
   editDate: PropTypes.func.isRequired,
   fetchClasses: PropTypes.func.isRequired,
   fetchDates: PropTypes.func.isRequired,
-  classes: PropTypes.arrayOf(PropTypes.object).isRequired,
-  dates: PropTypes.arrayOf(PropTypes.object).isRequired,
+  classes: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  dates: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };

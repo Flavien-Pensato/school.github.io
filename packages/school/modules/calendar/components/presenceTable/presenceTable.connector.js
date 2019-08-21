@@ -19,4 +19,7 @@ const mapDispatchToProps = dispatch => ({
   fetchDates: () => dispatch(fetchDatesAction()),
 });
 
-export const ConnectedPresenceTable = connect(mapStateToProps, mapDispatchToProps)(PresenceTable);
+export const ConnectedPresenceTable = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PresenceTable);

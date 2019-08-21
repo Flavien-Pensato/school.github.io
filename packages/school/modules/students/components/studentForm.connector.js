@@ -1,6 +1,4 @@
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-
 
 import { StudentForm } from './studentForm.component';
 
@@ -10,4 +8,7 @@ const mapDispatchToProps = dispatch => ({
   addStudent: student => dispatch(addStudentAction(student)),
 });
 
-export const ConnectedStudentForm = withRouter(connect(undefined, mapDispatchToProps)(StudentForm));
+export const ConnectedStudentForm = connect(
+  undefined,
+  mapDispatchToProps,
+)(StudentForm);

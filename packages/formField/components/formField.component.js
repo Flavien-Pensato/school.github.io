@@ -10,10 +10,10 @@ const FragmentStyled = styled.span`
   font-weight: ${props => textWeight[props.weight]};
 `;
 
-export const Text = ({
-  weight, family, size, children, ...props
-}) => (
-  <FragmentStyled size={size} family={family} weight={weight} {...props}>{children}</FragmentStyled>
+export const Text = ({ weight, family, size, children, ...props }) => (
+  <FragmentStyled size={size} family={family} weight={weight} {...props}>
+    {children}
+  </FragmentStyled>
 );
 
 Text.defaultProps = {

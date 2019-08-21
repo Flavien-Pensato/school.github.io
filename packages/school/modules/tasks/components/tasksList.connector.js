@@ -14,4 +14,7 @@ const mapDispatchToProps = dispatch => ({
   removeTask: taskId => dispatch(removeTaskAction(taskId)),
 });
 
-export const ConnectedTasksList = connect(mapStateToProps, mapDispatchToProps)(TasksList);
+export const ConnectedTasksList = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(TasksList);

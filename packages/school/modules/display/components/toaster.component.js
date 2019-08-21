@@ -18,19 +18,17 @@ const Wrapper = styled.div`
   font-size: 1.2rem;
   text-align: center;
 
-  opacity: ${props => props.toaster ? 1 : 0};
+  opacity: ${props => (props.toaster ? 1 : 0)};
   transition: transform 0.3s, opacity 0.5s;
-  background-color: ${props => props.toaster ? 'green' : 'transparent'};
-`
+  background-color: ${props => (props.toaster ? 'green' : 'transparent')};
+`;
 
 export const Toaster = ({ toaster }) => (
   <Wrapper toaster={!_.isEmpty(toaster)}>
-    <span>
-      {toaster.message}
-    </span>
+    <span>{toaster.message}</span>
   </Wrapper>
 );
 
 Toaster.propTypes = {
-  toaster: PropTypes.object.isRequired,
+  toaster: PropTypes.shape().isRequired,
 };

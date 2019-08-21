@@ -19,7 +19,8 @@ export const getCurrentWeek = ({ calendar }, date) => {
   if (immutableWeeks) {
     return immutableWeeks.get(date || getSelectedWeek({ calendar }).format('YYYY.MM.DD'));
   }
+
+  return '';
 };
 
 export const getDates = ({ calendar }) => _.get(calendar, 'dates');
-

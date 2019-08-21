@@ -7,12 +7,15 @@ const taskRef = '/classes/';
 export const FETCH_CLASSES = 'classes/FETCH_CLASSES';
 export const fetchClassesAction = () => (dispatch, getState) => {
   try {
-    const ref = firebase().ref(taskRef).orderByChild('schoolYear').equalTo(getSchoolYear(getState()));
+    const ref = firebase()
+      .ref(taskRef)
+      .orderByChild('schoolYear')
+      .equalTo(getSchoolYear(getState()));
 
-    const onValueChange = ref.on('value', (snapshot) => {
+    const onValueChange = ref.on('value', snapshot => {
       const classes = [];
 
-      snapshot.forEach((childSnapshot) => {
+      snapshot.forEach(childSnapshot => {
         classes.push(childSnapshot.val());
       });
 
@@ -29,9 +32,11 @@ export const fetchClassesAction = () => (dispatch, getState) => {
 };
 
 export const ADD_CLASSE = 'classes/ADD_CLASSE';
-export const addClasseAction = classe => async (dispatch) => {
+export const addClasseAction = classe => async dispatch => {
   try {
-    await firebase().ref(taskRef + classe._id).set(classe);
+    await firebase()
+      .ref(taskRef + classe._id)
+      .set(classe);
     await dispatch({ type: ADD_CLASSE });
   } catch (error) {
     // eslint-disable-next-line
@@ -39,11 +44,12 @@ export const addClasseAction = classe => async (dispatch) => {
   }
 };
 
-
 export const DELETE_CLASSE = 'classes/DELETE_CLASSE';
-export const removeClasseAction = classeId => async (dispatch) => {
+export const removeClasseAction = classeId => async dispatch => {
   try {
-    await firebase().ref(taskRef + classeId).remove();
+    await firebase()
+      .ref(taskRef + classeId)
+      .remove();
     await dispatch({ type: DELETE_CLASSE });
   } catch (error) {
     // eslint-disable-next-line

@@ -9,7 +9,6 @@ import { fetchStudentsAction, removeStudentAction, changeStudentAction } from '.
 const mapStateToProps = state => ({
   students: getStudents(state),
   schoolYear: getSchoolYear(state),
-
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -18,4 +17,7 @@ const mapDispatchToProps = dispatch => ({
   changeStudent: student => dispatch(changeStudentAction(student)),
 });
 
-export const ConnectedStudentList = connect(mapStateToProps, mapDispatchToProps)(StudentsList);
+export const ConnectedStudentList = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(StudentsList);

@@ -13,4 +13,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchWeek: () => dispatch(fetchWeekAction(ownProps.selectedWeek)),
 });
 
-export const BodyCalendarConnected = connect(mapStateToProps, mapDispatchToProps)(BodyCalendar);
+export const BodyCalendarConnected = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(BodyCalendar);

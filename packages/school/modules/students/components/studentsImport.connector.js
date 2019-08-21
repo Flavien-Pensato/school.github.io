@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 
 import { importStudentsAction } from '../students.actions';
 
@@ -9,4 +8,7 @@ const mapDispatchToProps = dispatch => ({
   importFile: (pathFile, classeId) => dispatch(importStudentsAction(pathFile, classeId)),
 });
 
-export const ConnectedStudentsImport = withRouter(connect(undefined, mapDispatchToProps)(StudentsImport));
+export const ConnectedStudentsImport = connect(
+  undefined,
+  mapDispatchToProps,
+)(StudentsImport);

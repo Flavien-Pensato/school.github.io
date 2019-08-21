@@ -30,8 +30,11 @@ export class SchoolYear extends Component {
     return (
       <div>
         <select>
-          {Object.keys(this.state.schoolyears).map(year =>
-            <option key={year}value={year} selected={year === current}>{year}</option>)}
+          {Object.keys(this.state.schoolyears).map(year => (
+            <option key={year} value={year} selected={year === current}>
+              {year}
+            </option>
+          ))}
         </select>
       </div>
     );

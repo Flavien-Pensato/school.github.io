@@ -8,13 +8,17 @@ storiesOf('Text', module)
     <Container>
       <Row>
         <Col sm={3}>
-          <Text weight="lighter" size="tiny">Hello Button</Text>
+          <Text weight="lighter" size="tiny">
+            Hello Button
+          </Text>
         </Col>
         <Col sm={3}>
           <Text weight="normal">Hello man</Text>
         </Col>
         <Col sm={3}>
-          <Text weight="bold" size="large">Hello purple</Text>
+          <Text weight="bold" size="large">
+            Hello purple
+          </Text>
         </Col>
         <Col sm={3}>
           <Text size="larger">Hello purple</Text>
@@ -26,7 +30,9 @@ storiesOf('Text', module)
     <Container>
       <Row>
         <Col>
-          <Text weight="lighter" size="tiny">Hello Button</Text>
+          <Text weight="lighter" size="tiny">
+            Hello Button
+          </Text>
         </Col>
       </Row>
     </Container>
@@ -44,7 +50,9 @@ storiesOf('Text', module)
     <Container>
       <Row>
         <Col>
-          <Text weight="bold" size="large">Hello purple</Text>
+          <Text weight="bold" size="large">
+            Hello purple
+          </Text>
         </Col>
       </Row>
     </Container>

@@ -12,13 +12,13 @@ const Item = styled.li`
   justify-content: space-between;
   align-items: center;
   padding: 0.3rem 0;
-  border-color: rgba(0,0,0,.2);
+  border-color: rgba(0, 0, 0, 0.2);
   border-bottom-style: solid;
   border-bottom-width: 1px;
 `;
 
 const Button = styled.button`
-  font-size: .875rem;
+  font-size: 0.875rem;
   text-decoration: none;
   padding: 0.5rem 1rem;
   background-color: #a463f2;
@@ -29,19 +29,19 @@ const Button = styled.button`
 `;
 
 class TaskItem extends Component {
-  handleClickItem = (event) => {
+  handleClickItem = event => {
     event.preventDefault();
 
     const { removeItem, task } = this.props;
 
     removeItem(task._id);
-  }
+  };
 
   render() {
     const { task } = this.props;
 
     return (
-      <Item >
+      <Item>
         <span>{task.name}</span>
         <Button onClick={this.handleClickItem}>Supprimer</Button>
       </Item>
@@ -51,9 +51,8 @@ class TaskItem extends Component {
 
 TaskItem.propTypes = {
   removeItem: PropTypes.func.isRequired,
-  task: PropTypes.object.isRequired,
+  task: PropTypes.shape().isRequired,
 };
-
 
 export class TasksList extends Component {
   componentDidMount() {
@@ -66,22 +65,23 @@ export class TasksList extends Component {
     this.stopFetching();
   }
 
-
   render() {
-	  const { tasks, removeTask } = this.props;
+    const { tasks, removeTask } = this.props;
 
     return (
       <div>
         <List>
-          {tasks.map(task => <TaskItem key={task.name} task={task} removeItem={removeTask} />)}
+          {tasks.map(task => (
+            <TaskItem key={task.name} task={task} removeItem={removeTask} />
+          ))}
         </List>
       </div>
-	  );
+    );
   }
 }
 
 TasksList.propTypes = {
   fetchTasks: PropTypes.func.isRequired,
   removeTask: PropTypes.func.isRequired,
-  tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  tasks: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };

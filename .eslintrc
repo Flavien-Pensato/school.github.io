@@ -4,9 +4,11 @@
         "browser": true,
         "es6": true,
         "jest": true,
+        "jasmine": true,
         "node": true,
     },
-    "plugins": ["react", "emotion"],
+    "extends": "plugin:@m6web/default",
+    "plugins": ["emotion", "jest"],
     "parser": "babel-eslint",
     "globals": {
         "Atomics": "readonly",
@@ -19,6 +21,10 @@
     "rules": {
         "class-methods-use-this": "off",
         "import/prefer-default-export": "off",
-        "global-require": "off"
+        "global-require": "off",
+        "no-bitwise": "off",
+        "no-underscore-dangle": "off",
+        "jsx-a11y/anchor-is-valid": "off",
+        "react/no-multi-comp": "off"
     }
 }

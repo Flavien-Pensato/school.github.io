@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import Router from 'next/router';
 import _ from 'lodash';
 
-import { uuidv4 } from '../../../src/utils';
+import { uuidv4 } from '../../../modules/utils';
 
 import ClasseInput from './classeInput.component';
 import StudentInput from './studentInput.component';
@@ -11,7 +11,7 @@ import StudentInput from './studentInput.component';
 import { addStudentAction } from '../school.actions';
 
 class Preview extends Component {
-  onClickAddStudent = (e) => {
+  onClickAddStudent = e => {
     e.preventDefault();
 
     const { preview } = this.props;
@@ -21,9 +21,9 @@ class Preview extends Component {
       name: 'XXX',
       classeId: preview,
     });
-  }
+  };
 
-  handleClickClosePreview = (e) => {
+  handleClickClosePreview = e => {
     e.preventDefault();
 
     const { resetPreviewClasse } = this.props;
@@ -32,19 +32,13 @@ class Preview extends Component {
   };
 
   render() {
-    const {
-      preview,
-      classe,
-    } = this.props;
+    const { preview, classe } = this.props;
 
     if (!preview && !classe) {
-      return <Redirect to="/eleves" />;
+      Router.replace('/eleves');
     }
 
-    const students = _.orderBy(
-      classe.students,
-      [student => student.name.toLowerCase()], ['asyn'],
-    );
+    const students = _.orderBy(classe.students, [student => student.name.toLowerCase()], ['asyn']);
 
     return (
       <div className="pa4">
@@ -62,14 +56,19 @@ class Preview extends Component {
               </tr>
             </thead>
             <tbody className="lh-copy">
-              {
-								_.map(students, student => <StudentInput key={student._id} {...student} />)
-							}
+              {_.map(students, student => (
+                <StudentInput key={student._id} {...student} />
+              ))}
             </tbody>
           </table>
         </div>
-        <div className="measure center br2-ns ba b--black-10" >
-          <input type="submit" className="f6 link dim ba bw2 ph3 pv2 mb2 dib dark-green" onClick={this.onClickAddStudent} value="Ajouter un eleve" />
+        <div className="measure center br2-ns ba b--black-10">
+          <input
+            type="submit"
+            className="f6 link dim ba bw2 ph3 pv2 mb2 dib dark-green"
+            onClick={this.onClickAddStudent}
+            value="Ajouter un eleve"
+          />
         </div>
       </div>
     );
@@ -83,7 +82,7 @@ Preview.defaultProps = {
 
 Preview.propTypes = {
   preview: PropTypes.string,
-  classe: PropTypes.object,
+  classe: PropTypes.shape(),
 
   resetPreviewClasse: PropTypes.func.isRequired,
 };

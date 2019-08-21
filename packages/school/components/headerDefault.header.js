@@ -3,16 +3,14 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
-import { withRouter } from 'react-router-dom';
+import Link from 'next/link';
 
-import { signOut } from '../../modules/account/account.actions';
-import { getSelectedWeek } from '../../modules/calendar/calendar.selectors';
+import { signOut } from '../modules/account/account.actions';
+import { getSelectedWeek } from '../modules/calendar/calendar.selectors';
 
 moment.locale('fr');
 
-import { NavLink } from 'react-router-dom';
-
-const HeaderLink = styled(NavLink)`
+const HeaderLink = styled(Link)`
   font-size: 1rem;
   text-decoration: underline;
   font-weight: 400;
@@ -52,7 +50,6 @@ const MenuSvg = () => (
     <path d="M0 0h24v24H0z" fill="none" />
     <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
   </StyledLogoutSvg>
-
 );
 
 const MenuClose = () => (
@@ -111,7 +108,6 @@ const HeaderNav = styled.nav`
       height: 30px;
     }
   }
-
 `;
 
 const HeaderWrapper = styled.div`
@@ -151,11 +147,11 @@ class HeaderDefault extends Component {
     this.state = { menu: false };
   }
 
-  handleClickMenu = (event) => {
+  handleClickMenu = event => {
     event.preventDefault();
 
     this.setState({ menu: !this.state.menu });
-  }
+  };
 
   render() {
     const { selectedWeek, signOutAction } = this.props;
@@ -163,26 +159,33 @@ class HeaderDefault extends Component {
     return (
       <HeaderContent>
         <HeaderWrapper>
-          <MenuButton onClick={this.handleClickMenu}><MenuSvg /></MenuButton>
+          <MenuButton onClick={this.handleClickMenu}>
+            <MenuSvg />
+          </MenuButton>
           <HeaderTitle>Planning de la MFR de chatte</HeaderTitle>
-          <LogoutButton onClick={signOutAction}><span>Se déconnecter</span><LogoutSvg /></LogoutButton>
+          <LogoutButton onClick={signOutAction}>
+            <span>Se déconnecter</span>
+            <LogoutSvg />
+          </LogoutButton>
         </HeaderWrapper>
         <HeaderNav menu={this.state.menu}>
-          <MenuButtonClose onClick={this.handleClickMenu}><MenuClose /></MenuButtonClose>
-          <HeaderLink to="/home">
-            Accueil
+          <MenuButtonClose onClick={this.handleClickMenu}>
+            <MenuClose />
+          </MenuButtonClose>
+          <HeaderLink href="/">
+            <a>Accueil</a>
           </HeaderLink>
-          <HeaderLink to="/classes">
-            Classes
+          <HeaderLink href="/classes">
+            <a>Classes</a>
           </HeaderLink>
-          <HeaderLink to="/calendrier">
-            Calendrier
+          <HeaderLink href="/calendrier">
+            <a>Calendrier</a>
           </HeaderLink>
-          <HeaderLink to="/taches">
-            Taches
+          <HeaderLink href="/taches">
+            <a>Taches</a>
           </HeaderLink>
-          <HeaderLink to="/home" style={{ textDecoration: 'none' }}>
-            Semaine du {selectedWeek.format('LL')}
+          <HeaderLink href="/" style={{ textDecoration: 'none' }}>
+            <a>Semaine du {selectedWeek.format('LL')}</a>
           </HeaderLink>
         </HeaderNav>
       </HeaderContent>
@@ -191,10 +194,9 @@ class HeaderDefault extends Component {
 }
 
 HeaderDefault.propTypes = {
-  selectedWeek: PropTypes.object.isRequired,
+  selectedWeek: PropTypes.shape().isRequired,
   signOutAction: PropTypes.func.isRequired,
 };
-
 
 const mapStateToProps = state => ({
   selectedWeek: getSelectedWeek(state),
@@ -204,7 +206,9 @@ const mapDispatchToProps = dispatch => ({
   signOutAction: () => dispatch(signOut()),
 });
 
+export const HeaderDefaultConnected = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HeaderDefault);
 
-export const HeaderDefaultConnected = withRouter(connect(mapStateToProps, mapDispatchToProps)(HeaderDefault));
 export { HeaderDefault };
-

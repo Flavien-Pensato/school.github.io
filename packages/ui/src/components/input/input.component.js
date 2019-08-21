@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
 const DivContent = styled.div`
@@ -6,7 +7,7 @@ const DivContent = styled.div`
 `;
 
 const LabelForm = styled.label`
-  font-size: .875rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   font-weight: 600;
   font-family: sans-serif;
@@ -30,10 +31,7 @@ const InputStyle = styled.input`
   }
 `;
 
-
-export const Input = props => (
-  <InputStyle {...props} />
-);
+export const Input = props => <InputStyle {...props} />;
 
 export const InputForm = ({ type, name, textLabel }) => (
   <DivContent>
@@ -41,3 +39,9 @@ export const InputForm = ({ type, name, textLabel }) => (
     <InputStyle type={type} name={name} id={name} />
   </DivContent>
 );
+
+InputForm.propTypes = {
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  textLabel: PropTypes.string.isRequired,
+};

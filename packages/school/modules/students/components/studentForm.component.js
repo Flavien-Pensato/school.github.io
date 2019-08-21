@@ -9,7 +9,7 @@ const Form = styled.form`
 `;
 
 const Input = styled.input`
-  font-size: .875rem;
+  font-size: 0.875rem;
   text-align: center;
   padding: 1rem;
 `;
@@ -28,31 +28,36 @@ const Fieldset = styled.fieldset`
 const Wrapper = styled.div`
   input:first-child {
     width: 75%;
-    border-radius: .25rem 0 0 .25rem;
-    border-width: 1px 1px 1px 1px ;
-    border-color: rgba(0,0,0,.1);
+    border-radius: 0.25rem 0 0 0.25rem;
+    border-width: 1px 1px 1px 1px;
+    border-color: rgba(0, 0, 0, 0.1);
     border-style: solid;
     border-right: none;
   }
 
   input:last-child {
     width: 25%;
-    background-color: rgba(0,0,0,.7);
+    background-color: rgba(0, 0, 0, 0.7);
     color: #fff;
 
-    border-radius: 0 .25rem .25rem 0;
-    border-width: 1px 1px 1px 1px ;
-    border-color: rgba(0,0,0,.1);
+    border-radius: 0 0.25rem 0.25rem 0;
+    border-width: 1px 1px 1px 1px;
+    border-color: rgba(0, 0, 0, 0.1);
     border-style: solid;
     border-left: none;
   }
 `;
 
 export class StudentForm extends React.Component {
-  handleSubmitForm = (event) => {
+  handleSubmitForm = event => {
     event.preventDefault();
 
-    const { addStudent, match: { params: { classeId } } } = this.props;
+    const {
+      addStudent,
+      match: {
+        params: { classeId },
+      },
+    } = this.props;
 
     addStudent({
       name: event.target.name.value,
@@ -61,10 +66,10 @@ export class StudentForm extends React.Component {
     });
 
     // eslint-disable-next-line
-    event.target.name.value = '';
+    event.target.name.value = "";
     // eslint-disable-next-line
-    event.target.groupe.value = '';
-  }
+    event.target.groupe.value = "";
+  };
 
   render() {
     return (
@@ -83,5 +88,5 @@ export class StudentForm extends React.Component {
 
 StudentForm.propTypes = {
   addStudent: PropTypes.func.isRequired,
-  match: PropTypes.object.isRequired,
+  match: PropTypes.shape().isRequired,
 };

@@ -14,4 +14,7 @@ const mapDispatchToProps = dispatch => ({
   setPreview: classe => dispatch(setPreviewAction(classe)),
 });
 
-export default connect(mapStateoProps, mapDispatchToProps)(Classes);
+export default connect(
+  mapStateoProps,
+  mapDispatchToProps,
+)(Classes);

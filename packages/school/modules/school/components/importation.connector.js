@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 
 import { importFileAction } from '../school.actions';
 import { getPreview } from '../school.selectors';
@@ -14,4 +13,7 @@ const mapDispatchToProps = dispatch => ({
   importFile: pathFile => dispatch(importFileAction(pathFile)),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Importation));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Importation);

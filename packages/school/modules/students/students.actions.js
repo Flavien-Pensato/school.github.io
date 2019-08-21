@@ -3,16 +3,19 @@ import XLSX from 'xlsx';
 import _ from 'lodash';
 
 import { getSchoolYear } from '../school/school.selectors';
-import { uuidv4 } from '../../src/utils';
+import { uuidv4 } from '../../modules/utils';
 
 const studentsRef = '/students/';
 
 export const FETCH_STUDENTS = 'tasks/FETCH_STUDENTS';
-export const fetchStudentsAction = classeId => (dispatch) => {
+export const fetchStudentsAction = classeId => dispatch => {
   try {
-    const ref = firebase().ref(studentsRef).orderByChild('classeId').equalTo(classeId);
+    const ref = firebase()
+      .ref(studentsRef)
+      .orderByChild('classeId')
+      .equalTo(classeId);
 
-    const onValueChange = ref.on('value', (snapshot) => {
+    const onValueChange = ref.on('value', snapshot => {
       dispatch({ type: FETCH_STUDENTS, students: snapshot.val() ? Object.values(snapshot.val()) : [] });
     });
 
@@ -40,9 +43,8 @@ export const addStudentAction = student => async (dispatch, getState) => {
   }
 };
 
-
 export const REMOVE_STUDENT = 'tasks/REMOVE_STUDENT';
-export const removeStudentAction = studentId => async (dispatch) => {
+export const removeStudentAction = studentId => async dispatch => {
   try {
     await firebase()
       .ref(studentsRef + studentId)
@@ -54,9 +56,8 @@ export const removeStudentAction = studentId => async (dispatch) => {
   }
 };
 
-
 export const CHANGE_STUDENT = 'tasks/CHANGE_STUDENT';
-export const changeStudentAction = student => async (dispatch) => {
+export const changeStudentAction = student => async dispatch => {
   try {
     await firebase()
       .ref(studentsRef + student._id)
@@ -69,25 +70,26 @@ export const changeStudentAction = student => async (dispatch) => {
 };
 
 export const IMPORT_STUDENTS = 'tasks/IMPORT_STUDENTS';
-export const importStudentsAction = (pathFile, classeId) => async (dispatch) => {
+export const importStudentsAction = (pathFile, classeId) => async dispatch => {
   try {
     const oFile = XLSX.read(pathFile, {
       type: 'binary',
     });
 
     const worksheet = oFile.Sheets[oFile.SheetNames[0]];
-    const text = _.replace(
-      XLSX.utils.sheet_to_csv(worksheet, { raw: true }),
-      new RegExp(',|"', 'g'),
-      ' ',
+    const text = _.replace(XLSX.utils.sheet_to_csv(worksheet, { raw: true }), new RegExp(',|"', 'g'), ' ');
+
+    await Promise.all(
+      _.split(text, '\n').map(line =>
+        dispatch(
+          addStudentAction({
+            name: line.trim(),
+            groupe: 0,
+            classeId,
+          }),
+        ),
+      ),
     );
-
-    await Promise.all(_.split(text, '\n').map(line => dispatch(addStudentAction({
-      name: line.trim(),
-      groupe: 0,
-      classeId,
-    }))));
-
 
     await dispatch({ type: IMPORT_STUDENTS });
   } catch (error) {
