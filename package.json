@@ -1,33 +1,66 @@
 {
-  "version": "1.0.0",
+  "name": "react-ui-kit",
   "private": true,
-  "scripts": {
-    "school:start": "cd packages/school && webpack-dev-server",
-    "school:build": "cd packages/school && webpack --config webpack.config.js -p",
-    "school:test": "cd packages/school && yarn test",
-    "school:lint": "cd packages/school && yarn lint",
-    "ui:watch": "cd packages/ui && yarn build --watch",
-    "ui:build": "cd packages/ui && yarn build",
-    "ui:storybook": "cd packages/ui && yarn storybook",
-    "start": "npm-run-all --parallel ui:watch school:start",
-    "test": "npm-run-all --parallel ui:build school:test",
-    "lint": "npm-run-all school:lint",
-    "build": "npm-run-all ui:build school:build"
-  },
-  "jest": {
-    "setupTestFrameworkScriptFile": "./config/jest/setup.js"
-  },
   "workspaces": [
     "packages/*"
   ],
   "devDependencies": {
-    "babel-eslint": "^8.2.3",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "eslint": "^4.5.0",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.12.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.8.2"
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.0",
+    "@babel/preset-env": "^7.5.0",
+    "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-conventional": "^8.0.0",
+    "babel-eslint": "^10.0.2",
+    "babel-jest": "^24.8.0",
+    "babel-plugin-remove-debug": "^0.0.4",
+    "documentation": "^11.0.1",
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-plugin-cypress": "^2.2.1",
+    "eslint-plugin-emotion": "^10.0.14",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.3",
+    "husky": "^3.0.0",
+    "jest": "^24.8.0",
+    "lerna": "^3.13.1",
+    "lint-staged": "^9.1.0",
+    "prettier": "1.18.2",
+    "react-dom": "^16.8.6",
+    "standard-version": "^6.0.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "lerna run lint --parallel",
+      "git add"
+    ],
+    "*.spec.js": [
+      "lerna run test --parallel",
+      "git add"
+    ],
+    ".circleci/config.yml": [
+      "circleci config validate -c .circleci/config.yml",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "scripts": {
+    "start": "lerna run start --parallel",
+    "test": "lerna run test --parallel",
+    "lint": "lerna run lint --parallel",
+    "build": "lerna run build --parallel",
+    "watch": "lerna run watch --parallel",
+    "documentation": "lerna run documentation --parallel",
+    "circle": "circleci config validate -c .circleci/config.yml"
   }
 }

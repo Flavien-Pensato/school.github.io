@@ -1,4 +1,5 @@
 export { Button } from './button/button.component';
+export { PurpleButton } from './button/purpleButton.component';
 export { LogoutButton } from './button/logoutButton.component';
 export { CalendarButton } from './button/calendarButton.component';
 export { Input, InputForm } from './input/input.component';

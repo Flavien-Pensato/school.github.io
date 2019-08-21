@@ -1,0 +1,81 @@
+{
+  "modules": {
+    "byIdentifier": {
+      "multi private-next-pages/_app.js": 0,
+      "multi private-next-pages/_document.js": 1,
+      "multi private-next-pages/_error.js": 2,
+      "multi private-next-pages/calendrier.js": 3,
+      "multi private-next-pages/classes.page.js": 4,
+      "multi private-next-pages/classes/[classeId].js": 5,
+      "multi private-next-pages/classes/index.js": 6,
+      "multi private-next-pages/index.js": 7,
+      "multi private-next-pages/login.js": 8,
+      "multi private-next-pages/taches.js": 9
+    },
+    "usedIds": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3,
+      "4": 4,
+      "5": 5,
+      "6": 6,
+      "7": 7,
+      "8": 8,
+      "9": 9
+    }
+  },
+  "chunks": {
+    "byName": {
+      "static/MdzMw5ZqTrtXXjltkj_fK/pages/_app.js": 0,
+      "static/MdzMw5ZqTrtXXjltkj_fK/pages/_document.js": 1,
+      "static/MdzMw5ZqTrtXXjltkj_fK/pages/_error.js": 2,
+      "static/MdzMw5ZqTrtXXjltkj_fK/pages/calendrier.js": 3,
+      "static/MdzMw5ZqTrtXXjltkj_fK/pages/classes.js": 4,
+      "static/MdzMw5ZqTrtXXjltkj_fK/pages/classes.page.js": 5,
+      "static/MdzMw5ZqTrtXXjltkj_fK/pages/classes/[classeId].js": 6,
+      "static/MdzMw5ZqTrtXXjltkj_fK/pages/index.js": 7,
+      "static/MdzMw5ZqTrtXXjltkj_fK/pages/login.js": 8,
+      "static/MdzMw5ZqTrtXXjltkj_fK/pages/taches.js": 9,
+      "static/jaV4byfLj9H4drtltntmW/pages/_app.js": 10,
+      "static/jaV4byfLj9H4drtltntmW/pages/_document.js": 11,
+      "static/jaV4byfLj9H4drtltntmW/pages/_error.js": 12,
+      "static/jaV4byfLj9H4drtltntmW/pages/calendrier.js": 13,
+      "static/jaV4byfLj9H4drtltntmW/pages/classes.js": 14,
+      "static/jaV4byfLj9H4drtltntmW/pages/classes/[classeId].js": 15,
+      "static/jaV4byfLj9H4drtltntmW/pages/index.js": 16,
+      "static/jaV4byfLj9H4drtltntmW/pages/login.js": 17,
+      "static/jaV4byfLj9H4drtltntmW/pages/taches.js": 18,
+      "static/Gw9PEBq3eGgizcJJj4lnD/pages/_app.js": 0,
+      "static/Gw9PEBq3eGgizcJJj4lnD/pages/_document.js": 1,
+      "static/Gw9PEBq3eGgizcJJj4lnD/pages/_error.js": 2,
+      "static/Gw9PEBq3eGgizcJJj4lnD/pages/calendrier.js": 3,
+      "static/Gw9PEBq3eGgizcJJj4lnD/pages/classes.js": 4,
+      "static/Gw9PEBq3eGgizcJJj4lnD/pages/classes/[classeId].js": 5,
+      "static/Gw9PEBq3eGgizcJJj4lnD/pages/index.js": 6,
+      "static/Gw9PEBq3eGgizcJJj4lnD/pages/login.js": 7,
+      "static/Gw9PEBq3eGgizcJJj4lnD/pages/taches.js": 8,
+      "static/vHLBUGxxHAM-fc4egIrSD/pages/_app.js": 9,
+      "static/vHLBUGxxHAM-fc4egIrSD/pages/_document.js": 10,
+      "static/vHLBUGxxHAM-fc4egIrSD/pages/_error.js": 11,
+      "static/vHLBUGxxHAM-fc4egIrSD/pages/calendrier.js": 12,
+      "static/vHLBUGxxHAM-fc4egIrSD/pages/classes.js": 13,
+      "static/vHLBUGxxHAM-fc4egIrSD/pages/classes/[classeId].js": 14,
+      "static/vHLBUGxxHAM-fc4egIrSD/pages/index.js": 15,
+      "static/vHLBUGxxHAM-fc4egIrSD/pages/login.js": 16,
+      "static/vHLBUGxxHAM-fc4egIrSD/pages/taches.js": 17
+    },
+    "bySource": {},
+    "usedIds": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      9
+    ]
+  }
+}

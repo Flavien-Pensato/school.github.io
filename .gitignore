@@ -1,7 +1,8 @@
-**/node_modules
-**/yarn-error.log
-**/dist
-**/.ou
-**/lib
-**/.eslinctcatche
-**/firebase-debug.log
+node_modules/
+**/*.log
+dist/
+lib/
+.eslinctcatche
+firebase-debug.log
+coverage/
+.next/
