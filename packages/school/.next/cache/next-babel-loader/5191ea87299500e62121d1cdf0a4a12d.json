@@ -1,0 +1,1 @@
+{"ast":null,"code":"import _ from 'lodash';\nexport var getClasses = function getClasses(_ref) {\n  var classes = _ref.classes;\n  return _.get(classes, 'classes', []);\n};","map":null,"metadata":{},"sourceType":"module"}

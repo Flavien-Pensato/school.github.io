@@ -1,70 +1,24 @@
+
 {
-  "env": {
-      "browser": true,
-      "jasmine": true,
-      "commonjs": true,
-      "es6": true,
-      "node": true,
-      "jest": true
-  },
-  "parser": "babel-eslint",
-  "extends": "airbnb",
-  "parserOptions": {
-      "ecmaFeatures": {
-          "experimentalObjectRestSpread": true,
-          "jsx": true
-      },
-      "sourceType": "module"
-  },
-  "rules": {
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
-    "no-mixed-spaces-and-tabs": "off",
-    "import/prefer-default-export": "off",
-    "consistent-this": ["error", "_this"],
-    "no-tabs": 0,
-    "no-bitwise":"off",
-    "curly": ["error", "all"],
-    "no-underscore-dangle":"off",
-    "react/no-typos": "off",
-    "func-names": "error",
-
-    "max-len": [
-        "error",
-        120,
-        2,
-        {
-        "ignoreUrls": true,
-        "ignoreComments": false,
-        "ignoreRegExpLiterals": true,
-        "ignoreStrings": true,
-        "ignoreTemplateLiterals": true
-        }
-    ],
-
-    "newline-before-return": "error",
-    "no-console": "error",
-    "no-inline-comments": "error",
-    "prefer-destructuring": [
-        "error",
-        {
-        "VariableDeclarator": {
-            "array": false,
-            "object": true
-        },
-        "AssignmentExpression": {
-            "array": false,
-            "object": false
-        }
-        },
-        {
-        "enforceForRenamedProperties": false
-        }
-    ],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/forbid-prop-types": "off",
-    "react/no-multi-comp": "off",
-    "jsx-a11y/anchor-is-valid": "off",
-    "consistent-return": "off",
-    "react/require-default-props": "off"
-  }
+    "env": {
+        "browser": true,
+        "es6": true,
+        "jest": true,
+        "node": true,
+    },
+    "plugins": ["react", "emotion"],
+    "parser": "babel-eslint",
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "rules": {
+        "class-methods-use-this": "off",
+        "import/prefer-default-export": "off",
+        "global-require": "off"
+    }
 }

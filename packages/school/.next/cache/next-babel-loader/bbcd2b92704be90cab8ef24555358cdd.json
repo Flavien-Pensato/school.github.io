@@ -1,0 +1,1 @@
+{"ast":null,"code":"import _ from 'lodash';\nexport const getTasks = function ({\n  tasks\n}) {\n  return _.orderBy(_.get(tasks, 'tasks'), [function (task) {\n    return task.name.toLowerCase();\n  }], ['asyn']);\n};","map":null,"metadata":{},"sourceType":"module"}

@@ -1,3 +1,0 @@
-const Theme = ({ color }) => (
-	<div />
-);
