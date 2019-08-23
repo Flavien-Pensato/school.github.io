@@ -13,10 +13,10 @@ const ButtonStyled = styled.button`
   border-style: solid;
 `;
 
-export const Button = ({
-  type, size, children, ...props
-}) => (
-  <ButtonStyled type={type} size={size} {...props}>{children}</ButtonStyled>
+export const Button = ({ type, size, children, ...props }) => (
+  <ButtonStyled type={type} size={size} {...props}>
+    {children}
+  </ButtonStyled>
 );
 
 Button.defaultProps = {

@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import firebase from '../../config/firebase';
+import firebase from 'firebase/app';
 
 import { SIGNIN, SIGNOUT, AUTO_LOGIN_DONE } from './account.constants';
 import { showToaster } from '../display/display.actions';
@@ -14,8 +14,8 @@ export const logout = () => ({
   user: null,
 });
 
-export const autoLogin = () => (dispatch) => {
-  const stopObserver = firebase.auth().onAuthStateChanged((user) => {
+export const autoLogin = () => dispatch => {
+  const stopObserver = firebase.auth().onAuthStateChanged(user => {
     if (user) {
       dispatch(login(user));
     }
@@ -30,11 +30,11 @@ export const autoLogin = () => (dispatch) => {
 };
 
 export function signIn(email, password) {
-  return (dispatch) => {
+  return dispatch => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then((user) => {
+      .then(user => {
         dispatch(login(user));
         dispatch(showToaster('Connexion reussi'));
       });
@@ -42,12 +42,15 @@ export function signIn(email, password) {
 }
 
 export function signOut() {
-  return (dispatch) => {
-    firebase.auth().signOut().then((error) => {
-      if (!error) {
-        dispatch(logout());
-        dispatch(showToaster('Déconnection réussi'));
-      }
-    });
+  return dispatch => {
+    firebase
+      .auth()
+      .signOut()
+      .then(error => {
+        if (!error) {
+          dispatch(logout());
+          dispatch(showToaster('Déconnection réussi'));
+        }
+      });
   };
 }

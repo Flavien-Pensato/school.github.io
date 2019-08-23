@@ -14,4 +14,7 @@ const mapDispatchToProps = dispatch => ({
   goPrevWeek: () => dispatch(goPrevWeek()),
 });
 
-export const HeaderCalendarConnected = connect(mapStateToProps, mapDispatchToProps)(HeaderCalendar);
+export const HeaderCalendarConnected = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HeaderCalendar);

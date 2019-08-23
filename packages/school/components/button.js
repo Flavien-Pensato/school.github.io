@@ -1,7 +1,7 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
 export const Button = styled.button`
-  font-size: .875rem;
+  font-size: 0.875rem;
   text-decoration: none;
   padding: 0.5rem 1rem;
   background-color: #a463f2;
@@ -9,4 +9,15 @@ export const Button = styled.button`
   border-radius: 9999px;
   border-style: none;
   border-width: 0;
+`;
+
+export const PurpleButton = styled.button`
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  background-color: purple;
+  font-weight: 700;
+  display: inline-block;
+  border-color: #000;
+  border-style: solid;
+  border-width: 1px;
 `;

@@ -1,9 +1,4 @@
-import {
-  SELECT_CLASSE,
-  FETCH_TASKS,
-
-  RESET_PREVIEW_CLASSE,
-} from './school.constants';
+import { SELECT_CLASSE, FETCH_TASKS, RESET_PREVIEW_CLASSE } from './school.constants';
 
 const initialeState = {
   tasks: [],

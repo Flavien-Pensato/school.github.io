@@ -2,7 +2,7 @@ node_modules/
 **/*.log
 dist/
 lib/
-**/.eslinctcatche
+**/.eslintcache
 firebase-debug.log
 coverage/
 .next/

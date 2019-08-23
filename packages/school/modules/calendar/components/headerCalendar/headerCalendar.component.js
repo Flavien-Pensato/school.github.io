@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { NavLink } from 'react-router-dom';
+import Link from 'next/link';
 
 const CalendarButton = styled.button`
   font-size: 1rem;
@@ -90,48 +90,58 @@ const Print = () => (
 );
 
 class HeaderCalendar extends Component {
-	onClickPrint = (e) => {
-	  e.preventDefault();
+  onClickPrint = e => {
+    e.preventDefault();
 
-	  window.print();
-	}
+    window.print();
+  };
 
+  render() {
+    const { week, goPrevWeek, goNextWeek } = this.props;
 
-	render() {
-	  const {
-	    week, goPrevWeek, goNextWeek,
-	  } = this.props;
-
-	  return (
-  <WrapperStyle>
-    <Item>
-      <NavLink to={`/home/${week.clone().add(-1, 'weeks').format('YYYY.MM.DD')}`}>
-        <CalendarButton onClick={goPrevWeek}>
-          <span>Semaine precedente</span>
-          <Previous />
-        </CalendarButton>
-      </NavLink>
-    </Item>
-    <Item>
-      <CalendarButton onClick={() => this.props.addWeek(week.clone().format('YYYY.MM.DD'))}>
-        <span>Création de la semaine</span>
-        <Refresh />
-      </CalendarButton>
-    </Item>
-    <Item>
-      <NavLink to={`/home/${week.clone().add(1, 'weeks').format('YYYY.MM.DD')}`}>
-        <CalendarButton onClick={goNextWeek}>
-          <span>Semaine suivante</span>
-          <Next />
-        </CalendarButton>
-      </NavLink>
-    </Item>
-    <Item>
-      <CalendarButton onClick={this.onClickPrint}><span>Imprimer</span><Print /></CalendarButton>
-    </Item>
-  </WrapperStyle>
-	  );
-	}
+    return (
+      <WrapperStyle>
+        <Item>
+          <Link
+            href={`/${week
+              .clone()
+              .add(-1, 'weeks')
+              .format('YYYY.MM.DD')}`}
+          >
+            <CalendarButton onClick={goPrevWeek}>
+              <span>Semaine precedente</span>
+              <Previous />
+            </CalendarButton>
+          </Link>
+        </Item>
+        <Item>
+          <CalendarButton onClick={() => this.props.addWeek(week.clone().format('YYYY.MM.DD'))}>
+            <span>Création de la semaine</span>
+            <Refresh />
+          </CalendarButton>
+        </Item>
+        <Item>
+          <Link
+            href={`/${week
+              .clone()
+              .add(1, 'weeks')
+              .format('YYYY.MM.DD')}`}
+          >
+            <CalendarButton onClick={goNextWeek}>
+              <span>Semaine suivante</span>
+              <Next />
+            </CalendarButton>
+          </Link>
+        </Item>
+        <Item>
+          <CalendarButton onClick={this.onClickPrint}>
+            <span>Imprimer</span>
+            <Print />
+          </CalendarButton>
+        </Item>
+      </WrapperStyle>
+    );
+  }
 }
 
 HeaderCalendar.defaultProps = {
@@ -139,7 +149,7 @@ HeaderCalendar.defaultProps = {
 };
 
 HeaderCalendar.propTypes = {
-  week: PropTypes.object,
+  week: PropTypes.shape(),
   addWeek: PropTypes.func.isRequired,
   goNextWeek: PropTypes.func.isRequired,
   goPrevWeek: PropTypes.func.isRequired,

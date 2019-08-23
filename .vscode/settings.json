@@ -2,4 +2,5 @@
   "jest.runAllTestsFirst": false,
   "jest.showCoverageOnLoad": true,
   "jest.pathToJest": "./packages/school/node_modules/.bin/jest",
+  "eslint.enable": true,
 }

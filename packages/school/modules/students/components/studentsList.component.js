@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { withRouter } from 'react-router';
 import _ from 'lodash';
+import { withRouter } from 'next/router';
+
+import { PurpleButton } from '../../../components/button';
 
 const Item = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.3rem 0;
-  border-color: rgba(0,0,0,.2);
+  border-color: rgba(0, 0, 0, 0.2);
   border-bottom-style: solid;
   border-bottom-width: 1px;
 `;
@@ -50,15 +52,15 @@ const InputName = styled.span`
 `;
 
 class StudentItem extends Component {
-  handleClickItem = (event) => {
+  handleClickItem = event => {
     event.preventDefault();
 
     const { removeItem, student } = this.props;
 
     removeItem(student._id);
-  }
+  };
 
-  handleChangeGroupe = (event) => {
+  handleChangeGroupe = event => {
     event.preventDefault();
 
     const { changeItem, student } = this.props;
@@ -67,13 +69,13 @@ class StudentItem extends Component {
       ...student,
       groupe: event.target.value,
     });
-  }
+  };
 
   render() {
     const { student } = this.props;
 
     return (
-      <Item >
+      <Item>
         <InputName>{student.name}</InputName>
         <InputGroupe type="number" name="groupe" value={student.groupe} onChange={this.handleChangeGroupe} />
         <PurpleButton onClick={this.handleClickItem}>
@@ -88,7 +90,7 @@ class StudentItem extends Component {
 StudentItem.propTypes = {
   removeItem: PropTypes.func.isRequired,
   changeItem: PropTypes.func.isRequired,
-  student: PropTypes.object.isRequired,
+  student: PropTypes.shape().isRequired,
 };
 
 const List = styled.ul`
@@ -98,29 +100,32 @@ const List = styled.ul`
 
 class StudentsList extends Component {
   componentDidMount() {
-    const { fetchStudents, match: { params } } = this.props;
+    const {
+      fetchStudents,
+      router: { query },
+    } = this.props;
 
-    this.stopFetching = fetchStudents(params.classeId);
+    this.stopFetching = fetchStudents(query.classeId);
   }
 
   componentWillUnmount() {
     this.stopFetching();
   }
 
-
   render() {
-	  const { students, removeStudent, changeStudent } = this.props;
+    const { students, removeStudent, changeStudent } = this.props;
 
     const studentsSorted = _.sortBy(students, ['name']);
 
     return (
       <div>
         <List>
-          {studentsSorted.map(student =>
-            <StudentItem key={student.name} student={student} removeItem={removeStudent} changeItem={changeStudent} />)}
+          {studentsSorted.map(student => (
+            <StudentItem key={student.name} student={student} removeItem={removeStudent} changeItem={changeStudent} />
+          ))}
         </List>
       </div>
-	  );
+    );
   }
 }
 
@@ -128,8 +133,12 @@ StudentsList.propTypes = {
   fetchStudents: PropTypes.func.isRequired,
   removeStudent: PropTypes.func.isRequired,
   changeStudent: PropTypes.func.isRequired,
-  students: PropTypes.arrayOf(PropTypes.object).isRequired,
-  match: PropTypes.object.isRequired,
+  students: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  router: PropTypes.shape({
+    query: PropTypes.shape({
+      classeId: PropTypes.string,
+    }),
+  }).isRequired,
 };
 
 const StudentsListRouted = withRouter(StudentsList);

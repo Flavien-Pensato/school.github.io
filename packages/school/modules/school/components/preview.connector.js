@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 
 import Preview from './preview.component';
 import { getPreview, getClasse } from '../school.selectors';
@@ -15,4 +14,7 @@ const mapDispatchToProps = dispatch => ({
   resetPreviewClasse: () => dispatch(resetPreviewClasseAction()),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Preview));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Preview);

@@ -1,5 +1,5 @@
-const {Text} = require('./components/text.component')
+const { Text } = require('./components/text.component');
 
 module.exports = {
-  Text
+  Text,
 };

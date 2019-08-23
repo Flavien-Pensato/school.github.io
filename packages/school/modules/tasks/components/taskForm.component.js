@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-import { uuidv4 } from '../../../src/utils';
+import { uuidv4 } from '../../../modules/utils';
 
 const Form = styled.form`
   width: 100%;
 `;
 
 const Input = styled.input`
-  font-size: .875rem;
+  font-size: 0.875rem;
   text-align: center;
   padding: 1rem;
 `;
@@ -28,28 +28,28 @@ const Fieldset = styled.fieldset`
 const Wrapper = styled.div`
   input:first-child {
     width: 75%;
-    border-radius: .25rem 0 0 .25rem;
-    border-width: 1px 1px 1px 1px ;
-    border-color: rgba(0,0,0,.1);
+    border-radius: 0.25rem 0 0 0.25rem;
+    border-width: 1px 1px 1px 1px;
+    border-color: rgba(0, 0, 0, 0.1);
     border-style: solid;
     border-right: none;
   }
 
   input:last-child {
     width: 25%;
-    background-color: rgba(0,0,0,.7);
+    background-color: rgba(0, 0, 0, 0.7);
     color: #fff;
 
-    border-radius: 0 .25rem .25rem 0;
-    border-width: 1px 1px 1px 1px ;
-    border-color: rgba(0,0,0,.1);
+    border-radius: 0 0.25rem 0.25rem 0;
+    border-width: 1px 1px 1px 1px;
+    border-color: rgba(0, 0, 0, 0.1);
     border-style: solid;
     border-left: none;
   }
 `;
 
 export class TaskForm extends React.Component {
-  handleSubmitForm = (event) => {
+  handleSubmitForm = event => {
     event.preventDefault();
 
     this.props.addTask({
@@ -58,8 +58,8 @@ export class TaskForm extends React.Component {
     });
 
     // eslint-disable-next-line
-    event.target.task.value = '';
-  }
+    event.target.task.value = "";
+  };
 
   render() {
     return (

@@ -9,7 +9,6 @@ import { fetchClassesAction, removeClasseAction } from '../classes.actions';
 const mapStateToProps = state => ({
   classes: getClasses(state),
   schoolYear: getSchoolYear(state),
-
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -17,4 +16,7 @@ const mapDispatchToProps = dispatch => ({
   removeClasse: classeId => dispatch(removeClasseAction(classeId)),
 });
 
-export const ConnectedClassesList = connect(mapStateToProps, mapDispatchToProps)(ClassesList);
+export const ConnectedClassesList = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ClassesList);

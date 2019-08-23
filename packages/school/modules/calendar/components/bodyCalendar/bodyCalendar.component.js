@@ -22,9 +22,7 @@ export class BodyCalendar extends Component {
     const { week } = this.props;
 
     if (!week || !week.tasks) {
-      return (
-        <span>Pas de semaine programmée</span>
-      );
+      return <span>Pas de semaine programmée</span>;
     }
 
     return (
@@ -46,7 +44,7 @@ export class BodyCalendar extends Component {
                 <td className="pv2 pr3 bb b--black-20">{task.groupe}</td>
                 <td className="pv2 pr3 bb b--black-20">{task.students ? task.students.join(', ') : ''}</td>
               </tr>
-                  ))}
+            ))}
           </tbody>
         </table>
       </div>
@@ -54,8 +52,13 @@ export class BodyCalendar extends Component {
   }
 }
 
+BodyCalendar.defaultProps = {
+  week: {},
+  selectedWeek: '',
+};
+
 BodyCalendar.propTypes = {
-  week: PropTypes.object,
+  week: PropTypes.shape(),
   selectedWeek: PropTypes.string,
   fetchWeek: PropTypes.func.isRequired,
 };

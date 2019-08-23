@@ -5,7 +5,7 @@ import { ConnectedClassesList } from '../../modules/classes/components/classesLi
 import { ConnectedClassesForm } from '../../modules/classes/components/classeForm.connector';
 
 export default () => (
-  <div className="pa3 pa5-ns">
+  <Wrapper>
     <ConnectedClassesList />
     <ConnectedClassesForm />
   </Wrapper>

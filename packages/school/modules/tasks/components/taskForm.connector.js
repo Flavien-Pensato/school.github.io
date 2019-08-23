@@ -8,4 +8,7 @@ const mapDispatchToProps = dispatch => ({
   addTask: task => dispatch(addTaskAction(task)),
 });
 
-export const ConnectedTaskForm = connect(undefined, mapDispatchToProps)(TaskForm);
+export const ConnectedTaskForm = connect(
+  undefined,
+  mapDispatchToProps,
+)(TaskForm);

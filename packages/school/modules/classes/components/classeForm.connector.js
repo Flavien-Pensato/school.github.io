@@ -13,4 +13,7 @@ const mapDispatchToProps = dispatch => ({
   addClasse: classe => dispatch(addClasseAction(classe)),
 });
 
-export const ConnectedClassesForm = connect(mapStateToProps, mapDispatchToProps)(ClasseForm);
+export const ConnectedClassesForm = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ClasseForm);
