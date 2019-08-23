@@ -9,12 +9,12 @@
     "lint": "eslint --color --cache '*.js' '{pages,config,components,modules}/**/*.js'",
     "test": "jest",
     "dev": "next",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next dev"
   },
   "jest": {
     "setupFiles": [
-      "<rootDir>/src/config/jest.js"
+      "<rootDir>/config/jest.js"
     ],
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/react/",
@@ -22,7 +22,7 @@
       "<rootDir>/node_modules/moment/"
     ],
     "roots": [
-      "<rootDir>/src/"
+      "<rootDir>/"
     ]
   },
   "devDependencies": {

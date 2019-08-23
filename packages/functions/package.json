@@ -9,8 +9,7 @@
     "logs": "firebase functions:log",
     "clean": "rimraf dist/functions",
     "copy": "cp package.json yarn.lock dist/functions",
-    "build": "babel src/functions --out-dir dist/functions",
-    "test": "jest"
+    "build": "babel src/functions --out-dir dist/functions"
   },
   "dependencies": {
     "firebase-admin": "~5.10.0",

@@ -1,6 +1,5 @@
 const path = require('path');
 
-
 module.exports = {
   transform: {
     '^.+\\.jsx?$': 'babel-jest',

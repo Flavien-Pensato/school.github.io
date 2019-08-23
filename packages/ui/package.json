@@ -5,7 +5,7 @@
   "module": "./components/index.js",
   "license": "MIT",
   "scripts": {
-    "test": "jest --collectCoverage",
+    "test": "jest --collectCoverage --passWithNoTests",
     "lint": "eslint ./src",
     "build": "babel src --minified --compact -d lib --ignore 'src/**/*.spec.js','src/**/*.test.js'",
     "watch": "babel src -d lib --watch --source-maps --ignore 'src/**/*.spec.js','src/**/*.test.js'",
