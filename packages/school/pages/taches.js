@@ -68,6 +68,8 @@ class TaskWrapper extends Component {
   };
 
   handleAdd = event => {
+    event.preventDefault();
+
     const task = {
       _id: uuidv4(),
       name: event.target.task.value,

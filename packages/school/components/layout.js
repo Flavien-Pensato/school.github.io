@@ -6,6 +6,7 @@ import { ToasterConnected } from '../modules/display/components/toaster.connecto
 import { HeaderDefaultConnected } from '../components/headerDefault.header';
 import { Loader } from '../components/loader.page';
 import firebase from '../config/firebase';
+import { DisplayProvider } from '../modules/display/display.context';
 
 const Layout = ({ children, router }) => {
   const [loading, setLoading] = useState(true);
@@ -29,7 +30,9 @@ const Layout = ({ children, router }) => {
     <div>
       <ToasterConnected />
       {router.pathname !== '/login' ? <HeaderDefaultConnected /> : null}
-      <div>{children}</div>
+      <DisplayProvider>
+        <div>{children}</div>
+      </DisplayProvider>
     </div>
   );
 };

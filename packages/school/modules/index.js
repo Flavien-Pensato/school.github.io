@@ -4,8 +4,6 @@ import account from './account';
 import display from './display';
 import school from './school';
 import calendar from './calendar';
-import { tasks } from './tasks/tasks.reducer';
-import { classes } from './classes/classes.reducer';
 import { students } from './students/students.reducer';
 
 export default combineReducers({
@@ -13,7 +11,5 @@ export default combineReducers({
   display,
   school,
   calendar,
-  tasks,
-  classes,
   students,
 });
