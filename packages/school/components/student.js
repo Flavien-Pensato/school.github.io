@@ -1,23 +1,39 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
+import styled from '@emotion/styled';
 
 import firebase from '../config/firebase';
 
 import { Item } from './item';
+import { Trash } from './trash';
 import { PurpleButton } from './button';
 
-const classeRef = '/classes/';
+const studentsRef = '/students/';
 
-export class Classe extends Component {
+const InputGroupe = styled.input`
+  border: solid black 1px;
+  max-width: 60px;
+  margin-right: 50px;
+  text-align: center;
+
+  @media (max-width: 700px) {
+    margin-right: 10px;
+    max-width: 40px;
+  }
+`;
+
+const InputName = styled.span`
+  margin-right: auto;
+`;
+export class Student extends Component {
   constructor(props) {
     super(props);
 
-    const { name, sort } = props;
+    const { name, groupe } = props;
 
     this.state = {
       name: name || '',
-      sort: sort || 0,
+      groupe: groupe || 0,
     };
   }
 
@@ -34,7 +50,7 @@ export class Classe extends Component {
 
     firebase
       .database()
-      .ref(classeRef + id)
+      .ref(studentsRef + id)
       .update({
         [name]: target.type === 'number' ? Number(value) : value,
       });
@@ -47,35 +63,30 @@ export class Classe extends Component {
 
     firebase
       .database()
-      .ref(classeRef + id)
+      .ref(studentsRef + id)
       .remove();
   };
 
   render() {
-    const { id } = this.props;
-    const { name, sort } = this.state;
+    const { name, groupe } = this.state;
 
     return (
       <Item>
-        <div>
-          <input key="name" name="name" type="text" value={name} onChange={this.handleInputChange} />
-        </div>
-        <div>
-          <input key="sort" name="sort" type="number" value={sort} onChange={this.handleInputChange} />
-        </div>
-        <div>
-          <Link href={`/classes/${id}`}>
-            <a>acces</a>
-          </Link>
-        </div>
-        <PurpleButton onClick={this.handleDelete}>Supprimer</PurpleButton>
+        <InputName name="name" onChange={this.handleInputChange}>
+          {name}
+        </InputName>
+        <InputGroupe type="number" name="groupe" value={groupe} onChange={this.handleInputChange} />
+        <PurpleButton onClick={this.handleDelete}>
+          <span>Supprimer</span>
+          <Trash />
+        </PurpleButton>
       </Item>
     );
   }
 }
 
-Classe.propTypes = {
+Student.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  sort: PropTypes.number.isRequired,
+  groupe: PropTypes.number.isRequired,
 };

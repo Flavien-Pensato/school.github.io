@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Container as Con } from 'react-bootstrap';
 
 export const Container = styled.div`
   display: grid;
@@ -13,8 +14,7 @@ export const Grid = styled.div`
   flex-wrap: nowrap;
 `;
 
-export const Wrapper = styled.div`
-  max-width: 48rem;
+export const Wrapper = styled(Con)`
   margin: 0 auto;
 `;
 

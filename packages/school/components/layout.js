@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'next/router';
 
 import { ToasterConnected } from '../modules/display/components/toaster.connector';
-import { HeaderDefaultConnected } from '../components/headerDefault.header';
+import Header from '../components/header';
 import { Loader } from '../components/loader.page';
 import firebase from '../config/firebase';
 import { DisplayProvider } from '../modules/display/display.context';
@@ -28,9 +28,9 @@ const Layout = ({ children, router }) => {
 
   return (
     <div>
-      <ToasterConnected />
-      {router.pathname !== '/login' ? <HeaderDefaultConnected /> : null}
       <DisplayProvider>
+        <ToasterConnected />
+        {router.pathname !== '/login' ? <Header /> : null}
         <div>{children}</div>
       </DisplayProvider>
     </div>

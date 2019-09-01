@@ -1,6 +1,6 @@
-import React from 'react';
-import { Wrapper } from '@school/ui';
+// import React from 'react';
+// import { Wrapper } from '@school/ui';
 
-const HomePage = () => <Wrapper />;
+const HomePage = () => null;
 
 export default HomePage;

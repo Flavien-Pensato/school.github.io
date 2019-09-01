@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Wrapper } from '@school/ui';
+import _ from 'lodash';
+import { Container, Col } from 'react-bootstrap';
 
 import firebase from '../../config/firebase';
 
-import { uuidv4 } from '../../modules/utils';
 import { DisplayContext } from '../../modules/display/display.context';
 
 import { Form, Input, Fieldset } from '../../components/form';
@@ -29,8 +29,16 @@ class ClassesWrapper extends Component {
       .equalTo(schoolYear);
 
     this.observer = this.reference.on('value', snapshot => {
+      const classes = [];
+
+      if (snapshot.exists()) {
+        snapshot.forEach(classe => {
+          classes.push({ key: classe.key, values: classe.val() });
+        });
+      }
+
       this.setState({
-        classes: snapshot.val() ? Object.values(snapshot.val()) : [],
+        classes,
       });
     });
   }
@@ -43,45 +51,46 @@ class ClassesWrapper extends Component {
     event.preventDefault();
 
     const { schoolYear } = this.context;
+    const newClasseKey = firebase
+      .database()
+      .ref()
+      .child(classeRef)
+      .push().key;
+
     const classe = {
-      _id: uuidv4(),
       name: event.target.task.value,
+      sort: 0,
       schoolYear,
     };
 
     firebase
       .database()
-      .ref(classeRef + classe._id)
-      .set(classe);
-  };
-
-  handleDelete = _id => () => {
-    firebase
-      .database()
-      .ref(classeRef + _id)
-      .remove();
+      .ref(classeRef + newClasseKey)
+      .update(classe);
   };
 
   render() {
     const { classes } = this.state;
 
     return (
-      <Wrapper>
-        <List>
-          {classes.map(classe => (
-            <Classe key={classe.name} name={classe.name} onDelete={this.handleDelete(classe._id)} />
-          ))}
-        </List>
+      <Container>
+        <Col>
+          <List>
+            {_.sortBy(classes, 'values.sort').map(classe => (
+              <Classe key={classe.key} id={classe.key} {...classe.values} />
+            ))}
+          </List>
+        </Col>
 
-        <Form onSubmit={this.handleAdd}>
-          <Fieldset>
-            <Wrapper>
+        <Col>
+          <Form onSubmit={this.handleAdd}>
+            <Fieldset>
               <Input placeholder="Nouvelle classe" type="text" name="task" />
               <Input type="submit" value="Ajouter" />
-            </Wrapper>
-          </Fieldset>
-        </Form>
-      </Wrapper>
+            </Fieldset>
+          </Form>
+        </Col>
+      </Container>
     );
   }
 }

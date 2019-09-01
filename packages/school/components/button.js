@@ -17,7 +17,8 @@ export const PurpleButton = styled.button`
   background-color: purple;
   font-weight: 700;
   display: inline-block;
-  border-color: #000;
+  color: white;
+  border-color: black;
   border-style: solid;
   border-width: 1px;
 `;

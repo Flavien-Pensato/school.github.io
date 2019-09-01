@@ -6,10 +6,10 @@ import firebase from '../config/firebase';
 
 import { DisplayContext } from '../modules/display/display.context';
 
-import PresenceCase from '../modules/calendar/components/presenceCase.component';
-import { Wrapper, Grid, LittleCol, ColFixedLeft, Container, Item, ItemHeader } from '../components/table';
+import { Date } from '../components/date';
 
-import { uuidv4 } from '../modules/utils';
+import PresenceCase from '../components/presenceCase';
+import { Wrapper, Grid, LittleCol, ColFixedLeft, Container, ItemHeader } from '../components/table';
 
 moment.locale('fr');
 
@@ -38,6 +38,7 @@ class Calendrier extends Component {
 
     this.state = { dates: [], classes: [] };
   }
+
   componentDidMount() {
     const { schoolYear } = this.context;
 
@@ -47,7 +48,21 @@ class Calendrier extends Component {
       .orderByChild('schoolYear')
       .equalTo(schoolYear);
 
-    this.reference = firebase
+    this.observerClasses = this.referenceClasses.on('value', snapshot => {
+      const classes = [];
+
+      if (snapshot.exists()) {
+        snapshot.forEach(classe => {
+          classes.push({ key: classe.key, values: classe.val() });
+        });
+      }
+
+      this.setState({
+        classes,
+      });
+    });
+
+    this.referenceDates = firebase
       .database()
       .ref(dateRef)
       .orderByChild('timestamp')
@@ -57,42 +72,31 @@ class Calendrier extends Component {
           .unix(),
       );
 
-    this.observer = this.reference.on('value', snapshot => {
-      this.setState({
-        dates: snapshot.val() ? Object.values(snapshot.val()) : [],
-      });
-    });
+    this.observerDates = this.referenceDates.on('value', snapshot => {
+      const dates = [];
 
-    this.observerClasses = this.referenceClasses.on('value', snapshot => {
+      if (snapshot.exists()) {
+        snapshot.forEach(date => {
+          dates.push({ key: date.key, values: date.val() });
+        });
+      }
+
       this.setState({
-        classes: snapshot.val() ? Object.values(snapshot.val()) : [],
+        dates,
       });
     });
   }
 
   componentWillUnmount() {
-    this.reference.off('value', this.observer);
+    this.referenceDates.off('value', this.observer);
     this.referenceClasses.off('value', this.observerClasses);
   }
-
-  handleAddDate = date => () => {
-    const uuid = uuidv4();
-
-    firebase
-      .database()
-      .ref(dateRef + uuid)
-      .set({
-        ...date,
-        _id: uuid,
-        classes: [],
-      });
-  };
 
   render() {
     const { dates, classes } = this.state;
 
-    const classesSorted = _.sortBy(classes, ['name']);
-    const datesSorted = _.sortBy(dates, ['timestamp']);
+    const classesSorted = _.sortBy(classes, ['values.sort']);
+    const datesSorted = _.sortBy(dates, ['values.timestamp']);
 
     return (
       <Wrapper>
@@ -102,36 +106,37 @@ class Calendrier extends Component {
               <ItemHeader className="b--black-20 bb f5 black bg-animate items-center pa3 center fw6">
                 <span>Semaine</span>
               </ItemHeader>
-              {this.defaultDate.map(date => (
-                <Item key={date.from} className="b--black-20 bb f5 black bg-animate items-center pa3 center">
-                  <span>
-                    Du&nbsp;{moment(date.from, 'YYYY.MM.DD').format('dddd D MMMM')}
-                    <br />
-                    Au&nbsp;{moment(date.to, 'YYYY.MM.DD').format('dddd D MMMM')}
-                  </span>
+              {this.defaultDate.map(date => {
+                const dateFound = datesSorted.find(dateWeek => dateWeek.values.from === date.from);
 
-                  {datesSorted.find(dateWeek => dateWeek.from === date.from) ? (
-                    <button onClick={this.handleAddDate(date)}>-</button>
-                  ) : (
-                    <button onClick={this.handleAddDate(date)}>+</button>
-                  )}
-                </Item>
-              ))}
+                if (dateFound) {
+                  return <Date key={date.from} date={dateFound.values} id={dateFound.key} exist />;
+                }
+
+                return <Date key={date.from} date={date} exist={false} />;
+              })}
             </ColFixedLeft>
 
             {classesSorted.map(classe => (
-              <LittleCol key={classe._id}>
+              <LittleCol key={classe.key}>
                 <ItemHeader className="tc pa3 bb b--black-20 fw6">
-                  <span>{classe.name}</span>
+                  <span>{classe.values.name}</span>
                 </ItemHeader>
-                {datesSorted.map(date => (
-                  <PresenceCase
-                    date={date}
-                    presence={date.classes.includes(classe._id)}
-                    classeId={classe._id}
-                    key={date._id + classe._id}
-                  />
-                ))}
+                {datesSorted.map(date =>
+                  date.values.disable ? (
+                    <div key={date.key + classe.key} style={{ height: '50px' }}>
+                      <span className="f5">Vacances</span>
+                    </div>
+                  ) : (
+                    <PresenceCase
+                      date={date.values}
+                      presence={(date.values.classes || []).includes(classe.key)}
+                      classeId={classe.key}
+                      key={date.key + classe.key}
+                      id={date.key}
+                    />
+                  ),
+                )}
               </LittleCol>
             ))}
           </Grid>

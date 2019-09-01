@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import styled from '@emotion/styled';
-import slug from 'slug';
 
 import firebase from '../config/firebase';
-
-import { uuidv4 } from '../modules/utils';
 
 import { Form, Input, Fieldset } from '../components/form';
 import { List } from '../components/list';
@@ -50,8 +47,16 @@ class TaskWrapper extends Component {
   componentDidMount() {
     this.reference = firebase.database().ref(taskRef);
     this.observer = this.reference.on('value', snapshot => {
+      const tasks = [];
+
+      if (snapshot.exists()) {
+        snapshot.forEach(task => {
+          tasks.push({ key: task.key, values: task.val() });
+        });
+      }
+
       this.setState({
-        tasks: snapshot.val() ? Object.values(snapshot.val()) : [],
+        tasks,
       });
     });
   }
@@ -60,22 +65,22 @@ class TaskWrapper extends Component {
     this.reference.off('value', this.observer);
   }
 
-  handleDelete = taskId => {
-    firebase
-      .database()
-      .ref(taskRef + taskId)
-      .remove();
-  };
-
-  handleAdd = event => {
+  handleSubmitForm = event => {
     event.preventDefault();
 
+    const newClasseKey = firebase
+      .database()
+      .ref()
+      .child(taskRef)
+      .push().key;
+
     const task = {
-      _id: uuidv4(),
       name: event.target.task.value,
     };
-    firebase()
-      .ref(taskRef + slug(task._id))
+
+    firebase
+      .database()
+      .ref(taskRef + newClasseKey)
       .set(task);
 
     // eslint-disable-next-line
@@ -89,7 +94,7 @@ class TaskWrapper extends Component {
       <TasksWrapper>
         <List>
           {tasks.map(task => (
-            <Task key={task.name} name={task.name} onRemove={this.handleDelete} />
+            <Task key={task.key} id={task.key} {...task.values} />
           ))}
         </List>
 
