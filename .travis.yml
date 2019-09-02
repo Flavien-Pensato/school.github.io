@@ -11,7 +11,6 @@ cache:
 script: 
   - yarn
   - yarn test
-  - yarn lint
   - yarn build
   - mkdir public
   - cp -rf packages/school/out/* ./public
