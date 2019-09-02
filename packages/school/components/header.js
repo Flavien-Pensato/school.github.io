@@ -119,6 +119,4 @@ class Header extends Component {
   }
 }
 
-Header.contextType = DisplayContext;
-
 export default Header;
