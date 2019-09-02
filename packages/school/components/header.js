@@ -4,6 +4,8 @@ import { Nav, Container } from 'react-bootstrap';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 
+import firebase from '../config/firebase';
+
 import { DisplayContext } from '../modules/display/display.context';
 
 moment.locale('fr');
@@ -76,7 +78,9 @@ class Header extends Component {
     this.setState({ menu: !this.state.menu });
   };
 
-  handleSignout = () => {};
+  handleSignout = () => {
+    firebase.auth().signOut();
+  };
 
   render() {
     return (
