@@ -1,0 +1,11 @@
+{
+  "functions": {
+    "source": "functions",
+    "predeploy": [
+      
+    ]
+  },
+  "database": {
+    "rules": "y"
+  }
+}

@@ -1,20 +1,19 @@
 language: node_js
 node_js:
-  - '9'
+  - '10'
 install: yarn
 cache:
   yarn: true
   directories:
+    - "./node_modules"
     - "./packages/school/node_modules"
     - "./packages/ui/node_modules"
 script: 
   - yarn
   - yarn test
-  - yarn lint
   - yarn build
   - mkdir public
-  - cp -rf packages/school/dist/* ./public
-  - cp -rf packages/ui/dist/* ./public
+  - cp -rf packages/school/out/* ./public
 after_success: echo mfr.flavienpensato.ovh > ./public/CNAME
 deploy:
   provider: pages
