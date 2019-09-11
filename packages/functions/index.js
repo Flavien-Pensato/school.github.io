@@ -49,6 +49,7 @@ exports.makeGroupes = functions.database.ref('/students/{studentId}')
       } else {
         if (groupeAfter.values.students) {
           admin.database().ref('/groupes/' + groupeAfter.key).update({
+            classeId: studentAfter.classeId,
             students: [...groupeAfter.values.students, context.params.studentId]
           })
         } else {
