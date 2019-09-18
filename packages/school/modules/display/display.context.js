@@ -1,56 +1,39 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { withRouter } from 'next/router';
 
 export const DisplayContext = React.createContext();
 
-class DisplayProvider extends Component {
-  constructor(props) {
-    super(props);
+const useSchoolYear = () => {
+  let current = false;
 
-    const {
-      router: {
-        query: { from },
-      },
-    } = props;
-    this.state = {
-      currentWeek: from ? moment(from, 'YYYY.MM.DD') : moment().startOf('week'),
-      changeCurrentWeek: this.changeCurrentWeek,
-    };
+  if (moment().month() >= 7) {
+    current = true;
   }
 
-  changeCurrentWeek = currentWeek => {
-    this.setState(() => ({
-      currentWeek,
-    }));
-  };
+  // eslint-disable-next-line
+  return   current ? `${moment().year()}-${moment().year() + 1}` : `${moment().year() - 1}-${moment().year()}`;
+};
 
-  render() {
-    const { children } = this.props;
-    const { currentWeek, changeCurrentWeek } = this.state;
-    let current = false;
+const DisplayProvider = ({ children, router: { query } }) => {
+  const [date, setDate] = useState(moment().startOf('week'));
+  const schoolYear = useSchoolYear();
 
-    if (moment().month() >= 7) {
-      current = true;
+  useEffect(() => {
+    if (query.date) {
+      setDate(moment(query.date, 'YYYY.MM.DD'));
     }
+  }, [query.date]);
 
-    // eslint-disable-next-line
-    const schoolYear =  current ? `${moment().year()}-${moment().year() + 1}` : `${moment().year() - 1}-${moment().year()}`;
-
-    return (
-      <DisplayContext.Provider value={{ schoolYear, currentWeek, changeCurrentWeek }}>
-        {children}
-      </DisplayContext.Provider>
-    );
-  }
-}
+  return <DisplayContext.Provider value={{ schoolYear, date, setDate }}>{children}</DisplayContext.Provider>;
+};
 
 DisplayProvider.propTypes = {
   children: PropTypes.node.isRequired,
   router: PropTypes.shape({
     query: PropTypes.shape({
-      from: PropTypes.string,
+      date: PropTypes.string,
     }).isRequired,
   }).isRequired,
 };
