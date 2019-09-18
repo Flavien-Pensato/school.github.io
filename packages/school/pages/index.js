@@ -1,8 +1,10 @@
-import React, { Component, Fragment } from 'react';
-import { Container } from 'react-bootstrap';
+import React, { useContext } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import Router from 'next/router';
 
 import firebase from '../config/firebase';
 import { DisplayContext } from '../modules/display/display.context';
+import { useWeek } from '../modules/week/week.use';
 
 const handleClick = (from, schoolYear) => event => {
   event.preventDefault();
@@ -22,92 +24,70 @@ const handlePrint = event => {
   document.body.innerHTML = originalContents;
 };
 
-const weeksRef = '/weeks/';
+const HomePage = () => {
+  const { date, schoolYear } = useContext(DisplayContext);
+  const week = useWeek(date);
 
-class HomePage extends Component {
-  constructor(props) {
-    super(props);
+  return (
+    <Container>
+      <Row>
+        <Col>
+          <button
+            onClick={() => Router.push({ pathname: '/', query: { date: date.add(-1, 'week').format('YYYY.MM.DD') } })}
+          >
+            Précedent
+          </button>
+        </Col>
+        <Col>
+          <button onClick={handleClick(date.startOf('week').format('YYYY.MM.DD'), schoolYear)}>Génerer</button>
+        </Col>
+        <Col>
+          <button onClick={handlePrint}>Imprimé</button>
+        </Col>
+        <Col>
+          <button
+            onClick={() => Router.push({ pathname: '/', query: { date: date.add(1, 'week').format('YYYY.MM.DD') } })}
+          >
+            Suivant
+          </button>
+        </Col>
+      </Row>
+      {week && (
+        <div id="planning">
+          <table className="f7 w-100 center" cellSpacing="0">
+            <thead>
+              <tr>
+                <th className="fw6 bb b--black-20 tl pb3 pr3">Tâche</th>
+                <th className="fw6 bb b--black-20 tl pb3 pr3">Classe</th>
+                <th className="fw6 bb b--black-20 tl pb3 pr3">Groupe</th>
+                <th className="fw6 bb b--black-20 tl pb3 pr3">Étudiants</th>
+              </tr>
+            </thead>
+            <tbody className="lh-copy">
+              {Object.keys(week.values).map(taskId => {
+                const task = week.values[taskId];
 
-    this.state = { weeks: [] };
-  }
+                if (taskId === 'from' || taskId === 'schoolYear') {
+                  return null;
+                }
 
-  componentDidMount() {
-    this.reference = firebase
-      .database()
-      .ref(weeksRef)
-      .orderByChild('schoolYear')
-      .equalTo('2019-2020');
-    this.observer = this.reference.on('value', snapshot => {
-      const weeks = [];
-
-      if (snapshot.exists()) {
-        snapshot.forEach(week => {
-          weeks.push({ key: week.key, values: week.val() });
-        });
-      }
-
-      this.setState({
-        weeks,
-      });
-    });
-  }
-
-  componentWillUnmount() {
-    this.reference.off('value', this.observer);
-  }
-
-  render() {
-    const { weeks } = this.state;
-
-    return (
-      <Container>
-        <DisplayContext.Consumer>
-          {({ currentWeek, schoolYear }) => (
-            <Fragment>
-              <button onClick={handleClick(currentWeek.startOf('week').format('YYYY.MM.DD'), schoolYear)}>
-                Génerer
-              </button>
-              <button onClick={handlePrint}>Imprimé</button>
-              {weeks[0] && (
-                <div id="planning">
-                  <table className="f7 w-100 center" cellSpacing="0">
-                    <thead>
-                      <tr>
-                        <th className="fw6 bb b--black-20 tl pb3 pr3">Tâche</th>
-                        <th className="fw6 bb b--black-20 tl pb3 pr3">Classe</th>
-                        <th className="fw6 bb b--black-20 tl pb3 pr3">Groupe</th>
-                        <th className="fw6 bb b--black-20 tl pb3 pr3">Étudiants</th>
-                      </tr>
-                    </thead>
-                    <tbody className="lh-copy">
-                      {Object.keys(weeks[0].values).map(taskId => {
-                        const task = weeks[0].values[taskId];
-
-                        if (taskId === 'from' || taskId === 'schoolYear') {
-                          return null;
-                        }
-
-                        return (
-                          <tr key={task.name}>
-                            <td className="pv2 pr3 bb b--black-20">{task.task}</td>
-                            <td className="pv2 pr3 bb b--black-20">{task.classe}</td>
-                            <td className="pv2 pr3 bb b--black-20">{task.groupeName}</td>
-                            <td className="pv2 pr3 bb b--black-20">
-                              {task.students ? task.students.map(student => student.name).join(', ') : ''}
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              )}
-            </Fragment>
-          )}
-        </DisplayContext.Consumer>
-      </Container>
-    );
-  }
-}
+                return (
+                  <tr key={taskId}>
+                    <td className="pv2 pr3 bb b--black-20">{task.task}</td>
+                    <td className="pv2 pr3 bb b--black-20">{task.classe}</td>
+                    <td className="pv2 pr3 bb b--black-20">{task.groupeName}</td>
+                    <td className="pv2 pr3 bb b--black-20">
+                      {task.students ? task.students.map(student => student.name).join(', ') : ''}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </Container>
+  );
+};
 
 export default HomePage;

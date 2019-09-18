@@ -108,10 +108,10 @@ class Header extends Component {
           <Link href="/">
             <Nav.Link href="/">
               <DisplayContext.Consumer>
-                {({ currentWeek }) => (
+                {({ date }) => (
                   <span>
                     Semaine du&nbsp;
-                    {currentWeek.format('LL')}
+                    {date.format('LL')}
                   </span>
                 )}
               </DisplayContext.Consumer>
