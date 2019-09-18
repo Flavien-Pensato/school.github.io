@@ -173,6 +173,7 @@ exports.addWeek = functions.https.onCall(async (data, context) => {
 
       if (groupeSelected) {        
         tasksOfTheWeek[snapshotClasse.key] = {
+          classe: classe.name,
           task: classe.name,
           groupeName: groupeSelected.number,
         }
@@ -198,8 +199,17 @@ exports.addWeek = functions.https.onCall(async (data, context) => {
     })
 
     if (groupeSelected) {
+      let classe;
+
+      classesSnapshot.forEach(snapshotClasse => {
+        if (snapshotClasse.key === groupeSelected.classeId) {
+          classe = snapshotClasse.val();
+        }
+      })
+    
       tasksOfTheWeek[snapshotTask.key] = {
         task: task.name,
+        classe: classe.name,
         groupeName: groupeSelected.number,
       }
       

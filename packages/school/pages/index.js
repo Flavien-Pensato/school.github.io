@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Container } from 'react-bootstrap';
 
 import firebase from '../config/firebase';
 import { DisplayContext } from '../modules/display/display.context';
@@ -59,46 +60,52 @@ class HomePage extends Component {
     const { weeks } = this.state;
 
     return (
-      <DisplayContext.Consumer>
-        {({ currentWeek, schoolYear }) => (
-          <Fragment>
-            <button onClick={handleClick(currentWeek.startOf('week').format('YYYY.MM.DD'), schoolYear)}>Génerer</button>
-            <button onClick={handlePrint}>Imprimé</button>
-            {weeks[0] && (
-              <div id="planning">
-                <table className="f7 w-100 center" cellSpacing="0">
-                  <thead>
-                    <tr>
-                      <th className="fw6 bb b--black-20 tl pb3 pr3">Tâche</th>
-                      <th className="fw6 bb b--black-20 tl pb3 pr3">Groupe</th>
-                      <th className="fw6 bb b--black-20 tl pb3 pr3">Étudiants</th>
-                    </tr>
-                  </thead>
-                  <tbody className="lh-copy">
-                    {Object.keys(weeks[0].values).map(taskId => {
-                      const task = weeks[0].values[taskId];
+      <Container>
+        <DisplayContext.Consumer>
+          {({ currentWeek, schoolYear }) => (
+            <Fragment>
+              <button onClick={handleClick(currentWeek.startOf('week').format('YYYY.MM.DD'), schoolYear)}>
+                Génerer
+              </button>
+              <button onClick={handlePrint}>Imprimé</button>
+              {weeks[0] && (
+                <div id="planning">
+                  <table className="f7 w-100 center" cellSpacing="0">
+                    <thead>
+                      <tr>
+                        <th className="fw6 bb b--black-20 tl pb3 pr3">Tâche</th>
+                        <th className="fw6 bb b--black-20 tl pb3 pr3">Classe</th>
+                        <th className="fw6 bb b--black-20 tl pb3 pr3">Groupe</th>
+                        <th className="fw6 bb b--black-20 tl pb3 pr3">Étudiants</th>
+                      </tr>
+                    </thead>
+                    <tbody className="lh-copy">
+                      {Object.keys(weeks[0].values).map(taskId => {
+                        const task = weeks[0].values[taskId];
 
-                      if (taskId === 'from' || taskId === 'schoolYear') {
-                        return null;
-                      }
+                        if (taskId === 'from' || taskId === 'schoolYear') {
+                          return null;
+                        }
 
-                      return (
-                        <tr key={task.name}>
-                          <td className="pv2 pr3 bb b--black-20">{task.task}</td>
-                          <td className="pv2 pr3 bb b--black-20">{task.groupeName}</td>
-                          <td className="pv2 pr3 bb b--black-20">
-                            {task.students ? task.students.map(student => student.name).join(', ') : ''}
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </Fragment>
-        )}
-      </DisplayContext.Consumer>
+                        return (
+                          <tr key={task.name}>
+                            <td className="pv2 pr3 bb b--black-20">{task.task}</td>
+                            <td className="pv2 pr3 bb b--black-20">{task.classe}</td>
+                            <td className="pv2 pr3 bb b--black-20">{task.groupeName}</td>
+                            <td className="pv2 pr3 bb b--black-20">
+                              {task.students ? task.students.map(student => student.name).join(', ') : ''}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </Fragment>
+          )}
+        </DisplayContext.Consumer>
+      </Container>
     );
   }
 }
