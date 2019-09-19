@@ -5,6 +5,7 @@ import Router from 'next/router';
 import firebase from '../config/firebase';
 import { DisplayContext } from '../modules/display/display.context';
 import { useWeek } from '../modules/week/week.use';
+import { Tooltips } from '../components/tooltips';
 
 const handleClick = (from, schoolYear) => event => {
   event.preventDefault();
@@ -60,6 +61,7 @@ const HomePage = () => {
                 <th className="fw6 bb b--black-20 tl pb3 pr3">Tâche</th>
                 <th className="fw6 bb b--black-20 tl pb3 pr3">Classe</th>
                 <th className="fw6 bb b--black-20 tl pb3 pr3">Groupe</th>
+                <th className="fw6 bb b--black-20 tl pb3 pr3">Infos</th>
                 <th className="fw6 bb b--black-20 tl pb3 pr3">Étudiants</th>
               </tr>
             </thead>
@@ -76,6 +78,9 @@ const HomePage = () => {
                     <td className="pv2 pr3 bb b--black-20">{task.task}</td>
                     <td className="pv2 pr3 bb b--black-20">{task.classe}</td>
                     <td className="pv2 pr3 bb b--black-20">{task.groupeName}</td>
+                    <td className="pv2 pr3 bb b--black-20">
+                      <Tooltips key={task.groupeName} groupe={task.groupeName} />
+                    </td>
                     <td className="pv2 pr3 bb b--black-20">
                       {task.students ? task.students.map(student => student.name).join(', ') : ''}
                     </td>
