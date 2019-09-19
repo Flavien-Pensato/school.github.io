@@ -2,7 +2,7 @@
   "name": "@school/ui",
   "version": "1.0.0",
   "main": "./lib/index.js",
-  "module": "./components/index.js",
+  "module": "./lib/index.js",
   "license": "MIT",
   "scripts": {
     "test": "jest --collectCoverage --passWithNoTests",
