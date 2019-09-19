@@ -17,6 +17,8 @@ export const useWeek = date => {
     const observer = reference.on('value', snapshot => {
       if (snapshot.exists()) {
         snapshot.forEach(snapshotWeek => setWeek({ key: snapshotWeek.key, values: snapshotWeek.val() }));
+      } else {
+        setWeek(undefined);
       }
     });
 
