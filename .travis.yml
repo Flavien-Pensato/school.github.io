@@ -14,6 +14,7 @@ script:
   - yarn build
   - mkdir public
   - cp -rf packages/school/out/* ./public
+  - touch ./public/.nojekyll 
 after_success: echo mfr.flavienpensato.ovh > ./public/CNAME
 deploy:
   provider: pages
