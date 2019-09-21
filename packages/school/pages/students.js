@@ -4,21 +4,22 @@ import Link from 'next/link';
 import { withRouter } from 'next/router';
 import { Container, Row, Col, Nav } from 'react-bootstrap';
 
-import { List } from '../../components/list';
-import { Student } from '../../components/student';
-import { FormStudents } from '../../components/formStudents';
+import { List } from '../components/list';
+import { Student } from '../components/student';
+import { FormStudents } from '../components/formStudents';
 
-import firebase from '../../config/firebase';
+import firebase from '../config/firebase';
 
 // import { ConnectedStudentForm } from '../../modules/students/components/studentForm.connector';
 
 const studentsRef = '/students/';
+const groupesRef = '/groupes/';
 
-class ClassesIdWrapper extends Component {
+class Students extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { students: [] };
+    this.state = { students: [], groupes: [] };
   }
 
   componentDidMount() {
@@ -31,6 +32,12 @@ class ClassesIdWrapper extends Component {
     this.reference = firebase
       .database()
       .ref(studentsRef)
+      .orderByChild('classeId')
+      .equalTo(classeId);
+
+    this.referenceGroupe = firebase
+      .database()
+      .ref(groupesRef)
       .orderByChild('classeId')
       .equalTo(classeId);
 
@@ -47,15 +54,31 @@ class ClassesIdWrapper extends Component {
         students,
       });
     });
+
+    this.observerGroupes = this.referenceGroupe.on('value', snapshot => {
+      const groupes = [];
+
+      if (snapshot.exists()) {
+        snapshot.forEach(student => {
+          groupes.push({ key: student.key, values: student.val() });
+        });
+      }
+
+      this.setState({
+        groupes,
+      });
+    });
   }
 
   render() {
-    const { students } = this.state;
+    const { students, groupes } = this.state;
     const {
       router: {
         query: { classeId },
       },
     } = this.props;
+
+    console.log(groupes);
 
     return (
       <Container>
@@ -74,7 +97,12 @@ class ClassesIdWrapper extends Component {
           <Col>
             <List>
               {students.map(student => (
-                <Student key={student.key} id={student.key} {...student.values} />
+                <Student
+                  key={student.key}
+                  wrongGroupe={!groupes.find(groupe => groupe.values.number === student.values.groupe)}
+                  id={student.key}
+                  {...student.values}
+                />
               ))}
             </List>
           </Col>
@@ -90,7 +118,7 @@ class ClassesIdWrapper extends Component {
   }
 }
 
-ClassesIdWrapper.propTypes = {
+Students.propTypes = {
   router: PropTypes.shape({
     query: PropTypes.shape({
       classeId: PropTypes.string.isRequired,
@@ -98,4 +126,4 @@ ClassesIdWrapper.propTypes = {
   }).isRequired,
 };
 
-export default withRouter(ClassesIdWrapper);
+export default withRouter(Students);
