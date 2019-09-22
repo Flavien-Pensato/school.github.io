@@ -5,6 +5,7 @@ import Router from 'next/router';
 import firebase from '../config/firebase';
 import { DisplayContext } from '../modules/display/display.context';
 import { useWeek } from '../modules/week/week.use';
+// import { Tooltips } from '../components/tooltips';
 
 const handleClick = (from, schoolYear) => event => {
   event.preventDefault();
@@ -64,15 +65,11 @@ const HomePage = () => {
               </tr>
             </thead>
             <tbody className="lh-copy">
-              {Object.keys(week.values).map(taskId => {
-                const task = week.values[taskId];
-
-                if (taskId === 'from' || taskId === 'schoolYear') {
-                  return null;
-                }
+              {Object.keys(week.values.tasks).map(taskId => {
+                const task = week.values.tasks[taskId];
 
                 return (
-                  <tr key={taskId}>
+                  <tr key={task.task}>
                     <td className="pv2 pr3 bb b--black-20">{task.task}</td>
                     <td className="pv2 pr3 bb b--black-20">{task.classe}</td>
                     <td className="pv2 pr3 bb b--black-20">{task.groupeName}</td>
