@@ -1,9 +1,12 @@
 import React, { Fragment, useState, useRef } from 'react';
 import { Button, Overlay, Tooltip } from 'react-bootstrap';
 
-export const Tooltips = ({ groupe }) => {
+// import { useGroupe } from '../modules/groupe/groupe.use';
+
+export const Tooltips = () => {
   const [show, setShow] = useState(false);
   const target = useRef(null);
+  // const groupe = useGroupe(groupeNumber);
 
   return (
     <Fragment>
