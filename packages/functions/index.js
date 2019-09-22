@@ -63,7 +63,8 @@ exports.makeGroupes = functions.database.ref('/students/{studentId}')
         }
         
         admin.database().ref('/groupes/' + groupeBefore.key).update({
-          students: groupeBefore.values.students
+          students: groupeBefore.values.students,
+          classeId: studentBefore.classeId,
         })
       }
     }

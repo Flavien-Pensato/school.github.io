@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
+import { Badge } from 'react-bootstrap';
 
 import firebase from '../config/firebase';
 
@@ -68,14 +69,16 @@ export class Student extends Component {
   };
 
   render() {
+    const { wrongGroupe } = this.props;
     const { name, groupe } = this.state;
 
     return (
       <Item>
-        <InputName name="name" onChange={this.handleInputChange}>
+        <InputName name="name" onBlur={this.handleInputChange}>
           {name}
         </InputName>
-        <InputGroupe type="number" name="groupe" value={groupe} onChange={this.handleInputChange} />
+        {wrongGroupe && <Badge variant="danger">Mauvaise classe</Badge>}
+        <InputGroupe type="number" name="groupe" defaultValue={groupe} onBlur={this.handleInputChange} />
         <PurpleButton onClick={this.handleDelete}>
           <span>Supprimer</span>
           <Trash />
@@ -89,4 +92,5 @@ Student.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   groupe: PropTypes.number.isRequired,
+  wrongGroupe: PropTypes.bool.isRequired,
 };

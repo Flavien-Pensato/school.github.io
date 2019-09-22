@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import { Container, Col } from 'react-bootstrap';
 
-import firebase from '../../config/firebase';
+import firebase from '../config/firebase';
 
-import { DisplayContext } from '../../modules/display/display.context';
+import { DisplayContext } from '../modules/display/display.context';
 
-import { Form, Input, Fieldset } from '../../components/form';
-import { Classe } from '../../components/classe';
-import { List } from '../../components/list';
+import { Form, Input, Fieldset } from '../components/form';
+import { Classe } from '../components/classe';
+import { List } from '../components/list';
 
 const classeRef = '/classes/';
 

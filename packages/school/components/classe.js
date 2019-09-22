@@ -64,7 +64,7 @@ export class Classe extends Component {
           <input key="sort" name="sort" type="number" value={sort} onChange={this.handleInputChange} />
         </div>
         <div>
-          <Link href={`/classes/${id}`}>
+          <Link href={{ pathname: '/students', query: { classeId: id } }}>
             <a>acces</a>
           </Link>
         </div>
