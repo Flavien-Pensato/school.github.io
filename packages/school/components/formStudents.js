@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { importStudents } from '../modules/students/students.actions';
-import { DisplayContext } from '../modules/display/display.context';
-
 export class FormStudents extends Component {
   submitFile = event => {
     event.preventDefault();
 
-    const { classeId } = this.props;
-    const { schoolYear } = this.context;
+    const { classeId, importStudents } = this.props;
 
     if (event.target.file.files.length) {
       const file = event.target.file.files[0];
@@ -26,7 +22,7 @@ export class FormStudents extends Component {
           binary += String.fromCharCode(bytes[i]);
         }
 
-        importStudents(binary, classeId, schoolYear);
+        importStudents(binary, classeId);
       };
       fileReader.readAsArrayBuffer(file);
     }
@@ -54,8 +50,7 @@ export class FormStudents extends Component {
   }
 }
 
-FormStudents.contextType = DisplayContext;
-
 FormStudents.propTypes = {
   classeId: PropTypes.string.isRequired,
+  importStudents: PropTypes.func.isRequired,
 };

@@ -8,113 +8,64 @@ import { List } from '../components/list';
 import { Student } from '../components/student';
 import { FormStudents } from '../components/formStudents';
 
-import firebase from '../config/firebase';
+import { useStudents } from '../modules/students/studentes.use';
+import { forMap } from '../modules/utils';
 
-// import { ConnectedStudentForm } from '../../modules/students/components/studentForm.connector';
+const Students = ({
+  router: {
+    query: { classeId },
+  },
+}) => {
+  const { groupes, editStudent, removeStudent, importStudents } = useStudents(classeId);
 
-const studentsRef = '/students/';
-const groupesRef = '/groupes/';
+  console.log(groupes);
 
-class Students extends Component {
-  constructor(props) {
-    super(props);
+  return (
+    <Container>
+      <Row>
+        <Col>
+          <Nav>
+            <Nav.Item>
+              <Link href="/classes">
+                <Nav.Link href="/classes">Retour</Nav.Link>
+              </Link>
+            </Nav.Item>
+          </Nav>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <List>
+            {groupes &&
+              forMap(groupes, groupe => {
+                const students = groupe.child('students').val();
 
-    this.state = { students: [], groupes: [] };
-  }
+                return Object.keys(students).map(studentKey => {
+                  const student = students[studentKey];
 
-  componentDidMount() {
-    const {
-      router: {
-        query: { classeId },
-      },
-    } = this.props;
+                  return (
+                    <Student
+                      editStudent={editStudent}
+                      removeStudent={removeStudent}
+                      key={student.key}
+                      id={student.key}
+                      {...student}
+                    />
+                  );
+                });
+              })}
+          </List>
+        </Col>
+      </Row>
 
-    this.reference = firebase
-      .database()
-      .ref(studentsRef)
-      .orderByChild('classeId')
-      .equalTo(classeId);
-
-    this.referenceGroupe = firebase
-      .database()
-      .ref(groupesRef)
-      .orderByChild('classeId')
-      .equalTo(classeId);
-
-    this.observer = this.reference.on('value', snapshot => {
-      const students = [];
-
-      if (snapshot.exists()) {
-        snapshot.forEach(student => {
-          students.push({ key: student.key, values: student.val() });
-        });
-      }
-
-      this.setState({
-        students,
-      });
-    });
-
-    this.observerGroupes = this.referenceGroupe.on('value', snapshot => {
-      const groupes = [];
-
-      if (snapshot.exists()) {
-        snapshot.forEach(student => {
-          groupes.push({ key: student.key, values: student.val() });
-        });
-      }
-
-      this.setState({
-        groupes,
-      });
-    });
-  }
-
-  render() {
-    const { students, groupes } = this.state;
-    const {
-      router: {
-        query: { classeId },
-      },
-    } = this.props;
-
-    return (
-      <Container>
-        <Row>
-          <Col>
-            <Nav>
-              <Nav.Item>
-                <Link href="/classes">
-                  <Nav.Link href="/classes">Retour</Nav.Link>
-                </Link>
-              </Nav.Item>
-            </Nav>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <List>
-              {students.map(student => (
-                <Student
-                  key={student.key}
-                  wrongGroupe={!groupes.find(groupe => groupe.values.number === student.values.groupe)}
-                  id={student.key}
-                  {...student.values}
-                />
-              ))}
-            </List>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col>
-            <FormStudents classeId={classeId} />
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
-}
+      <Row>
+        <Col>
+          <FormStudents classeId={classeId} importStudents={importStudents} />
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
 Students.propTypes = {
   router: PropTypes.shape({

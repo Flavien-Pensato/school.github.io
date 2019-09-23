@@ -93,4 +93,6 @@ Student.propTypes = {
   name: PropTypes.string.isRequired,
   groupe: PropTypes.number.isRequired,
   wrongGroupe: PropTypes.bool.isRequired,
+  editStudent: PropTypes.func.isRequired,
+  removeStudent: PropTypes.func.isRequired,
 };
