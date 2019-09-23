@@ -78,8 +78,6 @@ class Students extends Component {
       },
     } = this.props;
 
-    console.log(groupes);
-
     return (
       <Container>
         <Row>

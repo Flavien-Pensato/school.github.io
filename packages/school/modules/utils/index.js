@@ -5,3 +5,13 @@ export const uuidv4 = () =>
 
     return v.toString(16);
   });
+
+export const forMap = (dataSnapshot, childFunction) => {
+  const toWait = [];
+
+  dataSnapshot.forEach(childSnapshot => {
+    toWait.push(childFunction(childSnapshot));
+  });
+
+  return toWait;
+};
