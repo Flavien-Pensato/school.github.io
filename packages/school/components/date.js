@@ -15,9 +15,11 @@ export class Date extends Component {
   handleDisableDate = event => {
     event.preventDefault();
 
+    const { date } = this.props;
+
     const { toggleDisable } = this.props;
 
-    toggleDisable();
+    toggleDisable(!date.disable);
   };
 
   render() {
@@ -36,7 +38,7 @@ export class Date extends Component {
         </span>
 
         {date ? (
-          <PurpleButton onClick={this.handleDisableDate}>{date.disable ? '-' : '+'}</PurpleButton>
+          <PurpleButton onClick={this.handleDisableDate}>{date.disable ? '+' : '-'}</PurpleButton>
         ) : (
           <PurpleButton onClick={this.handleAddDate}>+</PurpleButton>
         )}

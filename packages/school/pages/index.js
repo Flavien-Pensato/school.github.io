@@ -4,7 +4,7 @@ import Router from 'next/router';
 
 import firebase from '../config/firebase';
 import { DisplayContext } from '../modules/display/display.context';
-import { useWeek } from '../modules/week/week.use';
+// import { useWeek } from '../modules/week/week.use';
 // import { Tooltips } from '../components/tooltips';
 
 const handleClick = (from, schoolYear) => event => {
@@ -27,7 +27,7 @@ const handlePrint = event => {
 
 const HomePage = () => {
   const { date, schoolYear } = useContext(DisplayContext);
-  const week = useWeek(date);
+  // const week = useWeek(date);
 
   return (
     <Container>

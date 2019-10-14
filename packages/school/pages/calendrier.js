@@ -52,10 +52,8 @@ const Calendrier = () => {
     };
   }, [true]);
 
-  const classesSorted = _.sortBy(classes, ['sort']);
+  const classesSorted = _.sortBy(_.map(classes, (classe, classeId) => ({ ...classe, id: classeId })), ['sort']);
   const weeksSorted = _.sortBy(weeks, ['from']);
-
-  console.log(weeksSorted, classesSorted);
 
   return (
     <Wrapper>
@@ -88,22 +86,31 @@ const Calendrier = () => {
               <ItemHeader className="tc pa3 bb b--black-20 fw6">
                 <span>{classe.name}</span>
               </ItemHeader>
-              {weeksSorted.map(date =>
-                date.disable ? (
-                  <div key={date.from + classe.name} style={{ height: '50px' }}>
-                    <span className="f5">Vacances</span>
-                  </div>
-                ) : (
+              {defaultDates().map(date => {
+                const dateFound = weeksSorted.find(dateWeek => dateWeek.from === date.from);
+                if (!dateFound || dateFound.disable) {
+                  return (
+                    <div
+                      key={date.from + classe.name}
+                      className="pa3 bb b--black-20 f5 no-underline  bg-animate  hover-bg-black hover-white items-center center"
+                      style={{ height: '50px' }}
+                    >
+                      <span className="f5 no-underline bg-animate">Vacances</span>
+                    </div>
+                  );
+                }
+
+                return (
                   <PresenceCase
-                    date={date}
-                    presence={(date.classes || []).includes(classe.name)}
-                    toggleClasse={toggleClasse(date.from)}
-                    classeId={classe.name}
-                    key={date.from + classe.name}
-                    id={date.from}
+                    date={dateFound}
+                    presence={dateFound.classes ? !!dateFound.classes[classe.id] : false}
+                    toggleClasse={toggleClasse(dateFound.from)}
+                    classeId={classe.id}
+                    key={dateFound.from + classe.id}
+                    id={dateFound.from}
                   />
-                ),
-              )}
+                );
+              })}
             </LittleCol>
           ))}
         </Grid>

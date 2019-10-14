@@ -18,16 +18,10 @@ export const addWeek = weeksReference => async ({ from, to }) => {
 };
 
 export const toggleDisable = weeksReference => from => async disable => {
-  const data = await weeksReference.child(from).once('value');
-
-  if (!data.exists()) {
-    await weeksReference
-      .child(from)
-      .child('disable')
-      .update(disable);
-  } else {
-    alert('Week exists');
-  }
+  await weeksReference
+    .child(from)
+    .child('disable')
+    .set(disable);
 };
 
 export const toggleClasse = weeksReference => from => async classeId => {
@@ -42,7 +36,7 @@ export const toggleClasse = weeksReference => from => async classeId => {
       .child(from)
       .child('classes')
       .child(classeId)
-      .update(true);
+      .set(true);
   } else {
     await weeksReference
       .child(from)
@@ -64,26 +58,26 @@ export const useWeeks = () => {
   };
 };
 
-export const useWeek = date => {
-  const [week, setWeek] = useState();
+// export const useWeek = date => {
+//   const [week, setWeek] = useState();
 
-  useEffect(() => {
-    const reference = firebase
-      .database()
-      .ref(weeksRef)
-      .orderByChild('from')
-      .equalTo(date.format('YYYY-MM-DD'));
+//   useEffect(() => {
+//     const reference = firebase
+//       .database()
+//       .ref(weeksRef)
+//       .orderByChild('from')
+//       .equalTo(date.format('YYYY-MM-DD'));
 
-    const observer = reference.on('value', snapshot => {
-      if (snapshot.exists()) {
-        snapshot.forEach(snapshotWeek => setWeek({ key: snapshotWeek.key, values: snapshotWeek.val() }));
-      } else {
-        setWeek(undefined);
-      }
-    });
+//     const observer = reference.on('value', snapshot => {
+//       if (snapshot.exists()) {
+//         snapshot.forEach(snapshotWeek => setWeek({ key: snapshotWeek.key, values: snapshotWeek.val() }));
+//       } else {
+//         setWeek(undefined);
+//       }
+//     });
 
-    return () => reference.off('value', observer);
-  }, [date]);
+//     return () => reference.off('value', observer);
+//   }, [date]);
 
-  return week;
-};
+//   return week;
+// };
