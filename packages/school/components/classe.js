@@ -11,10 +11,9 @@ export class Classe extends Component {
     const { target } = event;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const { name } = target;
-    const { id, editClasse } = this.props;
+    const { editClasse } = this.props;
 
     editClasse({
-      id,
       [name]: target.type === 'number' ? Number(value) : value,
     });
   };
@@ -22,9 +21,9 @@ export class Classe extends Component {
   handleDelete = event => {
     event.preventDefault();
 
-    const { id, removeClasse } = this.props;
+    const { removeClasse } = this.props;
 
-    removeClasse(id);
+    removeClasse();
   };
 
   render() {

@@ -2,59 +2,26 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
-import firebase from '../config/firebase';
-
 import { Item } from './item';
 import { PurpleButton } from './button';
 
-const datesRef = '/dates/';
-
 export class Date extends Component {
   handleAddDate = () => {
-    const { date, id } = this.props;
+    const { from, to, addWeek } = this.props;
 
-    if (date.disable) {
-      return firebase
-        .database()
-        .ref(datesRef + id)
-        .update({
-          disable: false,
-        });
-    }
-
-    const newClasseKey = firebase
-      .database()
-      .ref()
-      .child(datesRef)
-      .push().key;
-
-    return firebase
-      .database()
-      .ref(datesRef + newClasseKey)
-      .update({
-        ...date,
-        classes: [],
-      });
+    addWeek({ from, to });
   };
 
   handleDisableDate = event => {
     event.preventDefault();
 
-    const { id } = this.props;
+    const { toggleDisable } = this.props;
 
-    firebase
-      .database()
-      .ref(datesRef + id)
-      .update({
-        disable: true,
-      });
+    toggleDisable();
   };
 
   render() {
-    const {
-      date: { from, to, disable },
-      exist,
-    } = this.props;
+    const { from, to, date } = this.props;
 
     return (
       <Item
@@ -63,13 +30,13 @@ export class Date extends Component {
         className="b--black-20 bb f5 black bg-animate items-center pa3 center"
       >
         <span>
-          Du&nbsp;{moment(from, 'YYYY.MM.DD').format('dddd D MMMM')}
+          Du&nbsp;{moment(from, 'YYYY-MM-DD').format('dddd D MMMM')}
           <br />
-          Au&nbsp;{moment(to, 'YYYY.MM.DD').format('dddd D MMMM')}
+          Au&nbsp;{moment(to, 'YYYY-MM-DD').format('dddd D MMMM')}
         </span>
 
-        {exist && !disable ? (
-          <PurpleButton onClick={this.handleDisableDate}>-</PurpleButton>
+        {date ? (
+          <PurpleButton onClick={this.handleDisableDate}>{date.disable ? '-' : '+'}</PurpleButton>
         ) : (
           <PurpleButton onClick={this.handleAddDate}>+</PurpleButton>
         )}
@@ -79,11 +46,13 @@ export class Date extends Component {
 }
 
 Date.defaultProps = {
-  id: '',
+  date: undefined,
 };
 
 Date.propTypes = {
-  id: PropTypes.string,
-  exist: PropTypes.bool.isRequired,
-  date: PropTypes.shape().isRequired,
+  from: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
+  date: PropTypes.shape(),
+  addWeek: PropTypes.func.isRequired,
+  toggleDisable: PropTypes.func.isRequired,
 };

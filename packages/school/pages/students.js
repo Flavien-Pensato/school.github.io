@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import _ from 'lodash';
 import { withRouter } from 'next/router';
 import { Container, Row, Col, Nav } from 'react-bootstrap';
 
@@ -9,16 +10,24 @@ import { Student } from '../components/student';
 import { FormStudents } from '../components/formStudents';
 
 import { useStudents } from '../modules/students/studentes.use';
-import { forMap } from '../modules/utils';
 
 const Students = ({
   router: {
     query: { classeId },
   },
 }) => {
-  const { groupes, editStudent, removeStudent, importStudents } = useStudents(classeId);
+  const [students, setStudents] = useState();
+  const { studentsReference, editStudent, moveStudent, removeStudent, importStudents } = useStudents(classeId);
 
-  console.log(groupes);
+  useEffect(() => {
+    const observer = studentsReference.on('value', snapshot => {
+      setStudents(snapshot.val());
+    });
+
+    return () => {
+      studentsReference.off('value', observer);
+    };
+  }, [studentsReference]);
 
   return (
     <Container>
@@ -36,24 +45,16 @@ const Students = ({
       <Row>
         <Col>
           <List>
-            {groupes &&
-              forMap(groupes, groupe => {
-                const students = groupe.child('students').val();
-
-                return Object.keys(students).map(studentKey => {
-                  const student = students[studentKey];
-
-                  return (
-                    <Student
-                      editStudent={editStudent}
-                      removeStudent={removeStudent}
-                      key={student.key}
-                      id={student.key}
-                      {...student}
-                    />
-                  );
-                });
-              })}
+            {_.map(students, (student, studentId) => (
+              <Student
+                editStudent={editStudent(studentId)}
+                removeStudent={removeStudent(studentId)}
+                moveStudent={moveStudent}
+                key={studentId}
+                id={studentId}
+                {...student}
+              />
+            ))}
           </List>
         </Col>
       </Row>

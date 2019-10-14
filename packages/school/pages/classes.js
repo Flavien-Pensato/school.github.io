@@ -1,17 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Col } from 'react-bootstrap';
+import _ from 'lodash';
 
-import { forMap } from '../modules/utils';
 import { Form, Input, Fieldset } from '../components/form';
 import { Classe } from '../components/classe';
 import { List } from '../components/list';
-
 import { useClasses } from '../modules/classes/classes.use';
 
 const ClassesWrapper = () => {
-  const { classes, addClasse, editClasse, removeClasse } = useClasses();
+  const [classes, setClasses] = useState();
+  const { classesReference, addClasse, editClasse, removeClasse } = useClasses();
 
-  const handleNewClasse = event => {
+  useEffect(() => {
+    const observer = classesReference.on('value', snapshot => {
+      setClasses(snapshot.val());
+    });
+
+    return () => {
+      classesReference.off('value', observer);
+    };
+  }, [classesReference]);
+
+  const handleSubmit = event => {
     event.preventDefault();
 
     addClasse({ name: event.target.name.value });
@@ -21,20 +31,20 @@ const ClassesWrapper = () => {
     <Container>
       <Col>
         <List>
-          {forMap(classes, classe => (
+          {_.map(classes, (classe, classeId) => (
             <Classe
-              key={classe.key}
-              id={classe.key}
-              {...classe.val()}
+              key={classeId}
+              {...classe}
+              id={classeId}
+              removeClasse={removeClasse(classeId)}
               editClasse={editClasse}
-              removeClasse={removeClasse}
             />
           ))}
         </List>
       </Col>
 
       <Col>
-        <Form onSubmit={handleNewClasse}>
+        <Form onSubmit={handleSubmit}>
           <Fieldset>
             <Input placeholder="Nouvelle classe" type="name" name="name" />
             <Input type="submit" value="Ajouter" />

@@ -34,26 +34,26 @@ const HomePage = () => {
       <Row>
         <Col>
           <button
-            onClick={() => Router.push({ pathname: '/', query: { date: date.add(-1, 'week').format('YYYY.MM.DD') } })}
+            onClick={() => Router.push({ pathname: '/', query: { date: date.add(-1, 'week').format('YYYY-MM-DD') } })}
           >
             Précedent
           </button>
         </Col>
         <Col>
-          <button onClick={handleClick(date.startOf('week').format('YYYY.MM.DD'), schoolYear)}>Génerer</button>
+          <button onClick={handleClick(date.startOf('week').format('YYYY-MM-DD'), schoolYear)}>Génerer</button>
         </Col>
         <Col>
           <button onClick={handlePrint}>Imprimé</button>
         </Col>
         <Col>
           <button
-            onClick={() => Router.push({ pathname: '/', query: { date: date.add(1, 'week').format('YYYY.MM.DD') } })}
+            onClick={() => Router.push({ pathname: '/', query: { date: date.add(1, 'week').format('YYYY-MM-DD') } })}
           >
             Suivant
           </button>
         </Col>
       </Row>
-      {week && (
+      {/* {week && (
         <div id="planning">
           <table className="f7 w-100 center" cellSpacing="0">
             <thead>
@@ -82,7 +82,7 @@ const HomePage = () => {
             </tbody>
           </table>
         </div>
-      )}
+      )} */}
     </Container>
   );
 };

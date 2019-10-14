@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { Badge } from 'react-bootstrap';
+// import { Badge } from 'react-bootstrap';
 
 import firebase from '../config/firebase';
 
@@ -27,57 +27,35 @@ const InputName = styled.span`
   margin-right: auto;
 `;
 export class Student extends Component {
-  constructor(props) {
-    super(props);
-
-    const { name, groupe } = props;
-
-    this.state = {
-      name: name || '',
-      groupe: groupe || 0,
-    };
-  }
-
   handleInputChange = event => {
     event.preventDefault();
     const { target } = event;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const { name } = target;
-    const { id } = this.props;
+    const { editStudent } = this.props;
 
-    this.setState({
-      [name]: value,
+    editStudent({
+      [name]: target.type === 'number' ? Number(value) : value,
     });
-
-    firebase
-      .database()
-      .ref(studentsRef + id)
-      .update({
-        [name]: target.type === 'number' ? Number(value) : value,
-      });
   };
 
   handleDelete = event => {
     event.preventDefault();
 
-    const { id } = this.props;
+    const { removeStudent } = this.props;
 
-    firebase
-      .database()
-      .ref(studentsRef + id)
-      .remove();
+    removeStudent();
   };
 
   render() {
-    const { wrongGroupe } = this.props;
-    const { name, groupe } = this.state;
+    const { name, groupe } = this.props;
 
     return (
       <Item>
         <InputName name="name" onBlur={this.handleInputChange}>
           {name}
         </InputName>
-        {wrongGroupe && <Badge variant="danger">Mauvaise classe</Badge>}
+        {/* {wrongGroupe && <Badge variant="danger">Mauvaise classe</Badge>} */}
         <InputGroupe type="number" name="groupe" defaultValue={groupe} onBlur={this.handleInputChange} />
         <PurpleButton onClick={this.handleDelete}>
           <span>Supprimer</span>
@@ -92,7 +70,6 @@ Student.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   groupe: PropTypes.number.isRequired,
-  wrongGroupe: PropTypes.bool.isRequired,
   editStudent: PropTypes.func.isRequired,
   removeStudent: PropTypes.func.isRequired,
 };

@@ -1,36 +1,39 @@
-import { useState, useEffect, useContext, useCallback } from 'react';
+import { useContext, useCallback } from 'react';
 import XLSX from 'xlsx';
 import _ from 'lodash';
+import slug from 'slug';
 
 import { DisplayContext } from '../display/display.context';
 
 import firebase from '../../config/firebase';
 
-export const addStudent = studentsReference => async ({ name }) => {
-  const newStudentRef = studentsReference.child('0').push();
+export const addStudent = (studentsReference, classeId) => async ({ name }) => {
+  const slugName = slug(name);
 
-  await newStudentRef.set({
+  await studentsReference.child(slugName.toLowerCase()).set({
     name,
+    groupe: 0,
+    classeId,
   });
 };
 
-export const editStudent = (studentsReference, studentsSnapshot) => async ({ id, ...props }) => {
-  if (studentsSnapshot.child(id).exists()) {
-    await studentsReference.child(id).update(props);
+export const editStudent = studentsReference => studentId => async props => {
+  if (studentId) {
+    await studentsReference.child(studentId).update(props);
   } else {
     alert("Student doesn't exist");
   }
 };
 
-export const removeStudent = studentsReference => async id => {
-  if (id) {
-    await studentsReference.child(id).remove();
+export const removeStudent = studentsReference => studentId => async () => {
+  if (studentId) {
+    await studentsReference.child(studentId).remove();
   } else {
     alert('No id sent');
   }
 };
 
-export const importStudents = studentsReference => async pathFile => {
+export const importStudents = (studentsReference, classeId) => async pathFile => {
   try {
     const oFile = XLSX.read(pathFile, {
       type: 'binary',
@@ -39,11 +42,11 @@ export const importStudents = studentsReference => async pathFile => {
     const worksheet = oFile.Sheets[oFile.SheetNames[0]];
     const text = _.replace(XLSX.utils.sheet_to_csv(worksheet, { raw: true }), new RegExp(',|"', 'g'), ' ');
 
+    const addStudentImported = addStudent(studentsReference, classeId);
+
     await Promise.all(
       _.split(text, '\n').forEach(line => {
-        const newStudentReference = studentsReference.child('0/students').push();
-
-        newStudentReference.set({ name: line.trim() });
+        addStudentImported({ name: line.trim() });
       }),
     );
   } catch (error) {
@@ -52,25 +55,23 @@ export const importStudents = studentsReference => async pathFile => {
   }
 };
 
+export const moveStudentGroupe = studentsReference => async (newGroupe, { id, groupe }) => {
+  if (id) {
+    await studentsReference.child(`groupes/${groupe}/students/${id}`).remove();
+  } else {
+    alert('No id sent');
+  }
+};
+
 export const useStudents = classeId => {
-  const [groupes, setGroupes] = useState();
   const { schoolYear } = useContext(DisplayContext);
-  const reference = firebase.database().ref(`/${schoolYear}/classes/${classeId}/groupes`);
-
-  useEffect(() => {
-    const observer = reference.on('value', snapshot => {
-      setGroupes(snapshot);
-    });
-
-    return () => reference.off('value', observer);
-  }, [classeId]);
+  const studentsReference = firebase.database().ref(`/${schoolYear}/students`);
 
   return {
-    groupes,
-    groupesReference: reference,
-    addStudent: useCallback(addStudent(reference), [groupes]),
-    editStudent: useCallback(editStudent(reference), [groupes]),
-    removeStudent: useCallback(removeStudent(reference), [groupes]),
-    importStudents: useCallback(importStudents(reference), [groupes]),
+    studentsReference: studentsReference.orderByChild('classeId').equalTo(classeId),
+    addStudent: useCallback(addStudent(studentsReference, classeId), [studentsReference]),
+    editStudent: useCallback(editStudent(studentsReference, classeId), [studentsReference]),
+    removeStudent: useCallback(removeStudent(studentsReference), [studentsReference]),
+    importStudents: useCallback(importStudents(studentsReference, classeId), [studentsReference]),
   };
 };

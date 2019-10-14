@@ -1,26 +1,34 @@
-import { useContext, useState, useEffect, useCallback } from 'react';
+import { useContext, useCallback } from 'react';
+import slug from 'slug';
+
 import { DisplayContext } from '../display/display.context';
 
 import firebase from '../../config/firebase';
 
-export const addClasse = (classesReference, classesSnapshot) => async ({ name, sort }) => {
-  const newClasseRef = classesReference.push();
+export const addClasse = classesReference => async ({ name }) => {
+  const slugName = slug(name);
 
-  await newClasseRef.set({
-    name,
-    sort: sort || classesSnapshot.numChildren(),
-  });
+  const data = await classesReference.child(slugName).once('value');
+
+  if (!data.exists()) {
+    await classesReference.child(slugName).set({
+      name,
+      sort: 0,
+    });
+  } else {
+    alert('Classe exists');
+  }
 };
 
-export const editClasse = (classesReference, classesSnapshot) => async ({ id, ...props }) => {
-  if (classesSnapshot.child(id).exists()) {
+export const editClasse = classesReference => id => async props => {
+  if (id) {
     await classesReference.child(id).update(props);
   } else {
     alert("Classe doesn't exist");
   }
 };
 
-export const removeClasse = classesReference => async id => {
+export const removeClasse = classesReference => id => async () => {
   if (id) {
     await classesReference.child(id).remove();
   } else {
@@ -29,24 +37,13 @@ export const removeClasse = classesReference => async id => {
 };
 
 export const useClasses = () => {
-  const [classes, setClasses] = useState([]);
   const { schoolYear } = useContext(DisplayContext);
-  const reference = firebase.database().ref(`/${schoolYear}/classes`);
-
-  useEffect(() => {
-    const observer = reference.on('value', snapshot => {
-      setClasses(snapshot);
-    });
-
-    return () => {
-      reference.off('value', observer);
-    };
-  }, [schoolYear]);
+  const classesReference = firebase.database().ref(`/${schoolYear}/classes`);
 
   return {
-    classes,
-    addClasse: useCallback(addClasse(reference, classes), [classes]),
-    editClasse: useCallback(editClasse(reference, classes), [classes]),
-    removeClasse: useCallback(removeClasse(reference), [classes]),
+    classesReference,
+    addClasse: useCallback(addClasse(classesReference), [schoolYear]),
+    editClasse: useCallback(editClasse(classesReference), [schoolYear]),
+    removeClasse: useCallback(removeClasse(classesReference), [schoolYear]),
   };
 };

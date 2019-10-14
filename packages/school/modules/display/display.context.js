@@ -22,7 +22,7 @@ const DisplayProvider = ({ children, router: { query } }) => {
 
   useEffect(() => {
     if (query.date) {
-      setDate(moment(query.date, 'YYYY.MM.DD'));
+      setDate(moment(query.date, 'YYYY-MM-DD'));
     }
   }, [query.date]);
 

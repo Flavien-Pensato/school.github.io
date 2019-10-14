@@ -23,77 +23,82 @@ const asyncForEach = async (dataSnapshot, childFunction, rest) => {
   await Promise.all(toWait);
 };
 
-// Get the data on a post that has changed
-exports.makeGroupes = functions.database.ref('/students/{studentId}').onWrite(async (change, context) => {
-  // Grab the current value of what was written to the Realtime Database.
-  const studentAfter = change.after.val();
-  const studentBefore = change.before.val();
+exports.removeStudentsOfClasseDeleted = functions.database
+  .ref('/{schoolYear}/classes/{classeId}')
+  .onDelete(async (snapshot, context) => {
+    const schoolYear = context.params.schoolYear;
+    const classeId = context.params.classeId;
+    const studentsRef = admin.database().ref(`/${schoolYear}/students`);
 
-  if (studentAfter.groupe !== studentBefore.groupe) {
-    const snapshot = await groupesRef
-      .orderByChild('schoolYear')
-      .equalTo(studentAfter.schoolYear)
+    console.log(`All students from the classeId ${classeId} will be removed`);
+
+    const snapshotOfStudentsToRemove = await studentsRef
+      .orderByChild('classeId')
+      .equalTo(classeId)
       .once('value');
-    let groupeAfter;
-    let groupeBefore;
 
-    if (snapshot.exists()) {
-      snapshot.forEach(groupe => {
-        const values = groupe.val();
-        if (values.number === studentAfter.groupe) {
-          groupeAfter = { key: groupe.key, values };
-        }
+    return snapshotOfStudentsToRemove.forEach(snapshot => {
+      studentsRef.child(snapshot.key).remove();
+    });
+  });
 
-        if (values.number === studentBefore.groupe) {
-          groupeBefore = { key: groupe.key, values };
-        }
-      });
-    }
+exports.movingStudentsBetweenGroupe = functions.database
+  .ref('/{schoolYear}/students/{studentId}/groupe')
+  .onUpdate(async (change, context) => {
+    const schoolYear = context.params.schoolYear;
+    const studentId = context.params.studentId;
 
-    if (!groupeAfter) {
-      const newGroupeRef = groupesRef.push().key;
+    const groupeAfter = change.after.val();
+    const groupeBefore = change.before.val();
 
-      admin
-        .database()
-        .ref(`/groupes/${newGroupeRef}`)
-        .set({
-          number: studentAfter.groupe,
-          classeId: studentAfter.classeId,
-          schoolYear: studentAfter.schoolYear,
-          students: [context.params.studentId],
-        });
-    } else if (groupeAfter.values.students) {
-      admin
-        .database()
-        .ref(`/groupes/${groupeAfter.key}`)
-        .update({
-          classeId: studentAfter.classeId,
-          students: [...groupeAfter.values.students, context.params.studentId],
-        });
-    } else {
-      admin
-        .database()
-        .ref(`/groupes/${groupeAfter.key}`)
-        .remove();
-    }
+    if (groupeBefore !== groupeAfter) {
+      const groupesRef = admin.database().ref(`/${schoolYear}/groupes`);
 
-    if (groupeBefore) {
-      if (groupeBefore.values.students.indexOf(context.params.studentId) >= 0) {
-        groupeBefore.values.students.splice(groupeBefore.values.students.indexOf(context.params.studentId), 1);
+      const PromiseArray = [];
+
+      if (groupeAfter !== 0) {
+        PromiseArray.push(
+          groupesRef
+            .child(groupeAfter)
+            .child('students')
+            .child(studentId)
+            .set(true),
+        );
       }
 
-      admin
-        .database()
-        .ref('/groupes/' + groupeBefore.key)
-        .update({
-          students: groupeBefore.values.students,
-          classeId: studentBefore.classeId,
-        });
-    }
-  }
+      if (groupeBefore !== 0) {
+        PromiseArray.push(
+          groupesRef
+            .child(groupeBefore)
+            .child('students')
+            .child(studentId)
+            .remove(),
+        );
+      }
 
-  return null;
-});
+      await PromiseArray;
+    }
+
+    return null;
+  });
+
+exports.removingStudentFromGroupe = functions.database
+  .ref('/{schoolYear}/students/{studentId}')
+  .onDelete((snapshot, context) => {
+    const student = snapshot.val();
+    const schoolYear = context.params.schoolYear;
+    const studentId = context.params.studentId;
+
+    console.log(`Will remove studentId ${studentId} from his groupe number ${student.groupe}`);
+
+    return admin
+      .database()
+      .ref(`/${schoolYear}/groupes`)
+      .child(student.groupe)
+      .child('students')
+      .child(snapshot.key)
+      .remove();
+  });
 
 const handleUpdateGroupeTask = async (groupeSnapshot, { task, isBefore }) => {
   const groupe = groupeSnapshot.val();
