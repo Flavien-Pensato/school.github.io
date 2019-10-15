@@ -1,6 +1,9 @@
-import React, { Component } from 'react';
+import React, { useEffect, useContext, useCallback, useState } from 'react';
+import slug from 'slug';
+import _ from 'lodash';
 import styled from '@emotion/styled';
 
+import { DisplayContext } from '../modules/display/display.context';
 import firebase from '../config/firebase';
 
 import { Form, Input, Fieldset } from '../components/form';
@@ -36,79 +39,53 @@ const Wrapper = styled.div`
   }
 `;
 
-const taskRef = '/tasks/';
+const Tasks = () => {
+  const [tasks, setTasks] = useState();
+  const { schoolYear } = useContext(DisplayContext);
 
-class TaskWrapper extends Component {
-  constructor(props) {
-    super(props);
+  useEffect(() => {
+    const tasksRef = firebase.database().ref(`/${schoolYear}/tasks`);
 
-    this.state = { tasks: [] };
-  }
-  componentDidMount() {
-    this.reference = firebase.database().ref(taskRef);
-    this.observer = this.reference.on('value', snapshot => {
-      const tasks = [];
+    const observer = tasksRef.on('value', snapshot => setTasks(snapshot.val()));
 
-      if (snapshot.exists()) {
-        snapshot.forEach(task => {
-          tasks.push({ key: task.key, values: task.val() });
-        });
-      }
-
-      this.setState({
-        tasks,
-      });
-    });
-  }
-
-  componentWillUnmount() {
-    this.reference.off('value', this.observer);
-  }
-
-  handleSubmitForm = event => {
-    event.preventDefault();
-
-    const newClasseKey = firebase
-      .database()
-      .ref()
-      .child(taskRef)
-      .push().key;
-
-    const task = {
-      name: event.target.task.value,
+    return () => {
+      tasksRef.off('value', observer);
     };
+  }, [schoolYear]);
 
-    firebase
-      .database()
-      .ref(taskRef + newClasseKey)
-      .set(task);
+  const handleSubmitForm = useCallback(
+    event => {
+      event.preventDefault();
 
-    // eslint-disable-next-line
+      const tasksRef = firebase.database().ref(`/${schoolYear}/tasks`);
+      const name = event.target.task.value;
+
+      tasksRef.child(slug(name)).set({ name });
+
+      // eslint-disable-next-line
     event.target.task.value = "";
-  };
+    },
+    [schoolYear],
+  );
 
-  render() {
-    const { tasks } = this.state;
+  return (
+    <TasksWrapper>
+      <List>
+        {_.map(tasks, (task, key) => (
+          <Task key={key} id={key} {...task} />
+        ))}
+      </List>
 
-    return (
-      <TasksWrapper>
-        <List>
-          {tasks.map(task => (
-            <Task key={task.key} id={task.key} {...task.values} />
-          ))}
-        </List>
+      <Form onSubmit={handleSubmitForm}>
+        <Fieldset>
+          <Wrapper>
+            <Input placeholder="Nouvelle tâche" type="text" name="task" />
+            <Input type="submit" value="Ajouter" />
+          </Wrapper>
+        </Fieldset>
+      </Form>
+    </TasksWrapper>
+  );
+};
 
-        <Form onSubmit={this.handleSubmitForm}>
-          <Fieldset>
-            <Wrapper>
-              <Input placeholder="Nouvelle tâche" type="text" name="task" />
-              <Input type="submit" value="Ajouter" />
-            </Wrapper>
-          </Fieldset>
-        </Form>
-      </TasksWrapper>
-    );
-  }
-}
-
-export default TaskWrapper;
+export default Tasks;
