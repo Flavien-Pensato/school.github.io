@@ -7,12 +7,14 @@ import { DisplayContext } from '../modules/display/display.context';
 // import { useWeek } from '../modules/week/week.use';
 // import { Tooltips } from '../components/tooltips';
 
-const handleClick = (from, schoolYear) => event => {
+const handleClick = week => event => {
   event.preventDefault();
 
-  const addWeek = firebase.functions().httpsCallable('addWeek');
+  // const addWeek = firebase.functions().httpsCallable('addWeek');
 
-  addWeek({ from, schoolYear });
+  // addWeek({ from, schoolYear });
+
+  firebase.functions().httpsCallable('generate')({ hello: 'you' });
 };
 
 const handlePrint = event => {

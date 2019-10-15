@@ -53,6 +53,11 @@ exports.movingStudentsBetweenGroupe = functions.database
 
     if (groupeBefore !== groupeAfter) {
       const groupesRef = admin.database().ref(`/${schoolYear}/groupes`);
+      const refClasseId = await admin
+        .database()
+        .ref(`/${schoolYear}/students/${studentId}`)
+        .child('classeId')
+        .once('value');
 
       const PromiseArray = [];
 
@@ -64,6 +69,15 @@ exports.movingStudentsBetweenGroupe = functions.database
             .child(studentId)
             .set(true),
         );
+
+        if (refClasseId.exists()) {
+          PromiseArray.push(
+            groupesRef
+              .child(groupeAfter)
+              .child('classeId')
+              .set(refClasseId.val()),
+          );
+        }
       }
 
       if (groupeBefore !== 0) {
@@ -127,44 +141,15 @@ const handleTasks = async (taskSnapshot, { schoolYear, isBefore }) => {
   }
 };
 
-exports.updateGroupes = functions.database.ref('/weeks/{weekId}').onWrite(async change => {
-  if (change.before.exists()) {
-    return null;
-  }
-  // Exit when the data is deleted.
-  if (!change.after.exists()) {
-    return null;
+exports.generate = functions.https.onCall(async (week, context) => {
+  if (!week || week.disable) {
+    console.log('Week is no enable or doesn\'t exits')
+    
+    return null
   }
 
-  const weekAfter = change.after.val();
-  const weekBefore = change.before.val();
-
-  // Remove taks
-  if (change.before.hasChild('tasks')) {
-    console.log(`Before: have tasks array`);
-
-    await asyncForEach(change.before.child('tasks'), handleTasks, {
-      schoolYear: weekBefore.schoolYear,
-      isBefore: true,
-    });
-  }
-
-  // Add taks
-  if (change.after.hasChild('tasks')) {
-    console.log(`After: have tasks array`);
-
-    await asyncForEach(change.after.child('tasks'), handleTasks, {
-      schoolYear: weekAfter.schoolYear,
-      isBefore: false,
-    });
-  }
-
-  return null;
 });
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
 exports.addWeek = functions.https.onCall(async (data, context) => {
   const datesSnapshot = await datesRef
     .orderByChild('from')
