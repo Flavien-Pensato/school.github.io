@@ -141,13 +141,84 @@ const handleTasks = async (taskSnapshot, { schoolYear, isBefore }) => {
   }
 };
 
-exports.generate = functions.https.onCall(async (week, context) => {
-  if (!week || week.disable) {
-    console.log('Week is no enable or doesn\'t exits')
-    
-    return null
+const getGroupesByClasseId = async classeId => {
+  if (classeId) {
+    const groupes = await database
+      .ref('/2019-2020/groupes')
+      .orderByChild('classeId')
+      .equalTo(classeId)
+      .once('value')
+      .val();
+
+    return _.sortBy(groupes, ['total']);
   }
 
+  return Promise.resolve([]);
+};
+
+const selectGroupeByForTask = (groupes, taskId) => {
+  if (groupes && taskId) {
+    let groupeSelected;
+
+    groupes.forEach(groupe => {
+      if (groupe.tasks && groupe.tasks[taskId]) {
+        if (
+          froupeSelected
+            .child('tasks')
+            .child(taskId)
+            .val() < groupe.tasks[taskId]
+        ) {
+          groupeSelected = groupe;
+        }
+      } else {
+        groupeSelected = groupe;
+      }
+    });
+
+    return groupeSelected;
+  }
+
+  return undefined;
+};
+
+exports.generate = functions.https.onCall(async (week, context) => {
+  if (!week || week.disable) {
+    console.log("Week is no enable or doesn't exits");
+
+    return null;
+  }
+
+  const database = admin.database();
+
+  const snapshotTasks = await database.ref('/2019-2020/tasks').once('value');
+  const snapshotClasses = await database.ref('/2019-2020/classes').once('value');
+
+  const snapshotClassesOfTheWeek = [];
+
+  // Get all classes enable this week
+  _.forEach(week.classes, (value, classeId) => {
+    if (snapshotClasses.child(classeId).exists()) {
+      snapshotClassesOfTheWeek.push(snapshotClasses.child(classeId));
+    }
+  });
+
+  const tasks = {};
+
+  // Assign Classe Task
+  snapshotClassesOfTheWeek.forEach(async snapshotClasseOfTheWeek => {
+    const groupes = await getGroupesByClasseId(snapshotClasseOfTheWeek.key);
+
+    const selectedGroupe = selectGroupeByForTask(groupes, snapshotClasseOfTheWeek.key);
+
+    tasks[snapshotClasseOfTheWeek.key] = {
+      groupe: selectedGroupe ? selectedGroupe : 'Pas de groupe disponible.',
+      classe: snapshotClasseOfTheWeek.child('name').val(),
+    };
+  });
+
+  console.log(tasks);
+
+  return null;
 });
 
 exports.addWeek = functions.https.onCall(async (data, context) => {

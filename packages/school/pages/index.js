@@ -14,7 +14,9 @@ const handleClick = week => event => {
 
   // addWeek({ from, schoolYear });
 
-  firebase.functions().httpsCallable('generate')({ hello: 'you' });
+  const generate = firebase.functions().httpsCallable('generate');
+
+  generate({ disable: false, from: '2019-10-07', to: '2019-10-11' });
 };
 
 const handlePrint = event => {
