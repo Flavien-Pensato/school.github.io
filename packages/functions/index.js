@@ -1,5 +1,6 @@
 // The Cloud Functions for Firebase SDK to create Cloud Functions and setup triggers.
 const functions = require('firebase-functions');
+const _ = require('lodash');
 
 // The Firebase Admin SDK to access the Firebase Realtime Database.
 const admin = require('firebase-admin');
@@ -114,6 +115,24 @@ exports.removingStudentFromGroupe = functions.database
       .remove();
   });
 
+exports.removingStudentFromGroupe = functions.database
+  .ref('/{schoolYear}/groupes/{groupeId}/tasks/{taskId}')
+  .onDelete((snapshot, context) => {
+    const student = snapshot.val();
+    const schoolYear = context.params.schoolYear;
+    const studentId = context.params.studentId;
+
+    console.log(`Will remove studentId ${studentId} from his groupe number ${student.groupe}`);
+
+    return admin
+      .database()
+      .ref(`/${schoolYear}/groupes`)
+      .child(student.groupe)
+      .child('students')
+      .child(snapshot.key)
+      .remove();
+  });
+
 const handleUpdateGroupeTask = async (groupeSnapshot, { task, isBefore }) => {
   const groupe = groupeSnapshot.val();
 
@@ -143,31 +162,26 @@ const handleTasks = async (taskSnapshot, { schoolYear, isBefore }) => {
 
 const getGroupesByClasseId = async classeId => {
   if (classeId) {
-    const groupes = await database
+    const snapshotGroupes = await admin
+      .database()
       .ref('/2019-2020/groupes')
       .orderByChild('classeId')
       .equalTo(classeId)
-      .once('value')
-      .val();
+      .once('value');
 
-    return _.sortBy(groupes, ['total']);
+    return _.sortBy(_.map(snapshotGroupes.val(), (groupe, groupeId) => ({ ...groupe, groupeId })), ['total']);
   }
 
-  return Promise.resolve([]);
+  return [];
 };
 
 const selectGroupeByForTask = (groupes, taskId) => {
   if (groupes && taskId) {
     let groupeSelected;
 
-    groupes.forEach(groupe => {
+    _.forEach(groupes, groupe => {
       if (groupe.tasks && groupe.tasks[taskId]) {
-        if (
-          froupeSelected
-            .child('tasks')
-            .child(taskId)
-            .val() < groupe.tasks[taskId]
-        ) {
+        if (groupeSelected ? groupeSelected.tasks[taskId] : 0 > groupe.tasks[taskId]) {
           groupeSelected = groupe;
         }
       } else {
@@ -205,14 +219,22 @@ exports.generate = functions.https.onCall(async (week, context) => {
   const tasks = {};
 
   // Assign Classe Task
-  snapshotClassesOfTheWeek.forEach(async snapshotClasseOfTheWeek => {
-    const groupes = await getGroupesByClasseId(snapshotClasseOfTheWeek.key);
+  _.forEach(snapshotClassesOfTheWeek, async snapshotClasseOfTheWeek => {
+    const groupes = getGroupesByClasseId(snapshotClasseOfTheWeek.key);
 
     const selectedGroupe = selectGroupeByForTask(groupes, snapshotClasseOfTheWeek.key);
+    console.log(selectedGroupe);
+    const selectedStudents = await admin
+      .database()
+      .ref('/2019-2020/students')
+      .orderByChild('groupe')
+      .equalTo(selectedGroupe ? selectedGroupe.groupeId : null)
+      .once('value');
 
     tasks[snapshotClasseOfTheWeek.key] = {
       groupe: selectedGroupe ? selectedGroupe : 'Pas de groupe disponible.',
       classe: snapshotClasseOfTheWeek.child('name').val(),
+      students: selectedStudents.val(),
     };
   });
 
