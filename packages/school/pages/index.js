@@ -16,7 +16,14 @@ const handleClick = week => event => {
 
   const generate = firebase.functions().httpsCallable('generate');
 
-  generate({ disable: false, from: '2019-10-07', to: '2019-10-11' });
+  generate({
+    disable: false,
+    from: '2019-11-04',
+    to: '2019-11-08',
+    classes: {
+      '3eme-B': true,
+    },
+  });
 };
 
 const handlePrint = event => {
