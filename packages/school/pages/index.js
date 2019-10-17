@@ -21,9 +21,9 @@ const handleClick = week => event => {
     from: '2019-11-04',
     to: '2019-11-08',
     classes: {
-      '3eme-B': true,
+      '3eme-A': true,
     },
-  });
+  }).then(console.log);
 };
 
 const handlePrint = event => {

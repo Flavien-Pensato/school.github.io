@@ -169,7 +169,11 @@ const getGroupesByClasseId = async classeId => {
       .equalTo(classeId)
       .once('value');
 
-    return _.sortBy(_.map(snapshotGroupes.val(), (groupe, groupeId) => ({ ...groupe, groupeId })), ['total']);
+    if (snapshotGroupes.exists()) {
+      console.log('Groupes by classe ' + classeId);
+      console.log('=> ' + JSON.stringify(snapshotGroupes.val()));
+      return _.sortBy(_.map(snapshotGroupes.val(), (groupe, groupeId) => ({ ...groupe, groupeId })), ['total']);
+    }
   }
 
   return [];
@@ -219,28 +223,35 @@ exports.generate = functions.https.onCall(async (week, context) => {
   const tasks = {};
 
   // Assign Classe Task
-  _.forEach(snapshotClassesOfTheWeek, async snapshotClasseOfTheWeek => {
-    const groupes = getGroupesByClasseId(snapshotClasseOfTheWeek.key);
+  await Promise.all(
+    _.map(snapshotClassesOfTheWeek, async snapshotClasseOfTheWeek => {
+      const groupes = await getGroupesByClasseId(snapshotClasseOfTheWeek.key);
 
-    const selectedGroupe = selectGroupeByForTask(groupes, snapshotClasseOfTheWeek.key);
-    console.log(selectedGroupe);
-    const selectedStudents = await admin
-      .database()
-      .ref('/2019-2020/students')
-      .orderByChild('groupe')
-      .equalTo(selectedGroupe ? selectedGroupe.groupeId : null)
-      .once('value');
+      const selectedGroupe = selectGroupeByForTask(groupes, snapshotClasseOfTheWeek.key);
+      let selectedStudents;
 
-    tasks[snapshotClasseOfTheWeek.key] = {
-      groupe: selectedGroupe ? selectedGroupe : 'Pas de groupe disponible.',
-      classe: snapshotClasseOfTheWeek.child('name').val(),
-      students: selectedStudents.val(),
-    };
-  });
+      if (selectedGroupe) {
+        selectedStudents = await admin
+          .database()
+          .ref('/2019-2020/students')
+          .orderByChild('groupe')
+          .equalTo(Number(selectedGroupe.groupeId))
+          .once('value');
+      }
 
-  console.log(tasks);
+      tasks[snapshotClasseOfTheWeek.key] = {
+        groupe: selectedGroupe ? selectedGroupe.groupeId : 'Pas de groupe disponible.',
+        classe: snapshotClasseOfTheWeek.child('name').val(),
+        students: selectedStudents ? _.map(selectedStudents.val(), student => student.name).join(', ') : [],
+      };
 
-  return null;
+      return Promise.resolve();
+    }),
+  );
+
+  console.log('Tasks: ' + JSON.stringify(tasks));
+
+  return tasks;
 });
 
 exports.addWeek = functions.https.onCall(async (data, context) => {
