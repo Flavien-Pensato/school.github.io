@@ -32,8 +32,6 @@ const HomePage = () => {
     [week],
   );
 
-  console.log(week);
-
   return (
     <Container>
       <Row>

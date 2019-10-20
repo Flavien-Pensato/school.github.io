@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import _ from 'lodash';
 import { withRouter } from 'next/router';
 import { Container, Row, Col, Nav } from 'react-bootstrap';
 
+import { Form, Input, Fieldset } from '../components/form';
 import { List } from '../components/list';
 import { Student } from '../components/student';
 import { FormStudents } from '../components/formStudents';
@@ -17,7 +18,9 @@ const Students = ({
   },
 }) => {
   const [students, setStudents] = useState();
-  const { studentsReference, editStudent, moveStudent, removeStudent, importStudents } = useStudents(classeId);
+  const { addStudent, studentsReference, editStudent, moveStudent, removeStudent, importStudents } = useStudents(
+    classeId,
+  );
 
   useEffect(() => {
     const observer = studentsReference.on('value', snapshot => {
@@ -28,6 +31,14 @@ const Students = ({
       studentsReference.off('value', observer);
     };
   }, [studentsReference]);
+
+  const handleNewStudent = useCallback(
+    event => {
+      event.preventDefault();
+      addStudent({ name: event.target.name.value });
+    },
+    [classeId],
+  );
 
   return (
     <Container>
@@ -64,6 +75,15 @@ const Students = ({
           <FormStudents classeId={classeId} importStudents={importStudents} />
         </Col>
       </Row>
+
+      <Col>
+        <Form onSubmit={handleNewStudent}>
+          <Fieldset>
+            <Input placeholder="Ajouter un nouvel éléve" type="text" name="name" />
+            <Input type="submit" value="Ajouter" />
+          </Fieldset>
+        </Form>
+      </Col>
     </Container>
   );
 };
