@@ -58,26 +58,26 @@ export const useWeeks = () => {
   };
 };
 
-// export const useWeek = date => {
-//   const [week, setWeek] = useState();
+export const useWeek = (date, schoolYear) => {
+  const [week, setWeek] = useState();
 
-//   useEffect(() => {
-//     const reference = firebase
-//       .database()
-//       .ref(weeksRef)
-//       .orderByChild('from')
-//       .equalTo(date.format('YYYY-MM-DD'));
+  useEffect(() => {
+    const reference = firebase
+      .database()
+      .ref(`/${schoolYear}/weeks`)
+      .orderByChild('from')
+      .equalTo(date.format('YYYY-MM-DD'));
 
-//     const observer = reference.on('value', snapshot => {
-//       if (snapshot.exists()) {
-//         snapshot.forEach(snapshotWeek => setWeek({ key: snapshotWeek.key, values: snapshotWeek.val() }));
-//       } else {
-//         setWeek(undefined);
-//       }
-//     });
+    const observer = reference.on('value', snapshot => {
+      if (snapshot.exists()) {
+        setWeek(snapshot.val()[date.format('YYYY-MM-DD')]);
+      } else {
+        setWeek();
+      }
+    });
 
-//     return () => reference.off('value', observer);
-//   }, [date]);
+    return () => reference.off('value', observer);
+  }, [date]);
 
-//   return week;
-// };
+  return week;
+};

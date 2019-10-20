@@ -13,13 +13,20 @@ const ClassesWrapper = () => {
 
   useEffect(() => {
     const observer = classesReference.on('value', snapshot => {
-      setClasses(snapshot.val());
+      const classesTmp = [];
+
+      if (snapshot.exists()) {
+        snapshot.forEach(classe => {
+          classesTmp.push({ key: classe.key, values: classe.val() });
+        });
+      }
+      setClasses(classesTmp);
     });
 
     return () => {
       classesReference.off('value', observer);
     };
-  }, [classesReference]);
+  }, [true]);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -31,13 +38,13 @@ const ClassesWrapper = () => {
     <Container>
       <Col>
         <List>
-          {_.map(classes, (classe, classeId) => (
+          {_.map(_.sortBy(classes, ['values.sort']), classe => (
             <Classe
-              key={classeId}
-              {...classe}
-              id={classeId}
-              removeClasse={removeClasse(classeId)}
-              editClasse={editClasse}
+              key={classe.key}
+              {...classe.values}
+              id={classe.key}
+              removeClasse={removeClasse(classe.key)}
+              editClasse={editClasse(classe.key)}
             />
           ))}
         </List>

@@ -1,30 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useCallback } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Router from 'next/router';
 
 import firebase from '../config/firebase';
 import { DisplayContext } from '../modules/display/display.context';
-// import { useWeek } from '../modules/week/week.use';
+import { useWeek } from '../modules/week/week.use';
 // import { Tooltips } from '../components/tooltips';
-
-const handleClick = week => event => {
-  event.preventDefault();
-
-  // const addWeek = firebase.functions().httpsCallable('addWeek');
-
-  // addWeek({ from, schoolYear });
-
-  const generate = firebase.functions().httpsCallable('generate');
-
-  generate({
-    disable: false,
-    from: '2019-11-04',
-    to: '2019-11-08',
-    classes: {
-      '3eme-A': true,
-    },
-  }).then(console.log);
-};
 
 const handlePrint = event => {
   event.preventDefault();
@@ -38,7 +19,20 @@ const handlePrint = event => {
 
 const HomePage = () => {
   const { date, schoolYear } = useContext(DisplayContext);
-  // const week = useWeek(date);
+  const week = useWeek(date, schoolYear);
+
+  const handleClick = useCallback(
+    event => {
+      event.preventDefault();
+
+      const generate = firebase.functions().httpsCallable('generate');
+
+      generate(week);
+    },
+    [week],
+  );
+
+  console.log(week);
 
   return (
     <Container>
@@ -51,7 +45,7 @@ const HomePage = () => {
           </button>
         </Col>
         <Col>
-          <button onClick={handleClick(date.startOf('week').format('YYYY-MM-DD'), schoolYear)}>Génerer</button>
+          <button onClick={handleClick}>Générer</button>
         </Col>
         <Col>
           <button onClick={handlePrint}>Imprimé</button>
@@ -64,7 +58,7 @@ const HomePage = () => {
           </button>
         </Col>
       </Row>
-      {/* {week && (
+      {week && week.tasks ? (
         <div id="planning">
           <table className="f7 w-100 center" cellSpacing="0">
             <thead>
@@ -76,24 +70,26 @@ const HomePage = () => {
               </tr>
             </thead>
             <tbody className="lh-copy">
-              {Object.keys(week.values.tasks).map(taskId => {
-                const task = week.values.tasks[taskId];
+              {Object.keys(week.tasks).map(taskId => {
+                const task = week.tasks[taskId];
 
                 return (
                   <tr key={task.task}>
                     <td className="pv2 pr3 bb b--black-20">{task.task}</td>
                     <td className="pv2 pr3 bb b--black-20">{task.classe}</td>
-                    <td className="pv2 pr3 bb b--black-20">{task.groupeName}</td>
-                    <td className="pv2 pr3 bb b--black-20">
-                      {task.students ? task.students.map(student => student.name).join(', ') : ''}
-                    </td>
+                    <td className="pv2 pr3 bb b--black-20">{task.groupe}</td>
+                    <td className="pv2 pr3 bb b--black-20">{task.students}</td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
         </div>
-      )} */}
+      ) : (
+        <span>Cliquer sur générer.</span>
+      )}
+      <br />
+      {week && week.disable ? <span>Semaine de vacances.</span> : null}
     </Container>
   );
 };

@@ -14,16 +14,6 @@ const classesRef = admin.database().ref('/classes');
 const tasksRef = admin.database().ref('/tasks');
 const datesRef = admin.database().ref('/dates');
 
-const asyncForEach = async (dataSnapshot, childFunction, rest) => {
-  const toWait = [];
-
-  dataSnapshot.forEach(childSnapshot => {
-    toWait.push(childFunction(childSnapshot, rest));
-  });
-
-  await Promise.all(toWait);
-};
-
 exports.removeStudentsOfClasseDeleted = functions.database
   .ref('/{schoolYear}/classes/{classeId}')
   .onDelete(async (snapshot, context) => {
@@ -133,32 +123,62 @@ exports.removingStudentFromGroupe = functions.database
       .remove();
   });
 
-const handleUpdateGroupeTask = async (groupeSnapshot, { task, isBefore }) => {
-  const groupe = groupeSnapshot.val();
+exports.updatingGroupeTask = functions.database
+  .ref('/{schoolYear}/weeks/{weekId}/tasks/{taskId}')
+  .onWrite(async (change, context) => {
+    const taskAfter = change.after.val();
+    const taskBefore = change.before.val();
+    const task = taskAfter ? taskAfter : taskBefore;
+    const isCreated = taskAfter ? true : false;
 
-  if (groupe.number === task.groupeName) {
-    console.log(`${isBefore ? 'Before' : 'After'}: Groupe: ${groupe.number} - ${task.groupeName}`);
-    console.log(groupeSnapshot.val());
+    const schoolYear = context.params.schoolYear;
+    const taskId = context.params.taskId;
 
-    await admin
+    const snapshotLastValue = await admin
       .database()
-      .ref('/groupes/' + groupeSnapshot.key + '/tasks/' + task.id)
-      .update(groupe[task.id] > 0 ? groupe[task.id] + (isBefore ? -1 : 1) : 1);
-  }
-};
+      .ref(`/${schoolYear}/groupes`)
+      .child(task.groupe)
+      .child('tasks')
+      .child(taskId)
+      .once('value');
+    const data = snapshotLastValue.val() | 0;
 
-const handleTasks = async (taskSnapshot, { schoolYear, isBefore }) => {
-  const groupesSnapshot = await groupesRef
-    .orderByChild('schoolYear')
-    .equalTo(schoolYear)
-    .once('value');
+    return admin
+      .database()
+      .ref(`/${schoolYear}/groupes`)
+      .child(task.groupe)
+      .child('tasks')
+      .child(taskId)
+      .set(data + (isCreated ? 1 : -1));
+  });
 
-  console.log(`School Year: ${schoolYear}`);
+exports.updatingGroupeTotal = functions.database
+  .ref('/{schoolYear}/groupes/{groupeId}/tasks/{taskId}')
+  .onWrite(async (change, context) => {
+    const groupeId = context.params.groupeId;
+    const taskAfter = change.after.val() || 0;
+    const taskBefore = change.before.val() || 0;
+    const isUp = taskAfter > taskBefore ? true : false;
 
-  if (groupesSnapshot.exists()) {
-    await asyncForEach(groupesSnapshot, handleUpdateGroupeTask, { task: taskSnapshot.val(), isBefore });
-  }
-};
+    const schoolYear = context.params.schoolYear;
+    const taskId = context.params.taskId;
+
+    const snapshotLastValue = await admin
+      .database()
+      .ref(`/${schoolYear}/groupes`)
+      .child(groupeId)
+      .child('total')
+      .once('value');
+
+    const data = snapshotLastValue.val() | 0;
+
+    return admin
+      .database()
+      .ref(`/${schoolYear}/groupes`)
+      .child(groupeId)
+      .child('total')
+      .set(data + (isUp ? 1 : -1));
+  });
 
 const getGroupesByClasseId = async classeId => {
   if (classeId) {
@@ -172,7 +192,7 @@ const getGroupesByClasseId = async classeId => {
     if (snapshotGroupes.exists()) {
       console.log('Groupes by classe ' + classeId);
       console.log('=> ' + JSON.stringify(snapshotGroupes.val()));
-      return _.sortBy(_.map(snapshotGroupes.val(), (groupe, groupeId) => ({ ...groupe, groupeId })), ['total']);
+      return _.map(snapshotGroupes.val(), (groupe, groupeId) => ({ ...groupe, groupeId: Number(groupeId) }));
     }
   }
 
@@ -212,6 +232,7 @@ exports.generate = functions.https.onCall(async (week, context) => {
   const snapshotClasses = await database.ref('/2019-2020/classes').once('value');
 
   const snapshotClassesOfTheWeek = [];
+  const snapshotTasksOfTheWeek = [];
 
   // Get all classes enable this week
   _.forEach(week.classes, (value, classeId) => {
@@ -220,17 +241,44 @@ exports.generate = functions.https.onCall(async (week, context) => {
     }
   });
 
+  // Get all classes enable this week
+  snapshotTasks.forEach(snapshotTask => {
+    snapshotTasksOfTheWeek.push(snapshotTask);
+  });
+
+  const groupes = [];
+
+  await Promise.all(
+    _.map(snapshotClassesOfTheWeek, async snapshotClasseOfTheWeek => {
+      const groupesOfClasse = await getGroupesByClasseId(snapshotClasseOfTheWeek.key);
+
+      _.forEach(groupesOfClasse, groupe => groupes.push(groupe));
+    }),
+  );
+
+  const groupesFiltered = _.sortBy(groupes, ['total']);
+
+  _.remove(groupesFiltered, groupe => {
+    return Number(groupe.groupeId) === 0;
+  });
+
   const tasks = {};
+
+  console.log('All groupes selected for the week', JSON.stringify(groupesFiltered));
 
   // Assign Classe Task
   await Promise.all(
     _.map(snapshotClassesOfTheWeek, async snapshotClasseOfTheWeek => {
-      const groupes = await getGroupesByClasseId(snapshotClasseOfTheWeek.key);
+      const groupes = groupesFiltered.filter(groupe => groupe.classeId === snapshotClasseOfTheWeek.key);
 
       const selectedGroupe = selectGroupeByForTask(groupes, snapshotClasseOfTheWeek.key);
       let selectedStudents;
 
       if (selectedGroupe) {
+        _.remove(groupesFiltered, groupe => {
+          return Number(groupe.groupeId) === Number(selectedGroupe.groupeId);
+        });
+
         selectedStudents = await admin
           .database()
           .ref('/2019-2020/students')
@@ -240,7 +288,8 @@ exports.generate = functions.https.onCall(async (week, context) => {
       }
 
       tasks[snapshotClasseOfTheWeek.key] = {
-        groupe: selectedGroupe ? selectedGroupe.groupeId : 'Pas de groupe disponible.',
+        task: snapshotClasseOfTheWeek.child('name').val(),
+        groupe: selectedGroupe ? Number(selectedGroupe.groupeId) : 'Pas de groupe disponible.',
         classe: snapshotClasseOfTheWeek.child('name').val(),
         students: selectedStudents ? _.map(selectedStudents.val(), student => student.name).join(', ') : [],
       };
@@ -249,175 +298,48 @@ exports.generate = functions.https.onCall(async (week, context) => {
     }),
   );
 
+  // Assign Tasks
+  await Promise.all(
+    _.map(snapshotTasksOfTheWeek, async snapshotTaskOfTheWeek => {
+      console.log('Task id :' + snapshotTaskOfTheWeek.key);
+      const selectedGroupe = selectGroupeByForTask(groupesFiltered, snapshotTaskOfTheWeek.key);
+      let selectedStudents;
+
+      if (selectedGroupe) {
+        _.remove(groupesFiltered, groupe => {
+          return Number(groupe.groupeId) === Number(selectedGroupe.groupeId);
+        });
+
+        selectedStudents = await admin
+          .database()
+          .ref('/2019-2020/students')
+          .orderByChild('groupe')
+          .equalTo(Number(selectedGroupe.groupeId))
+          .once('value');
+      }
+
+      tasks[snapshotTaskOfTheWeek.key] = {
+        task: snapshotTaskOfTheWeek.child('name').val(),
+        groupe: selectedGroupe ? Number(selectedGroupe.groupeId) : 'Pas de groupe disponible.',
+        classe: snapshotClasses
+          .child(selectedGroupe.classeId)
+          .child('name')
+          .val(),
+        students: selectedStudents ? _.map(selectedStudents.val(), student => student.name).join(', ') : [],
+      };
+
+      return Promise.resolve();
+    }),
+  );
+
+  console.log('All groupes at the end of the week', JSON.stringify(groupesFiltered));
+
+  await database
+    .ref('/2019-2020/weeks/')
+    .child(week.from)
+    .child('tasks')
+    .set(tasks);
   console.log('Tasks: ' + JSON.stringify(tasks));
 
   return tasks;
-});
-
-exports.addWeek = functions.https.onCall(async (data, context) => {
-  const datesSnapshot = await datesRef
-    .orderByChild('from')
-    .equalTo(data.from)
-    .once('value');
-  const dates = datesSnapshot.val() ? Object.values(datesSnapshot.val()) : [];
-  const date = dates[0];
-
-  const classesSnapshot = await classesRef
-    .orderByChild('schoolYear')
-    .equalTo(data.schoolYear)
-    .once('value');
-  const classes = classesSnapshot.val() ? Object.values(classesSnapshot.val()) : [];
-
-  const weeksSnapshot = await weeksRef
-    .orderByChild('from')
-    .equalTo(data.from)
-    .once('value');
-  const weeks = [];
-
-  if (weeksSnapshot.exists()) {
-    weeksSnapshot.forEach(week => {
-      weeks.push({ key: week.key, values: week.val() });
-    });
-  }
-
-  const studentsSnapshot = await studentsRef
-    .orderByChild('schoolYear')
-    .equalTo(data.schoolYear)
-    .once('value');
-  const students = studentsSnapshot.val() ? Object.values(studentsSnapshot.val()) : [];
-
-  const groupesSnapshot = await groupesRef
-    .orderByChild('schoolYear')
-    .equalTo(data.schoolYear)
-    .once('value');
-  const groupes = [];
-
-  if (groupesSnapshot.exists()) {
-    groupesSnapshot.forEach(groupe => {
-      groupes.push({ key: groupe.key, values: groupe.val() });
-    });
-  }
-
-  const tasksSnapshot = await tasksRef.once('value');
-  const tasks = tasksSnapshot.val() ? Object.values(tasksSnapshot.val()) : [];
-
-  let groupesOfTheWeek = [];
-
-  classesSnapshot.forEach(snapshotClasse => {
-    if ((date.classes || []).indexOf(snapshotClasse.key) >= 0) {
-      const groupesExist = groupes.filter(groupe => groupe.values.classeId === snapshotClasse.key);
-
-      if (groupesExist) {
-        groupesOfTheWeek.push(...groupesExist);
-      }
-    }
-  });
-
-  const tasksOfTheWeek = {};
-
-  console.log(`Groupe of the week ${groupesOfTheWeek}`);
-
-  classesSnapshot.forEach(snapshotClasse => {
-    const classe = snapshotClasse.val();
-
-    if ((date.classes || []).indexOf(snapshotClasse.key) >= 0) {
-      let groupeSelected;
-      let minGroupeSelected = 1000;
-
-      groupesOfTheWeek
-        .filter(groupe => groupe.values.classeId === snapshotClasse.key)
-        .forEach(groupe => {
-          if (minGroupeSelected > (groupe.values.tasks ? groupe.values.tasks[snapshotClasse.key] : 0)) {
-            groupeSelected = groupe.values;
-            minGroupeSelected = groupe.values.tasks ? groupe.values.tasks[snapshotClasse.key] : 0;
-          }
-        });
-
-      if (groupeSelected) {
-        tasksOfTheWeek[snapshotClasse.key] = {
-          classe: classe.name,
-          task: classe.name,
-          groupeName: groupeSelected.number,
-        };
-
-        groupesOfTheWeek = groupesOfTheWeek.filter(groupe => groupe.values.number !== groupeSelected.number);
-      } else {
-        tasksOfTheWeek[snapshotClasse.key] = undefined;
-      }
-    }
-  });
-
-  tasksSnapshot.forEach(snapshotTask => {
-    const task = snapshotTask.val();
-    let groupeSelected;
-    let minGroupeSelected = 1000;
-
-    groupesOfTheWeek.forEach(groupe => {
-      if (minGroupeSelected > (groupe.values.tasks ? groupe.values.tasks[snapshotTask.key] : 0)) {
-        groupeSelected = groupe.values;
-        minGroupeSelected = groupe.values.tasks ? groupe.values.tasks[snapshotTask.key] : 0;
-      }
-    });
-
-    if (groupeSelected) {
-      let classe;
-
-      classesSnapshot.forEach(snapshotClasse => {
-        if (snapshotClasse.key === groupeSelected.classeId) {
-          classe = snapshotClasse.val();
-        }
-      });
-
-      tasksOfTheWeek[snapshotTask.key] = {
-        task: task.name,
-        classe: classe.name,
-        groupeName: groupeSelected.number,
-      };
-
-      groupesOfTheWeek = groupesOfTheWeek.filter(groupe => groupe.values.number !== groupeSelected.number);
-    } else {
-      tasksOfTheWeek[snapshotTask.key] = undefined;
-    }
-  });
-
-  console.log(tasksOfTheWeek);
-
-  const week = Object.keys(tasksOfTheWeek).reduce(
-    (acc, value) => {
-      const task = tasksOfTheWeek[value];
-
-      if (task) {
-        acc.tasks[value] = {
-          id: value,
-          ...task,
-          students: students.filter(student => student.groupe === task.groupeName),
-        };
-      }
-
-      return acc;
-    },
-    {
-      tasks: {},
-      from: data.from,
-      schoolYear: data.schoolYear,
-    },
-  );
-
-  const weekExist = weeks.find(week => week.values.from === data.from);
-
-  if (weekExist) {
-    admin
-      .database()
-      .ref(`/weeks/${weekExist.key}`)
-      .update(week);
-  } else {
-    const { key } = weeksRef.push();
-
-    admin
-      .database()
-      .ref(`/weeks/${key}`)
-      .set(week);
-  }
-
-  return week;
 });
