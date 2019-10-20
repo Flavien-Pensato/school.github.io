@@ -1,122 +1,92 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import _ from 'lodash';
 import { withRouter } from 'next/router';
 import { Container, Row, Col, Nav } from 'react-bootstrap';
 
+import { Form, Input, Fieldset } from '../components/form';
 import { List } from '../components/list';
 import { Student } from '../components/student';
 import { FormStudents } from '../components/formStudents';
 
-import firebase from '../config/firebase';
+import { useStudents } from '../modules/students/studentes.use';
 
-// import { ConnectedStudentForm } from '../../modules/students/components/studentForm.connector';
+const Students = ({
+  router: {
+    query: { classeId },
+  },
+}) => {
+  const [students, setStudents] = useState();
+  const { addStudent, studentsReference, editStudent, moveStudent, removeStudent, importStudents } = useStudents(
+    classeId,
+  );
 
-const studentsRef = '/students/';
-const groupesRef = '/groupes/';
-
-class Students extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { students: [], groupes: [] };
-  }
-
-  componentDidMount() {
-    const {
-      router: {
-        query: { classeId },
-      },
-    } = this.props;
-
-    this.reference = firebase
-      .database()
-      .ref(studentsRef)
-      .orderByChild('classeId')
-      .equalTo(classeId);
-
-    this.referenceGroupe = firebase
-      .database()
-      .ref(groupesRef)
-      .orderByChild('classeId')
-      .equalTo(classeId);
-
-    this.observer = this.reference.on('value', snapshot => {
-      const students = [];
-
-      if (snapshot.exists()) {
-        snapshot.forEach(student => {
-          students.push({ key: student.key, values: student.val() });
-        });
-      }
-
-      this.setState({
-        students,
-      });
+  useEffect(() => {
+    const observer = studentsReference.on('value', snapshot => {
+      setStudents(snapshot.val());
     });
 
-    this.observerGroupes = this.referenceGroupe.on('value', snapshot => {
-      const groupes = [];
+    return () => {
+      studentsReference.off('value', observer);
+    };
+  }, [studentsReference]);
 
-      if (snapshot.exists()) {
-        snapshot.forEach(student => {
-          groupes.push({ key: student.key, values: student.val() });
-        });
-      }
+  const handleNewStudent = useCallback(
+    event => {
+      event.preventDefault();
+      addStudent({ name: event.target.name.value });
+    },
+    [classeId],
+  );
 
-      this.setState({
-        groupes,
-      });
-    });
-  }
+  return (
+    <Container>
+      <Row>
+        <Col>
+          <Nav>
+            <Nav.Item>
+              <Link href="/classes">
+                <Nav.Link href="/classes">Retour</Nav.Link>
+              </Link>
+            </Nav.Item>
+          </Nav>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <List>
+            {_.map(students, (student, studentId) => (
+              <Student
+                editStudent={editStudent(studentId)}
+                removeStudent={removeStudent(studentId)}
+                moveStudent={moveStudent}
+                key={studentId}
+                id={studentId}
+                {...student}
+              />
+            ))}
+          </List>
+        </Col>
+      </Row>
 
-  render() {
-    const { students, groupes } = this.state;
-    const {
-      router: {
-        query: { classeId },
-      },
-    } = this.props;
+      <Row>
+        <Col>
+          <FormStudents classeId={classeId} importStudents={importStudents} />
+        </Col>
+      </Row>
 
-    console.log(groupes);
-
-    return (
-      <Container>
-        <Row>
-          <Col>
-            <Nav>
-              <Nav.Item>
-                <Link href="/classes">
-                  <Nav.Link href="/classes">Retour</Nav.Link>
-                </Link>
-              </Nav.Item>
-            </Nav>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <List>
-              {students.map(student => (
-                <Student
-                  key={student.key}
-                  wrongGroupe={!groupes.find(groupe => groupe.values.number === student.values.groupe)}
-                  id={student.key}
-                  {...student.values}
-                />
-              ))}
-            </List>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col>
-            <FormStudents classeId={classeId} />
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
-}
+      <Col>
+        <Form onSubmit={handleNewStudent}>
+          <Fieldset>
+            <Input placeholder="Ajouter un nouvel éléve" type="text" name="name" />
+            <Input type="submit" value="Ajouter" />
+          </Fieldset>
+        </Form>
+      </Col>
+    </Container>
+  );
+};
 
 Students.propTypes = {
   router: PropTypes.shape({

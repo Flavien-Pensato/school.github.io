@@ -2,33 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-import firebase from '../config/firebase';
-
 const Item = styled.div`
   height: 50px;
 `;
-
-const datesRef = '/dates/';
 
 class PresenceCase extends Component {
   onClickTogglePresence = event => {
     event.preventDefault();
 
-    const { id, date, classeId } = this.props;
-    let classes = date.classes || [];
+    const { toggleClasse, classeId } = this.props;
 
-    if (!classes.includes(classeId)) {
-      classes = [...classes, classeId];
-    } else {
-      classes = classes.filter(item => item !== classeId);
-    }
-
-    firebase
-      .database()
-      .ref(datesRef + id)
-      .update({
-        classes,
-      });
+    toggleClasse(classeId);
   };
 
   render() {
@@ -50,8 +34,7 @@ class PresenceCase extends Component {
 PresenceCase.propTypes = {
   classeId: PropTypes.string.isRequired,
   presence: PropTypes.bool.isRequired,
-  id: PropTypes.string.isRequired,
-  date: PropTypes.shape().isRequired,
+  toggleClasse: PropTypes.func.isRequired,
 };
 
 export default PresenceCase;
