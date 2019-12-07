@@ -228,6 +228,12 @@ exports.generate = functions.https.onCall(async (week, context) => {
 
   const database = admin.database();
 
+  await database
+    .ref('/2019-2020/weeks/')
+    .child(week.from)
+    .child('tasks')
+    .remove();
+
   const snapshotTasks = await database.ref('/2019-2020/tasks').once('value');
   const snapshotClasses = await database.ref('/2019-2020/classes').once('value');
 
@@ -256,7 +262,7 @@ exports.generate = functions.https.onCall(async (week, context) => {
     }),
   );
 
-  const groupesFiltered = _.sortBy(groupes, ['total']);
+  const groupesFiltered = _.reverse(_.sortBy(groupes, ['total']));
 
   _.remove(groupesFiltered, groupe => {
     return Number(groupe.groupeId) === 0;
