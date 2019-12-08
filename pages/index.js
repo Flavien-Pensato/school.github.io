@@ -13,6 +13,7 @@ const handlePrint = event => {
   const printContents = document.getElementById('planning').innerHTML;
   const originalContents = document.body.innerHTML;
   document.body.innerHTML = printContents;
+  document.body.style = 'tr { td { font-size: 22px; }}';
   window.print();
   document.body.innerHTML = originalContents;
 };

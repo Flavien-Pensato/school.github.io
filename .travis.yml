@@ -1,19 +1,17 @@
 language: node_js
 node_js:
-  - '10'
+  - '12'
 install: yarn
 cache:
   yarn: true
   directories:
     - "./node_modules"
-    - "./packages/school/node_modules"
-    - "./packages/ui/node_modules"
 script: 
   - yarn
   - yarn test
   - yarn build
   - mkdir public
-  - cp -rf packages/school/out/* ./public
+  - cp -rf ./out/* ./public
   - touch ./public/.nojekyll 
 after_success: echo mfr.flavienpensato.ovh > ./public/CNAME
 deploy:
