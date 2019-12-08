@@ -1,10 +1,34 @@
 {
-  "name": "react-ui-kit",
-  "private": true,
-  "workspaces": [
-    "packages/ui",
-    "packages/school"
-  ],
+  "name": "school",
+  "description": "School manager",
+  "repository": "git@github.com:Flavien-Pensato/school.github.io.git",
+  "author": "Flavien-Pensato <flavien.pensato@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@emotion/core": "^10.0.16",
+    "@emotion/styled": "^10.0.15",
+    "@emotion/styled-base": "^10.0.15",
+    "classname": "^0.0.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "firebase": "^6.4.0",
+    "immutable": "^4.0.0-rc.12",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "next": "^9.0.4",
+    "prop-types": "^15.7.2",
+    "react": "^16.9.0",
+    "react-bootstrap": "^1.0.0-beta.12",
+    "react-dom": "^16.9.0",
+    "react-redux": "^7.1.0",
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
+    "redux-observable": "^1.1.0",
+    "redux-thunk": "^2.3.0",
+    "rxjs": "^6.5.2",
+    "slug": "^1.1.0",
+    "xlsx": "^0.15.1"
+  },
   "devDependencies": {
     "@babel/cli": "^7.5.0",
     "@babel/core": "^7.5.0",
@@ -16,6 +40,7 @@
     "babel-jest": "^24.8.0",
     "babel-plugin-remove-debug": "^0.0.4",
     "documentation": "^11.0.1",
+    "enzyme-to-json": "^3.4.3",
     "eslint": "^6.0.1",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-plugin-cypress": "^2.2.1",
@@ -30,8 +55,21 @@
     "lerna": "^3.13.1",
     "lint-staged": "^9.1.0",
     "prettier": "1.18.2",
-    "react-dom": "^16.8.6",
     "standard-version": "^6.0.1"
+  },
+  "scripts": {
+    "lint": "eslint --color --cache '*.js' '{pages,config,components,modules}/**/*.js'",
+    "test": "jest",
+    "dev": "next",
+    "build": "next build && next export",
+    "start": "next dev",
+    "documentation": "lerna run documentation --parallel",
+    "circle": "circleci config validate -c .circleci/config.yml"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   },
   "config": {
     "commitizen": {
@@ -52,18 +90,17 @@
       "git add"
     ]
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "scripts": {
-    "start": "lerna run start --parallel",
-    "test": "lerna run test --parallel",
-    "lint": "lerna run lint --parallel",
-    "build": "lerna run build --parallel",
-    "watch": "lerna run watch --parallel",
-    "documentation": "lerna run documentation --parallel",
-    "circle": "circleci config validate -c .circleci/config.yml"
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/config/jest.js"
+    ],
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react/",
+      "<rootDir>/node_modules/enzyme/",
+      "<rootDir>/node_modules/moment/"
+    ],
+    "roots": [
+      "<rootDir>/"
+    ]
   }
 }
