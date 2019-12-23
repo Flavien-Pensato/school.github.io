@@ -28,8 +28,13 @@ jobs:
         yarn lint
       env:
         CI: true
-
-  deploy:
+    - name: Build
+      run: |
+        yarn build
+      env:
+        CI: true
+      branches:
+        - master
     - name: GitHub Pages Deploy
       uses: maxheld83/ghpages@v0.2.1
       with:
