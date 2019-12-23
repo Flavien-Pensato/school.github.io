@@ -190,8 +190,6 @@ const getGroupesByClasseId = async classeId => {
       .once('value');
 
     if (snapshotGroupes.exists()) {
-      console.log('Groupes by classe ' + classeId);
-      console.log('=> ' + JSON.stringify(snapshotGroupes.val()));
       return _.map(snapshotGroupes.val(), (groupe, groupeId) => ({ ...groupe, groupeId: Number(groupeId) }));
     }
   }
@@ -205,7 +203,7 @@ const selectGroupeByForTask = (groupes, taskId) => {
 
     _.forEach(groupes, groupe => {
       if (groupe.tasks && groupe.tasks[taskId]) {
-        if (groupeSelected ? groupeSelected.tasks[taskId] : 0 > groupe.tasks[taskId]) {
+        if (groupeSelected ? groupeSelected.tasks[taskId] > groupe.tasks[taskId] : true) {
           groupeSelected = groupe;
         }
       } else {
@@ -269,8 +267,6 @@ exports.generate = functions.https.onCall(async (week, context) => {
   });
 
   const tasks = {};
-
-  console.log('All groupes selected for the week', JSON.stringify(groupesFiltered));
 
   // Assign Classe Task
   await Promise.all(
@@ -337,8 +333,6 @@ exports.generate = functions.https.onCall(async (week, context) => {
       return Promise.resolve();
     }),
   );
-
-  console.log('All groupes at the end of the week', JSON.stringify(groupesFiltered));
 
   await database
     .ref('/2019-2020/weeks/')
