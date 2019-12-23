@@ -33,8 +33,8 @@ jobs:
         yarn build
       env:
         CI: true
-      branches:
-        - master
+      with:
+        BRANCH: master
     - name: GitHub Pages Deploy
       uses: maxheld83/ghpages@v0.2.1
       with:
