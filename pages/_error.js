@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import A from '../elements/A';
+import { A, Div } from '../elements/';
 
 class Error extends React.Component {
   static getInitialProps({ res, err }) {
@@ -22,11 +22,19 @@ class Error extends React.Component {
 
   render() {
     return (
-      <p>
-        {this.props.statusCode ? `An error ${this.props.statusCode} occurred on server` : 'An error occurred on client'}
-
-        <A href="/home">Accueil</A>
-      </p>
+      <Div display="flex" alignItems="center" height="100vh" padding="20px">
+        <div>
+          {this.props.statusCode
+            ? `Une Erreur ${this.props.statusCode} est apparue sur le server.`
+            : 'Une Error est apparue.'}
+          <p>
+            <br />
+            <br />
+            Retour sur&nbsp;
+            <A href="/home">l'Accueil</A>
+          </p>
+        </div>
+      </Div>
     );
   }
 }
