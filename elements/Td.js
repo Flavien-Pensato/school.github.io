@@ -12,7 +12,9 @@ const Td = styled('td', { shouldForwardProp })(
   color,
   borders,
   borderColor,
-  {},
+  {
+    padding: '5px',
+  },
 );
 
 Td.defaultProps = {};

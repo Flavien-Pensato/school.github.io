@@ -12,9 +12,7 @@ const Login = () => {
     firebase
       .auth()
       .signInWithEmailAndPassword(event.target.email.value, event.target.password.value)
-      .then(() => {
-        Router.replace('/');
-      });
+      .then(() => Router.push('/home'));
   }, []);
 
   return (

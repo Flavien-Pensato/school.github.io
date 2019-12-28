@@ -33,6 +33,8 @@ const theme = {
     },
   },
   colors: {
+    primary: '#F58C18',
+    secondary: '#31A41C',
     'dark-red': '#e7040f',
     red: '#ff4136',
     'light-red': '#ff725c',

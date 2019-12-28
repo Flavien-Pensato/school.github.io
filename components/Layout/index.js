@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'next/router';
 
-import Header from '../header';
+import Header from '../Header';
 import { DisplayProvider } from '../../modules/display/display.context';
 
 const Layout = ({ children, router: { pathname } }) =>
-  pathname.includes('error') ? (
+  ['error', 'logout'].find(str => pathname.includes(str)) ? (
     children
   ) : (
     <DisplayProvider>

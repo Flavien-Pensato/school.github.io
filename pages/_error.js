@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Router from 'next/router';
 
 import { A, Div } from '../elements/';
 
@@ -21,6 +22,14 @@ class Error extends React.Component {
   }
 
   render() {
+    if (this.props.statusCode === 404) {
+      Router.push({
+        pathname: '/home',
+      });
+
+      return null;
+    }
+
     return (
       <Div display="flex" alignItems="center" height="100vh" padding="20px">
         <div>

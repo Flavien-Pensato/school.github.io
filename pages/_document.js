@@ -12,7 +12,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
+          <script src="https://kit.fontawesome.com/68f3b8a9e2.js" crossOrigin="anonymous" />
         </Head>
         <body>
           <Main />

@@ -5,6 +5,8 @@ import {
   width,
   maxWidth,
   fontSize,
+  flexbox,
+  layout,
   color,
   borders,
   borderColor,
@@ -27,6 +29,8 @@ const Nav = styled('nav', { shouldForwardProp })(
   space,
   width,
   maxWidth,
+  flexbox,
+  layout,
   fontSize,
   color,
   borders,
@@ -46,6 +50,7 @@ const Nav = styled('nav', { shouldForwardProp })(
   gridArea,
   {
     boxSizing: 'border-box',
+    textDecoration: 'underline 3px #31A41C',
   },
 );
 

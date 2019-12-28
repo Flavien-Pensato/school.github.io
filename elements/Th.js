@@ -11,7 +11,10 @@ const Th = styled('th', { shouldForwardProp })(
   color,
   borders,
   borderColor,
-  {},
+  {
+    padding: '10px 5px',
+    textAlign: 'left',
+  },
 );
 
 Th.defaultProps = {
