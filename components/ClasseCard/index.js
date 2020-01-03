@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
@@ -18,7 +18,7 @@ const Card = styled(Div)`
 
 const ClasseCard = ({ classeId, sort, name }) => {
   const [active, setActive] = useState(false);
-  const toggleActive = () => setActive(!active);
+  const toggleActive = useCallback(() => setActive(!active));
 
   return (
     <Card onClick={toggleActive} active={active}>

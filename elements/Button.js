@@ -53,7 +53,7 @@ const Button = styled('button', { shouldForwardProp })(
 );
 
 Button.defaultProps = {
-  fontSize: [16, 18],
+  fontSize: [14, 16],
   fontWeight: 'bold',
   lineHeight: 1.25,
   padding: '5px',

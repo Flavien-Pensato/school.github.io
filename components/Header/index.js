@@ -63,6 +63,7 @@ const Menu = () => {
       <Nav
         display="flex"
         textAlign="center"
+        fontSize={['16px', '18px']}
         flexDirection={['column', 'row']}
         style={{ transition: 'all 1s' }}
         width={['100%', 'auto']}

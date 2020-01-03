@@ -8,12 +8,8 @@ import StudentCard from '../StudentCard';
 
 const StudentList = ({ classeId }) => {
   const { schoolYear } = useContext(DisplayContext);
-  const studentsReference = firebase
-    .database()
-    .ref(`/${schoolYear}/students`)
-    .orderByChild('classeId')
-    .equalTo(classeId);
-  const [snapshots, loading, error] = useList(studentsReference);
+  const studentsReference = firebase.database().ref(`/${schoolYear}/students`);
+  const [snapshots, loading, error] = useList(studentsReference.orderByChild('classeId').equalTo(classeId));
 
   if (loading) {
     return <span>Loading</span>;
@@ -22,7 +18,14 @@ const StudentList = ({ classeId }) => {
     return <span>{JSON.stringify(error)}</span>;
   }
 
-  return snapshots.map(snapshot => <StudentCard key={snapshot.key} studentId={snapshot.key} {...snapshot.val()} />);
+  return snapshots.map(snapshot => (
+    <StudentCard
+      key={snapshot.key}
+      studentsReference={studentsReference}
+      studentId={snapshot.key}
+      {...snapshot.val()}
+    />
+  ));
 };
 
 StudentList.propTypes = {
