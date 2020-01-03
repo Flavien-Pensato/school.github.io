@@ -9,6 +9,7 @@ import {
   layout,
   color,
   borders,
+  position,
   borderColor,
   borderRadius,
   gridGap,
@@ -34,6 +35,7 @@ const Nav = styled('nav', { shouldForwardProp })(
   fontSize,
   color,
   borders,
+  position,
   borderColor,
   borderRadius,
   gridGap,
@@ -50,7 +52,6 @@ const Nav = styled('nav', { shouldForwardProp })(
   gridArea,
   {
     boxSizing: 'border-box',
-    textDecoration: 'underline 3px #31A41C',
   },
 );
 

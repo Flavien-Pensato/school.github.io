@@ -10,6 +10,14 @@ const Table = styled('table', { shouldForwardProp })(space, width, maxWidth, fon
   borderCollapse: 'collapse',
   cellSpacing: 0,
   cellPadding: 0,
+  tbody: {
+    'tr:nth-child(odd)': {
+      borderTop: '2px solid #31A41C',
+    },
+    'tr:nth-child(even)': {
+      borderTop: '2px solid #47DD2D',
+    },
+  },
 });
 
 Table.defaultProps = {

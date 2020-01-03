@@ -1,16 +1,17 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, Fragment } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 
 import { DisplayContext } from '../../modules/display/display.context';
-import { A, H1, Div, Header, Span, Button, Nav, I } from '../../elements';
+import { A, H1, Br, Header, Span, Strong, Button, Nav, I } from '../../elements';
 
 const LinkNav = styled(A)`
   padding: 20px 15px;
   font-weight: bold;
 
   color: ${({ isExact }) => (isExact ? '#F58C18' : 'black')};
+  text-decoration: ${({ isExact }) => (isExact ? '2px underline #F58C18' : 'none')};
 `;
 
 const Menu = () => {
@@ -26,69 +27,76 @@ const Menu = () => {
   }, [position]);
 
   return (
-    <Header width={['100%', 'auto']}>
-      <H1 fontSize={['27px', '32px']} textAlign={['left', 'center']}>
-        MFR Chatte
-        <br />
+    <Fragment>
+      <Header width={['100%', 'auto']} textAlign={['left', 'center']}>
+        <H1 fontSize={['27px', '32px']} marginTop={0}>
+          <Span display="flex" justifyContent={['space-between', 'center']}>
+            <Span>MFR Chatte</Span>
+            <Button
+              zIndex={10}
+              display={['initial', 'none']}
+              onClick={toggleMenu}
+              border="none"
+              background="none"
+              bg="none"
+            >
+              <I className="fas fa-bars" fontSize="40px" />
+            </Button>
+          </Span>
+        </H1>
         <DisplayContext.Consumer>
           {({ date }) => (
-            <Span fontSize="15px" fontWeight="normal">
-              {date.format('DD/MM/YYYY')}&nbsp;au&nbsp;
-              {date
-                .clone()
-                .add('days', 4)
-                .format('DD/MM/YYYY')}
-            </Span>
+            <Strong fontSize={['18px', '20px']}>
+              Semaine du&nbsp;
+              <Br display={['initial', 'none']} />
+              <Span color="primary">{date.format('DD/MM/YYYY')}</Span>&nbsp;au&nbsp;
+              <Span color="primary">
+                {date
+                  .clone()
+                  .add('days', 4)
+                  .format('DD/MM/YYYY')}
+              </Span>
+            </Strong>
           )}
         </DisplayContext.Consumer>
-      </H1>
-      <Button
-        zIndex={10}
-        display={['initial', 'none']}
-        position="absolute"
-        top="20px"
-        right="20px"
-        onClick={toggleMenu}
-        border="none"
-        background="none"
-      >
-        <I className="fas fa-bars" fontSize="40px" />
-      </Button>
-
-      <Div
+      </Header>
+      <Nav
+        display="flex"
+        textAlign="center"
+        flexDirection={['column', 'row']}
         style={{ transition: 'all 1s' }}
         width={['100%', 'auto']}
         position={['absolute', 'initial']}
+        justifyContent={['left', 'center']}
+        marginTop={['0px', '20px']}
         {...position}
-        backgroundColor={['near-white', 'inherit']}
+        bg={['near-white', 'inherit']}
       >
-        <Nav display="flex" flexDirection={['column', 'row']}>
-          <Link href="/home">
-            <LinkNav href="/home" isExact={pathname === '/home'}>
-              Accueil
-            </LinkNav>
-          </Link>
-          <Link href="/classes">
-            <LinkNav href="/classes" isExact={pathname === '/classes'}>
-              Classes
-            </LinkNav>
-          </Link>
-          <Link href="/calendrier">
-            <LinkNav href="/calendrier" isExact={pathname === '/calendrier'}>
-              Calendrier
-            </LinkNav>
-          </Link>
-          <Link href="/taches">
-            <LinkNav href="/taches" isExact={pathname === '/taches'}>
-              Tâches
-            </LinkNav>
-          </Link>
-          <Link href="/logout">
-            <LinkNav>Se déconnecter</LinkNav>
-          </Link>
-        </Nav>
-      </Div>
-    </Header>
+        <Link href="/home">
+          <LinkNav href="/home" isExact={pathname === '/home'}>
+            Accueil
+          </LinkNav>
+        </Link>
+        <Link href="/classes">
+          <LinkNav href="/classes" isExact={pathname === '/classes'}>
+            Classes
+          </LinkNav>
+        </Link>
+        <Link href="/calendrier">
+          <LinkNav href="/calendrier" isExact={pathname === '/calendrier'}>
+            Calendrier
+          </LinkNav>
+        </Link>
+        <Link href="/taches">
+          <LinkNav href="/taches" isExact={pathname === '/taches'}>
+            Tâches
+          </LinkNav>
+        </Link>
+        <Link href="/logout">
+          <LinkNav>Se déconnecter</LinkNav>
+        </Link>
+      </Nav>
+    </Fragment>
   );
 };
 

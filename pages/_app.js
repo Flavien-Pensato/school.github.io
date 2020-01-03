@@ -17,13 +17,7 @@ class App extends AppExtend {
     return (
       <AuthProvider>
         <ThemeProvider theme={theme}>
-          <Div
-            style={{ fontFamily: theme.typefaces.sansSerif }}
-            display="flex"
-            justifyContent="center"
-            flexDirection="column"
-            alignItems="center"
-          >
+          <Div style={{ fontFamily: theme.typefaces.sansSerif }} margin="auto" padding="15px" maxWidth="55rem">
             <Layout>
               <Component {...pageProps} />
             </Layout>

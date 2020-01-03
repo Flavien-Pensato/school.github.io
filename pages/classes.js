@@ -1,65 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Col } from 'react-bootstrap';
+import React, { useContext } from 'react';
 import _ from 'lodash';
+import { useListVals } from 'react-firebase-hooks/database';
 
-import { Form, Input, Fieldset } from '../components/form';
-import { Classe } from '../components/classe';
-import { List } from '../components/list';
-import { useClasses } from '../modules/classes/classes.use';
+import { DisplayContext } from '../modules/display/display.context';
+import firebase from '../config/firebase';
+import ClasseCard from '../components/ClasseCard';
 
 const ClassesWrapper = () => {
-  const [classes, setClasses] = useState();
-  const { classesReference, addClasse, editClasse, removeClasse } = useClasses();
+  const { schoolYear } = useContext(DisplayContext);
+  const [classes, loading, error] = useListVals(firebase.database().ref(`/${schoolYear}/classes`));
 
-  useEffect(() => {
-    const observer = classesReference.on('value', snapshot => {
-      const classesTmp = [];
+  return _.map(_.sortBy(classes, ['sort']), (classe, index) => <ClasseCard key={index} {...classe} />);
+  // <Container>
+  //   <Col>
+  //     <List>
+  //     </List>
+  //   </Col>
 
-      if (snapshot.exists()) {
-        snapshot.forEach(classe => {
-          classesTmp.push({ key: classe.key, values: classe.val() });
-        });
-      }
-      setClasses(classesTmp);
-    });
-
-    return () => {
-      classesReference.off('value', observer);
-    };
-  }, [true]);
-
-  const handleSubmit = event => {
-    event.preventDefault();
-
-    addClasse({ name: event.target.name.value });
-  };
-
-  return (
-    <Container>
-      <Col>
-        <List>
-          {_.map(_.sortBy(classes, ['values.sort']), classe => (
-            <Classe
-              key={classe.key}
-              {...classe.values}
-              id={classe.key}
-              removeClasse={removeClasse(classe.key)}
-              editClasse={editClasse(classe.key)}
-            />
-          ))}
-        </List>
-      </Col>
-
-      <Col>
-        <Form onSubmit={handleSubmit}>
-          <Fieldset>
-            <Input placeholder="Nouvelle classe" type="name" name="name" />
-            <Input type="submit" value="Ajouter" />
-          </Fieldset>
-        </Form>
-      </Col>
-    </Container>
-  );
+  //   <Col>
+  //     <Form onSubmit={handleSubmit}>
+  //       <Fieldset>
+  //         <Input placeholder="Nouvelle classe" type="name" name="name" />
+  //         <Input type="submit" value="Ajouter" />
+  //       </Fieldset>
+  //     </Form>
+  //   </Col>
+  // </Container>
 };
 
 export default ClassesWrapper;

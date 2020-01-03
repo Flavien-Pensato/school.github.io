@@ -15,6 +15,7 @@ import {
   color,
   border,
   textStyle,
+  variant,
 } from 'styled-system';
 
 const Button = styled('button', { shouldForwardProp })(
@@ -33,6 +34,7 @@ const Button = styled('button', { shouldForwardProp })(
   border,
   textStyle,
   {
+    cursor: 'pointer',
     boxSizing: 'border-box',
     fontFamily: 'inherit',
     overflow: 'visible',
@@ -40,13 +42,26 @@ const Button = styled('button', { shouldForwardProp })(
     webkitAppearance: 'button',
     whiteSpace: 'nowrap',
   },
+  variant({
+    variants: {
+      primary: {
+        color: 'white',
+        bg: 'primary',
+      },
+    },
+  }),
 );
 
 Button.defaultProps = {
-  fontSize: '100%',
+  fontSize: [16, 18],
+  fontWeight: 'bold',
   lineHeight: 1.25,
-  m: 0,
+  padding: '5px',
   textAlign: 'center',
+  borderRadius: '4px',
+  color: 'primary',
+  bg: 'white',
+  border: '2px solid #F58C18',
 };
 
 export default Button;

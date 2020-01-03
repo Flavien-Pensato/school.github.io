@@ -37,8 +37,8 @@ const P = styled('p', { shouldForwardProp })(
 
 P.defaultProps = {
   // Sets text to maximum ~80 characters wide
-  maxWidth: '42em',
   lineHeight: 1.5,
+  fontSize: [16, 18],
 };
 
 export default P;
