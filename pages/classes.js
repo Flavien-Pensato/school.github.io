@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import _ from 'lodash';
-import { useListVals } from 'react-firebase-hooks/database';
+import { useList } from 'react-firebase-hooks/database';
 
 import { DisplayContext } from '../modules/display/display.context';
 import firebase from '../config/firebase';
@@ -8,24 +8,21 @@ import ClasseCard from '../components/ClasseCard';
 
 const ClassesWrapper = () => {
   const { schoolYear } = useContext(DisplayContext);
-  const [classes, loading, error] = useListVals(firebase.database().ref(`/${schoolYear}/classes`));
+  const [snapshots, loading, error] = useList(
+    firebase
+      .database()
+      .ref(`/${schoolYear}/classes`)
+      .orderByChild('sort'),
+  );
 
-  return _.map(_.sortBy(classes, ['sort']), (classe, index) => <ClasseCard key={index} {...classe} />);
-  // <Container>
-  //   <Col>
-  //     <List>
-  //     </List>
-  //   </Col>
+  if (loading) {
+    return <span>Loading</span>;
+  }
+  if (error) {
+    return <span>{JSON.stringify(error)}</span>;
+  }
 
-  //   <Col>
-  //     <Form onSubmit={handleSubmit}>
-  //       <Fieldset>
-  //         <Input placeholder="Nouvelle classe" type="name" name="name" />
-  //         <Input type="submit" value="Ajouter" />
-  //       </Fieldset>
-  //     </Form>
-  //   </Col>
-  // </Container>
+  return snapshots.map(snap => <ClasseCard key={snap.key} classeId={snap.key} {...snap.val()} />);
 };
 
 export default ClassesWrapper;

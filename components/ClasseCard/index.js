@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { useListVals } from 'react-firebase-hooks/database';
 
-import { DisplayContext } from '../../modules/display/display.context';
-import firebase from '../../config/firebase';
+import StudentList from '../StudentList';
 
 import { Div, Span, Strong } from '../../elements';
 
@@ -18,15 +16,7 @@ const Card = styled(Div)`
   cursor: pointer;
 `;
 
-const List = () => {
-  const { schoolYear } = useContext(DisplayContext);
-  const studentsReference = firebase.database().ref(`/${schoolYear}/students`);
-  const [students, loading, error] = useListVals(studentsReference);
-
-  return students.map(student => student.name);
-};
-
-const ClasseCard = ({ sort, name }) => {
+const ClasseCard = ({ classeId, sort, name }) => {
   const [active, setActive] = useState(false);
   const toggleActive = () => setActive(!active);
 
@@ -36,7 +26,7 @@ const ClasseCard = ({ sort, name }) => {
         <Span>{sort}.</Span>
         <Strong variant={active && 'primary'}>{name}</Strong>
       </Div>
-      <Div>{active && <List />}</Div>
+      <Div>{active && <StudentList classeId={classeId} />}</Div>
     </Card>
   );
 };
@@ -44,6 +34,7 @@ const ClasseCard = ({ sort, name }) => {
 ClasseCard.propTypes = {
   sort: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
+  classeId: PropTypes.string.isRequired,
 };
 
 export default ClasseCard;

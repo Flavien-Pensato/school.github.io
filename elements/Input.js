@@ -26,17 +26,17 @@ const Input = styled('input', { shouldForwardProp })(
   borderRadius,
   {
     boxSizing: 'border-box',
+    '&:focus': {
+      color: '#F58C18',
+    },
   },
 );
 
 Input.defaultProps = {
   padding: '0.5rem',
-  fontSize: [2, 3],
+  fontSize: [16, 18],
   backgroundColor: 'transparent',
-  width: '100%',
-  borderStyle: 'solid',
-  borderWidth: '1px',
-  lineHeight: 1,
+  border: 'none',
 };
 
 export default Input;
