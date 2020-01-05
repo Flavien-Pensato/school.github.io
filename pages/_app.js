@@ -1,33 +1,26 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import AppExtend from 'next/app';
-import { Provider } from 'react-redux';
-import { Global, css } from '@emotion/core';
+import { ThemeProvider } from 'emotion-theming';
 
-import Layout from '../components/layout';
-
-import { store } from '../config/store';
+import theme from '../theme';
+import Layout from '../components/Layout';
+import Div from '../elements/Div';
+import { withAuth } from '../modules/auth/auth.hoc';
 
 class App extends AppExtend {
   render() {
     const { Component, pageProps } = this.props;
 
+    const AuthComponent = withAuth(Component);
+
     return (
-      <Provider store={store}>
-        <Fragment>
-          <Global
-            styles={css`
-              html {
-                color: black;
-                font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu,
-                  roboto, noto, segoe ui, arial, sans-serif;
-              }
-            `}
-          />
+      <ThemeProvider theme={theme}>
+        <Div style={{ fontFamily: theme.typefaces.sansSerif }} display="flex" justifyContent="center">
           <Layout>
-            <Component {...pageProps} />
+            <AuthComponent {...pageProps} />
           </Layout>
-        </Fragment>
-      </Provider>
+        </Div>
+      </ThemeProvider>
     );
   }
 }

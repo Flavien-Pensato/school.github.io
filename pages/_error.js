@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import A from '../elements/A';
+
 class Error extends React.Component {
   static getInitialProps({ res, err }) {
     if (res) {
@@ -22,6 +24,8 @@ class Error extends React.Component {
     return (
       <p>
         {this.props.statusCode ? `An error ${this.props.statusCode} occurred on server` : 'An error occurred on client'}
+
+        <A href="/home">Accueil</A>
       </p>
     );
   }

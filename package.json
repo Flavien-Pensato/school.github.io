@@ -4,11 +4,16 @@
   "repository": "git@github.com:Flavien-Pensato/school.github.io.git",
   "author": "Flavien-Pensato <flavien.pensato@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": "12"
+  },
   "dependencies": {
-    "@emotion/core": "^10.0.16",
-    "@emotion/styled": "^10.0.15",
+    "@emotion/core": "^10.0.27",
+    "@emotion/styled": "^10.0.27",
     "@emotion/styled-base": "^10.0.15",
+    "@styled-system/should-forward-prop": "^5.1.4",
     "classname": "^0.0.0",
+    "emotion-theming": "^10.0.27",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "firebase": "^6.4.0",
@@ -27,6 +32,7 @@
     "redux-thunk": "^2.3.0",
     "rxjs": "^6.5.2",
     "slug": "^1.1.0",
+    "styled-system": "^5.1.4",
     "xlsx": "^0.15.1"
   },
   "devDependencies": {
@@ -49,7 +55,7 @@
     "eslint-plugin-jest": "^22.15.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.14.3",
     "husky": "^3.0.0",
     "jest": "^24.8.0",
@@ -59,7 +65,7 @@
     "standard-version": "^6.0.1"
   },
   "scripts": {
-    "lint": "eslint --color --cache '*.js' '{pages,config,components,modules}/**/*.js'",
+    "lint": "eslint --color --cache '*.js' '{pages,config,components,modules,elements,theme}/**/*.js'",
     "test": "jest",
     "dev": "next",
     "build": "next build && next export",
