@@ -2,7 +2,6 @@ import _ from 'lodash';
 import firebase from 'firebase/app';
 
 import { SIGNIN, SIGNOUT, AUTO_LOGIN_DONE } from './account.constants';
-import { showToaster } from '../display/display.actions';
 
 export const login = user => ({
   type: SIGNIN,
@@ -20,7 +19,6 @@ export const autoLogin = () => dispatch => {
       dispatch(login(user));
     }
 
-    dispatch(showToaster('La connexion automatique à fini'));
     dispatch({
       type: AUTO_LOGIN_DONE,
     });
@@ -36,7 +34,6 @@ export function signIn(email, password) {
       .signInWithEmailAndPassword(email, password)
       .then(user => {
         dispatch(login(user));
-        dispatch(showToaster('Connexion reussi'));
       });
   };
 }
@@ -49,7 +46,6 @@ export function signOut() {
       .then(error => {
         if (!error) {
           dispatch(logout());
-          dispatch(showToaster('Déconnection réussi'));
         }
       });
   };
