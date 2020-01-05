@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+  - '12'
+install: yarn
+cache:
+  yarn: true
+  directories:
+    - "./node_modules"
+script: 
+  - yarn
+  - yarn test
+  - yarn build
+  - mkdir public
+  - cp -rf ./out/* ./public
+  - touch ./public/.nojekyll 
+after_success: echo mfr.flavienpensato.ovh > ./public/CNAME
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: public
+  user: Flavien-Pensato
+  on:
+    branch: master
