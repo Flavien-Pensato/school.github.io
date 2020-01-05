@@ -9,8 +9,6 @@ import { useClasses } from '../modules/classes/classes.use';
 import PresenceCase from '../components/presenceCase';
 import { Wrapper, Grid, LittleCol, ColFixedLeft, Container, ItemHeader } from '../components/table';
 
-moment.locale('fr');
-
 const defaultDates = () => {
   const dates = [];
 

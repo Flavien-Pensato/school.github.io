@@ -12,13 +12,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="stylesheet" href="https://unpkg.com/tachyons@4/css/tachyons.min.css" />
-          <link
-            rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-            crossOrigin="anonymous"
-          />
+          <script src="https://kit.fontawesome.com/68f3b8a9e2.js" crossOrigin="anonymous" />
         </Head>
         <body>
           <Main />

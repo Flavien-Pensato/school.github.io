@@ -1,64 +1,63 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Col } from 'react-bootstrap';
-import _ from 'lodash';
+import React, { useContext, useState, Fragment, useCallback } from 'react';
+import { useList } from 'react-firebase-hooks/database';
 
-import { Form, Input, Fieldset } from '../components/form';
-import { Classe } from '../components/classe';
-import { List } from '../components/list';
-import { useClasses } from '../modules/classes/classes.use';
+import { DisplayContext } from '../modules/display/display.context';
+import firebase from '../config/firebase';
+import Add from '../components/Forms/Add';
+import Portal from '../components/Portal';
+import ClasseCard from '../components/ClasseCard';
+import { Div, Span, Button } from '../elements';
 
 const ClassesWrapper = () => {
-  const [classes, setClasses] = useState();
-  const { classesReference, addClasse, editClasse, removeClasse } = useClasses();
+  const { schoolYear } = useContext(DisplayContext);
+  const [display, setDisplay] = useState(false);
+  const classesReference = firebase.database().ref(`/${schoolYear}/classes`);
+  const [snapshots, loading, error] = useList(classesReference.orderByChild('sort'));
 
-  useEffect(() => {
-    const observer = classesReference.on('value', snapshot => {
-      const classesTmp = [];
+  const handleClose = useCallback(() => setDisplay(false));
+  const handleOpen = useCallback(() => setDisplay(true));
 
-      if (snapshot.exists()) {
-        snapshot.forEach(classe => {
-          classesTmp.push({ key: classe.key, values: classe.val() });
-        });
-      }
-      setClasses(classesTmp);
-    });
-
-    return () => {
-      classesReference.off('value', observer);
-    };
-  }, [true]);
-
-  const handleSubmit = event => {
+  const onDelete = useCallback(event => {
+    event.stopPropagation();
     event.preventDefault();
 
-    addClasse({ name: event.target.name.value });
-  };
+    if (
+      window.confirm(
+        'Êtes-vous sûre de vouloir supprimer cette classe (Tous les élèves et groupes concernés seront supprimé !) ?',
+      )
+    ) {
+      // classesReference.child(classeId).remove();
+    }
+  });
+
+  if (loading) {
+    return <span>Loading</span>;
+  }
+  if (error) {
+    return <span>{JSON.stringify(error)}</span>;
+  }
 
   return (
-    <Container>
-      <Col>
-        <List>
-          {_.map(_.sortBy(classes, ['values.sort']), classe => (
-            <Classe
-              key={classe.key}
-              {...classe.values}
-              id={classe.key}
-              removeClasse={removeClasse(classe.key)}
-              editClasse={editClasse(classe.key)}
-            />
-          ))}
-        </List>
-      </Col>
-
-      <Col>
-        <Form onSubmit={handleSubmit}>
-          <Fieldset>
-            <Input placeholder="Nouvelle classe" type="name" name="name" />
-            <Input type="submit" value="Ajouter" />
-          </Fieldset>
-        </Form>
-      </Col>
-    </Container>
+    <Fragment>
+      {display && (
+        <Portal>
+          <Add handleClose={handleClose} classes={snapshots} />
+        </Portal>
+      )}
+      <Div margin={['20px 0px', '15px 0px']}>
+        <Span display="flex" justifyContent="space-between" flexWrap="wrap">
+          <Button onClick={handleOpen} marginBottom={['10px', '0px']}>
+            <Span>Créer ...</Span>
+          </Button>
+          <Button onClick={onDelete} marginBottom={['10px', '0px']}>
+            <Span>Supprimer une classe</Span>
+          </Button>
+        </Span>
+      </Div>
+      {snapshots.map(snap => (
+        <ClasseCard key={snap.key} classesReference={classesReference} classeId={snap.key} {...snap.val()} />
+      ))}
+    </Fragment>
   );
 };
 
