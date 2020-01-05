@@ -1,18 +1,7 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
 
 import { Div, Input, Strong, Span, Button, I } from '../../elements';
-
-const Card = styled(Div)`
-  border: 1px solid;
-  border-color: ${({ active }) => (active ? '#F58C18' : 'black')};
-  border-radius: 4px;
-
-  padding: 15px;
-  margin: 15px 0px;
-  cursor: pointer;
-`;
 
 const StudentCard = ({ studentsReference, studentId, name, groupe }) => {
   const groupeChange = useCallback(event => {

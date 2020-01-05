@@ -40,7 +40,7 @@ class Error extends React.Component {
             <br />
             <br />
             Retour sur&nbsp;
-            <A href="/home">l'Accueil</A>
+            <A href="/home">l&apos;Accueil</A>
           </p>
         </div>
       </Div>

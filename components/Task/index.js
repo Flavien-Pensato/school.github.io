@@ -1,4 +1,6 @@
-const Task = ({}) => (
+import React from 'react';
+
+const Task = () => (
   <div className="table-container" role="table" aria-label="Destinations">
     <div className="flex-table header" role="rowgroup">
       <div className="flex-row first" role="columnheader">
@@ -16,3 +18,5 @@ const Task = ({}) => (
     </div>
   </div>
 );
+
+export default Task;

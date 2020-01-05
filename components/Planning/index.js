@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import useMedia from 'use-media';
@@ -26,22 +26,8 @@ const Para = styled(P)`
   }
 `;
 
-const Planning = ({ week, generate }) => {
-  const [loading, setLoading] = useState(false);
+const Planning = ({ week }) => {
   const isWide = useMedia({ maxWidth: '30em' });
-  const handleClick = useCallback(
-    event => {
-      event.preventDefault();
-
-      setLoading(true);
-      generate(week).then(() => setLoading(false));
-    },
-    [week],
-  );
-
-  if (loading) {
-    return <span>Loading</span>;
-  }
 
   if (week.disable) {
     return <span>Semaine de vacances.</span>;
@@ -124,7 +110,6 @@ Planning.propTypes = {
     tasks: PropTypes.shape(),
     disable: PropTypes.bool,
   }).isRequired,
-  generate: PropTypes.func.isRequired,
 };
 
 export default Planning;
