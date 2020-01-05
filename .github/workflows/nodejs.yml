@@ -31,11 +31,15 @@ jobs:
     - name: Build
       run: |
         yarn build
+        touch ./out/.nojekyll
+        echo mfr.flavienpensato.ovh > ./out/CNAME
       env:
         CI: true
+    - name: Checkout
+      uses: actions/checkout@v1
     - name: GitHub Pages Deploy
-      uses: maxheld83/ghpages@v0.2.1
+      uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         ACCESS_TOKEN: ${{ secrets.GITHUB_PAGES }}
-        BRANCH: master
+        BRANCH: gh-pages
         FOLDER: out
