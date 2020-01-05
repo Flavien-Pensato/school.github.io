@@ -4,6 +4,12 @@ import { space, display, width } from 'styled-system';
 
 const Select = styled('select', { shouldForwardProp })(space, display, width, {});
 
-Select.defaultProps = {};
+Select.defaultProps = {
+  padding: '0.5rem',
+  fontSize: [16, 18],
+  backgroundColor: 'transparent',
+  border: 'none',
+  borderRadius: 'none',
+};
 
 export default Select;

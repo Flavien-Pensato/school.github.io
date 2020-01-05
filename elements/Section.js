@@ -61,6 +61,10 @@ const Section = styled('section', { shouldForwardProp })(
 
 Section.defaultProps = {
   width: 1,
+  padding: '0.5rem',
+  fontSize: [16, 18],
+  backgroundColor: 'transparent',
+  border: 'none',
 };
 
 export default Section;

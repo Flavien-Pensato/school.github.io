@@ -24,11 +24,19 @@ const InputNumber = styled('input', { shouldForwardProp })(
   borders,
   borderColor,
   borderRadius,
-  {},
+  {
+    '&:focus': {
+      color: '#F58C18',
+    },
+  },
 );
 
 InputNumber.defaultProps = {
   type: 'number',
+  padding: '0.5rem',
+  fontSize: [16, 18],
+  backgroundColor: 'transparent',
+  border: 'none',
 };
 
 export default InputNumber;
