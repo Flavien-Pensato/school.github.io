@@ -1,6 +1,10 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 import PropTypes from 'prop-types';
+import slug from 'slug';
 import styled from '@emotion/styled';
+
+import { DisplayContext } from '../../../modules/display/display.context';
+import firebase from '../../../config/firebase';
 
 import { Form, Label, Button, Input, InputCheckbox, InputNumber, H3, Span, Select } from '../../../elements';
 
@@ -57,18 +61,68 @@ const InputCheck = styled(InputCheckbox)`
   }
 `;
 
+const classeFields = ['name'];
+const studentFields = ['name', 'groupe', 'classeId'];
+
 const Add = ({ handleClose, classes }) => {
+  const { schoolYear } = useContext(DisplayContext);
   const [toggle, setToggle] = useState(false);
 
   const handleChange = useCallback(() => setToggle(!toggle), [toggle]);
+  const handleSubmitStudent = useCallback(event => {
+    event.preventDefault();
+
+    const student = {
+      name: event.target.name.value,
+      groupe: Number(event.target.groupe.value),
+      classeId: event.target.classeId.value,
+    };
+
+    const reference = firebase
+      .database()
+      .ref(`/${schoolYear}/students`)
+      .child(slug(student.name));
+
+    reference.once('value').then(snapshot => {
+      if (!snapshot.exists()) {
+        reference.set(student);
+        handleClose();
+      } else {
+        alert('Vous allez écraser un autre étudiant du même nom et prénom !');
+      }
+    });
+  }, []);
+
+  const handleSubmitClasse = useCallback(event => {
+    event.preventDefault();
+
+    const classe = {
+      name: event.target.name.value,
+      sort: classes.length + 1,
+    };
+
+    const reference = firebase
+      .database()
+      .ref(`/${schoolYear}/classes`)
+      .child(slug(classe.name));
+
+    reference.once('value').then(snapshot => {
+      if (!snapshot.exists()) {
+        reference.set(classe);
+        handleClose();
+      } else {
+        alert('Cette classe exite déjà !');
+      }
+    });
+  }, []);
 
   return (
-    <Form>
+    <Form onSubmit={toggle ? handleSubmitClasse : handleSubmitStudent}>
       <H3 m="0">Création</H3>
       <Label>
         <Span>Name</Span>
         <br />
-        <Input required border="1px solid black" />
+        <Input required name="name" border="1px solid black" />
       </Label>
       <br />
       <br />
@@ -76,7 +130,7 @@ const Add = ({ handleClose, classes }) => {
         Étudiant&nbsp;
       </Span>
       <LabelSwitch>
-        <InputCheck required checked={toggle} onChange={handleChange} />
+        <InputCheck checked={toggle} onChange={handleChange} />
         <SpanRound />
       </LabelSwitch>
       <Span color={toggle && 'primary'} fontSize={['16px', '18px']}>
@@ -88,7 +142,7 @@ const Add = ({ handleClose, classes }) => {
         <Label>
           <Span>Groupe</Span>
           <br />
-          <InputNumber min="0" required border="1px solid black" />
+          <InputNumber name="groupe" min="0" required border="1px solid black" />
         </Label>
       )}
       <br />
@@ -97,9 +151,11 @@ const Add = ({ handleClose, classes }) => {
         <Label>
           <Span>Classe</Span>
           <br />
-          <Select required>
+          <Select required name="classeId">
             {classes.map(classe => (
-              <option key={classe.key}>{classe.val().name}</option>
+              <option key={classe.key} value={classe.key}>
+                {classe.val().name}
+              </option>
             ))}
           </Select>
         </Label>
@@ -108,7 +164,7 @@ const Add = ({ handleClose, classes }) => {
       <br />
       <Span display="flex" justifyContent="space-between">
         <Button onClick={handleClose}>Fermer</Button>
-        <Button onClick={handleClose} variant="primary">
+        <Button onSubmit={toggle ? handleSubmitClasse : handleSubmitStudent} variant="primary">
           Créer
         </Button>
       </Span>
