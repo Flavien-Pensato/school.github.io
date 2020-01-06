@@ -19,7 +19,7 @@ const Actions = ({ generate }) => {
 
     mywindow.document.write(`<html><head><title>${document.title}</title>`);
     mywindow.document.write(
-      '<style type="text/css"> * { font-size: 16px; font-family: system-ui, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial, sans-serif; } h1 { font-size: 22px; } body { text-align: center; } table { border-collapse:separate; border-spacing: 1.1em 1em;}</style>',
+      '<style type="text/css"> * { font-size: 16px; font-family: system-ui, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial, sans-serif; } h1 { font-size: 20px; } body { text-align: center; } table { border-collapse:separate; border-spacing: 1.1em 1em;}</style>',
     );
     mywindow.document.write('</head><body>');
     mywindow.document.write(
