@@ -61,9 +61,6 @@ const InputCheck = styled(InputCheckbox)`
   }
 `;
 
-const classeFields = ['name'];
-const studentFields = ['name', 'groupe', 'classeId'];
-
 const Add = ({ handleClose, classes }) => {
   const { schoolYear } = useContext(DisplayContext);
   const [toggle, setToggle] = useState(false);

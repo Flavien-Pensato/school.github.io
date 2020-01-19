@@ -1,5 +1,4 @@
 import XLSX from 'xlsx';
-import _ from 'lodash';
 
 // studentsReference, classeId
 export const importStudents = () => async pathFile => {
