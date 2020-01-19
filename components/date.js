@@ -1,9 +1,29 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import styled from '@emotion/styled';
 
-import { Item } from './item';
-import { PurpleButton } from './button';
+export const Item = styled.li`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3rem 0;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+`;
+
+export const PurpleButton = styled.button`
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  background-color: purple;
+  font-weight: 700;
+  display: inline-block;
+  color: white;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+`;
 
 export class Date extends Component {
   handleAddDate = () => {
