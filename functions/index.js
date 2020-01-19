@@ -190,7 +190,13 @@ const getGroupesByClasseId = async classeId => {
       .once('value');
 
     if (snapshotGroupes.exists()) {
-      return _.map(snapshotGroupes.val(), (groupe, groupeId) => ({ ...groupe, groupeId: Number(groupeId) }));
+      const groupesSnaps = [];
+      // Get all classes enable this week
+      snapshotGroupes.forEach(snapshotGroupe => {
+        groupesSnaps.push(snapshotGroupe);
+      });
+
+      return Promise.all(_.map(groupesSnaps, async groupe => ({ ...groupe.val(), groupeId: Number(groupe.key) })));
     }
   }
 
@@ -198,6 +204,8 @@ const getGroupesByClasseId = async classeId => {
 };
 
 const selectGroupeByForTask = (groupes, taskId) => {
+  console.log('SelectGroupeByForTask =>');
+
   if (groupes && taskId) {
     let groupeSelected;
 
@@ -290,10 +298,10 @@ exports.generate = functions.https.onCall(async (week, context) => {
       }
 
       tasks[snapshotClasseOfTheWeek.key] = {
-        task: snapshotClasseOfTheWeek.child('name').val(),
+        task: await snapshotClasseOfTheWeek.child('name').val(),
         groupe: selectedGroupe ? Number(selectedGroupe.groupeId) : 'Pas de groupe disponible.',
-        classe: snapshotClasseOfTheWeek.child('name').val(),
-        students: selectedStudents ? _.map(selectedStudents.val(), student => student.name).join(', ') : [],
+        classe: await snapshotClasseOfTheWeek.child('name').val(),
+        students: selectedStudents ? _.map(await selectedStudents.val(), student => student.name).join(', ') : [],
       };
 
       return Promise.resolve();
@@ -305,6 +313,7 @@ exports.generate = functions.https.onCall(async (week, context) => {
     _.map(snapshotTasksOfTheWeek, async snapshotTaskOfTheWeek => {
       console.log('Task id :' + snapshotTaskOfTheWeek.key);
       const selectedGroupe = selectGroupeByForTask(groupesFiltered, snapshotTaskOfTheWeek.key);
+      console.log(`Boucle selected groupe => ${selectedGroupe}`);
       let selectedStudents;
 
       if (selectedGroupe) {
@@ -321,13 +330,13 @@ exports.generate = functions.https.onCall(async (week, context) => {
       }
 
       tasks[snapshotTaskOfTheWeek.key] = {
-        task: snapshotTaskOfTheWeek.child('name').val(),
+        task: await snapshotTaskOfTheWeek.child('name').val(),
         groupe: selectedGroupe ? Number(selectedGroupe.groupeId) : 'Pas de groupe disponible.',
-        classe: snapshotClasses
+        classe: await snapshotClasses
           .child(selectedGroupe.classeId)
           .child('name')
           .val(),
-        students: selectedStudents ? _.map(selectedStudents.val(), student => student.name).join(', ') : [],
+        students: selectedStudents ? _.map(await selectedStudents.val(), student => student.name).join(', ') : [],
       };
 
       return Promise.resolve();
