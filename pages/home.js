@@ -18,7 +18,12 @@ const HomePage = () => {
       event.preventDefault();
 
       setLoading(true);
-      generate(week).then(() => setLoading(false));
+      generate(week)
+        .then(() => setLoading(false))
+        .catch(error => {
+          setLoading(false);
+          console.log(error);
+        });
     },
     [week],
   );
