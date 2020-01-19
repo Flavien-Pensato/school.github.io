@@ -4,16 +4,37 @@ import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 
 import { DisplayContext } from '../../modules/display/display.context';
-import { A, H1, Br, Header, Span, Strong, Button, Nav, I } from '../../elements';
+import { A, H1, Br, Div, Header, Span, Strong, Button, Nav, I } from '../../elements';
 
 const LinkNav = styled(A)`
   padding: 20px 15px;
+  font-size: 14px;
   font-weight: bold;
 
   color: ${({ isExact }) => (isExact ? '#F58C18' : 'black')};
-  text-decoration: ${({ isExact }) => (isExact ? '2px underline #F58C18' : 'none')};
+  text-transform: uppercase;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #f58c18;
+  }
 `;
 
+const LinkNavDisconnect = styled(A)`
+  padding: 0;
+  font-size: 24px;
+  line-height: 58px;
+  font-weight: bold;
+
+  color: ${({ isExact }) => (isExact ? '#F58C18' : 'black')};
+  text-transform: uppercase;
+  transition: color 0.2s;
+  margin-left: auto;
+
+  &:hover {
+    color: #f58c18;
+  }
+`;
 const Menu = () => {
   const { pathname } = useRouter();
   const [position, setPosition] = useState({ top: 0, left: '-100vw', right: '100vw', bottom: 0 });
@@ -44,21 +65,6 @@ const Menu = () => {
             </Button>
           </Span>
         </H1>
-        <DisplayContext.Consumer>
-          {({ date }) => (
-            <Strong fontSize={['18px', '20px']}>
-              Semaine du&nbsp;
-              <Br display={['initial', 'none']} />
-              <Span color="primary">{date.format('DD/MM/YYYY')}</Span>&nbsp;au&nbsp;
-              <Span color="primary">
-                {date
-                  .clone()
-                  .add('days', 4)
-                  .format('DD/MM/YYYY')}
-              </Span>
-            </Strong>
-          )}
-        </DisplayContext.Consumer>
       </Header>
       <Nav
         display="flex"
@@ -67,6 +73,8 @@ const Menu = () => {
         flexDirection={['column', 'row']}
         style={{ transition: 'all 1s' }}
         width={['100%', 'auto']}
+        borderBottom="1px solid black"
+        borderTop="1px solid black"
         position={['absolute', 'initial']}
         justifyContent={['left', 'center']}
         marginTop={['0px', '20px']}
@@ -74,8 +82,8 @@ const Menu = () => {
         bg={['near-white', 'inherit']}
       >
         <Link href="/home">
-          <LinkNav href="/home" isExact={pathname === '/home'}>
-            Accueil
+          <LinkNav href="/home" marginLeft="auto" isExact={pathname === '/home'}>
+            Planning
           </LinkNav>
         </Link>
         <Link href="/classes">
@@ -94,9 +102,28 @@ const Menu = () => {
           </LinkNav>
         </Link>
         <Link href="/logout">
-          <LinkNav>Se déconnecter</LinkNav>
+          <LinkNavDisconnect>
+            <I className="fas fa-sign-out-alt" />
+          </LinkNavDisconnect>
         </Link>
       </Nav>
+      <Div margin="20px 0px">
+        <DisplayContext.Consumer>
+          {({ date }) => (
+            <Strong fontSize={['18px', '20px']}>
+              Semaine du&nbsp;
+              <Br display={['initial', 'none']} />
+              <Span color="primary">{date.format('DD/MM/YYYY')}</Span>&nbsp;au&nbsp;
+              <Span color="primary">
+                {date
+                  .clone()
+                  .add('days', 4)
+                  .format('DD/MM/YYYY')}
+              </Span>
+            </Strong>
+          )}
+        </DisplayContext.Consumer>
+      </Div>
     </Fragment>
   );
 };
