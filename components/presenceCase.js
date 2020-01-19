@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
 
-const Item = styled.div`
-  height: 50px;
-`;
+import { Span } from '../elements';
 
 class PresenceCase extends Component {
   onClickTogglePresence = event => {
@@ -19,14 +16,9 @@ class PresenceCase extends Component {
     const { presence } = this.props;
 
     return (
-      <Item
-        onClick={this.onClickTogglePresence}
-        className={`pa3 bb b--black-20 f5 no-underline  bg-animate  hover-bg-black hover-white items-center center ${
-          presence ? 'green' : 'black'
-        }`}
-      >
-        <span className="f5 no-underline bg-animate ">{presence ? 'Présent' : 'Absent'}</span>
-      </Item>
+      <Span onClick={this.onClickTogglePresence} color={presence ? 'green' : 'black'}>
+        {presence ? 'Présent' : 'Absent'}
+      </Span>
     );
   }
 }
