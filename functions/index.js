@@ -274,6 +274,9 @@ exports.generate = functions.https.onCall(async (week, context) => {
     return Number(groupe.groupeId) === 0;
   });
 
+  console.log('List of groupes =>');
+  groupes.map(console.log);
+
   const tasks = {};
 
   // Assign Classe Task
@@ -332,10 +335,12 @@ exports.generate = functions.https.onCall(async (week, context) => {
       tasks[snapshotTaskOfTheWeek.key] = {
         task: await snapshotTaskOfTheWeek.child('name').val(),
         groupe: selectedGroupe ? Number(selectedGroupe.groupeId) : 'Pas de groupe disponible.',
-        classe: await snapshotClasses
-          .child(selectedGroupe.classeId)
-          .child('name')
-          .val(),
+        classe: selectedGroupe
+          ? await snapshotClasses
+              .child(selectedGroupe.classeId)
+              .child('name')
+              .val()
+          : '',
         students: selectedStudents ? _.map(await selectedStudents.val(), student => student.name).join(', ') : [],
       };
 

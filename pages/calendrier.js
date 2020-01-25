@@ -14,7 +14,6 @@ export const Container = styled.div`
   overflow: auto;
   height: 500px;
   width: 100%;
-  max-width: 48rem;
 `;
 
 export const Grid = styled.div`
@@ -28,19 +27,20 @@ export const Wrapper = styled.div`
 
 export const Item = styled.li`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0.3rem;
-  height: 50px;
+  justify-content: center;
 
   border-color: rgba(0, 0, 0, 0.2);
   border-bottom-style: solid;
   border-bottom-width: 1px;
 `;
 
+export const ItemCol = styled(Item)`
+  height: 50px;
+`;
+
 export const LittleCol = styled.div`
-  width: 100px;
-  min-width: 100px;
+  width: 130px;
 `;
 
 export const ItemHeader = styled.div`
@@ -56,6 +56,7 @@ export const ColFixedLeft = styled.div`
   position: sticky;
   left: 0;
   z-index: 100;
+  justify-content: left;
   background: white;
   width: 250px;
   min-width: 250px;
@@ -122,7 +123,7 @@ const Calendrier = () => {
             <span>Semaine</span>
           </Item>
           {classesSorted.map(classe => (
-            <Item style={{ width: '100px', backgroundColor: 'white', zIndex: 10000 }}>
+            <Item style={{ width: '130px', backgroundColor: 'white', zIndex: 10000 }}>
               <span>{classe.name}</span>
             </Item>
           ))}
@@ -133,7 +134,7 @@ const Calendrier = () => {
               const dateFound = weeksSorted.find(dateWeek => dateWeek.from === date.from);
 
               return (
-                <Item>
+                <ItemCol style={{ justifyContent: 'space-between' }}>
                   <Date
                     key={date.from}
                     id={date.from}
@@ -144,7 +145,7 @@ const Calendrier = () => {
                     toggleDisable={toggleDisable(date.from)}
                     exist
                   />
-                </Item>
+                </ItemCol>
               );
             })}
           </ColFixedLeft>
@@ -154,14 +155,14 @@ const Calendrier = () => {
                 const dateFound = weeksSorted.find(dateWeek => dateWeek.from === date.from);
                 if (!dateFound || dateFound.disable) {
                   return (
-                    <Item>
+                    <ItemCol>
                       <span>Vacances</span>
-                    </Item>
+                    </ItemCol>
                   );
                 }
 
                 return (
-                  <Item>
+                  <ItemCol>
                     <PresenceCase
                       date={dateFound}
                       presence={dateFound.classes ? !!dateFound.classes[classe.id] : false}
@@ -170,7 +171,7 @@ const Calendrier = () => {
                       key={dateFound.from + classe.id}
                       id={dateFound.from}
                     />
-                  </Item>
+                  </ItemCol>
                 );
               })}
             </LittleCol>
