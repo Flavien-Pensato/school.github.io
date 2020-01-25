@@ -23,6 +23,8 @@ const DisplayProvider = ({ children, router: { query } }) => {
   useEffect(() => {
     if (query.date) {
       setDate(moment(query.date, 'YYYY-MM-DD'));
+    } else {
+      setDate(moment().startOf('week'));
     }
   }, [query.date]);
 
