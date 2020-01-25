@@ -1,17 +1,7 @@
-import React, { Component } from 'react';
+import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import styled from '@emotion/styled';
-
-export const Item = styled.li`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.3rem 0;
-  border-color: rgba(0, 0, 0, 0.2);
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-`;
 
 export const PurpleButton = styled.button`
   font-size: 0.875rem;
@@ -46,11 +36,7 @@ export class Date extends Component {
     const { from, to, date } = this.props;
 
     return (
-      <Item
-        key={from}
-        style={{ height: '50px' }}
-        className="b--black-20 bb f5 black bg-animate items-center pa3 center"
-      >
+      <Fragment>
         <span>
           Du&nbsp;{moment(from, 'YYYY-MM-DD').format('dddd D MMMM')}
           <br />
@@ -62,7 +48,7 @@ export class Date extends Component {
         ) : (
           <PurpleButton onClick={this.handleAddDate}>+</PurpleButton>
         )}
-      </Item>
+      </Fragment>
     );
   }
 }
