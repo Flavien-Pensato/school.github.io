@@ -15,22 +15,59 @@ const Add = ({ handleClose, classes }) => {
   const handleSubmit = useCallback(event => {
     event.preventDefault();
     try {
-      console.log(event.target.file.value);
-      const oFile = XLSX.read(event.target.file.value, {
-        type: 'binary',
-      });
+      if (event.target.file.files.length) {
+        const file = event.target.file.files[0];
+        const classeId = event.target.classeId.value;
+        const fileReader = new FileReader();
 
-      const worksheet = oFile.Sheets[oFile.SheetNames[0]];
-      const text = _.replace(XLSX.utils.sheet_to_csv(worksheet, { raw: true }), new RegExp(',|"', 'g'), ' ');
+        fileReader.onload = e => {
+          const bytes = new Uint8Array(e.target.result);
+          const length = bytes.byteLength;
 
-      // const addStudentImported = addStudent(studentsReference, classeId);
+          let binary = '';
 
-      // Promise.all(
-      _.split(text, '\n').forEach(line => {
-        console.log(line.trim());
-        // addStudentImported({ name: line.trim() });
-      });
-      // );
+          // eslint-disable-next-line
+          for (let i = 0; i < length; i++) {
+            binary += String.fromCharCode(bytes[i]);
+          }
+
+          const oFile = XLSX.read(binary, {
+            type: 'binary',
+          });
+
+          const worksheet = oFile.Sheets[oFile.SheetNames[0]];
+          const text = _.replace(XLSX.utils.sheet_to_csv(worksheet, { raw: true }), new RegExp(',|"', 'g'), ' ');
+
+          Promise.all(
+            _.split(text, '\n').map(line => {
+              const student = {
+                name: line.trim(),
+                groupe: 0,
+                classeId,
+              };
+
+              if (slug(student.name)) {
+                const reference = firebase
+                  .database()
+                  .ref(`/${schoolYear}/students`)
+                  .child(slug(student.name));
+
+                return reference.once('value').then(snapshot => {
+                  if (!snapshot.exists()) {
+                    reference.set(student);
+                    handleClose();
+                  } else {
+                    alert('Vous allez écraser un autre étudiant du même nom et prénom !');
+                  }
+                });
+              }
+
+              return Promise.resolve();
+            }),
+          );
+        };
+        fileReader.readAsArrayBuffer(file);
+      }
     } catch (error) {
       // eslint-disable-next-line
       console.error(error);
