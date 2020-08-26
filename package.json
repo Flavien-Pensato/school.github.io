@@ -13,7 +13,8 @@
     "@styled-system/should-forward-prop": "^5.1.4",
     "emotion-theming": "^10.0.27",
     "firebase": "^6.4.0",
-    "lodash": "^4.17.15",
+    "immutable": "^4.0.0-rc.12",
+    "lodash": "^4.17.19",
     "moment": "^2.24.0",
     "next": "^9.1.4 ",
     "prop-types": "^15.7.2",
@@ -54,7 +55,7 @@
     "lerna": "^3.13.1",
     "lint-staged": "^9.1.0",
     "prettier": "1.18.2",
-    "standard-version": "^6.0.1"
+    "standard-version": "^8.0.1"
   },
   "scripts": {
     "lint": "eslint --color --cache '*.js' '{pages,config,components,modules,elements,theme}/**/*.js'",
