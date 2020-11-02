@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Router from 'next/router';
-
-import { A, Div } from '../elements/';
+import { withRouter } from 'next/router';
+import Link from 'next/link';
+import { Box } from 'theme-ui';
 
 class Error extends React.Component {
   static getInitialProps({ res, err }) {
@@ -22,16 +22,16 @@ class Error extends React.Component {
   }
 
   render() {
-    if (this.props.statusCode === 404) {
-      Router.push({
-        pathname: '/home',
-      });
+    const { router } = this.props;
 
-      return null;
-    }
+    // if (this.props.statusCode === 404) {
+    //   router.replace('/');
+
+    //   return null;
+    // }
 
     return (
-      <Div display="flex" alignItems="center" height="100vh" padding="20px">
+      <Box display="flex" alignItems="center" height="100vh" padding="20px">
         <div>
           {this.props.statusCode
             ? `Une Erreur ${this.props.statusCode} est apparue sur le server.`
@@ -40,16 +40,19 @@ class Error extends React.Component {
             <br />
             <br />
             Retour sur&nbsp;
-            <A href="/home">l&apos;Accueil</A>
+            <Link href="/">l&apos;Accueil</Link>
           </p>
         </div>
-      </Div>
+      </Box>
     );
   }
 }
 
 Error.propTypes = {
   statusCode: PropTypes.number.isRequired,
+  router: PropTypes.shape({
+    replace: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
-export default Error;
+export default withRouter(Error);

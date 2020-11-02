@@ -1,101 +1,148 @@
-const theme = {
-  breakpoints: ['30em', '60em'],
+export default {
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
-  fontSizes: [12, 16, 20, 24, 36, 48, 80, 96, 128],
-  borderWidths: [0, '1px', '2px', '4px', '8px', '16px', '32px'],
-  radii: [0, '2px', '4px', '16px', '9999px', '100%'],
-  lineHeights: ['1.0', '1.25', '1.5'],
-  measures: ['20em', '30em', '34em'],
-  typefaces: {
-    serif: 'athelas, georgia, times, serif',
-    sansSerif:
-      'system-ui, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial, sans-serif',
-    mono: 'Consolas, monaco, monospace',
+  fonts: {
+    body: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+    heading: 'inherit',
+    monospace: 'Menlo, monospace',
   },
-  textStyles: {
-    caps: {
-      textTransform: 'uppercase',
-      letterSpacing: '0.1em',
-    },
-    'tracked-tight': {
-      letterSpacing: '-0.05em',
-    },
-    copy: {
-      lineHeight: 1.5,
-      maxWidth: '30em',
-    },
-    title: {
-      lineHeight: 1.25,
-      maxWidth: '30em',
-    },
-    capitalize: {
-      textTransform: 'capitalize',
-    },
+  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
+  fontWeights: {
+    body: 400,
+    heading: 700,
+    bold: 700,
+  },
+  lineHeights: {
+    body: 1.5,
+    heading: 1.125,
   },
   colors: {
-    primary: '#F58C18',
-    secondary: '#31A41C',
-    'dark-red': '#e7040f',
-    red: '#ff4136',
-    'light-red': '#ff725c',
-    'washed-red': '#ffdfdf',
-    orange: '#ff6300',
-    gold: '#ffb700',
-    yellow: '#ffd700',
-    'light-yellow': '#fbf1a9',
-    'washed-yellow': '#fffceb',
-    purple: '#5e2ca5',
-    'light-purple': '#a463f2',
-    'dark-pink': '#d5008f',
-    'hot-pink': '#ff41b4',
-    pink: '#ff80cc',
-    'light-pink': '#ffa3d7',
-    'dark-green': '#137752',
-    green: '#19a974',
-    'light-green': '#9eebcf',
-    'washed-green': '#e8fdf5',
-    navy: '#001b44',
-    'dark-blue': '#00449e',
-    blue: '#357edd',
-    'light-blue': '#96ccff',
-    'lightest-blue': '#cdecff',
-    'washed-blue': '#f6fffe',
-    black: '#000',
-    'near-black': '#111',
-    'dark-gray': '#333',
-    'mid-gray': '#555',
-    gray: '#777',
-    silver: '#999',
-    'light-silver': '#aaa',
-    'moon-gray': '#ccc',
-    'light-gray': '#eee',
-    'near-white': '#f4f4f4',
-    white: '#fff',
-    'black-90': 'rgba(0,0,0,.9)',
-    'black-80': 'rgba(0,0,0,.8)',
-    'black-70': 'rgba(0,0,0,.7)',
-    'black-60': 'rgba(0,0,0,.6)',
-    'black-50': 'rgba(0,0,0,.5)',
-    'black-40': 'rgba(0,0,0,.4)',
-    'black-30': 'rgba(0,0,0,.3)',
-    'black-20': 'rgba(0,0,0,.2)',
-    'black-10': 'rgba(0,0,0,.1)',
-    'black-05': 'rgba(0,0,0,.05)',
-    'black-025': 'rgba(0,0,0,.025)',
-    'black-0125': 'rgba(0,0,0,.0125)',
-    'white-90': 'rgba(255,255,255,.9)',
-    'white-80': 'rgba(255,255,255,.8)',
-    'white-70': 'rgba(255,255,255,.7)',
-    'white-60': 'rgba(255,255,255,.6)',
-    'white-50': 'rgba(255,255,255,.5)',
-    'white-40': 'rgba(255,255,255,.4)',
-    'white-30': 'rgba(255,255,255,.3)',
-    'white-20': 'rgba(255,255,255,.2)',
-    'white-10': 'rgba(255,255,255,.1)',
-    'white-05': 'rgba(255,255,255,.05)',
-    'white-025': 'rgba(255,255,255,.025)',
-    'white-0125': 'rgba(255,255,255,.0125)',
+    text: '#000',
+    background: '#fff',
+    primary: '#07c',
+    secondary: '#30c',
+    muted: '#f6f6f6',
   },
-};
+  styles: {
+    root: {
+      fontFamily: 'body',
+      lineHeight: 'body',
+      fontWeight: 'body',
+      margin: 'auto',
+      maxWidth: '55rem',
+    },
+    h1: {
+      color: 'text',
+      fontFamily: 'heading',
+      lineHeight: 'heading',
+      fontWeight: 'heading',
+      fontSize: 5,
+    },
+    h2: {
+      color: 'text',
+      fontFamily: 'heading',
+      lineHeight: 'heading',
+      fontWeight: 'heading',
+      fontSize: 4,
+    },
+    h3: {
+      color: 'text',
+      fontFamily: 'heading',
+      lineHeight: 'heading',
+      fontWeight: 'heading',
+      fontSize: 3,
+    },
+    h4: {
+      color: 'text',
+      fontFamily: 'heading',
+      lineHeight: 'heading',
+      fontWeight: 'heading',
+      fontSize: 2,
+    },
+    h5: {
+      color: 'text',
+      fontFamily: 'heading',
+      lineHeight: 'heading',
+      fontWeight: 'heading',
+      fontSize: 1,
+    },
+    h6: {
+      color: 'text',
+      fontFamily: 'heading',
+      lineHeight: 'heading',
+      fontWeight: 'heading',
+      fontSize: 0,
+    },
+    p: {
+      color: 'text',
+      fontFamily: 'body',
+      fontWeight: 'body',
+      lineHeight: 'body',
+    },
+    a: {
+      color: 'primary',
+    },
+    pre: {
+      fontFamily: 'monospace',
+      overflowX: 'auto',
+      code: {
+        color: 'inherit',
+      },
+    },
+    code: {
+      fontFamily: 'monospace',
+      fontSize: 'inherit',
+    },
+    table: {
+      width: '100%',
+      borderCollapse: 'separate',
+      borderSpacing: 0,
+    },
+    th: {
+      textAlign: 'left',
+      borderBottomStyle: 'solid',
+    },
+    td: {
+      textAlign: 'left',
+      borderBottomStyle: 'solid',
+    },
+    img: {
+      maxWidth: '100%',
+    },
+  },
+  buttons: {
+    icon: {
+      width: '30px',
+      height: '30px',
+      fontSize: '20px',
+      cursor: 'pointer',
+    },
+  },
 
-export default theme;
+  links: {
+    nav: {
+      width: '100%',
+      px: 2,
+      py: 1,
+      textTransform: 'uppercase',
+      letterSpacing: '0.1em',
+      fontSize: '16px',
+      cursor: 'pointer',
+    },
+  },
+
+  variants: {
+    card: {
+      boxSizing: 'border-box',
+      padding: '15px',
+      border: '1px solid black',
+      borderRadius: '4px',
+      textAlign: 'right',
+      my: '7px'
+    },
+    cardItem: {
+      alignItems: 'center',
+      backgroundColor: 'rgba(0, 0, 0, 0.024)',
+      marginTop: '20px'
+    }
+  }
+};

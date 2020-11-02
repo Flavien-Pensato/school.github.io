@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import _ from 'lodash';
+import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
-import moment from 'moment';
-
-import { Date } from '../components/date';
-import { useWeeks } from '../modules/week/week.use';
-import { useClasses } from '../modules/classes/classes.use';
+import useSWR from 'swr';
+import { sortDates, getAllNextWeekBeforeHoliday } from '../utils/date';
+import { DateComponent } from '../components/date';
+// import { useWeeks } from '../modules/week/week.use';
+// import { useClasses } from '../modules/classes/classes.use';
 
 import PresenceCase from '../components/presenceCase';
+
+import fetcher from '../utils/fetch';
+import Layout from '../components/Layout';
 
 export const Container = styled.div`
   display: grid;
@@ -71,114 +73,120 @@ export const ColFixedTop = styled.div`
   display: flex;
 `;
 
-const defaultDates = () => {
-  const dates = [];
-
-  const start = moment().startOf('week');
-
-  while (start.month() < 7 || moment().year() === start.year()) {
-    const to = start.clone().add(4, 'days');
-
-    dates.push({
-      timestamp: to.unix(),
-      from: start.format('YYYY-MM-DD'),
-      to: to.format('YYYY-MM-DD'),
-    });
-
-    start.add(1, 'weeks');
-  }
-
-  return dates;
-};
-
 const Calendrier = () => {
-  const [weeks, setWeeks] = useState();
-  const [classes, setClasses] = useState();
-  const { weeksRef, addWeek, toggleDisable, toggleClasse } = useWeeks();
+  const nexDates = getAllNextWeekBeforeHoliday();
 
-  const { classesReference } = useClasses();
+  const { data: weeks, mutate } = useSWR('/api/weeks', {
+    initialData: [],
+  });
 
-  useEffect(() => {
-    const observer = weeksRef.on('value', snapshot => {
-      setWeeks(snapshot.val());
+  const { data: classes } = useSWR('/api/classes', {
+    initialData: [],
+  });
+
+  const toggleDisable = (weekId) => () => {
+    fetcher(`/api/week/toggleHoliday/${weekId}`, {
+      method: 'PUT',
+    }).then((newWeek) => {
+      mutate(
+        weeks.map((element) => (element._id === weekId ? newWeek : element)),
+        false,
+      );
     });
+  };
 
-    classesReference.once('value', snapshot => {
-      setClasses(snapshot.val());
+  const toggleClasse = (weekId, classe) => () => {
+    fetcher(`/api/week/toggleClasse/${weekId}`, {
+      method: 'PUT',
+      body: classe,
+    }).then((newWeek) => {
+      mutate(
+        weeks.map((element) => (element._id === weekId ? newWeek : element)),
+        false,
+      );
     });
+  };
 
-    return () => {
-      weeksRef.off('value', observer);
-    };
-  }, [true]);
-
-  const classesSorted = _.sortBy(_.map(classes, (classe, classeId) => ({ ...classe, id: classeId })), ['sort']);
-  const weeksSorted = _.sortBy(weeks, ['from']);
+  const addWeek = (week) => {
+    fetcher('/api/week/new', {
+      method: 'POST',
+      body: JSON.stringify(week),
+    }).then((response) => {
+      if (response) {
+        mutate([...weeks, response], false);
+      }
+    });
+  };
 
   return (
-    <Wrapper>
-      <Container>
-        <ColFixedTop>
-          <Item style={{ width: '250px', backgroundColor: 'white', zIndex: 10001, position: 'sticky', left: 0 }}>
-            <span>Semaine</span>
-          </Item>
-          {classesSorted.map(classe => (
-            <Item style={{ width: '130px', backgroundColor: 'white', zIndex: 10000 }}>
-              <span>{classe.name}</span>
+    <Layout>
+      <Wrapper>
+        <Container>
+          <ColFixedTop>
+            <Item style={{ width: '250px', backgroundColor: 'white', zIndex: 10001, position: 'sticky', left: 0 }}>
+              <span>Semaine</span>
             </Item>
-          ))}
-        </ColFixedTop>
-        <Grid>
-          <ColFixedLeft>
-            {defaultDates().map(date => {
-              const dateFound = weeksSorted.find(dateWeek => dateWeek.from === date.from);
-
-              return (
-                <ItemCol style={{ justifyContent: 'space-between' }}>
-                  <Date
-                    key={date.from}
-                    id={date.from}
-                    from={date.from}
-                    to={date.to}
-                    date={dateFound}
-                    addWeek={addWeek}
-                    toggleDisable={toggleDisable(date.from)}
-                    exist
-                  />
-                </ItemCol>
-              );
-            })}
-          </ColFixedLeft>
-          {classesSorted.map(classe => (
-            <LittleCol key={classe.name}>
-              {defaultDates().map(date => {
-                const dateFound = weeksSorted.find(dateWeek => dateWeek.from === date.from);
-                if (!dateFound || dateFound.disable) {
-                  return (
-                    <ItemCol>
-                      <span>Vacances</span>
-                    </ItemCol>
-                  );
-                }
+            {classes.map((classe) => (
+              <Item key={classe} style={{ width: '130px', backgroundColor: 'white', zIndex: 10000 }}>
+                <span>{classe}</span>
+              </Item>
+            ))}
+          </ColFixedTop>
+          <Grid>
+            <ColFixedLeft>
+              {sortDates(nexDates).map((date) => {
+                const dateFound = weeks.find(
+                  (dateWeek) => new Date(dateWeek.startAt).getTime() === new Date(date.startAt).getTime(),
+                );
 
                 return (
-                  <ItemCol>
-                    <PresenceCase
+                  <ItemCol key={date.startAt} style={{ justifyContent: 'space-between' }}>
+                    <DateComponent
+                      startAt={date.startAt}
+                      endAt={date.endAt}
                       date={dateFound}
-                      presence={dateFound.classes ? !!dateFound.classes[classe.id] : false}
-                      toggleClasse={toggleClasse(dateFound.from)}
-                      classeId={classe.id}
-                      key={dateFound.from + classe.id}
-                      id={dateFound.from}
+                      addWeek={addWeek}
+                      toggleDisable={toggleDisable(dateFound && dateFound._id)}
+                      exist
                     />
                   </ItemCol>
                 );
               })}
-            </LittleCol>
-          ))}
-        </Grid>
-      </Container>
-    </Wrapper>
+            </ColFixedLeft>
+            {classes.map((classe) => (
+              <LittleCol key={classe}>
+                {nexDates.map((date) => {
+                  const dateFound = weeks.find(
+                    (dateWeek) => new Date(dateWeek.startAt).getTime() === new Date(date.startAt).getTime(),
+                  );
+
+                  if (!dateFound || dateFound.isHolliday) {
+                    return (
+                      <ItemCol key={date.startAt}>
+                        <span>Vacances</span>
+                      </ItemCol>
+                    );
+                  }
+
+                  return (
+                    <ItemCol key={date.startAt}>
+                      <PresenceCase
+                        date={dateFound}
+                        presence={dateFound.classes.includes(classe)}
+                        toggleClasse={toggleClasse(dateFound && dateFound._id, classe)}
+                        classeId={classe}
+                        key={dateFound.startAt + classe}
+                        id={dateFound.startAt}
+                      />
+                    </ItemCol>
+                  );
+                })}
+              </LittleCol>
+            ))}
+          </Grid>
+        </Container>
+      </Wrapper>
+    </Layout>
   );
 };
 

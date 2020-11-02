@@ -1,50 +1,44 @@
 import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import styled from '@emotion/styled';
+import { numeric } from '../utils/date';
 
 export const PurpleButton = styled.button`
+  height: 40px;
+  width: 40px;
+  margin: 0 auto;
+  line-height: 40px;
   font-size: 0.875rem;
-  padding: 0.5rem 1rem;
   background-color: purple;
   font-weight: 700;
   display: inline-block;
   color: white;
-  border-color: black;
-  border-style: solid;
-  border-width: 1px;
+  border: none;
+  text-align: center;
 `;
 
-export class Date extends Component {
+export class DateComponent extends Component {
   handleAddDate = () => {
-    const { from, to, addWeek } = this.props;
+    const { startAt, endAt, addWeek } = this.props;
 
-    addWeek({ from, to });
-  };
-
-  handleDisableDate = event => {
-    event.preventDefault();
-
-    const { date } = this.props;
-
-    const { toggleDisable } = this.props;
-
-    toggleDisable(!date.disable);
+    addWeek({ startAt, endAt });
   };
 
   render() {
-    const { from, to, date } = this.props;
+    const { startAt, endAt, date, toggleDisable } = this.props;
+    const dateFrom = new Date(startAt);
+    const dateTo = new Date(endAt);
 
     return (
       <Fragment>
         <span>
-          Du&nbsp;{moment(from, 'YYYY-MM-DD').format('dddd D MMMM')}
+          Du&nbsp;{dateFrom.toLocaleDateString('fr-FR', numeric)}
           <br />
-          Au&nbsp;{moment(to, 'YYYY-MM-DD').format('dddd D MMMM')}
+          Au&nbsp;{dateTo.toLocaleDateString('fr-FR', numeric)}
         </span>
 
         {date ? (
-          <PurpleButton onClick={this.handleDisableDate}>{date.disable ? '+' : '-'}</PurpleButton>
+          <PurpleButton onClick={toggleDisable}>{date.isHolliday ? '+' : '-'}</PurpleButton>
         ) : (
           <PurpleButton onClick={this.handleAddDate}>+</PurpleButton>
         )}
@@ -53,13 +47,13 @@ export class Date extends Component {
   }
 }
 
-Date.defaultProps = {
+DateComponent.defaultProps = {
   date: undefined,
 };
 
-Date.propTypes = {
-  from: PropTypes.string.isRequired,
-  to: PropTypes.string.isRequired,
+DateComponent.propTypes = {
+  startAt: PropTypes.string.isRequired,
+  endAt: PropTypes.string.isRequired,
   date: PropTypes.shape(),
   addWeek: PropTypes.func.isRequired,
   toggleDisable: PropTypes.func.isRequired,
