@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
+import { Box } from 'rebass';
 
-import { A, Div } from '../elements/';
+// import { A, Div } from '../elements/';
 
 class Error extends React.Component {
   static getInitialProps({ res, err }) {
@@ -31,7 +32,7 @@ class Error extends React.Component {
     }
 
     return (
-      <Div display="flex" alignItems="center" height="100vh" padding="20px">
+      <Box display="flex" alignItems="center" height="100vh" padding="20px">
         <div>
           {this.props.statusCode
             ? `Une Erreur ${this.props.statusCode} est apparue sur le server.`
@@ -40,10 +41,10 @@ class Error extends React.Component {
             <br />
             <br />
             Retour sur&nbsp;
-            <A href="/home">l&apos;Accueil</A>
+            <a href="/home">l&apos;Accueil</a>
           </p>
         </div>
-      </Div>
+      </Box>
     );
   }
 }

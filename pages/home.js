@@ -1,11 +1,12 @@
 import React, { useContext, useState, useCallback } from 'react';
+import { Box } from 'rebass';
 
 import firebase from '../config/firebase';
 import { DisplayContext } from '../modules/display/display.context';
 import { useWeek } from '../modules/week/week.use';
-import Div from '../elements/Div';
-import Actions from '../components/Actions';
-import Planning from '../components/Planning';
+// import Div from '../elements/Div';
+// import Actions from '../components/Actions';
+// import Planning from '../components/Planning';
 
 const generate = firebase.functions().httpsCallable('generate');
 
@@ -14,13 +15,13 @@ const HomePage = () => {
   const { date, schoolYear } = useContext(DisplayContext);
   const week = useWeek(date, schoolYear);
   const handleClick = useCallback(
-    event => {
+    (event) => {
       event.preventDefault();
 
       setLoading(true);
       generate(week)
         .then(() => setLoading(false))
-        .catch(error => {
+        .catch((error) => {
           setLoading(false);
           console.log(error);
         });
@@ -29,11 +30,11 @@ const HomePage = () => {
   );
 
   return (
-    <Div display="flex" alignItems="center" flexDirection="column">
-      <Actions generate={handleClick} />
-      {loading && <span>Loading</span>}
-      {!loading && <Planning week={week || {}} />}
-    </Div>
+    <Box display="flex" alignItems="center" flexDirection="column">
+      {/* <Actions generate={handleClick} /> */}
+      {/* {loading && <span>Loading</span>} */}
+      {/* {!loading && <Planning week={week || {}} />} */}
+    </Box>
   );
 };
 

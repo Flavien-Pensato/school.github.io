@@ -1,31 +1,40 @@
 import React from 'react';
 import AppExtend from 'next/app';
+import { Provider } from 'next-auth/client';
 import { ThemeProvider } from 'emotion-theming';
 import moment from 'moment';
 
-import theme from '../theme';
 import Layout from '../components/Layout';
-import Div from '../elements/Div';
-import AuthProvider from '../modules/auth';
+import theme from '../theme';
 
 moment.locale('fr');
 
 class App extends AppExtend {
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, layout, pageProps } = this.props;
+
+    const LayoutComponent = Component.Layout || layout;
 
     return (
-      <AuthProvider>
-        <ThemeProvider theme={theme}>
-          <Div style={{ fontFamily: theme.typefaces.sansSerif }} margin="auto" padding="15px" maxWidth="55rem">
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </Div>
-        </ThemeProvider>
-      </AuthProvider>
+      <ThemeProvider theme={theme}>
+        <Provider
+          session={pageProps.session}
+          options={{
+            clientMaxAge: 60,
+            keepAlive: 5 * 60,
+          }}
+        >
+          <LayoutComponent>
+            <Component {...pageProps} />
+          </LayoutComponent>
+        </Provider>
+      </ThemeProvider>
     );
   }
 }
+
+App.defaultProps = {
+  layout: Layout,
+};
 
 export default App;

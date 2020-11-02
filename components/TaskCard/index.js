@@ -1,10 +1,9 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-
-import { Strong, Button, I, Div } from '../../elements';
+import { Box, Text, Button } from 'rebass';
 
 const TaskCard = ({ tasksReference, taskId, name }) => {
-  const onDelete = useCallback(event => {
+  const onDelete = useCallback((event) => {
     event.stopPropagation();
     event.preventDefault();
 
@@ -18,12 +17,12 @@ const TaskCard = ({ tasksReference, taskId, name }) => {
   });
 
   return (
-    <Div display="flex" justifyContent="space-between" margin="10px 0px">
-      <Strong>{name}</Strong>
+    <Box display="flex" justifyContent="space-between" margin="10px 0px">
+      <Text>{name}</Text>
       <Button onClick={onDelete} marginLeft="20px" padding="5px 10px">
-        <I className="fas fa-trash" color="primary" />
+        -
       </Button>
-    </Div>
+    </Box>
   );
 };
 

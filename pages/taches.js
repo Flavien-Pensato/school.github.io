@@ -1,16 +1,17 @@
-import React, { Fragment, useContext } from 'react';
-import { useList } from 'react-firebase-hooks/database';
+import React, { Fragment } from 'react';
+import useSwr from 'swr';
+import { Box, Button } from 'rebass';
 
-import { DisplayContext } from '../modules/display/display.context';
-import firebase from '../config/firebase';
+import fetch from '../utils/fetch';
 
-import { Div, Button, Span } from '../elements';
 import TaskCard from '../components/TaskCard';
 
 const Tasks = () => {
-  const { schoolYear } = useContext(DisplayContext);
-  const tasksReference = firebase.database().ref(`/${schoolYear}/tasks`);
-  const [snapshots, loading, error] = useList(tasksReference);
+  const { data, loading, error } = useSwr(`/api/tasks`, fetch, {
+    initialData: {
+      data: [],
+    },
+  });
 
   if (loading) {
     return <span>Loading</span>;
@@ -21,63 +22,14 @@ const Tasks = () => {
 
   return (
     <Fragment>
-      <Div margin={['20px 0px', '15px 0px']}>
-        <Button marginBottom={['10px', '0px']}>
-          <Span>Créer ...</Span>
-        </Button>
-      </Div>
-      {snapshots.map(snap => (
-        <TaskCard key={snap.key} {...snap.val()} />
+      <Box margin={['20px 0px', '15px 0px']}>
+        <Button marginBottom={['10px', '0px']}>Créer ...</Button>
+      </Box>
+      {data.data.map((task) => (
+        <TaskCard key={task._id} {...task} />
       ))}
     </Fragment>
   );
-
-  // const [tasks, setTasks] = useState();
-  // const { schoolYear } = useContext(DisplayContext);
-
-  // useEffect(() => {
-  //   const tasksRef = firebase.database().ref(`/${schoolYear}/tasks`);
-
-  //   const observer = tasksRef.on('value', snapshot => setTasks(snapshot.val()));
-
-  //   return () => {
-  //     tasksRef.off('value', observer);
-  //   };
-  // }, [schoolYear]);
-
-  // const handleSubmitForm = useCallback(
-  //   event => {
-  //     event.preventDefault();
-
-  //     const tasksRef = firebase.database().ref(`/${schoolYear}/tasks`);
-  //     const name = event.target.task.value;
-
-  //     tasksRef.child(slug(name)).set({ name });
-
-  //     // eslint-disable-next-line
-  //   event.target.task.value = "";
-  //   },
-  //   [schoolYear],
-  // );
-
-  // return (
-  //   <TasksWrapper>
-  //     <List>
-  //       {_.map(tasks, (task, key) => (
-  //         <Task key={key} id={key} {...task} />
-  //       ))}
-  //     </List>
-
-  //     <Form onSubmit={handleSubmitForm}>
-  //       <Fieldset>
-  //         <Wrapper>
-  //           <Input placeholder="Nouvelle tâche" type="text" name="task" />
-  //           <Input type="submit" value="Ajouter" />
-  //         </Wrapper>
-  //       </Fieldset>
-  //     </Form>
-  //   </TasksWrapper>
-  // );
 };
 
 export default Tasks;

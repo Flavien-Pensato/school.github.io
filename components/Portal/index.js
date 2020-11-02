@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom';
 import React, { useRef, useEffect } from 'react';
 import styled from '@emotion/styled';
 
-import Div from '../../elements/Div';
+// import Div from '../../elements/Div';
 
 const Overlay = styled(Div)`
   z-index: 1000;
