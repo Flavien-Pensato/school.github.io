@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Span } from '../elements';
+import { Box } from 'rebass';
 
 class PresenceCase extends Component {
-  onClickTogglePresence = event => {
+  onClickTogglePresence = (event) => {
     event.preventDefault();
 
     const { toggleClasse, classeId } = this.props;
@@ -16,9 +16,9 @@ class PresenceCase extends Component {
     const { presence } = this.props;
 
     return (
-      <Span onClick={this.onClickTogglePresence} color={presence ? 'green' : 'black'}>
+      <Box onClick={this.onClickTogglePresence} color={presence ? 'green' : 'black'}>
         {presence ? 'Présent' : 'Absent'}
-      </Span>
+      </Box>
     );
   }
 }

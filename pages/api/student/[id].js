@@ -1,5 +1,5 @@
 import db from '../../../utils/db';
-import Task from '../../../modules/task/task.model';
+import Student from '../../../modules/students/student.model';
 
 export default async function handler(req, res) {
   const {
@@ -12,37 +12,35 @@ export default async function handler(req, res) {
 
     switch (method) {
       case 'GET': {
-        const task = await Task.find({ _id: id });
-        res.status(200).json(task);
+        const student = await Student.find({ _id: id });
+        res.status(200).json(student);
         break;
       }
       case 'POST': {
-        const task = await Task.insertMany(JSON.parse(req.body));
-
-        res.status(201).json(...task);
+        const student = await Student.insertMany(JSON.parse(req.body));
+        res.status(201).json(...student);
         break;
       }
       case 'PUT': {
-        await Task.updateOne(
+        const student = await Student.findOneAndUpdate(
           {
             _id: id,
           },
           {
             $set: JSON.parse(req.body),
           },
+          { new: true },
         );
-        res.status(200).json();
+        res.status(200).json(student);
         break;
       }
       case 'DELETE': {
-        await Task.deleteOne({ _id: id });
-
+        await Student.deleteOne({ _id: id });
         res.status(200).json();
         break;
       }
       default:
-        res.setHeader('Allow', ['GET', 'PUT', 'POST', 'DELETE']);
-        res.status(405).end(`Method ${method} Not Allowed`);
+        res.status(400).json({ success: false });
         break;
     }
   } catch (error) {

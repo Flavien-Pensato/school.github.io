@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Router from 'next/router';
+import { withRouter } from 'next/router';
+import Link from 'next/link';
 import { Box } from 'rebass';
-
-// import { A, Div } from '../elements/';
 
 class Error extends React.Component {
   static getInitialProps({ res, err }) {
@@ -23,10 +22,10 @@ class Error extends React.Component {
   }
 
   render() {
+    const { router } = this.props;
+
     if (this.props.statusCode === 404) {
-      Router.push({
-        pathname: '/home',
-      });
+      router.replace('/');
 
       return null;
     }
@@ -41,7 +40,7 @@ class Error extends React.Component {
             <br />
             <br />
             Retour sur&nbsp;
-            <a href="/home">l&apos;Accueil</a>
+            <Link href="/">l&apos;Accueil</Link>
           </p>
         </div>
       </Box>
@@ -51,6 +50,9 @@ class Error extends React.Component {
 
 Error.propTypes = {
   statusCode: PropTypes.number.isRequired,
+  router: PropTypes.shape({
+    replace: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
-export default Error;
+export default withRouter(Error);

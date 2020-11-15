@@ -8,32 +8,32 @@ import { Box, Heading, Text, Button } from 'rebass';
 import fetch from '../../../utils/fetch';
 
 const StudentForm = () => {
-  const { data } = useSWR('/api/classes', fetch, {
-    initialData: {
-      data: [],
-    },
+  const { data: classes } = useSWR('/api/classes', fetch, {
+    initialData: [],
   });
   const router = useRouter();
   const { register, handleSubmit, reset, setError, clearErrors, errors } = useForm();
 
   const onSubmit = async (student) => {
-    fetcher('/api/students', {
+    fetch('/api/student/new', {
       method: 'POST',
       body: JSON.stringify(student),
-    }).then(({ error }) => {
-      if (error) {
+    })
+      .then((response) => {
+        console.log(response);
+        clearErrors();
+        reset();
+        router.push('/classes');
+      })
+      .catch((error) => {
+        console.log(error);
         Object.keys(error.errors).map((errorKey) =>
           setError(errorKey, {
             type: 'manual',
             message: error.errors[errorKey].message,
           }),
         );
-      } else {
-        clearErrors();
-        reset();
-        router.push('/classes');
-      }
-    });
+      });
   };
 
   return (
@@ -53,7 +53,7 @@ const StudentForm = () => {
       <Box mb={3}>
         <Label htmlFor="classe">Classe</Label>
         <Select id="classe" name="classe" ref={register}>
-          {data.data.map((classe) => (
+          {classes.map((classe) => (
             <option key={classe} value={classe}>
               {classe}
             </option>

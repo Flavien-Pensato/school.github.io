@@ -1,6 +1,12 @@
-const fetcher = (url, options) =>
-  fetch(url, options)
-    .then((res) => res.json())
-    .catch((res) => res.json());
+const fetcher = (...props) =>
+  fetch(...props).then(async (res) => {
+    const data = await res.json();
+
+    if (res.ok) {
+      return data;
+    }
+
+    throw data.error;
+  });
 
 export default fetcher;

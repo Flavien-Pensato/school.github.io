@@ -8,6 +8,7 @@ import Dropdown from '../../components/Dropdown';
 import { groupeByClassesFromStudents } from '../../modules/students/students.utils';
 
 import fetch from '../../utils/fetch';
+import Layout from '../../components/Layout';
 
 const Classes = () => {
   const { data, mutate } = useSwr(`/api/students`, fetch, {
@@ -17,46 +18,40 @@ const Classes = () => {
   });
 
   const handleRemove = (id) => () => {
-    fetch(`/api/students`, {
+    fetch(`/api/student/${id}`, {
       method: 'DELETE',
-      body: id,
     }).then((response) => {
-      if (response.success) {
-        mutate(
-          {
-            data: data.data.filter((element) => element._id !== id),
-          },
-          false,
-        );
-      }
+      mutate(
+        {
+          data: data.data.filter((element) => element._id !== id),
+        },
+        false,
+      );
     });
   };
 
   const updateGroupe = (id) => (event) => {
     const groupe = event.target.value;
 
-    fetch(`/api/students`, {
+    fetch(`/api/student/${id}`, {
       method: 'PUT',
       body: JSON.stringify({
-        studentId: id,
-        studentGroupe: groupe,
+        groupe,
       }),
     }).then((response) => {
-      if (response.success) {
-        mutate(
-          {
-            data: data.data.map((element) => (element._id === id ? { ...element, groupe } : element)),
-          },
-          false,
-        );
-      }
+      mutate(
+        {
+          data: data.data.map((element) => (element._id === id ? response : element)),
+        },
+        false,
+      );
     });
   };
 
   const classes = groupeByClassesFromStudents(data.data);
 
   return (
-    <span>
+    <Layout>
       <Box as="nav" variant="nav">
         <Link href="/classes/ajout">
           <a>Ajouter un éléve</a>
@@ -86,7 +81,7 @@ const Classes = () => {
           />
         ))}
       </Flex>
-    </span>
+    </Layout>
   );
 };
 

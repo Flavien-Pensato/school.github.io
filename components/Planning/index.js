@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
+import { Flex, Button, Box } from 'rebass';
 import useMedia from 'use-media';
 
-import { Div, P, Strong, Span, Table, Tbody, Thead, Th, Tr, Td } from '../../elements';
+import useSWR from 'swr';
+import fetch from '../../utils/fetch';
 
-const PlanningWrapper = styled(Div)`
+// import { Div, P, Strong, Span, Table, Tbody, Thead, Th, Tr, Td } from '../../elements';
+
+const PlanningWrapper = styled(Box)`
   display: flex;
   align-items: center;
   overflow-y: scroll;
@@ -15,7 +19,7 @@ const PlanningWrapper = styled(Div)`
   }
 `;
 
-const Para = styled(P)`
+const Para = styled(Box)`
   border: 1px solid black;
   border-radius: 4px;
   padding: 10px;
@@ -26,45 +30,57 @@ const Para = styled(P)`
   }
 `;
 
-const Planning = ({ week }) => {
+const Planning = ({ startAt }) => {
   const isWide = useMedia({ maxWidth: '30em' });
+  const { data: week, error, mutate } = useSWR(`/api/week/${new Date(startAt)}`, fetch, {
+    initialData: {},
+  });
 
-  if (week.disable) {
-    return <span>Semaine de vacances.</span>;
+  const generateWeekTask = (event) => {
+    event.preventDefault();
+
+    fetch(`/api/week/generate/${week && week._id}`, {
+      method: 'PUT',
+    }).then((newWeek) => {
+      // console.log(newWeek);
+      mutate(newWeek);
+    });
+  };
+
+  if (error) {
+    return <Box>{error.toString()}</Box>;
+  }
+
+  if (!week || week.isHoliday) {
+    return <Box>Semaine de vacances.</Box>;
   }
 
   if (!week.tasks) {
     return (
-      <Div
-        id="planning"
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        height="20rem"
-        textAlign="center"
-        overflowY="scroll"
-      >
-        <P>Aucun planning de prévu cette semaine !</P>
-      </Div>
+      <Flex justifyContent="center" alignItems="center">
+        <Button onClick={generateWeekTask}>Generate</Button>
+      </Flex>
     );
   }
 
   if (isWide) {
     return (
       <PlanningWrapper id="planning" display="flex" flexDirection={['column', '']}>
-        {Object.keys(week.tasks).map(taskId => {
+        {Object.keys(week.tasks).map((taskId) => {
           const task = week.tasks[taskId];
 
+          console.log(task);
+
           return (
-            <Para>
-              <Span display="flex" justifyContent="space-between">
+            <Para key={taskId}>
+              <Box display="flex" justifyContent="space-between">
                 <span>
-                  Tâche&nbsp;<Strong>{task.task}</Strong>
+                  Tâche&nbsp;<Box>{task.task}</Box>
                 </span>
                 <span>
-                  Groupe&nbsp;<Strong>{task.groupe}</Strong>&nbsp;en&nbsp;<Strong>{task.classe}</Strong>
+                  Groupe&nbsp;<Box>{task.groupe}</Box>&nbsp;en&nbsp;<Box>{task.classe}</Box>
                 </span>
-              </Span>
+              </Box>
 
               <br />
               <i>{task.students}</i>
@@ -77,39 +93,42 @@ const Planning = ({ week }) => {
 
   return (
     <PlanningWrapper id="planning">
-      <Table>
-        <Thead>
-          <Tr>
-            <Th className="fw6 bb b--black-20 tl pb3 pr3">Tâche</Th>
-            <Th className="fw6 bb b--black-20 tl pb3 pr3">Classe</Th>
-            <Th className="fw6 bb b--black-20 tl pb3 pr3">Groupe</Th>
-            <Th className="fw6 bb b--black-20 tl pb3 pr3">Étudiants</Th>
-          </Tr>
-        </Thead>
-        <Tbody className="lh-copy">
-          {Object.keys(week.tasks).map(taskId => {
+      <Flex justifyContent="center" alignItems="center">
+        <Button onClick={generateWeekTask}>Generate</Button>
+      </Flex>
+
+      <table>
+        <thread>
+          <tr>
+            <th className="fw6 bb b--black-20 tl pb3 pr3">Tâche</th>
+            <th className="fw6 bb b--black-20 tl pb3 pr3">Classe</th>
+            <th className="fw6 bb b--black-20 tl pb3 pr3">Groupe</th>
+            <th className="fw6 bb b--black-20 tl pb3 pr3">Étudiants</th>
+          </tr>
+        </thread>
+        <tbody className="lh-copy">
+          {Object.keys(week.tasks).map((taskId) => {
             const task = week.tasks[taskId];
 
+            console.log(task);
+
             return (
-              <Tr key={task.task}>
-                <Td className="pv2 pr3 bb b--black-20">{task.task}</Td>
-                <Td className="pv2 pr3 bb b--black-20">{task.classe}</Td>
-                <Td className="pv2 pr3 bb b--black-20">{task.groupe}</Td>
-                <Td className="pv2 pr3 bb b--black-20">{task.students}</Td>
-              </Tr>
+              <tr key={taskId}>
+                <td className="pv2 pr3 bb b--black-20">{taskId}</td>
+                <td className="pv2 pr3 bb b--black-20">{task.classe}</td>
+                <td className="pv2 pr3 bb b--black-20">{task.groupe}</td>
+                <td className="pv2 pr3 bb b--black-20">{task.students}</td>
+              </tr>
             );
           })}
-        </Tbody>
-      </Table>
+        </tbody>
+      </table>
     </PlanningWrapper>
   );
 };
 
 Planning.propTypes = {
-  week: PropTypes.shape({
-    tasks: PropTypes.shape(),
-    disable: PropTypes.bool,
-  }).isRequired,
+  startAt: PropTypes.string.isRequired,
 };
 
 export default Planning;

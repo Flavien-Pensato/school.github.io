@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useSession } from 'next-auth/client';
+import { useSession, signOut } from 'next-auth/client';
 import { withRouter } from 'next/router';
 import Link from 'next/link';
-import { Link as RebassLink } from 'rebass';
+import { Button, Link as RebassLink } from 'rebass';
 
 import Loading from '../Loading';
 import Title from '../Title';
@@ -36,9 +36,13 @@ const Layout = ({ children, router }) => {
         <Link href="/classes">
           <RebassLink variant={router.pathname === '/classes' ? 'activeLink' : 'link'}>Classes</RebassLink>
         </Link>
+        <Link href="/calendrier">
+          <RebassLink variant={router.pathname === '/calendrier' ? 'activeLink' : 'link'}>Calendrier</RebassLink>
+        </Link>
         <Link href="/taches">
           <RebassLink variant={router.pathname === '/taches' ? 'activeLink' : 'link'}>Taches</RebassLink>
         </Link>
+        <Button onClick={signOut}>Deconnexion</Button>
       </Menu>
       {children}
     </>

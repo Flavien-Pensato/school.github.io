@@ -81,72 +81,74 @@ const StudentsForm = () => {
   };
 
   return (
-    <Box as="form" variant="card" mx="auto" maxWidth="800px" onSubmit={handleSubmit(onSubmit)}>
-      <Heading as="h3" mb={3}>
-        Création d’un&bull;e nouvel éléve
-      </Heading>
-      <Box mb={3}>
-        <Label htmlFor="file">Fichier d'import</Label>
-        <Input name="file" type="file" onChange={handleFile} />
+    <Layout>
+      <Box as="form" variant="card" mx="auto" maxWidth="800px" onSubmit={handleSubmit(onSubmit)}>
+        <Heading as="h3" mb={3}>
+          Création d’un&bull;e nouvel éléve
+        </Heading>
+        <Box mb={3}>
+          <Label htmlFor="file">Fichier d'import</Label>
+          <Input name="file" type="file" onChange={handleFile} />
+        </Box>
+        {fields.map((item, index) => (
+          <Flex mb={3} key={item.id} alignItems="end">
+            <Box mr={1} width="100%">
+              {index === 0 && <Label htmlFor="fullName">Nom</Label>}
+              <Input
+                id="fullName"
+                name={`students[${index}].fullName`}
+                placeholder="Tim Burton"
+                ref={register()}
+                defaultValue={item.fullName}
+              />
+              {errors.fullName && (
+                <Text as="p" variant="error">
+                  {errors.fullName.message}
+                </Text>
+              )}
+            </Box>
+            <Box mr={1}>
+              {index === 0 && <Label htmlFor="classe">Classe</Label>}
+              <Input
+                id="classe"
+                name={`students[${index}].classe`}
+                defaultValue={item.classe}
+                readOnly
+                ref={register()}
+              />
+              {errors.fullName && (
+                <Text as="p" variant="error">
+                  {errors.fullName.message}
+                </Text>
+              )}
+            </Box>
+            <Box mr={1}>
+              {index === 0 && <Label htmlFor="groupe">Groupe</Label>}
+              <Input
+                id="groupe"
+                name={`students[${index}].groupe`}
+                type="number"
+                defaultValue={item.groupe}
+                ref={register()}
+              />
+              {errors.groupe && (
+                <Text as="p" variant="error">
+                  {errors.groupe.message}
+                </Text>
+              )}
+            </Box>
+            <Box>
+              <Button type="button" variant="secondary" height="42px" width="42px" onClick={() => remove(index)}>
+                -
+              </Button>
+            </Box>
+          </Flex>
+        ))}
+        <Box display="flex" justifyContent="space-between">
+          <Button variant="primary">Importer</Button>
+        </Box>
       </Box>
-      {fields.map((item, index) => (
-        <Flex mb={3} key={item.id} alignItems="end">
-          <Box mr={1} width="100%">
-            {index === 0 && <Label htmlFor="fullName">Nom</Label>}
-            <Input
-              id="fullName"
-              name={`students[${index}].fullName`}
-              placeholder="Tim Burton"
-              ref={register()}
-              defaultValue={item.fullName}
-            />
-            {errors.fullName && (
-              <Text as="p" variant="error">
-                {errors.fullName.message}
-              </Text>
-            )}
-          </Box>
-          <Box mr={1}>
-            {index === 0 && <Label htmlFor="classe">Classe</Label>}
-            <Input
-              id="classe"
-              name={`students[${index}].classe`}
-              defaultValue={item.classe}
-              readOnly
-              ref={register()}
-            />
-            {errors.fullName && (
-              <Text as="p" variant="error">
-                {errors.fullName.message}
-              </Text>
-            )}
-          </Box>
-          <Box mr={1}>
-            {index === 0 && <Label htmlFor="groupe">Groupe</Label>}
-            <Input
-              id="groupe"
-              name={`students[${index}].groupe`}
-              type="number"
-              defaultValue={item.groupe}
-              ref={register()}
-            />
-            {errors.groupe && (
-              <Text as="p" variant="error">
-                {errors.groupe.message}
-              </Text>
-            )}
-          </Box>
-          <Box>
-            <Button type="button" variant="secondary" height="42px" width="42px" onClick={() => remove(index)}>
-              -
-            </Button>
-          </Box>
-        </Flex>
-      ))}
-      <Box display="flex" justifyContent="space-between">
-        <Button variant="primary">Importer</Button>
-      </Box>
-    </Box>
+    </Layout>
   );
 };
 

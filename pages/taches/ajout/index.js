@@ -1,10 +1,11 @@
 import React from 'react';
-import StudentForm from '../../../components/Forms/Student';
+
+import TaskForm from '../../../components/Forms/Task';
 import Layout from '../../../components/Layout';
 
 const Add = () => (
   <Layout>
-    <StudentForm />
+    <TaskForm />
   </Layout>
 );
 

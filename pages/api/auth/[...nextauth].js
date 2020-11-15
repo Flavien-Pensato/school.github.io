@@ -10,15 +10,6 @@ const options = {
     }),
     // ...add more providers here
   ],
-  events: {
-    signIn: (message) => {
-      // console.log(message);
-    },
-    signOut: async (message) => {
-      // console.log(message);
-    },
-  },
-
   // A database is optional, but required to persist accounts in a database
   database: process.env.DATABASE_URL.replace(/\\n/gm, '\n'),
 };
