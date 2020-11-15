@@ -1,5 +1,5 @@
 import React from 'react';
-import { Global, css } from '@emotion/core';
+import { Global, css } from '@emotion/react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {

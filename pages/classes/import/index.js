@@ -1,9 +1,12 @@
 import React from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { Label, Input } from '@rebass/forms';
 import { Flex, Box, Heading, Text, Button } from 'rebass';
-import XLSX from 'xlsx';
+import Layout from '../../../components/Layout';
+
+const XLSX = dynamic(() => import('xlsx'));
 
 const fetcher = (url, options) =>
   fetch(url, options)

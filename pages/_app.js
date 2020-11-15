@@ -1,7 +1,7 @@
 import React from 'react';
 import AppExtend from 'next/app';
 import { Provider } from 'next-auth/client';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 import { SWRConfig } from 'swr';
 import { StateMachineProvider, createStore } from 'little-state-machine';
 import { setStartOfWeek } from '../utils/date';
