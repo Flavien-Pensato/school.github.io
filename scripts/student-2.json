@@ -1,0 +1,1797 @@
+{
+  "startAt": {
+    "$date": "2020-08-24T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2020-08-28T00:00:00.000Z"
+  },
+  "isHolliday": true,
+  "classes": [],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2020-08-31T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2020-09-04T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "4eme A",
+    "4eme B",
+    "BTS 2",
+    "Bac 1",
+    "Bac 2",
+    "CAP 2 ISCH",
+    "CAP 2 Mac MBC"
+  ],
+  "tasks": {
+    "4eme A": {
+      "groupe": 1,
+      "students": "BALASSO Orlane, CAILLAT Charlene, CAZEAUX Fatih, CHEVALIER Ayan",
+      "task": "4ème A"
+    },
+    "4eme B": {
+      "groupe": 5,
+      "students": "ALAIMO Tony, BELLOSGUARDO Dorian, BOUILFAN Noa, DE ANDRADE Anthony",
+      "task": "4ème B"
+    },
+    "Ancien dortoir": {
+      "groupe": 39,
+      "students": "DUFRENNE Dylan, GERBIER Benoit, MAUERHAN Solal, PARTON Julien, REYNIER Theo",
+      "task": "Ancien dortoir"
+    },
+    "BTS 2": {
+      "groupe": 32,
+      "students": "ARDAIN Alice, BAYLE Florent, BERTHET Matheo, FOLMER Mia",
+      "task": "BTS 2"
+    },
+    "Bac 1": {
+      "groupe": 23,
+      "students": "BRUN Amaël, ESCOFFIER Michel, MOREON Andrea, SÉGARD Quentin",
+      "task": "Bac 1"
+    },
+    "Bac 2": {
+      "groupe": 26,
+      "students": "ARNAUD Quentin, GIROUD Dorian, GUILLOT Teddy, MOTTIN Nathan, PICOT Stéphanie, RAMBERT Paul",
+      "task": "Bac 2"
+    },
+    "CAP 2 ISCH": {
+      "groupe": 42,
+      "students": "ALBERT Théo, BARRIAC Jean-Daniel, DECOTTIGNIES Mateo, KARL  Marvin, MOCELLIN Tanguy, PORTELLI Maxence",
+      "task": "CAP 2 IS/CH"
+    },
+    "CAP 2 Mac MBC": {
+      "groupe": 41,
+      "students": "ALBERTIN Nicolas, BENAHCÈNE Amine, DIDIER Camille, JUERY Franck, LLORED Yoan, ZANETTO Justin",
+      "task": "CAP 2 Maç / MBC"
+    },
+    "Exterieur": {
+      "groupe": 40,
+      "students": "AIBA Khalifa, ALAIMO Yoan, CAILLAT Martin, CRUZ Sam, DUNAND-SAUTHIER Alexandre",
+      "task": "Exterieur"
+    },
+    "Foyer": {
+      "groupe": 27,
+      "students": "GAUTHIER Alicia, JALLIFIER Fabrice, JALLIFIER Mathis, LE BORGNE Maelyss, MATHON  Léa, ROBIN Florian",
+      "task": "Foyer"
+    },
+    "Machine a boisson": {
+      "groupe": 28,
+      "students": "ALLOIX Dorian, BELLIER-BENISTAND Louane, BOURGEAT Loïc, CHALVIN Theo, DESSERY Bastien, GAILLARD Laura",
+      "task": "Machine a boisson"
+    },
+    "Nouveau dortoir": {
+      "groupe": 24,
+      "students": "AYMOZ Titouan, BAURIN Gwenaêlle, DIDIER Jules, DUMON Laszlo, FRACHISSE Julien",
+      "task": "Nouveau dortoir"
+    },
+    "Refectoir matinsoir": {
+      "groupe": 25,
+      "students": "GRENIER Quentin, LEROY Kimberlay, MANCINO Rémi, MICHOUD Valentin, VENTURA Eleonore",
+      "task": "Refectoir matin/soir"
+    },
+    "Refectoir midi": {
+      "groupe": 33,
+      "students": "GUILLET Etienne, NUBLAT Paul, PELIZZARI Vaïna",
+      "task": "Refectoir midi"
+    },
+    "Salle B Salle verte": {
+      "groupe": 6,
+      "students": "DIDIER Laura, DORLY Kenny, DUSSERT Alban, FANTIN Evan",
+      "task": "Salle B / Salle verte"
+    },
+    "Salle Jobin": {
+      "groupe": 7,
+      "students": "FLAHAUT Jordane, GONÇALVES FERNANDES Raphaël, JACQUIER Leo, LOVATIN Thomas, MILESI Theo",
+      "task": "Salle Jobin"
+    },
+    "Vaisselle matinsoir": {
+      "groupe": 8,
+      "students": "MILLET Dylan, REY Dylan, TARDY Soan, THIBAUD Mathys, TROMBERT Charlotte",
+      "task": "Vaisselle matin/soir"
+    },
+    "Vaisselle midi": {
+      "groupe": 43,
+      "students": "DUPUIS  Alexis, KACZMAREK Andreas, PERROT Theo, ROUSSET Evan, SASA Fabrice, SCARPA Alexis, WAGNER Camille",
+      "task": "Vaisselle midi"
+    }
+  }
+}
+{
+  "startAt": {
+    "$date": "2020-09-07T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2020-09-11T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "2nde",
+    "4eme A",
+    "4eme B",
+    "BTS 1",
+    "BTS 2",
+    "Bac 2"
+  ],
+  "tasks": {
+    "2nde": {
+      "groupe": 19,
+      "students": "BARD Himaya, DA SILVA Marco, DE RASILLY Emilie, ODOIT Loris, VERCASSON Romain",
+      "task": "2nde"
+    },
+    "4eme A": {
+      "groupe": 2,
+      "students": "FINARD Clovis, FONTENELLE Ameline, GRUEL Jeanne, JOAO Kayla",
+      "task": "4ème A"
+    },
+    "4eme B": {
+      "groupe": 7,
+      "students": "FLAHAUT Jordane, GONÇALVES FERNANDES Raphaël, JACQUIER Leo, LOVATIN Thomas, MILESI Theo",
+      "task": "4ème B"
+    },
+    "Ancien dortoir": {
+      "groupe": 3,
+      "students": "KETFI-CHARIF Radwane, LONGO Gabriel, MARTIN Evann, MAUSSERT Timeo, MISKULIN Killian",
+      "task": "Ancien dortoir"
+    },
+    "BTS 1": {
+      "groupe": 31,
+      "students": "CHARLON Thibaud, GRAND Jeremy, MORARD Kevin, PICOT-GUERAUD Axel",
+      "task": "BTS 1"
+    },
+    "BTS 2": {
+      "groupe": 32,
+      "students": "ARDAIN Alice, BAYLE Florent, BERTHET Matheo, FOLMER Mia",
+      "task": "BTS 2"
+    },
+    "Bac 2": {
+      "groupe": 28,
+      "students": "ALLOIX Dorian, BELLIER-BENISTAND Louane, BOURGEAT Loïc, CHALVIN Theo, DESSERY Bastien, GAILLARD Laura",
+      "task": "Bac 2"
+    },
+    "Exterieur": {
+      "groupe": 4,
+      "students": "RICHARDEAU Oscar, RUFFIER DES AIMES Nolhan, SEIGLE Edenn, STADELMANN Bathias, UNAL Erhan",
+      "task": "Exterieur"
+    },
+    "Foyer": {
+      "groupe": 26,
+      "students": "ARNAUD Quentin, GIROUD Dorian, GUILLOT Teddy, MOTTIN Nathan, PICOT Stéphanie, RAMBERT Paul",
+      "task": "Foyer"
+    },
+    "Machine a boisson": {
+      "groupe": 27,
+      "students": "GAUTHIER Alicia, JALLIFIER Fabrice, JALLIFIER Mathis, LE BORGNE Maelyss, MATHON  Léa, ROBIN Florian",
+      "task": "Machine a boisson"
+    },
+    "Nouveau dortoir": {
+      "groupe": 29,
+      "students": "ARDAIN Celine, CHARRETON Alexis, DI ANTONIO Côme, Faure Fabien, GERBOUD Lyse, MAGNAN Erwan",
+      "task": "Nouveau dortoir"
+    },
+    "Refectoir matinsoir": {
+      "groupe": 30,
+      "students": "ARDAIN Emeline, ROYANNAIS Maxime, SIONNET Thomas, VACHIER Corentin",
+      "task": "Refectoir matin/soir"
+    },
+    "Refectoir midi": {
+      "groupe": 5,
+      "students": "ALAIMO Tony, BELLOSGUARDO Dorian, BOUILFAN Noa, DE ANDRADE Anthony",
+      "task": "Refectoir midi"
+    },
+    "Salle B Salle verte": {
+      "groupe": 8,
+      "students": "MILLET Dylan, REY Dylan, TARDY Soan, THIBAUD Mathys, TROMBERT Charlotte",
+      "task": "Salle B / Salle verte"
+    },
+    "Salle Jobin": {
+      "groupe": 6,
+      "students": "DIDIER Laura, DORLY Kenny, DUSSERT Alban, FANTIN Evan",
+      "task": "Salle Jobin"
+    },
+    "Vaisselle matinsoir": {
+      "groupe": 1,
+      "students": "BALASSO Orlane, CAILLAT Charlene, CAZEAUX Fatih, CHEVALIER Ayan",
+      "task": "Vaisselle matin/soir"
+    },
+    "Vaisselle midi": {
+      "groupe": 33,
+      "students": "GUILLET Etienne, NUBLAT Paul, PELIZZARI Vaïna",
+      "task": "Vaisselle midi"
+    }
+  }
+}
+{
+  "startAt": {
+    "$date": "2020-09-14T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2020-09-18T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "3eme A",
+    "3eme B",
+    "BTS 2",
+    "CAP 1 ISCH",
+    "CAP 1 MacMBC"
+  ],
+  "tasks": {
+    "3eme A": {
+      "groupe": 11,
+      "students": "FIERE Alexis, GARNIER Noémie, GERMAIN Noa, HUGOT--GRONDIN Luna, MARCON Candice",
+      "task": "3ème A"
+    },
+    "3eme B": {
+      "groupe": 16,
+      "students": "GAMET Jérémy, GLEIZE Yanis, GUILHERMET Lucas, JAY Quentin, JOUBIN Enzo",
+      "task": "3ème B"
+    },
+    "Ancien dortoir": {
+      "groupe": 9,
+      "students": "ARNOULD Mattéo, AUGUGLIARO Matteo, BARNARIE Lilou, BELLIER-BENISTAND Nathan, BOUVANIER Marius",
+      "task": "Ancien dortoir"
+    },
+    "BTS 2": {
+      "groupe": 33,
+      "students": "GUILLET Etienne, NUBLAT Paul, PELIZZARI Vaïna",
+      "task": "BTS 2"
+    },
+    "CAP 1 ISCH": {
+      "groupe": 35,
+      "students": "FAURE Leandre, JEUNOT Nathan, MALLAN Marvin, TARICCO Loris, TURF Thimoté",
+      "task": "CAP 1 IS/CH"
+    },
+    "CAP 1 MacMBC": {
+      "groupe": 38,
+      "students": "JALLIFFIER-VERNE Florentin, JALLIFFIER-VERNE Thomas, RAMAT Kilian, RODRIGUEZ Enzo, SAÏD Nidal, VELASQUEZ Esteban",
+      "task": "CAP 1 Maç/MBC"
+    },
+    "Exterieur": {
+      "groupe": 36,
+      "students": "BARRAL-BARON Guillaume, FLAHAUT Dorian, MATENCIO Valentin, PERRIN Yannis",
+      "task": "Exterieur"
+    },
+    "Foyer": {
+      "groupe": 12,
+      "students": "MARTEL--QUESNEL Anthony, PASERO Mathys, PICAT Kylian, PICOT Chloé, REMLINGER Theo",
+      "task": "Foyer"
+    },
+    "Machine a boisson": {
+      "groupe": 37,
+      "students": "BAGNIS Hugo, BARRADAS Lorenzo, DORNEL Bryan, EYMARD-SCIPION Alexis, MOCELLIN Cody",
+      "task": "Machine a boisson"
+    },
+    "Nouveau dortoir": {
+      "groupe": 34,
+      "students": "BLANC Nicolas, BUTHIGIEG Enzo, DEBELJAK Lilian, ROCHAS Léo",
+      "task": "Nouveau dortoir"
+    },
+    "Refectoir matinsoir": {
+      "groupe": 14,
+      "students": "BENHICHCHOU Wassim, BENRABAH Mohamed-Rayan, BERGOGNON Remi, CARLIER Mathys, CORRADI Alexis",
+      "task": "Refectoir matin/soir"
+    },
+    "Refectoir midi": {
+      "groupe": 15,
+      "students": "DE OLIVEIRA Mathys, DELANGE Elie, DUMONT Killian, FAURE Matheo, FAYARD Baptiste",
+      "task": "Refectoir midi"
+    },
+    "Salle B Salle verte": {
+      "groupe": 17,
+      "students": "JULLIEN Killian, LAURENT Enzo, MUCEL Lucas, MUET Maxime, PEYSSON Joris",
+      "task": "Salle B / Salle verte"
+    },
+    "Salle Jobin": {
+      "groupe": 18,
+      "students": "PICOT--VOLMAT Antoine, RAMALHO Joshua, RAMBERT Nathan, REY Tom, REY-VINCENT Matthew, SEYVE Anthony",
+      "task": "Salle Jobin"
+    },
+    "Vaisselle matinsoir": {
+      "groupe": 10,
+      "students": "BUISSON Mélanie, CHABERT Bastien, CHALOIN Seraphin, CHENEVIER--COMBE Marlonn, CUZIN Corentin",
+      "task": "Vaisselle matin/soir"
+    },
+    "Vaisselle midi": {
+      "groupe": 32,
+      "students": "ARDAIN Alice, BAYLE Florent, BERTHET Matheo, FOLMER Mia",
+      "task": "Vaisselle midi"
+    }
+  }
+}
+{
+  "startAt": {
+    "$date": "2020-09-21T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2020-09-25T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "3eme A",
+    "3eme B",
+    "BTS 1",
+    "Bac 1",
+    "Bac 2",
+    "CAP 1 ISCH",
+    "CAP 1 MacMBC"
+  ],
+  "tasks": {
+    "3eme A": {
+      "groupe": 12,
+      "students": "MARTEL--QUESNEL Anthony, PASERO Mathys, PICAT Kylian, PICOT Chloé, REMLINGER Theo",
+      "task": "3ème A"
+    },
+    "3eme B": {
+      "groupe": 18,
+      "students": "PICOT--VOLMAT Antoine, RAMALHO Joshua, RAMBERT Nathan, REY Tom, REY-VINCENT Matthew, SEYVE Anthony",
+      "task": "3ème B"
+    },
+    "Ancien dortoir": {
+      "groupe": 36,
+      "students": "BARRAL-BARON Guillaume, FLAHAUT Dorian, MATENCIO Valentin, PERRIN Yannis",
+      "task": "Ancien dortoir"
+    },
+    "BTS 1": {
+      "groupe": 30,
+      "students": "ARDAIN Emeline, ROYANNAIS Maxime, SIONNET Thomas, VACHIER Corentin",
+      "task": "BTS 1"
+    },
+    "Bac 1": {
+      "groupe": 24,
+      "students": "AYMOZ Titouan, BAURIN Gwenaêlle, DIDIER Jules, DUMON Laszlo, FRACHISSE Julien",
+      "task": "Bac 1"
+    },
+    "Bac 2": {
+      "groupe": 26,
+      "students": "ARNAUD Quentin, GIROUD Dorian, GUILLOT Teddy, MOTTIN Nathan, PICOT Stéphanie, RAMBERT Paul",
+      "task": "Bac 2"
+    },
+    "CAP 1 ISCH": {
+      "groupe": 38,
+      "students": "JALLIFFIER-VERNE Florentin, JALLIFFIER-VERNE Thomas, RAMAT Kilian, RODRIGUEZ Enzo, SAÏD Nidal, VELASQUEZ Esteban",
+      "task": "CAP 1 IS/CH"
+    },
+    "CAP 1 MacMBC": {
+      "groupe": "Pas de groupe disponible.",
+      "task": "CAP 1 Maç/MBC"
+    },
+    "Exterieur": {
+      "groupe": 43,
+      "students": "DUPUIS  Alexis, KACZMAREK Andreas, PERROT Theo, ROUSSET Evan, SASA Fabrice, SCARPA Alexis, WAGNER Camille",
+      "task": "Exterieur"
+    },
+    "Foyer": {
+      "groupe": 41,
+      "students": "ALBERTIN Nicolas, BENAHCÈNE Amine, DIDIER Camille, JUERY Franck, LLORED Yoan, ZANETTO Justin",
+      "task": "Foyer"
+    },
+    "Machine a boisson": {
+      "groupe": 29,
+      "students": "ARDAIN Celine, CHARRETON Alexis, DI ANTONIO Côme, Faure Fabien, GERBOUD Lyse, MAGNAN Erwan",
+      "task": "Machine a boisson"
+    },
+    "Nouveau dortoir": {
+      "groupe": 44,
+      "students": "BERGERON Baptiste, DURA Anton, FEREYRE Nicolas, GUINET Léo, MORGADO DO MONTE Tristan",
+      "task": "Nouveau dortoir"
+    },
+    "Refectoir matinsoir": {
+      "groupe": 16,
+      "students": "GAMET Jérémy, GLEIZE Yanis, GUILHERMET Lucas, JAY Quentin, JOUBIN Enzo",
+      "task": "Refectoir matin/soir"
+    },
+    "Refectoir midi": {
+      "groupe": 14,
+      "students": "BENHICHCHOU Wassim, BENRABAH Mohamed-Rayan, BERGOGNON Remi, CARLIER Mathys, CORRADI Alexis",
+      "task": "Refectoir midi"
+    },
+    "Salle B Salle verte": {
+      "groupe": 15,
+      "students": "DE OLIVEIRA Mathys, DELANGE Elie, DUMONT Killian, FAURE Matheo, FAYARD Baptiste",
+      "task": "Salle B / Salle verte"
+    },
+    "Salle Jobin": {
+      "groupe": 10,
+      "students": "BUISSON Mélanie, CHABERT Bastien, CHALOIN Seraphin, CHENEVIER--COMBE Marlonn, CUZIN Corentin",
+      "task": "Salle Jobin"
+    },
+    "Vaisselle matinsoir": {
+      "groupe": 33,
+      "students": "GUILLET Etienne, NUBLAT Paul, PELIZZARI Vaïna",
+      "task": "Vaisselle matin/soir"
+    },
+    "Vaisselle midi": {
+      "groupe": 34,
+      "students": "BLANC Nicolas, BUTHIGIEG Enzo, FAURE Leandre, PAIN Gaetan",
+      "task": "Vaisselle midi"
+    }
+  }
+}
+{
+  "startAt": {
+    "$date": "2020-09-28T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2020-10-02T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "2nde",
+    "4eme A",
+    "4eme B",
+    "BTS 2",
+    "CAP 2 ISCH",
+    "CAP 2 Mac MBC"
+  ],
+  "tasks": {
+    "2nde": {
+      "groupe": 19,
+      "students": "BARD Himaya, DA SILVA Marco, DE RASILLY Emilie, ODOIT Loris, VERCASSON Romain",
+      "task": "2nde"
+    },
+    "4eme A": {
+      "groupe": 3,
+      "students": "KETFI-CHARIF Radwane, LONGO Gabriel, MARTIN Evann, MAUSSERT Timeo, MISKULIN Killian",
+      "task": "4ème A"
+    },
+    "4eme B": {
+      "groupe": 6,
+      "students": "DIDIER Laura, DORLY Kenny, DUSSERT Alban, FANTIN Evan",
+      "task": "4ème B"
+    },
+    "Ancien dortoir": {
+      "groupe": 41,
+      "students": "ALBERTIN Nicolas, BENAHCÈNE Amine, DIDIER Camille, JUERY Franck, LLORED Yoan, ZANETTO Justin",
+      "task": "Ancien dortoir"
+    },
+    "BTS 2": {
+      "groupe": 33,
+      "students": "GUILLET Etienne, NUBLAT Paul, PELIZZARI Vaïna",
+      "task": "BTS 2"
+    },
+    "CAP 2 ISCH": {
+      "groupe": 43,
+      "students": "DUPUIS  Alexis, KACZMAREK Andreas, PERROT Theo, ROUSSET Evan, SASA Fabrice, SCARPA Alexis, WAGNER Camille",
+      "task": "CAP 2 IS/CH"
+    },
+    "CAP 2 Mac MBC": {
+      "groupe": 39,
+      "students": "DUFRENNE Dylan, GERBIER Benoit, MAUERHAN Solal, PARTON Julien, REYNIER Theo",
+      "task": "CAP 2 Maç / MBC"
+    },
+    "Exterieur": {
+      "groupe": 42,
+      "students": "ALBERT Théo, BARRIAC Jean-Daniel, DECOTTIGNIES Mateo, KARL  Marvin, MOCELLIN Tanguy, PORTELLI Maxence",
+      "task": "Exterieur"
+    },
+    "Foyer": {
+      "groupe": 40,
+      "students": "AIBA Khalifa, ALAIMO Yoan, CAILLAT Martin, CRUZ Sam, DUNAND-SAUTHIER Alexandre",
+      "task": "Foyer"
+    },
+    "Machine a boisson": {
+      "groupe": 2,
+      "students": "FINARD Clovis, FONTENELLE Ameline, GRUEL Jeanne, JOAO Kayla",
+      "task": "Machine a boisson"
+    },
+    "Nouveau dortoir": {
+      "groupe": 4,
+      "students": "RICHARDEAU Oscar, RUFFIER DES AIMES Nolhan, SEIGLE Edenn, STADELMANN Bathias, UNAL Erhan",
+      "task": "Nouveau dortoir"
+    },
+    "Refectoir matinsoir": {
+      "groupe": 5,
+      "students": "ALAIMO Tony, BELLOSGUARDO Dorian, BOUILFAN Noa, DE ANDRADE Anthony",
+      "task": "Refectoir matin/soir"
+    },
+    "Refectoir midi": {
+      "groupe": 7,
+      "students": "FLAHAUT Jordane, GONÇALVES FERNANDES Raphaël, JACQUIER Leo, LOVATIN Thomas, MILESI Theo",
+      "task": "Refectoir midi"
+    },
+    "Salle B Salle verte": {
+      "groupe": 1,
+      "students": "BALASSO Orlane, CAILLAT Charlene, CAZEAUX Fatih, CHEVALIER Ayan",
+      "task": "Salle B / Salle verte"
+    },
+    "Salle Jobin": {
+      "groupe": 8,
+      "students": "MILLET Dylan, REY Dylan, TARDY Soan, THIBAUD Mathys, TROMBERT Charlotte",
+      "task": "Salle Jobin"
+    },
+    "Vaisselle matinsoir": {
+      "groupe": 32,
+      "students": "ARDAIN Alice, BAYLE Florent, BERTHET Matheo, FOLMER Mia",
+      "task": "Vaisselle matin/soir"
+    },
+    "Vaisselle midi": {
+      "groupe": 44,
+      "students": "BERGERON Baptiste, DURA Anton, FEREYRE Nicolas, GUINET Léo, MORGADO DO MONTE Tristan",
+      "task": "Vaisselle midi"
+    }
+  }
+}
+{
+  "startAt": {
+    "$date": "2020-10-05T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2020-10-09T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "2nde",
+    "3eme A",
+    "3eme B",
+    "BTS 1",
+    "Bac 2"
+  ],
+  "tasks": {
+    "2nde": {
+      "groupe": 19,
+      "students": "BARD Himaya, DA SILVA Marco, DE RASILLY Emilie, ODOIT Loris, VERCASSON Romain",
+      "task": "2nde"
+    },
+    "3eme A": {
+      "groupe": 9,
+      "students": "ARNOULD Mattéo, AUGUGLIARO Matteo, BARNARIE Lilou, BELLIER-BENISTAND Nathan, BOUVANIER Marius",
+      "task": "3ème A"
+    },
+    "3eme B": {
+      "groupe": 14,
+      "students": "BENHICHCHOU Wassim, BENRABAH Mohamed-Rayan, BERGOGNON Remi, CARLIER Mathys, CORRADI Alexis",
+      "task": "3ème B"
+    },
+    "Ancien dortoir": {
+      "groupe": 11,
+      "students": "FIERE Alexis, GARNIER Noémie, GERMAIN Noa, HUGOT--GRONDIN Luna, MARCON Candice",
+      "task": "Ancien dortoir"
+    },
+    "BTS 1": {
+      "groupe": 29,
+      "students": "ARDAIN Celine, CHARRETON Alexis, DI ANTONIO Côme, Faure Fabien, GERBOUD Lyse, MAGNAN Erwan",
+      "task": "BTS 1"
+    },
+    "Bac 2": {
+      "groupe": 27,
+      "students": "GAUTHIER Alicia, JALLIFIER Fabrice, JALLIFIER Mathis, LE BORGNE Maelyss, MATHON  Léa, ROBIN Florian",
+      "task": "Bac 2"
+    },
+    "Exterieur": {
+      "groupe": 12,
+      "students": "MARTEL--QUESNEL Anthony, PASERO Mathys, PICAT Kylian, PICOT Chloé, REMLINGER Theo",
+      "task": "Exterieur"
+    },
+    "Foyer": {
+      "groupe": 30,
+      "students": "ARDAIN Emeline, ROYANNAIS Maxime, SIONNET Thomas, VACHIER Corentin",
+      "task": "Foyer"
+    },
+    "Machine a boisson": {
+      "groupe": 26,
+      "students": "ARNAUD Quentin, GIROUD Dorian, GUILLOT Teddy, MOTTIN Nathan, PICOT Stéphanie, RAMBERT Paul",
+      "task": "Machine a boisson"
+    },
+    "Nouveau dortoir": {
+      "groupe": 31,
+      "students": "CHARLON Thibaud, GRAND Jeremy, MORARD Kevin, PICOT-GUERAUD Axel",
+      "task": "Nouveau dortoir"
+    },
+    "Refectoir matinsoir": {
+      "groupe": 15,
+      "students": "DE OLIVEIRA Mathys, DELANGE Elie, DUMONT Killian, FAURE Matheo, FAYARD Baptiste",
+      "task": "Refectoir matin/soir"
+    },
+    "Refectoir midi": {
+      "groupe": 16,
+      "students": "GAMET Jérémy, GLEIZE Yanis, GUILHERMET Lucas, JAY Quentin, JOUBIN Enzo",
+      "task": "Refectoir midi"
+    },
+    "Salle B Salle verte": {
+      "groupe": 18,
+      "students": "PICOT--VOLMAT Antoine, RAMALHO Joshua, RAMBERT Nathan, REY Tom, REY-VINCENT Matthew, SEYVE Anthony",
+      "task": "Salle B / Salle verte"
+    },
+    "Salle Jobin": {
+      "groupe": 17,
+      "students": "JULLIEN Killian, LAURENT Enzo, MUCEL Lucas, MUET Maxime, PEYSSON Joris",
+      "task": "Salle Jobin"
+    },
+    "Vaisselle matinsoir": {
+      "groupe": 28,
+      "students": "ALLOIX Dorian, BELLIER-BENISTAND Louane, BOURGEAT Loïc, CHALVIN Theo, DESSERY Bastien, GAILLARD Laura",
+      "task": "Vaisselle matin/soir"
+    },
+    "Vaisselle midi": {
+      "groupe": 10,
+      "students": "BUISSON Mélanie, CHABERT Bastien, CHALOIN Seraphin, CHENEVIER--COMBE Marlonn, CUZIN Corentin",
+      "task": "Vaisselle midi"
+    }
+  }
+}
+{
+  "startAt": {
+    "$date": "2020-10-12T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2020-10-16T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "4eme A",
+    "4eme B",
+    "BTS 1",
+    "Bac 1",
+    "Bac 2",
+    "CAP 1 ISCH",
+    "CAP 1 MacMBC"
+  ],
+  "tasks": {
+    "4eme A": {
+      "groupe": 4,
+      "students": "RICHARDEAU Oscar, RUFFIER DES AIMES Nolhan, SEIGLE Edenn, STADELMANN Bathias, UNAL Erhan",
+      "task": "4ème A"
+    },
+    "4eme B": {
+      "groupe": 8,
+      "students": "MILLET Dylan, REY Dylan, TARDY Soan, THIBAUD Mathys, TROMBERT Charlotte",
+      "task": "4ème B"
+    },
+    "Ancien dortoir": {
+      "groupe": 37,
+      "students": "BAGNIS Hugo, BARRADAS Lorenzo, DORNEL Bryan, EYMARD-SCIPION Alexis, MOCELLIN Cody",
+      "task": "Ancien dortoir"
+    },
+    "BTS 1": {
+      "groupe": 30,
+      "students": "ARDAIN Emeline, ROYANNAIS Maxime, SIONNET Thomas, VACHIER Corentin",
+      "task": "BTS 1"
+    },
+    "Bac 1": {
+      "groupe": 25,
+      "students": "GRENIER Quentin, LEROY Kimberlay, MANCINO Rémi, MICHOUD Valentin, VENTURA Eleonore",
+      "task": "Bac 1"
+    },
+    "Bac 2": {
+      "groupe": 27,
+      "students": "GAUTHIER Alicia, JALLIFIER Fabrice, JALLIFIER Mathis, LE BORGNE Maelyss, MATHON  Léa, ROBIN Florian",
+      "task": "Bac 2"
+    },
+    "CAP 1 ISCH": {
+      "groupe": 34,
+      "students": "BLANC Nicolas, BUTHIGIEG Enzo, DEBELJAK Lilian, ROCHAS Léo",
+      "task": "CAP 1 IS/CH"
+    },
+    "CAP 1 MacMBC": {
+      "groupe": 36,
+      "students": "BARRAL-BARON Guillaume, FLAHAUT Dorian, MATENCIO Valentin, PERRIN Yannis",
+      "task": "CAP 1 Maç/MBC"
+    },
+    "Exterieur": {
+      "groupe": 35,
+      "students": "FAURE Leandre, JEUNOT Nathan, MALLAN Marvin, TARICCO Loris, TURF Thimoté",
+      "task": "Exterieur"
+    },
+    "Foyer": {
+      "groupe": 38,
+      "students": "JALLIFFIER-VERNE Florentin, JALLIFFIER-VERNE Thomas, RAMAT Kilian, RODRIGUEZ Enzo, SAÏD Nidal, VELASQUEZ Esteban",
+      "task": "Foyer"
+    },
+    "Machine a boisson": {
+      "groupe": 26,
+      "students": "ARNAUD Quentin, GIROUD Dorian, GUILLOT Teddy, MOTTIN Nathan, PICOT Stéphanie, RAMBERT Paul",
+      "task": "Machine a boisson"
+    },
+    "Nouveau dortoir": {
+      "groupe": 23,
+      "students": "BRUN Amaël, ESCOFFIER Michel, MOREON Andrea, SÉGARD Quentin",
+      "task": "Nouveau dortoir"
+    },
+    "Refectoir matinsoir": {
+      "groupe": 24,
+      "students": "AYMOZ Titouan, BAURIN Gwenaêlle, DIDIER Jules, DUMON Laszlo, FRACHISSE Julien",
+      "task": "Refectoir matin/soir"
+    },
+    "Refectoir midi": {
+      "groupe": 2,
+      "students": "FINARD Clovis, FONTENELLE Ameline, GRUEL Jeanne, JOAO Kayla",
+      "task": "Refectoir midi"
+    },
+    "Salle B Salle verte": {
+      "groupe": 31,
+      "students": "CHARLON Thibaud, GRAND Jeremy, MORARD Kevin, PICOT-GUERAUD Axel",
+      "task": "Salle B / Salle verte"
+    },
+    "Salle Jobin": {
+      "groupe": 3,
+      "students": "KETFI-CHARIF Radwane, LONGO Gabriel, MARTIN Evann, MAUSSERT Timeo, MISKULIN Killian",
+      "task": "Salle Jobin"
+    },
+    "Vaisselle matinsoir": {
+      "groupe": 29,
+      "students": "ARDAIN Celine, CHARRETON Alexis, DI ANTONIO Côme, Faure Fabien, GERBOUD Lyse, MAGNAN Erwan",
+      "task": "Vaisselle matin/soir"
+    },
+    "Vaisselle midi": {
+      "groupe": 5,
+      "students": "ALAIMO Tony, BELLOSGUARDO Dorian, BOUILFAN Noa, DE ANDRADE Anthony",
+      "task": "Vaisselle midi"
+    }
+  }
+}
+{
+  "startAt": {
+    "$date": "2020-10-19T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2020-10-23T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "3eme A",
+    "3eme B",
+    "BTS 2",
+    "Bac 1",
+    "Bac 2",
+    "CAP 2 ISCH",
+    "CAP 2 Mac MBC"
+  ],
+  "tasks": {
+    "3eme A": {
+      "groupe": 10,
+      "students": "BUISSON Mélanie, CHABERT Bastien, CHALOIN Seraphin, CHENEVIER--COMBE Marlonn, CUZIN Corentin",
+      "task": "3ème A"
+    },
+    "3eme B": {
+      "groupe": 15,
+      "students": "DE OLIVEIRA Mathys, DELANGE Elie, DUMONT Killian, FAURE Matheo, FAYARD Baptiste",
+      "task": "3ème B"
+    },
+    "Ancien dortoir": {
+      "groupe": 42,
+      "students": "ALBERT Théo, BARRIAC Jean-Daniel, BOURALHI Yacine, DECOTTIGNIES Mateo, KARL  Marvin, MOCELLIN Tanguy, NIAKATE Moussa, PORTELLI Maxence",
+      "task": "Ancien dortoir"
+    },
+    "BTS 2": {
+      "groupe": 33,
+      "students": "GUILLET Etienne, NUBLAT Paul, PELIZZARI Vaïna",
+      "task": "BTS 2"
+    },
+    "Bac 1": {
+      "groupe": 24,
+      "students": "AYMOZ Titouan, BAURIN Gwenaêlle, DIDIER Jules, DUMON Laszlo, FRACHISSE Julien",
+      "task": "Bac 1"
+    },
+    "Bac 2": {
+      "groupe": 28,
+      "students": "BELLIER-BENISTAND Louane, BOURGEAT Loïc, CHALVIN Theo, DESSERY Bastien, GAILLARD Laura",
+      "task": "Bac 2"
+    },
+    "CAP 2 ISCH": {
+      "groupe": 44,
+      "students": "BERGERON Baptiste, DURA Anton, FEREYRE Nicolas, GUINET Léo, MORGADO DO MONTE Tristan",
+      "task": "CAP 2 IS/CH"
+    },
+    "CAP 2 Mac MBC": {
+      "groupe": 40,
+      "students": "AIBA Khalifa, ALAIMO Yoan, CAILLAT Martin, CRUZ Sam, DUNAND-SAUTHIER Alexandre",
+      "task": "CAP 2 Maç / MBC"
+    },
+    "Exterieur": {
+      "groupe": 39,
+      "students": "DUFRENNE Dylan, GERBIER Benoit, MAUERHAN Solal, PARTON Julien, REYNIER Theo",
+      "task": "Exterieur"
+    },
+    "Foyer": {
+      "groupe": 43,
+      "students": "DUPUIS  Alexis, KACZMAREK Andreas, PERROT Theo, ROUSSET Evan, SASA Fabrice, SCARPA Alexis, WAGNER Camille",
+      "task": "Foyer"
+    },
+    "Machine a boisson": {
+      "groupe": 17,
+      "students": "JULLIEN Killian, LAURENT Enzo, MUCEL Lucas, MUET Maxime, PEYSSON Joris",
+      "task": "Machine a boisson"
+    },
+    "Nouveau dortoir": {
+      "groupe": 41,
+      "students": "ALBERTIN Nicolas, BENAHCÈNE Amine, DIDIER Camille, JUERY Franck, LLORED Yoan, ZANETTO Justin",
+      "task": "Nouveau dortoir"
+    },
+    "Refectoir matinsoir": {
+      "groupe": 9,
+      "students": "ARNOULD Mattéo, AUGUGLIARO Matteo, BARNARIE Lilou, BELLIER-BENISTAND Nathan, BOUVANIER Marius",
+      "task": "Refectoir matin/soir"
+    },
+    "Refectoir midi": {
+      "groupe": 11,
+      "students": "FIERE Alexis, GARNIER Noémie, GERMAIN Noa, HUGOT--GRONDIN Luna, MARCON Candice",
+      "task": "Refectoir midi"
+    },
+    "Salle B Salle verte": {
+      "groupe": 23,
+      "students": "BRUN Amaël, ESCOFFIER Michel, MOREON Andrea, SÉGARD Quentin",
+      "task": "Salle B / Salle verte"
+    },
+    "Salle Jobin": {
+      "groupe": 25,
+      "students": "GRENIER Quentin, LEROY Kimberlay, MANCINO Rémi, MICHOUD Valentin, VENTURA Eleonore",
+      "task": "Salle Jobin"
+    },
+    "Vaisselle matinsoir": {
+      "groupe": 14,
+      "students": "BENHICHCHOU Wassim, BENRABAH Mohamed-Rayan, BERGOGNON Remi, CARLIER Mathys, CORRADI Alexis",
+      "task": "Vaisselle matin/soir"
+    },
+    "Vaisselle midi": {
+      "groupe": 16,
+      "students": "GAMET Jérémy, GLEIZE Yanis, GUILHERMET Lucas, JAY Quentin, JOUBIN Enzo",
+      "task": "Vaisselle midi"
+    }
+  }
+}
+{
+  "startAt": {
+    "$date": "2020-11-02T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2020-11-06T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "2nde",
+    "4eme A",
+    "4eme B",
+    "BTS 2",
+    "Bac 1",
+    "CAP 1 ISCH",
+    "CAP 1 MacMBC"
+  ],
+  "tasks": {
+    "2nde": {
+      "groupe": 19,
+      "students": "BARD Himaya, DA SILVA Marco, DE RASILLY Emilie, ODOIT Loris, VERCASSON Romain",
+      "task": "2nde"
+    },
+    "4eme A": {
+      "groupe": 3,
+      "students": "KETFI-CHARIF Radwane, LONGO Gabriel, MARTIN Evann, MAUSSERT Timeo, MISKULIN Killian",
+      "task": "4ème A"
+    },
+    "4eme B": {
+      "groupe": 5,
+      "students": "ALAIMO Tony, BELLOSGUARDO Dorian, BOUILFAN Noa, DE ANDRADE Anthony",
+      "task": "4ème B"
+    },
+    "Ancien dortoir": {
+      "groupe": 6,
+      "students": "DIDIER Laura, DORLY Kenny, DUSSERT Alban, FANTIN Evan",
+      "task": "Ancien dortoir"
+    },
+    "BTS 2": {
+      "groupe": 32,
+      "students": "ARDAIN Alice, BAYLE Florent, BERTHET Matheo, FOLMER Mia",
+      "task": "BTS 2"
+    },
+    "Bac 1": {
+      "groupe": 25,
+      "students": "GRENIER Quentin, MANCINO Rémi, MICHOUD Valentin, VENTURA Eleonore",
+      "task": "Bac 1"
+    },
+    "CAP 1 ISCH": {
+      "groupe": 34,
+      "students": "BLANC Nicolas, BUTHIGIEG Enzo, FAURE Leandre, PAIN Gaetan, SAEZ Lucas",
+      "task": "CAP 1 IS/CH"
+    },
+    "CAP 1 MacMBC": {
+      "groupe": 37,
+      "students": "BAGNIS Hugo, BARRADAS Lorenzo, DORNEL Bryan, EYMARD-SCIPION Alexis, MOCELLIN Cody",
+      "task": "CAP 1 Maç/MBC"
+    },
+    "Exterieur": {
+      "groupe": 7,
+      "students": "FLAHAUT Jordane, GONÇALVES FERNANDES Raphaël, JACQUIER Leo, LOVATIN Thomas, MILESI Theo",
+      "task": "Exterieur"
+    },
+    "Foyer": {
+      "groupe": 36,
+      "students": "BARRAL-BARON Guillaume, FLAHAUT Dorian, MATENCIO Valentin, PERRIN Yannis",
+      "task": "Foyer"
+    },
+    "Machine a boisson": {
+      "groupe": 35,
+      "students": "JEUNOT Nathan, MALLAN Marvin, TARICCO Loris, TURF Thimoté",
+      "task": "Machine a boisson"
+    },
+    "Nouveau dortoir": {
+      "groupe": 1,
+      "students": "BALASSO Orlane, CAILLAT Charlene, CAZEAUX Fatih, CHEVALIER Ayan",
+      "task": "Nouveau dortoir"
+    },
+    "Refectoir matinsoir": {
+      "groupe": 2,
+      "students": "FINARD Clovis, FONTENELLE Ameline, GRUEL Jeanne, JOAO Kayla",
+      "task": "Refectoir matin/soir"
+    },
+    "Refectoir midi": {
+      "groupe": 38,
+      "students": "JALLIFFIER-VERNE Florentin, JALLIFFIER-VERNE Thomas, RAMAT Kilian, RODRIGUEZ Enzo, SAÏD Nidal, VELASQUEZ Esteban",
+      "task": "Refectoir midi"
+    },
+    "Salle B Salle verte": {
+      "groupe": 4,
+      "students": "RICHARDEAU Oscar, RUFFIER DES AIMES Nolhan, SEIGLE Edenn, STADELMANN Bathias, UNAL Erhan",
+      "task": "Salle B / Salle verte"
+    },
+    "Salle Jobin": {
+      "groupe": 23,
+      "students": "BRUN Amaël, ESCOFFIER Michel, MOREON Andrea, SÉGARD Quentin",
+      "task": "Salle Jobin"
+    },
+    "Vaisselle matinsoir": {
+      "groupe": 24,
+      "students": "AYMOZ Titouan, BAURIN Gwenaêlle, DIDIER Jules, DUMON Laszlo, FRACHISSE Julien",
+      "task": "Vaisselle matin/soir"
+    },
+    "Vaisselle midi": {
+      "groupe": 8,
+      "students": "MILLET Dylan, REY Dylan, TARDY Soan, THIBAUD Mathys, TROMBERT Charlotte",
+      "task": "Vaisselle midi"
+    }
+  }
+}
+{
+  "startAt": {
+    "$date": "2020-11-09T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2020-11-13T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "BTS 1",
+    "BTS 2",
+    "CAP 2 ISCH",
+    "CAP 2 Mac MBC"
+  ],
+  "tasks": {
+    "Ancien dortoir": {
+      "groupe": 44,
+      "students": "BERGERON Baptiste, DURA Anton, FEREYRE Nicolas, GUINET Léo, MORGADO DO MONTE Tristan",
+      "task": "Ancien dortoir"
+    },
+    "BTS 1": {
+      "groupe": 31,
+      "students": "CHARLON Thibaud, GRAND Jeremy, MORARD Kevin, PICOT-GUERAUD Axel",
+      "task": "BTS 1"
+    },
+    "BTS 2": {
+      "groupe": 32,
+      "students": "ARDAIN Alice, BAYLE Florent, BERTHET Matheo, FOLMER Mia",
+      "task": "BTS 2"
+    },
+    "CAP 2 ISCH": {
+      "groupe": 43,
+      "students": "DUPUIS  Alexis, KACZMAREK Andreas, PERROT Theo, ROUSSET Evan, SASA Fabrice, SCARPA Alexis, WAGNER Camille",
+      "task": "CAP 2 IS/CH"
+    },
+    "CAP 2 Mac MBC": {
+      "groupe": 40,
+      "students": "AIBA Khalifa, ALAIMO Yoan, CAILLAT Martin, CRUZ Sam, DUNAND-SAUTHIER Alexandre",
+      "task": "CAP 2 Maç / MBC"
+    },
+    "Exterieur": {
+      "groupe": 41,
+      "students": "ALBERTIN Nicolas, BENAHCÈNE Amine, DIDIER Camille, JUERY Franck, LLORED Yoan, ZANETTO Justin",
+      "task": "Exterieur"
+    },
+    "Foyer": {
+      "groupe": 39,
+      "students": "DUFRENNE Dylan, GERBIER Benoit, MAUERHAN Solal, PARTON Julien, REYNIER Theo",
+      "task": "Foyer"
+    },
+    "Machine a boisson": {
+      "groupe": 42,
+      "students": "ALBERT Théo, BARRIAC Jean-Daniel, BOURALHI Yacine, DECOTTIGNIES Mateo, KARL  Marvin, MOCELLIN Tanguy, NIAKATE Moussa, PORTELLI Maxence",
+      "task": "Machine a boisson"
+    },
+    "Nouveau dortoir": {
+      "groupe": 30,
+      "students": "ARDAIN Emeline, ROYANNAIS Maxime, SIONNET Thomas, VACHIER Corentin",
+      "task": "Nouveau dortoir"
+    },
+    "Refectoir matinsoir": {
+      "groupe": 29,
+      "students": "ARDAIN Celine, CHARRETON Alexis, DI ANTONIO Côme, Faure Fabien, GERBOUD Lyse, MAGNAN Erwan",
+      "task": "Refectoir matin/soir"
+    },
+    "Refectoir midi": {
+      "groupe": 33,
+      "students": "GUILLET Etienne, NUBLAT Paul, PELIZZARI Vaïna",
+      "task": "Refectoir midi"
+    },
+    "Salle B Salle verte": {
+      "groupe": "Pas de groupe disponible.",
+      "task": "Salle B / Salle verte"
+    },
+    "Salle Jobin": {
+      "groupe": "Pas de groupe disponible.",
+      "task": "Salle Jobin"
+    },
+    "Vaisselle matinsoir": {
+      "groupe": "Pas de groupe disponible.",
+      "task": "Vaisselle matin/soir"
+    },
+    "Vaisselle midi": {
+      "groupe": "Pas de groupe disponible.",
+      "task": "Vaisselle midi"
+    }
+  }
+}
+{
+  "startAt": {
+    "$date": "2020-11-16T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2020-11-20T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "4eme A",
+    "4eme B",
+    "BTS 1",
+    "Bac 1",
+    "Bac 2"
+  ],
+  "tasks": {
+    "4eme A": {
+      "groupe": 4,
+      "students": "RICHARDEAU Oscar, RUFFIER DES AIMES Nolhan, SEIGLE Edenn, STADELMANN Bathias, UNAL Erhan",
+      "task": "4ème A"
+    },
+    "4eme B": {
+      "groupe": 8,
+      "students": "MILLET Dylan, REY Dylan, TARDY Soan, THIBAUD Mathys, TROMBERT Charlotte",
+      "task": "4ème B"
+    },
+    "Ancien dortoir": {
+      "groupe": 27,
+      "students": "GAUTHIER Alicia, JALLIFIER Fabrice, JALLIFIER Mathis, LE BORGNE Maelyss, MATHON  Léa, ROBIN Florian",
+      "task": "Ancien dortoir"
+    },
+    "BTS 1": {
+      "groupe": 29,
+      "students": "ARDAIN Celine, CHARRETON Alexis, DI ANTONIO Côme, Faure Fabien, GERBOUD Lyse, MAGNAN Erwan",
+      "task": "BTS 1"
+    },
+    "Bac 1": {
+      "groupe": 23,
+      "students": "BRUN Amaël, ESCOFFIER Michel, MOREON Andrea, SÉGARD Quentin",
+      "task": "Bac 1"
+    },
+    "Bac 2": {
+      "groupe": 26,
+      "students": "ARNAUD Quentin, GIROUD Dorian, GUILLOT Teddy, MOTTIN Nathan, RAMBERT Paul",
+      "task": "Bac 2"
+    },
+    "Exterieur": {
+      "groupe": 28,
+      "students": "BELLIER-BENISTAND Louane, BOURGEAT Loïc, CHALVIN Theo, DESSERY Bastien, GAILLARD Laura",
+      "task": "Exterieur"
+    },
+    "Foyer": {
+      "groupe": 25,
+      "students": "GRENIER Quentin, MANCINO Rémi, MICHOUD Valentin, VENTURA Eleonore",
+      "task": "Foyer"
+    },
+    "Machine a boisson": {
+      "groupe": 31,
+      "students": "CHARLON Thibaud, GRAND Jeremy, MORARD Kevin, PICOT-GUERAUD Axel",
+      "task": "Machine a boisson"
+    },
+    "Nouveau dortoir": {
+      "groupe": 6,
+      "students": "DIDIER Laura, DORLY Kenny, DUSSERT Alban, FANTIN Evan",
+      "task": "Nouveau dortoir"
+    },
+    "Refectoir matinsoir": {
+      "groupe": 7,
+      "students": "FLAHAUT Jordane, GONÇALVES FERNANDES Raphaël, JACQUIER Leo, LOVATIN Thomas, MILESI Theo",
+      "task": "Refectoir matin/soir"
+    },
+    "Refectoir midi": {
+      "groupe": 1,
+      "students": "BALASSO Orlane, CAILLAT Charlene, CAZEAUX Fatih, CHEVALIER Ayan",
+      "task": "Refectoir midi"
+    },
+    "Salle B Salle verte": {
+      "groupe": 2,
+      "students": "FINARD Clovis, FONTENELLE Ameline, GRUEL Jeanne, JOAO Kayla",
+      "task": "Salle B / Salle verte"
+    },
+    "Salle Jobin": {
+      "groupe": 24,
+      "students": "AYMOZ Titouan, BAURIN Gwenaêlle, DIDIER Jules, DUMON Laszlo, FRACHISSE Julien",
+      "task": "Salle Jobin"
+    },
+    "Vaisselle matinsoir": {
+      "groupe": 3,
+      "students": "KETFI-CHARIF Radwane, LONGO Gabriel, MARTIN Evann, MAUSSERT Timeo, MISKULIN Killian",
+      "task": "Vaisselle matin/soir"
+    },
+    "Vaisselle midi": {
+      "groupe": 30,
+      "students": "ARDAIN Emeline, ROYANNAIS Maxime, SIONNET Thomas, VACHIER Corentin",
+      "task": "Vaisselle midi"
+    }
+  }
+}
+{
+  "startAt": {
+    "$date": "2020-11-23T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2020-11-27T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "2nde",
+    "3eme A",
+    "3eme B",
+    "BTS 2",
+    "CAP 1 ISCH",
+    "CAP 1 MacMBC"
+  ],
+  "tasks": {
+    "2nde": {
+      "groupe": 19,
+      "students": "BARD Himaya, DA SILVA Marco, DE RASILLY Emilie, ODOIT Loris, VERCASSON Romain",
+      "task": "2nde"
+    },
+    "3eme A": {
+      "groupe": 10,
+      "students": "BUISSON Mélanie, CHABERT Bastien, CHALOIN Seraphin, CHENEVIER--COMBE Marlonn, CUZIN Corentin",
+      "task": "3ème A"
+    },
+    "3eme B": {
+      "groupe": 17,
+      "students": "JULLIEN Killian, LAURENT Enzo, MUCEL Lucas, MUET Maxime, PEYSSON Joris",
+      "task": "3ème B"
+    },
+    "Ancien dortoir": {
+      "groupe": 18,
+      "students": "PICOT--VOLMAT Antoine, RAMALHO Joshua, RAMBERT Nathan, REY Tom, REY-VINCENT Matthew, SEYVE Anthony",
+      "task": "Ancien dortoir"
+    },
+    "BTS 2": {
+      "groupe": 33,
+      "students": "GUILLET Etienne, NUBLAT Paul, PELIZZARI Vaïna",
+      "task": "BTS 2"
+    },
+    "CAP 1 ISCH": {
+      "groupe": 35,
+      "students": "JEUNOT Nathan, MALLAN Marvin, TARICCO Loris, TURF Thimoté",
+      "task": "CAP 1 IS/CH"
+    },
+    "CAP 1 MacMBC": {
+      "groupe": 38,
+      "students": "JALLIFFIER-VERNE Florentin, JALLIFFIER-VERNE Thomas, RAMAT Kilian, RODRIGUEZ Enzo, SAÏD Nidal, VELASQUEZ Esteban",
+      "task": "CAP 1 Maç/MBC"
+    },
+    "Exterieur": {
+      "groupe": 37,
+      "students": "BAGNIS Hugo, BARRADAS Lorenzo, DORNEL Bryan, EYMARD-SCIPION Alexis, MOCELLIN Cody",
+      "task": "Exterieur"
+    },
+    "Foyer": {
+      "groupe": 9,
+      "students": "ARNOULD Mattéo, AUGUGLIARO Matteo, BARNARIE Lilou, BELLIER-BENISTAND Nathan, BOUVANIER Marius",
+      "task": "Foyer"
+    },
+    "Machine a boisson": {
+      "groupe": 11,
+      "students": "FIERE Alexis, GARNIER Noémie, GERMAIN Noa, HUGOT--GRONDIN Luna, MARCON Candice",
+      "task": "Machine a boisson"
+    },
+    "Nouveau dortoir": {
+      "groupe": 36,
+      "students": "BARRAL-BARON Guillaume, FLAHAUT Dorian, MATENCIO Valentin, PERRIN Yannis",
+      "task": "Nouveau dortoir"
+    },
+    "Refectoir matinsoir": {
+      "groupe": 12,
+      "students": "MARTEL--QUESNEL Anthony, PASERO Mathys, PICAT Kylian, PICOT Chloé, REMLINGER Theo",
+      "task": "Refectoir matin/soir"
+    },
+    "Refectoir midi": {
+      "groupe": 34,
+      "students": "BLANC Nicolas, BUTHIGIEG Enzo, FAURE Leandre, PAIN Gaetan, SAEZ Lucas",
+      "task": "Refectoir midi"
+    },
+    "Salle B Salle verte": {
+      "groupe": 14,
+      "students": "BENHICHCHOU Wassim, BENRABAH Mohamed-Rayan, BERGOGNON Remi, CARLIER Mathys, CORRADI Alexis",
+      "task": "Salle B / Salle verte"
+    },
+    "Salle Jobin": {
+      "groupe": 15,
+      "students": "DE OLIVEIRA Mathys, DELANGE Elie, DUMONT Killian, FAURE Matheo, FAYARD Baptiste",
+      "task": "Salle Jobin"
+    },
+    "Vaisselle matinsoir": {
+      "groupe": 16,
+      "students": "GAMET Jérémy, GLEIZE Yanis, GUILHERMET Lucas, JAY Quentin, JOUBIN Enzo",
+      "task": "Vaisselle matin/soir"
+    },
+    "Vaisselle midi": {
+      "groupe": 32,
+      "students": "ARDAIN Alice, BAYLE Florent, BERTHET Matheo, FOLMER Mia",
+      "task": "Vaisselle midi"
+    }
+  }
+}
+{
+  "startAt": {
+    "$date": "2020-11-30T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2020-12-04T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "2nde",
+    "4eme A",
+    "4eme B",
+    "BTS 2",
+    "Bac 2",
+    "CAP 2 ISCH",
+    "CAP 2 Mac MBC"
+  ],
+  "tasks": {
+    "2nde": {
+      "groupe": 19,
+      "students": "BARD Himaya, DA SILVA Marco, DE RASILLY Emilie, ODOIT Loris, VERCASSON Romain",
+      "task": "2nde"
+    },
+    "4eme A": {
+      "groupe": 2,
+      "students": "FINARD Clovis, FONTENELLE Ameline, GRUEL Jeanne, JOAO Kayla",
+      "task": "4ème A"
+    },
+    "4eme B": {
+      "groupe": 7,
+      "students": "FLAHAUT Jordane, GONÇALVES FERNANDES Raphaël, JACQUIER Leo, LOVATIN Thomas, MILESI Theo",
+      "task": "4ème B"
+    },
+    "Ancien dortoir": {
+      "groupe": 40,
+      "students": "AIBA Khalifa, ALAIMO Yoan, CAILLAT Martin, CRUZ Sam, DUNAND-SAUTHIER Alexandre",
+      "task": "Ancien dortoir"
+    },
+    "BTS 2": {
+      "groupe": 33,
+      "students": "GUILLET Etienne, NUBLAT Paul, PELIZZARI Vaïna",
+      "task": "BTS 2"
+    },
+    "Bac 2": {
+      "groupe": 28,
+      "students": "BELLIER-BENISTAND Louane, BOURGEAT Loïc, CHALVIN Theo, DESSERY Bastien, GAILLARD Laura",
+      "task": "Bac 2"
+    },
+    "CAP 2 ISCH": {
+      "groupe": 44,
+      "students": "BERGERON Baptiste, DURA Anton, FEREYRE Nicolas, GUINET Léo, MORGADO DO MONTE Tristan",
+      "task": "CAP 2 IS/CH"
+    },
+    "CAP 2 Mac MBC": {
+      "groupe": 41,
+      "students": "ALBERTIN Nicolas, BENAHCÈNE Amine, DIDIER Camille, JUERY Franck, LLORED Yoan, ZANETTO Justin",
+      "task": "CAP 2 Maç / MBC"
+    },
+    "Exterieur": {
+      "groupe": 27,
+      "students": "GAUTHIER Alicia, JALLIFIER Fabrice, JALLIFIER Mathis, LE BORGNE Maelyss, MATHON  Léa, ROBIN Florian",
+      "task": "Exterieur"
+    },
+    "Foyer": {
+      "groupe": 42,
+      "students": "ALBERT Théo, BARRIAC Jean-Daniel, BOURALHI Yacine, DECOTTIGNIES Mateo, KARL  Marvin, MOCELLIN Tanguy, NIAKATE Moussa, PORTELLI Maxence",
+      "task": "Foyer"
+    },
+    "Machine a boisson": {
+      "groupe": 39,
+      "students": "DUFRENNE Dylan, GERBIER Benoit, MAUERHAN Solal, PARTON Julien, REYNIER Theo",
+      "task": "Machine a boisson"
+    },
+    "Nouveau dortoir": {
+      "groupe": 43,
+      "students": "DUPUIS  Alexis, KACZMAREK Andreas, PERROT Theo, ROUSSET Evan, SASA Fabrice, SCARPA Alexis, WAGNER Camille",
+      "task": "Nouveau dortoir"
+    },
+    "Refectoir matinsoir": {
+      "groupe": 6,
+      "students": "DIDIER Laura, DORLY Kenny, DUSSERT Alban, FANTIN Evan",
+      "task": "Refectoir matin/soir"
+    },
+    "Refectoir midi": {
+      "groupe": 3,
+      "students": "KETFI-CHARIF Radwane, LONGO Gabriel, MARTIN Evann, MAUSSERT Timeo, MISKULIN Killian",
+      "task": "Refectoir midi"
+    },
+    "Salle B Salle verte": {
+      "groupe": 5,
+      "students": "ALAIMO Tony, BELLOSGUARDO Dorian, BOUILFAN Noa, DE ANDRADE Anthony",
+      "task": "Salle B / Salle verte"
+    },
+    "Salle Jobin": {
+      "groupe": 1,
+      "students": "BALASSO Orlane, CAILLAT Charlene, CAZEAUX Fatih, CHEVALIER Ayan",
+      "task": "Salle Jobin"
+    },
+    "Vaisselle matinsoir": {
+      "groupe": 4,
+      "students": "RICHARDEAU Oscar, RUFFIER DES AIMES Nolhan, SEIGLE Edenn, STADELMANN Bathias, UNAL Erhan",
+      "task": "Vaisselle matin/soir"
+    },
+    "Vaisselle midi": {
+      "groupe": 26,
+      "students": "ARNAUD Quentin, GIROUD Dorian, GUILLOT Teddy, MOTTIN Nathan, RAMBERT Paul",
+      "task": "Vaisselle midi"
+    }
+  }
+}
+{
+  "startAt": {
+    "$date": "2020-12-07T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2020-12-11T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "3eme A",
+    "3eme B",
+    "BTS 1",
+    "Bac 1",
+    "Bac 2",
+    "CAP 1 ISCH",
+    "CAP 1 MacMBC"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2020-12-14T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2020-12-18T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "4eme A",
+    "4eme B",
+    "BTS 1",
+    "Bac 1",
+    "CAP 2 ISCH",
+    "CAP 2 Mac MBC"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-01-04T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-01-08T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "2nde",
+    "3eme A",
+    "3eme B",
+    "BTS 1",
+    "BTS 2",
+    "Bac 2",
+    "CAP 2 ISCH",
+    "CAP 2 Mac MBC"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-01-11T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-01-15T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "2nde",
+    "4eme A",
+    "4eme B",
+    "BTS 1",
+    "Bac 2",
+    "CAP 1 ISCH",
+    "CAP 1 MacMBC"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-01-18T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-01-22T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "3eme A",
+    "3eme B"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-01-25T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-01-29T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "2nde",
+    "3eme A",
+    "3eme B",
+    "BTS 1",
+    "Bac 1"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-02-01T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-02-05T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "4eme A",
+    "4eme B",
+    "BTS 1",
+    "Bac 2",
+    "CAP 1 ISCH",
+    "CAP 1 MacMBC"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-02-08T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-02-12T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "3eme A",
+    "3eme B",
+    "BTS 2",
+    "Bac 1",
+    "Bac 2",
+    "CAP 2 ISCH",
+    "CAP 2 Mac MBC"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-02-22T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-02-26T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "2nde",
+    "3eme A",
+    "3eme B",
+    "BTS 1",
+    "Bac 1",
+    "CAP 1 ISCH",
+    "CAP 1 MacMBC"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-03-01T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-03-05T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "2nde",
+    "4eme A",
+    "4eme B",
+    "BTS 1",
+    "Bac 1",
+    "CAP 2 ISCH",
+    "CAP 2 Mac MBC"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-03-08T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-03-12T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "3eme A",
+    "3eme B",
+    "BTS 2",
+    "Bac 2"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-03-15T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-03-19T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "2nde",
+    "4eme A",
+    "4eme B",
+    "BTS 2",
+    "CAP 1 ISCH",
+    "CAP 1 MacMBC"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-03-22T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-03-26T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "4eme A",
+    "4eme B",
+    "BTS 1",
+    "Bac 1",
+    "Bac 2",
+    "CAP 2 ISCH",
+    "CAP 2 Mac MBC"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-03-29T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-04-02T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "3eme A",
+    "3eme B",
+    "BTS 1",
+    "Bac 2"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-04-05T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-04-09T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "2nde",
+    "BTS 2",
+    "CAP 1 ISCH",
+    "CAP 1 MacMBC"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-04-12T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-04-16T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "2nde",
+    "4eme A",
+    "4eme B",
+    "BTS 1",
+    "CAP 2 ISCH",
+    "CAP 2 Mac MBC"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-04-19T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-04-23T00:00:00.000Z"
+  },
+  "isHolliday": true,
+  "classes": [],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-04-26T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-04-30T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "3eme A",
+    "3eme B",
+    "Bac 1",
+    "Bac 2",
+    "CAP 1 ISCH",
+    "CAP 1 MacMBC"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-05-03T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-05-07T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "4eme A",
+    "4eme B",
+    "BTS 1",
+    "BTS 2",
+    "Bac 1",
+    "CAP 2 ISCH",
+    "CAP 2 Mac MBC"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-05-17T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-05-21T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "2nde",
+    "3eme A",
+    "3eme B",
+    "BTS 2",
+    "Bac 2",
+    "CAP 1 ISCH",
+    "CAP 1 MacMBC"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-05-24T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-05-28T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "BTS 1",
+    "Bac 2",
+    "CAP 2 ISCH",
+    "CAP 2 Mac MBC"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-05-31T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-06-04T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "4eme A",
+    "4eme B",
+    "BTS 2",
+    "Bac 1"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-06-07T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-06-11T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "2nde",
+    "3eme A",
+    "3eme B",
+    "BTS 1"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-06-14T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-06-18T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "4eme A",
+    "4eme B",
+    "BTS 2",
+    "Bac 1",
+    "CAP 1 ISCH",
+    "CAP 1 MacMBC"
+  ],
+  "tasks": {}
+}
+{
+  "startAt": {
+    "$date": "2021-06-21T00:00:00.000Z"
+  },
+  "endAt": {
+    "$date": "2021-06-25T00:00:00.000Z"
+  },
+  "isHolliday": false,
+  "classes": [
+    "2nde",
+    "3eme A",
+    "3eme B"
+  ],
+  "tasks": {}
+}
