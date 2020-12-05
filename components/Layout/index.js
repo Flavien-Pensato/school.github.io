@@ -45,6 +45,9 @@ const Layout = ({ children, router }) => {
         <Link href="/taches">
           <NavLink>Taches</NavLink>
         </Link>
+        <Link href="/statistiques">
+          <NavLink>Statistiques</NavLink>
+        </Link>
         <Box height="10px" width="10px" color="primary" />
 
         <IconButton onClick={signOut}>

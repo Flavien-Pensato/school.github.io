@@ -127,6 +127,7 @@ export default {
       letterSpacing: '0.1em',
       fontSize: '16px',
       cursor: 'pointer',
+      textAlign: 'center'
     },
   },
 

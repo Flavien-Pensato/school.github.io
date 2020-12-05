@@ -6,7 +6,7 @@ import useSWR from 'swr';
 import fetch from '../../utils/fetch';
 
 const Planning = ({ startAt }) => {
-  const { data: week, error, mutate } = useSWR(`/api/week/${new Date(startAt)}`, fetch, {
+  const { data: week, error, mutate } = useSWR(`/api/week/${startAt}`, fetch, {
     initialData: {},
   });
 
@@ -35,6 +35,7 @@ const Planning = ({ startAt }) => {
       </Flex>
     );
   }
+
 
   return (
     <Grid id="planning" gap="0px" columns="2fr 1fr 1fr 5fr">

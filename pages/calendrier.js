@@ -3,8 +3,7 @@ import styled from '@emotion/styled';
 import useSWR from 'swr';
 import { sortDates, getAllNextWeekBeforeHoliday } from '../utils/date';
 import { DateComponent } from '../components/date';
-// import { useWeeks } from '../modules/week/week.use';
-// import { useClasses } from '../modules/classes/classes.use';
+import { isDateSame } from '../modules/week/week.utils';
 
 import PresenceCase from '../components/presenceCase';
 
@@ -136,8 +135,7 @@ const Calendrier = () => {
             <ColFixedLeft>
               {sortDates(nexDates).map((date) => {
                 const dateFound = weeks.find(
-                  (dateWeek) => new Date(dateWeek.startAt).getTime() === new Date(date.startAt).getTime(),
-                );
+                  (dateWeek) => isDateSame(dateWeek.startAt, date.startAt))
 
                 return (
                   <ItemCol key={date.startAt} style={{ justifyContent: 'space-between' }}>
@@ -156,10 +154,8 @@ const Calendrier = () => {
             {classes.map((classe) => (
               <LittleCol key={classe}>
                 {nexDates.map((date) => {
-                  const dateFound = weeks.find(
-                    (dateWeek) => new Date(dateWeek.startAt).getTime() === new Date(date.startAt).getTime(),
-                  );
-
+                  const dateFound = weeks.find((dateWeek) => isDateSame(dateWeek.startAt, date.startAt))
+                  
                   if (!dateFound || dateFound.isHolliday) {
                     return (
                       <ItemCol key={date.startAt}>
