@@ -60,12 +60,12 @@
     "CAP 2 ISCH": {
       "groupe": 42,
       "students": "ALBERT Théo, BARRIAC Jean-Daniel, DECOTTIGNIES Mateo, KARL  Marvin, MOCELLIN Tanguy, PORTELLI Maxence",
-      "task": "CAP 2 IS/CH"
+      "task": "CAP 2 ISCH"
     },
     "CAP 2 Mac MBC": {
       "groupe": 41,
       "students": "ALBERTIN Nicolas, BENAHCÈNE Amine, DIDIER Camille, JUERY Franck, LLORED Yoan, ZANETTO Justin",
-      "task": "CAP 2 Maç / MBC"
+      "task": "CAP 2 Mac MBC"
     },
     "Exterieur": {
       "groupe": 40,
@@ -77,17 +77,17 @@
       "students": "GAUTHIER Alicia, JALLIFIER Fabrice, JALLIFIER Mathis, LE BORGNE Maelyss, MATHON  Léa, ROBIN Florian",
       "task": "Foyer"
     },
-    "Machine a boisson": {
+    "Machine à boisson": {
       "groupe": 28,
       "students": "ALLOIX Dorian, BELLIER-BENISTAND Louane, BOURGEAT Loïc, CHALVIN Theo, DESSERY Bastien, GAILLARD Laura",
-      "task": "Machine a boisson"
+      "task": "Machine à boisson"
     },
     "Nouveau dortoir": {
       "groupe": 24,
       "students": "AYMOZ Titouan, BAURIN Gwenaêlle, DIDIER Jules, DUMON Laszlo, FRACHISSE Julien",
       "task": "Nouveau dortoir"
     },
-    "Refectoir matinsoir": {
+    "Refectoir matin/soir": {
       "groupe": 25,
       "students": "GRENIER Quentin, LEROY Kimberlay, MANCINO Rémi, MICHOUD Valentin, VENTURA Eleonore",
       "task": "Refectoir matin/soir"
@@ -97,7 +97,7 @@
       "students": "GUILLET Etienne, NUBLAT Paul, PELIZZARI Vaïna",
       "task": "Refectoir midi"
     },
-    "Salle B Salle verte": {
+    "Salle B / Salle verte": {
       "groupe": 6,
       "students": "DIDIER Laura, DORLY Kenny, DUSSERT Alban, FANTIN Evan",
       "task": "Salle B / Salle verte"
@@ -107,7 +107,7 @@
       "students": "FLAHAUT Jordane, GONÇALVES FERNANDES Raphaël, JACQUIER Leo, LOVATIN Thomas, MILESI Theo",
       "task": "Salle Jobin"
     },
-    "Vaisselle matinsoir": {
+    "Vaisselle matin/soir": {
       "groupe": 8,
       "students": "MILLET Dylan, REY Dylan, TARDY Soan, THIBAUD Mathys, TROMBERT Charlotte",
       "task": "Vaisselle matin/soir"
@@ -181,17 +181,17 @@
       "students": "ARNAUD Quentin, GIROUD Dorian, GUILLOT Teddy, MOTTIN Nathan, PICOT Stéphanie, RAMBERT Paul",
       "task": "Foyer"
     },
-    "Machine a boisson": {
+    "Machine à boisson": {
       "groupe": 27,
       "students": "GAUTHIER Alicia, JALLIFIER Fabrice, JALLIFIER Mathis, LE BORGNE Maelyss, MATHON  Léa, ROBIN Florian",
-      "task": "Machine a boisson"
+      "task": "Machine à boisson"
     },
     "Nouveau dortoir": {
       "groupe": 29,
       "students": "ARDAIN Celine, CHARRETON Alexis, DI ANTONIO Côme, Faure Fabien, GERBOUD Lyse, MAGNAN Erwan",
       "task": "Nouveau dortoir"
     },
-    "Refectoir matinsoir": {
+    "Refectoir matin/soir": {
       "groupe": 30,
       "students": "ARDAIN Emeline, ROYANNAIS Maxime, SIONNET Thomas, VACHIER Corentin",
       "task": "Refectoir matin/soir"
@@ -201,7 +201,7 @@
       "students": "ALAIMO Tony, BELLOSGUARDO Dorian, BOUILFAN Noa, DE ANDRADE Anthony",
       "task": "Refectoir midi"
     },
-    "Salle B Salle verte": {
+    "Salle B / Salle verte": {
       "groupe": 8,
       "students": "MILLET Dylan, REY Dylan, TARDY Soan, THIBAUD Mathys, TROMBERT Charlotte",
       "task": "Salle B / Salle verte"
@@ -211,7 +211,7 @@
       "students": "DIDIER Laura, DORLY Kenny, DUSSERT Alban, FANTIN Evan",
       "task": "Salle Jobin"
     },
-    "Vaisselle matinsoir": {
+    "Vaisselle matin/soir": {
       "groupe": 1,
       "students": "BALASSO Orlane, CAILLAT Charlene, CAZEAUX Fatih, CHEVALIER Ayan",
       "task": "Vaisselle matin/soir"
@@ -262,12 +262,12 @@
     "CAP 1 ISCH": {
       "groupe": 35,
       "students": "FAURE Leandre, JEUNOT Nathan, MALLAN Marvin, TARICCO Loris, TURF Thimoté",
-      "task": "CAP 1 IS/CH"
+      "task": "CAP 1 ISCH"
     },
     "CAP 1 MacMBC": {
       "groupe": 38,
       "students": "JALLIFFIER-VERNE Florentin, JALLIFFIER-VERNE Thomas, RAMAT Kilian, RODRIGUEZ Enzo, SAÏD Nidal, VELASQUEZ Esteban",
-      "task": "CAP 1 Maç/MBC"
+      "task": "CAP 1 MacMBC"
     },
     "Exterieur": {
       "groupe": 36,
@@ -279,17 +279,17 @@
       "students": "MARTEL--QUESNEL Anthony, PASERO Mathys, PICAT Kylian, PICOT Chloé, REMLINGER Theo",
       "task": "Foyer"
     },
-    "Machine a boisson": {
+    "Machine à boisson": {
       "groupe": 37,
       "students": "BAGNIS Hugo, BARRADAS Lorenzo, DORNEL Bryan, EYMARD-SCIPION Alexis, MOCELLIN Cody",
-      "task": "Machine a boisson"
+      "task": "Machine à boisson"
     },
     "Nouveau dortoir": {
       "groupe": 34,
       "students": "BLANC Nicolas, BUTHIGIEG Enzo, DEBELJAK Lilian, ROCHAS Léo",
       "task": "Nouveau dortoir"
     },
-    "Refectoir matinsoir": {
+    "Refectoir matin/soir": {
       "groupe": 14,
       "students": "BENHICHCHOU Wassim, BENRABAH Mohamed-Rayan, BERGOGNON Remi, CARLIER Mathys, CORRADI Alexis",
       "task": "Refectoir matin/soir"
@@ -299,7 +299,7 @@
       "students": "DE OLIVEIRA Mathys, DELANGE Elie, DUMONT Killian, FAURE Matheo, FAYARD Baptiste",
       "task": "Refectoir midi"
     },
-    "Salle B Salle verte": {
+    "Salle B / Salle verte": {
       "groupe": 17,
       "students": "JULLIEN Killian, LAURENT Enzo, MUCEL Lucas, MUET Maxime, PEYSSON Joris",
       "task": "Salle B / Salle verte"
@@ -309,7 +309,7 @@
       "students": "PICOT--VOLMAT Antoine, RAMALHO Joshua, RAMBERT Nathan, REY Tom, REY-VINCENT Matthew, SEYVE Anthony",
       "task": "Salle Jobin"
     },
-    "Vaisselle matinsoir": {
+    "Vaisselle matin/soir": {
       "groupe": 10,
       "students": "BUISSON Mélanie, CHABERT Bastien, CHALOIN Seraphin, CHENEVIER--COMBE Marlonn, CUZIN Corentin",
       "task": "Vaisselle matin/soir"
@@ -372,11 +372,11 @@
     "CAP 1 ISCH": {
       "groupe": 38,
       "students": "JALLIFFIER-VERNE Florentin, JALLIFFIER-VERNE Thomas, RAMAT Kilian, RODRIGUEZ Enzo, SAÏD Nidal, VELASQUEZ Esteban",
-      "task": "CAP 1 IS/CH"
+      "task": "CAP 1 ISCH"
     },
     "CAP 1 MacMBC": {
       "groupe": "Pas de groupe disponible.",
-      "task": "CAP 1 Maç/MBC"
+      "task": "CAP 1 MacMBC"
     },
     "Exterieur": {
       "groupe": 43,
@@ -388,17 +388,17 @@
       "students": "ALBERTIN Nicolas, BENAHCÈNE Amine, DIDIER Camille, JUERY Franck, LLORED Yoan, ZANETTO Justin",
       "task": "Foyer"
     },
-    "Machine a boisson": {
+    "Machine à boisson": {
       "groupe": 29,
       "students": "ARDAIN Celine, CHARRETON Alexis, DI ANTONIO Côme, Faure Fabien, GERBOUD Lyse, MAGNAN Erwan",
-      "task": "Machine a boisson"
+      "task": "Machine à boisson"
     },
     "Nouveau dortoir": {
       "groupe": 44,
       "students": "BERGERON Baptiste, DURA Anton, FEREYRE Nicolas, GUINET Léo, MORGADO DO MONTE Tristan",
       "task": "Nouveau dortoir"
     },
-    "Refectoir matinsoir": {
+    "Refectoir matin/soir": {
       "groupe": 16,
       "students": "GAMET Jérémy, GLEIZE Yanis, GUILHERMET Lucas, JAY Quentin, JOUBIN Enzo",
       "task": "Refectoir matin/soir"
@@ -408,7 +408,7 @@
       "students": "BENHICHCHOU Wassim, BENRABAH Mohamed-Rayan, BERGOGNON Remi, CARLIER Mathys, CORRADI Alexis",
       "task": "Refectoir midi"
     },
-    "Salle B Salle verte": {
+    "Salle B / Salle verte": {
       "groupe": 15,
       "students": "DE OLIVEIRA Mathys, DELANGE Elie, DUMONT Killian, FAURE Matheo, FAYARD Baptiste",
       "task": "Salle B / Salle verte"
@@ -418,7 +418,7 @@
       "students": "BUISSON Mélanie, CHABERT Bastien, CHALOIN Seraphin, CHENEVIER--COMBE Marlonn, CUZIN Corentin",
       "task": "Salle Jobin"
     },
-    "Vaisselle matinsoir": {
+    "Vaisselle matin/soir": {
       "groupe": 33,
       "students": "GUILLET Etienne, NUBLAT Paul, PELIZZARI Vaïna",
       "task": "Vaisselle matin/soir"
@@ -475,12 +475,12 @@
     "CAP 2 ISCH": {
       "groupe": 43,
       "students": "DUPUIS  Alexis, KACZMAREK Andreas, PERROT Theo, ROUSSET Evan, SASA Fabrice, SCARPA Alexis, WAGNER Camille",
-      "task": "CAP 2 IS/CH"
+      "task": "CAP 2 ISCH"
     },
     "CAP 2 Mac MBC": {
       "groupe": 39,
       "students": "DUFRENNE Dylan, GERBIER Benoit, MAUERHAN Solal, PARTON Julien, REYNIER Theo",
-      "task": "CAP 2 Maç / MBC"
+      "task": "CAP 2 Mac MBC"
     },
     "Exterieur": {
       "groupe": 42,
@@ -492,17 +492,17 @@
       "students": "AIBA Khalifa, ALAIMO Yoan, CAILLAT Martin, CRUZ Sam, DUNAND-SAUTHIER Alexandre",
       "task": "Foyer"
     },
-    "Machine a boisson": {
+    "Machine à boisson": {
       "groupe": 2,
       "students": "FINARD Clovis, FONTENELLE Ameline, GRUEL Jeanne, JOAO Kayla",
-      "task": "Machine a boisson"
+      "task": "Machine à boisson"
     },
     "Nouveau dortoir": {
       "groupe": 4,
       "students": "RICHARDEAU Oscar, RUFFIER DES AIMES Nolhan, SEIGLE Edenn, STADELMANN Bathias, UNAL Erhan",
       "task": "Nouveau dortoir"
     },
-    "Refectoir matinsoir": {
+    "Refectoir matin/soir": {
       "groupe": 5,
       "students": "ALAIMO Tony, BELLOSGUARDO Dorian, BOUILFAN Noa, DE ANDRADE Anthony",
       "task": "Refectoir matin/soir"
@@ -512,7 +512,7 @@
       "students": "FLAHAUT Jordane, GONÇALVES FERNANDES Raphaël, JACQUIER Leo, LOVATIN Thomas, MILESI Theo",
       "task": "Refectoir midi"
     },
-    "Salle B Salle verte": {
+    "Salle B / Salle verte": {
       "groupe": 1,
       "students": "BALASSO Orlane, CAILLAT Charlene, CAZEAUX Fatih, CHEVALIER Ayan",
       "task": "Salle B / Salle verte"
@@ -522,7 +522,7 @@
       "students": "MILLET Dylan, REY Dylan, TARDY Soan, THIBAUD Mathys, TROMBERT Charlotte",
       "task": "Salle Jobin"
     },
-    "Vaisselle matinsoir": {
+    "Vaisselle matin/soir": {
       "groupe": 32,
       "students": "ARDAIN Alice, BAYLE Florent, BERTHET Matheo, FOLMER Mia",
       "task": "Vaisselle matin/soir"
@@ -590,17 +590,17 @@
       "students": "ARDAIN Emeline, ROYANNAIS Maxime, SIONNET Thomas, VACHIER Corentin",
       "task": "Foyer"
     },
-    "Machine a boisson": {
+    "Machine à boisson": {
       "groupe": 26,
       "students": "ARNAUD Quentin, GIROUD Dorian, GUILLOT Teddy, MOTTIN Nathan, PICOT Stéphanie, RAMBERT Paul",
-      "task": "Machine a boisson"
+      "task": "Machine à boisson"
     },
     "Nouveau dortoir": {
       "groupe": 31,
       "students": "CHARLON Thibaud, GRAND Jeremy, MORARD Kevin, PICOT-GUERAUD Axel",
       "task": "Nouveau dortoir"
     },
-    "Refectoir matinsoir": {
+    "Refectoir matin/soir": {
       "groupe": 15,
       "students": "DE OLIVEIRA Mathys, DELANGE Elie, DUMONT Killian, FAURE Matheo, FAYARD Baptiste",
       "task": "Refectoir matin/soir"
@@ -610,7 +610,7 @@
       "students": "GAMET Jérémy, GLEIZE Yanis, GUILHERMET Lucas, JAY Quentin, JOUBIN Enzo",
       "task": "Refectoir midi"
     },
-    "Salle B Salle verte": {
+    "Salle B / Salle verte": {
       "groupe": 18,
       "students": "PICOT--VOLMAT Antoine, RAMALHO Joshua, RAMBERT Nathan, REY Tom, REY-VINCENT Matthew, SEYVE Anthony",
       "task": "Salle B / Salle verte"
@@ -620,7 +620,7 @@
       "students": "JULLIEN Killian, LAURENT Enzo, MUCEL Lucas, MUET Maxime, PEYSSON Joris",
       "task": "Salle Jobin"
     },
-    "Vaisselle matinsoir": {
+    "Vaisselle matin/soir": {
       "groupe": 28,
       "students": "ALLOIX Dorian, BELLIER-BENISTAND Louane, BOURGEAT Loïc, CHALVIN Theo, DESSERY Bastien, GAILLARD Laura",
       "task": "Vaisselle matin/soir"
@@ -683,12 +683,12 @@
     "CAP 1 ISCH": {
       "groupe": 34,
       "students": "BLANC Nicolas, BUTHIGIEG Enzo, DEBELJAK Lilian, ROCHAS Léo",
-      "task": "CAP 1 IS/CH"
+      "task": "CAP 1 ISCH"
     },
     "CAP 1 MacMBC": {
       "groupe": 36,
       "students": "BARRAL-BARON Guillaume, FLAHAUT Dorian, MATENCIO Valentin, PERRIN Yannis",
-      "task": "CAP 1 Maç/MBC"
+      "task": "CAP 1 MacMBC"
     },
     "Exterieur": {
       "groupe": 35,
@@ -700,17 +700,17 @@
       "students": "JALLIFFIER-VERNE Florentin, JALLIFFIER-VERNE Thomas, RAMAT Kilian, RODRIGUEZ Enzo, SAÏD Nidal, VELASQUEZ Esteban",
       "task": "Foyer"
     },
-    "Machine a boisson": {
+    "Machine à boisson": {
       "groupe": 26,
       "students": "ARNAUD Quentin, GIROUD Dorian, GUILLOT Teddy, MOTTIN Nathan, PICOT Stéphanie, RAMBERT Paul",
-      "task": "Machine a boisson"
+      "task": "Machine à boisson"
     },
     "Nouveau dortoir": {
       "groupe": 23,
       "students": "BRUN Amaël, ESCOFFIER Michel, MOREON Andrea, SÉGARD Quentin",
       "task": "Nouveau dortoir"
     },
-    "Refectoir matinsoir": {
+    "Refectoir matin/soir": {
       "groupe": 24,
       "students": "AYMOZ Titouan, BAURIN Gwenaêlle, DIDIER Jules, DUMON Laszlo, FRACHISSE Julien",
       "task": "Refectoir matin/soir"
@@ -720,7 +720,7 @@
       "students": "FINARD Clovis, FONTENELLE Ameline, GRUEL Jeanne, JOAO Kayla",
       "task": "Refectoir midi"
     },
-    "Salle B Salle verte": {
+    "Salle B / Salle verte": {
       "groupe": 31,
       "students": "CHARLON Thibaud, GRAND Jeremy, MORARD Kevin, PICOT-GUERAUD Axel",
       "task": "Salle B / Salle verte"
@@ -730,7 +730,7 @@
       "students": "KETFI-CHARIF Radwane, LONGO Gabriel, MARTIN Evann, MAUSSERT Timeo, MISKULIN Killian",
       "task": "Salle Jobin"
     },
-    "Vaisselle matinsoir": {
+    "Vaisselle matin/soir": {
       "groupe": 29,
       "students": "ARDAIN Celine, CHARRETON Alexis, DI ANTONIO Côme, Faure Fabien, GERBOUD Lyse, MAGNAN Erwan",
       "task": "Vaisselle matin/soir"
@@ -793,12 +793,12 @@
     "CAP 2 ISCH": {
       "groupe": 44,
       "students": "BERGERON Baptiste, DURA Anton, FEREYRE Nicolas, GUINET Léo, MORGADO DO MONTE Tristan",
-      "task": "CAP 2 IS/CH"
+      "task": "CAP 2 ISCH"
     },
     "CAP 2 Mac MBC": {
       "groupe": 40,
       "students": "AIBA Khalifa, ALAIMO Yoan, CAILLAT Martin, CRUZ Sam, DUNAND-SAUTHIER Alexandre",
-      "task": "CAP 2 Maç / MBC"
+      "task": "CAP 2 Mac MBC"
     },
     "Exterieur": {
       "groupe": 39,
@@ -810,17 +810,17 @@
       "students": "DUPUIS  Alexis, KACZMAREK Andreas, PERROT Theo, ROUSSET Evan, SASA Fabrice, SCARPA Alexis, WAGNER Camille",
       "task": "Foyer"
     },
-    "Machine a boisson": {
+    "Machine à boisson": {
       "groupe": 17,
       "students": "JULLIEN Killian, LAURENT Enzo, MUCEL Lucas, MUET Maxime, PEYSSON Joris",
-      "task": "Machine a boisson"
+      "task": "Machine à boisson"
     },
     "Nouveau dortoir": {
       "groupe": 41,
       "students": "ALBERTIN Nicolas, BENAHCÈNE Amine, DIDIER Camille, JUERY Franck, LLORED Yoan, ZANETTO Justin",
       "task": "Nouveau dortoir"
     },
-    "Refectoir matinsoir": {
+    "Refectoir matin/soir": {
       "groupe": 9,
       "students": "ARNOULD Mattéo, AUGUGLIARO Matteo, BARNARIE Lilou, BELLIER-BENISTAND Nathan, BOUVANIER Marius",
       "task": "Refectoir matin/soir"
@@ -830,7 +830,7 @@
       "students": "FIERE Alexis, GARNIER Noémie, GERMAIN Noa, HUGOT--GRONDIN Luna, MARCON Candice",
       "task": "Refectoir midi"
     },
-    "Salle B Salle verte": {
+    "Salle B / Salle verte": {
       "groupe": 23,
       "students": "BRUN Amaël, ESCOFFIER Michel, MOREON Andrea, SÉGARD Quentin",
       "task": "Salle B / Salle verte"
@@ -840,7 +840,7 @@
       "students": "GRENIER Quentin, LEROY Kimberlay, MANCINO Rémi, MICHOUD Valentin, VENTURA Eleonore",
       "task": "Salle Jobin"
     },
-    "Vaisselle matinsoir": {
+    "Vaisselle matin/soir": {
       "groupe": 14,
       "students": "BENHICHCHOU Wassim, BENRABAH Mohamed-Rayan, BERGOGNON Remi, CARLIER Mathys, CORRADI Alexis",
       "task": "Vaisselle matin/soir"
@@ -903,12 +903,12 @@
     "CAP 1 ISCH": {
       "groupe": 34,
       "students": "BLANC Nicolas, BUTHIGIEG Enzo, FAURE Leandre, PAIN Gaetan, SAEZ Lucas",
-      "task": "CAP 1 IS/CH"
+      "task": "CAP 1 ISCH"
     },
     "CAP 1 MacMBC": {
       "groupe": 37,
       "students": "BAGNIS Hugo, BARRADAS Lorenzo, DORNEL Bryan, EYMARD-SCIPION Alexis, MOCELLIN Cody",
-      "task": "CAP 1 Maç/MBC"
+      "task": "CAP 1 MacMBC"
     },
     "Exterieur": {
       "groupe": 7,
@@ -920,17 +920,17 @@
       "students": "BARRAL-BARON Guillaume, FLAHAUT Dorian, MATENCIO Valentin, PERRIN Yannis",
       "task": "Foyer"
     },
-    "Machine a boisson": {
+    "Machine à boisson": {
       "groupe": 35,
       "students": "JEUNOT Nathan, MALLAN Marvin, TARICCO Loris, TURF Thimoté",
-      "task": "Machine a boisson"
+      "task": "Machine à boisson"
     },
     "Nouveau dortoir": {
       "groupe": 1,
       "students": "BALASSO Orlane, CAILLAT Charlene, CAZEAUX Fatih, CHEVALIER Ayan",
       "task": "Nouveau dortoir"
     },
-    "Refectoir matinsoir": {
+    "Refectoir matin/soir": {
       "groupe": 2,
       "students": "FINARD Clovis, FONTENELLE Ameline, GRUEL Jeanne, JOAO Kayla",
       "task": "Refectoir matin/soir"
@@ -940,7 +940,7 @@
       "students": "JALLIFFIER-VERNE Florentin, JALLIFFIER-VERNE Thomas, RAMAT Kilian, RODRIGUEZ Enzo, SAÏD Nidal, VELASQUEZ Esteban",
       "task": "Refectoir midi"
     },
-    "Salle B Salle verte": {
+    "Salle B / Salle verte": {
       "groupe": 4,
       "students": "RICHARDEAU Oscar, RUFFIER DES AIMES Nolhan, SEIGLE Edenn, STADELMANN Bathias, UNAL Erhan",
       "task": "Salle B / Salle verte"
@@ -950,7 +950,7 @@
       "students": "BRUN Amaël, ESCOFFIER Michel, MOREON Andrea, SÉGARD Quentin",
       "task": "Salle Jobin"
     },
-    "Vaisselle matinsoir": {
+    "Vaisselle matin/soir": {
       "groupe": 24,
       "students": "AYMOZ Titouan, BAURIN Gwenaêlle, DIDIER Jules, DUMON Laszlo, FRACHISSE Julien",
       "task": "Vaisselle matin/soir"
@@ -995,12 +995,12 @@
     "CAP 2 ISCH": {
       "groupe": 43,
       "students": "DUPUIS  Alexis, KACZMAREK Andreas, PERROT Theo, ROUSSET Evan, SASA Fabrice, SCARPA Alexis, WAGNER Camille",
-      "task": "CAP 2 IS/CH"
+      "task": "CAP 2 ISCH"
     },
     "CAP 2 Mac MBC": {
       "groupe": 40,
       "students": "AIBA Khalifa, ALAIMO Yoan, CAILLAT Martin, CRUZ Sam, DUNAND-SAUTHIER Alexandre",
-      "task": "CAP 2 Maç / MBC"
+      "task": "CAP 2 Mac MBC"
     },
     "Exterieur": {
       "groupe": 41,
@@ -1012,17 +1012,17 @@
       "students": "DUFRENNE Dylan, GERBIER Benoit, MAUERHAN Solal, PARTON Julien, REYNIER Theo",
       "task": "Foyer"
     },
-    "Machine a boisson": {
+    "Machine à boisson": {
       "groupe": 42,
       "students": "ALBERT Théo, BARRIAC Jean-Daniel, BOURALHI Yacine, DECOTTIGNIES Mateo, KARL  Marvin, MOCELLIN Tanguy, NIAKATE Moussa, PORTELLI Maxence",
-      "task": "Machine a boisson"
+      "task": "Machine à boisson"
     },
     "Nouveau dortoir": {
       "groupe": 30,
       "students": "ARDAIN Emeline, ROYANNAIS Maxime, SIONNET Thomas, VACHIER Corentin",
       "task": "Nouveau dortoir"
     },
-    "Refectoir matinsoir": {
+    "Refectoir matin/soir": {
       "groupe": 29,
       "students": "ARDAIN Celine, CHARRETON Alexis, DI ANTONIO Côme, Faure Fabien, GERBOUD Lyse, MAGNAN Erwan",
       "task": "Refectoir matin/soir"
@@ -1032,7 +1032,7 @@
       "students": "GUILLET Etienne, NUBLAT Paul, PELIZZARI Vaïna",
       "task": "Refectoir midi"
     },
-    "Salle B Salle verte": {
+    "Salle B / Salle verte": {
       "groupe": "Pas de groupe disponible.",
       "task": "Salle B / Salle verte"
     },
@@ -1040,7 +1040,7 @@
       "groupe": "Pas de groupe disponible.",
       "task": "Salle Jobin"
     },
-    "Vaisselle matinsoir": {
+    "Vaisselle matin/soir": {
       "groupe": "Pas de groupe disponible.",
       "task": "Vaisselle matin/soir"
     },
@@ -1106,17 +1106,17 @@
       "students": "GRENIER Quentin, MANCINO Rémi, MICHOUD Valentin, VENTURA Eleonore",
       "task": "Foyer"
     },
-    "Machine a boisson": {
+    "Machine à boisson": {
       "groupe": 31,
       "students": "CHARLON Thibaud, GRAND Jeremy, MORARD Kevin, PICOT-GUERAUD Axel",
-      "task": "Machine a boisson"
+      "task": "Machine à boisson"
     },
     "Nouveau dortoir": {
       "groupe": 6,
       "students": "DIDIER Laura, DORLY Kenny, DUSSERT Alban, FANTIN Evan",
       "task": "Nouveau dortoir"
     },
-    "Refectoir matinsoir": {
+    "Refectoir matin/soir": {
       "groupe": 7,
       "students": "FLAHAUT Jordane, GONÇALVES FERNANDES Raphaël, JACQUIER Leo, LOVATIN Thomas, MILESI Theo",
       "task": "Refectoir matin/soir"
@@ -1126,7 +1126,7 @@
       "students": "BALASSO Orlane, CAILLAT Charlene, CAZEAUX Fatih, CHEVALIER Ayan",
       "task": "Refectoir midi"
     },
-    "Salle B Salle verte": {
+    "Salle B / Salle verte": {
       "groupe": 2,
       "students": "FINARD Clovis, FONTENELLE Ameline, GRUEL Jeanne, JOAO Kayla",
       "task": "Salle B / Salle verte"
@@ -1136,7 +1136,7 @@
       "students": "AYMOZ Titouan, BAURIN Gwenaêlle, DIDIER Jules, DUMON Laszlo, FRACHISSE Julien",
       "task": "Salle Jobin"
     },
-    "Vaisselle matinsoir": {
+    "Vaisselle matin/soir": {
       "groupe": 3,
       "students": "KETFI-CHARIF Radwane, LONGO Gabriel, MARTIN Evann, MAUSSERT Timeo, MISKULIN Killian",
       "task": "Vaisselle matin/soir"
@@ -1193,12 +1193,12 @@
     "CAP 1 ISCH": {
       "groupe": 35,
       "students": "JEUNOT Nathan, MALLAN Marvin, TARICCO Loris, TURF Thimoté",
-      "task": "CAP 1 IS/CH"
+      "task": "CAP 1 ISCH"
     },
     "CAP 1 MacMBC": {
       "groupe": 38,
       "students": "JALLIFFIER-VERNE Florentin, JALLIFFIER-VERNE Thomas, RAMAT Kilian, RODRIGUEZ Enzo, SAÏD Nidal, VELASQUEZ Esteban",
-      "task": "CAP 1 Maç/MBC"
+      "task": "CAP 1 MacMBC"
     },
     "Exterieur": {
       "groupe": 37,
@@ -1210,17 +1210,17 @@
       "students": "ARNOULD Mattéo, AUGUGLIARO Matteo, BARNARIE Lilou, BELLIER-BENISTAND Nathan, BOUVANIER Marius",
       "task": "Foyer"
     },
-    "Machine a boisson": {
+    "Machine à boisson": {
       "groupe": 11,
       "students": "FIERE Alexis, GARNIER Noémie, GERMAIN Noa, HUGOT--GRONDIN Luna, MARCON Candice",
-      "task": "Machine a boisson"
+      "task": "Machine à boisson"
     },
     "Nouveau dortoir": {
       "groupe": 36,
       "students": "BARRAL-BARON Guillaume, FLAHAUT Dorian, MATENCIO Valentin, PERRIN Yannis",
       "task": "Nouveau dortoir"
     },
-    "Refectoir matinsoir": {
+    "Refectoir matin/soir": {
       "groupe": 12,
       "students": "MARTEL--QUESNEL Anthony, PASERO Mathys, PICAT Kylian, PICOT Chloé, REMLINGER Theo",
       "task": "Refectoir matin/soir"
@@ -1230,7 +1230,7 @@
       "students": "BLANC Nicolas, BUTHIGIEG Enzo, FAURE Leandre, PAIN Gaetan, SAEZ Lucas",
       "task": "Refectoir midi"
     },
-    "Salle B Salle verte": {
+    "Salle B / Salle verte": {
       "groupe": 14,
       "students": "BENHICHCHOU Wassim, BENRABAH Mohamed-Rayan, BERGOGNON Remi, CARLIER Mathys, CORRADI Alexis",
       "task": "Salle B / Salle verte"
@@ -1240,7 +1240,7 @@
       "students": "DE OLIVEIRA Mathys, DELANGE Elie, DUMONT Killian, FAURE Matheo, FAYARD Baptiste",
       "task": "Salle Jobin"
     },
-    "Vaisselle matinsoir": {
+    "Vaisselle matin/soir": {
       "groupe": 16,
       "students": "GAMET Jérémy, GLEIZE Yanis, GUILHERMET Lucas, JAY Quentin, JOUBIN Enzo",
       "task": "Vaisselle matin/soir"
@@ -1303,12 +1303,12 @@
     "CAP 2 ISCH": {
       "groupe": 44,
       "students": "BERGERON Baptiste, DURA Anton, FEREYRE Nicolas, GUINET Léo, MORGADO DO MONTE Tristan",
-      "task": "CAP 2 IS/CH"
+      "task": "CAP 2 ISCH"
     },
     "CAP 2 Mac MBC": {
       "groupe": 41,
       "students": "ALBERTIN Nicolas, BENAHCÈNE Amine, DIDIER Camille, JUERY Franck, LLORED Yoan, ZANETTO Justin",
-      "task": "CAP 2 Maç / MBC"
+      "task": "CAP 2 Mac MBC"
     },
     "Exterieur": {
       "groupe": 27,
@@ -1320,17 +1320,17 @@
       "students": "ALBERT Théo, BARRIAC Jean-Daniel, BOURALHI Yacine, DECOTTIGNIES Mateo, KARL  Marvin, MOCELLIN Tanguy, NIAKATE Moussa, PORTELLI Maxence",
       "task": "Foyer"
     },
-    "Machine a boisson": {
+    "Machine à boisson": {
       "groupe": 39,
       "students": "DUFRENNE Dylan, GERBIER Benoit, MAUERHAN Solal, PARTON Julien, REYNIER Theo",
-      "task": "Machine a boisson"
+      "task": "Machine à boisson"
     },
     "Nouveau dortoir": {
       "groupe": 43,
       "students": "DUPUIS  Alexis, KACZMAREK Andreas, PERROT Theo, ROUSSET Evan, SASA Fabrice, SCARPA Alexis, WAGNER Camille",
       "task": "Nouveau dortoir"
     },
-    "Refectoir matinsoir": {
+    "Refectoir matin/soir": {
       "groupe": 6,
       "students": "DIDIER Laura, DORLY Kenny, DUSSERT Alban, FANTIN Evan",
       "task": "Refectoir matin/soir"
@@ -1340,7 +1340,7 @@
       "students": "KETFI-CHARIF Radwane, LONGO Gabriel, MARTIN Evann, MAUSSERT Timeo, MISKULIN Killian",
       "task": "Refectoir midi"
     },
-    "Salle B Salle verte": {
+    "Salle B / Salle verte": {
       "groupe": 5,
       "students": "ALAIMO Tony, BELLOSGUARDO Dorian, BOUILFAN Noa, DE ANDRADE Anthony",
       "task": "Salle B / Salle verte"
@@ -1350,7 +1350,7 @@
       "students": "BALASSO Orlane, CAILLAT Charlene, CAZEAUX Fatih, CHEVALIER Ayan",
       "task": "Salle Jobin"
     },
-    "Vaisselle matinsoir": {
+    "Vaisselle matin/soir": {
       "groupe": 4,
       "students": "RICHARDEAU Oscar, RUFFIER DES AIMES Nolhan, SEIGLE Edenn, STADELMANN Bathias, UNAL Erhan",
       "task": "Vaisselle matin/soir"
