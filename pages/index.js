@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Text, Button, Box, Flex } from 'theme-ui';
 import { useStateMachine } from 'little-state-machine';
 
@@ -9,6 +9,7 @@ import { nextWeek, prevWeek } from '../utils/store';
 import { numeric } from '../utils/date';
 
 const Landing = () => {
+  const refElement = useRef()
   const [printMode, setPrintMode] = useState()
   const {
     actions,
@@ -40,6 +41,10 @@ const Landing = () => {
     )
   }
 
+  const handleClick = event => {
+    console.log(refElement.current.click())
+  }
+
   return (
     <Layout>
       <Box>
@@ -53,7 +58,7 @@ const Landing = () => {
           </Button>
         </Flex>
         <Flex ml="auto">
-          <Button onClick={() => {}} variant="primary">
+          <Button onClick={handleClick} variant="primary">
             <i className="fas fa-sync-alt" />
             <span>&nbsp;&nbsp;Régénérer</span>
           </Button>
@@ -64,7 +69,7 @@ const Landing = () => {
         </Flex>
       </Flex>
       <Box display="flex" alignItems="center" flexDirection="column">
-        <Planning startAt={currentWeek.toString()} />
+        <Planning ref={refElement} startAt={currentWeek.toString()} />
       </Box>
     </Layout>
   );

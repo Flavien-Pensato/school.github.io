@@ -1,10 +1,12 @@
 import db from '../../utils/db';
 import Week from '../../modules/week/week.model';
+import Student from '../../modules/students/student.model';
 
 export default async function handler(req, res) {
   await db();
 
   try {
+    const classes = await Student.distinct('classe');
     /* find all the data in our database */
     const weeks = await Week.find({});
 
@@ -16,17 +18,28 @@ export default async function handler(req, res) {
 
           if (!groupe) {
             acc[task.groupe] = {
-              total: 1
+              total: 0,
+              classe: 0
             }
           }
 
-          if (!acc[task.groupe][taskName]) {
-            acc[task.groupe][taskName] = 1
-            acc[task.groupe].total += 1
+          if (classes.includes(taskName)) {
+            if (!acc[task.groupe][taskName]) {
+              acc[task.groupe][taskName] = 1
+              acc[task.groupe]['classe'] += 1
+            } else {
+              acc[task.groupe][taskName] += 1
+              acc[task.groupe]['classe'] += 1
+            }
+  
           } else {
-            acc[task.groupe][taskName] += 1
-            acc[task.groupe].total += 1
+            if (!acc[task.groupe][taskName]) {
+              acc[task.groupe][taskName] = 1
+            } else {
+              acc[task.groupe][taskName] += 1
+            }
           }
+          acc[task.groupe].total += 1
         })
       }
       return acc
