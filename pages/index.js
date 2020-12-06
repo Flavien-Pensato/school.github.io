@@ -21,8 +21,11 @@ const Landing = () => {
 
   const handlePrint = () => {
     setPrintMode(true)
-    window.print()
-    setPrintMode(false)
+
+    setTimeout(() => {
+      window.print()
+      setPrintMode(false)  
+    }, 100)
   }
   const from = new Date(currentWeek);
   const to = new Date(from);
