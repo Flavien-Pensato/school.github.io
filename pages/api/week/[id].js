@@ -12,7 +12,11 @@ export default async function handler(req, res) {
 
     switch (method) {
       case 'GET': {
-        const week = await Week.findOne({ startAt: { $gte: new Date(id) }}).sort({startAt: 1});
+        const d = new Date(id)
+        const offsetDate = new Date(d.getTime() - d.getTimezoneOffset() * 60 * 1000)
+
+        const week = await Week.findOne({ startAt: offsetDate.toISOString() }).sort({ startAt: 1 });
+
 
         res.status(200).json(week || {});
         break;
