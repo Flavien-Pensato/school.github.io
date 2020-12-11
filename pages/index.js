@@ -25,7 +25,7 @@ const Landing = () => {
     setTimeout(() => {
       window.print()
       setPrintMode(false)  
-    }, 100)
+    }, 500)
   }
   const from = new Date(currentWeek);
   const to = new Date(from);
@@ -38,14 +38,14 @@ const Landing = () => {
           Semaine du <Text as="strong" color="primary">{from.toLocaleDateString('fr-FR', numeric)}</Text> au <Text as="strong" color="primary">{to.toLocaleDateString('fr-FR', numeric)}</Text>
         </Box>
         <Box display="flex" alignItems="center" flexDirection="column">
-          <Planning startAt={currentWeek.toISOString()} />
+          <Planning startAt={from.toISOString()} />
         </Box>
       </>
     )
   }
 
   const handleClick = event => {
-    console.log(refElement.current.click())
+    refElement.current.click()
   }
 
   return (
