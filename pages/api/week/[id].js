@@ -15,7 +15,7 @@ export default async function handler(req, res) {
         const d = new Date(id)
         const offsetDate = new Date(d.getTime() - d.getTimezoneOffset() * 60 * 1000)
 
-        const week = await Week.findOne({ startAt: offsetDate.toISOString() }).sort({ startAt: 1 });
+        const week = await Week.findOne({ startAt: offsetDate.toISOString() });
 
 
         res.status(200).json(week || {});
