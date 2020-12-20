@@ -7,7 +7,7 @@ import { Label, Input, Box, Heading, Text, Button } from 'theme-ui';
 import fetch from '../../../utils/fetch';
 
 const TaskForm = () => {
-  const { data } = useSWR('/api/tasks', fetch, {
+  useSWR('/api/tasks', fetch, {
     initialData: {
       data: [],
     },

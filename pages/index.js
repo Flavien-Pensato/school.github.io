@@ -4,13 +4,12 @@ import { useStateMachine } from 'little-state-machine';
 
 import Layout from '../components/Layout';
 import Planning from '../components/Planning';
-import { print } from '../utils/print';
 import { nextWeek, prevWeek } from '../utils/store';
 import { numeric } from '../utils/date';
 
 const Landing = () => {
-  const refElement = useRef()
-  const [printMode, setPrintMode] = useState()
+  const refElement = useRef();
+  const [printMode, setPrintMode] = useState();
   const {
     actions,
     state: { currentWeek },
@@ -20,13 +19,13 @@ const Landing = () => {
   });
 
   const handlePrint = () => {
-    setPrintMode(true)
+    setPrintMode(true);
 
     setTimeout(() => {
-      window.print()
-      setPrintMode(false)  
-    }, 500)
-  }
+      window.print();
+      setPrintMode(false);
+    }, 500);
+  };
   const from = new Date(currentWeek);
   const to = new Date(from);
   to.setDate(to.getDate() + 4);
@@ -35,23 +34,37 @@ const Landing = () => {
     return (
       <>
         <Box mb="20px">
-          Semaine du <Text as="strong" color="primary">{from.toLocaleDateString('fr-FR', numeric)}</Text> au <Text as="strong" color="primary">{to.toLocaleDateString('fr-FR', numeric)}</Text>
+          Semaine du{' '}
+          <Text as="strong" color="primary">
+            {from.toLocaleDateString('fr-FR', numeric)}
+          </Text>{' '}
+          au{' '}
+          <Text as="strong" color="primary">
+            {to.toLocaleDateString('fr-FR', numeric)}
+          </Text>
         </Box>
         <Box display="flex" alignItems="center" flexDirection="column">
           <Planning startAt={from.toISOString()} />
         </Box>
       </>
-    )
+    );
   }
 
-  const handleClick = event => {
-    refElement.current.click()
-  }
+  const handleClick = () => {
+    refElement.current.click();
+  };
 
   return (
     <Layout>
       <Box>
-        Semaine du <Text as="strong" color="primary">{from.toLocaleDateString('fr-FR', numeric)}</Text> au <Text as="strong" color="primary">{to.toLocaleDateString('fr-FR', numeric)}</Text>
+        Semaine du{' '}
+        <Text as="strong" color="primary">
+          {from.toLocaleDateString('fr-FR', numeric)}
+        </Text>{' '}
+        au{' '}
+        <Text as="strong" color="primary">
+          {to.toLocaleDateString('fr-FR', numeric)}
+        </Text>
       </Box>
       <Flex padding="20px 0px">
         <Flex>

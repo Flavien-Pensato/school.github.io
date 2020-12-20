@@ -127,7 +127,7 @@ export default {
       letterSpacing: '0.1em',
       fontSize: '16px',
       cursor: 'pointer',
-      textAlign: 'center'
+      textAlign: 'center',
     },
   },
 
@@ -138,12 +138,12 @@ export default {
       border: '1px solid black',
       borderRadius: '4px',
       textAlign: 'right',
-      my: '7px'
+      my: '7px',
     },
     cardItem: {
       alignItems: 'center',
       backgroundColor: 'rgba(0, 0, 0, 0.024)',
-      marginTop: '20px'
-    }
-  }
+      marginTop: '20px',
+    },
+  },
 };

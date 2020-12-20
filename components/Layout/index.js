@@ -28,11 +28,14 @@ const Layout = ({ children, router }) => {
   return (
     <>
       <Title />
-      <Flex as="nav" sx={{
-        borderBottom: '1px solid black',
-        borderTop: '1px solid black',
-        padding: '20px',
-      }}>
+      <Flex
+        as="nav"
+        sx={{
+          borderBottom: '1px solid black',
+          borderTop: '1px solid black',
+          padding: '20px',
+        }}
+      >
         <Link href="/">
           <NavLink>Planning</NavLink>
         </Link>

@@ -90,7 +90,7 @@ const StudentsForm = () => {
           Création d’un&bull;e nouvel éléve
         </Heading>
         <Box mb={3}>
-          <Label htmlFor="file">Fichier d'import</Label>
+          <Label htmlFor="file">Fichier d&apos;import</Label>
           <Input name="file" type="file" onChange={handleFile} />
         </Box>
         {fields.map((item, index) => (

@@ -47,10 +47,13 @@ export default async function handler(req, res) {
           break;
         }
 
-        await Week.updateOne({
-          _id: id,
-          isHolliday: false,
-        }, { $unset: { tasks: "" }});
+        await Week.updateOne(
+          {
+            _id: id,
+            isHolliday: false,
+          },
+          { $unset: { tasks: '' } },
+        );
         const week = await Week.findOne({
           _id: id,
           isHolliday: false,
@@ -82,21 +85,31 @@ export default async function handler(req, res) {
           },
         }).distinct('groupe');
 
-        const groupesByClasse = await Promise.all(classes.map((classe) => Student.find({
-            classe: { $in: [classe] },
-            groupe: {
-              $ne: null,
-            },
-          }).distinct('groupe')));
+        const groupesByClasse = await Promise.all(
+          classes.map((classe) =>
+            Student.find({
+              classe: { $in: [classe] },
+              groupe: {
+                $ne: null,
+              },
+            }).distinct('groupe'),
+          ),
+        );
         const groupesByClasse2 = classes.reduce((acc, classe, index) => {
-          acc[classe] = groupesByClasse[index]
+          acc[classe] = groupesByClasse[index];
 
-          return acc
-        }, {})
+          return acc;
+        }, {});
 
         const tasksOfWeek = [...classes, ...tasks].reduce(
           (acc, task) => {
-            const groupesCounter = countTaskDoneByGroupe(task, groupesByClasse2[task] ? acc.groupes.filter(groupe => groupesByClasse2[task].includes(groupe)) : acc.groupes, weeksPast);
+            const groupesCounter = countTaskDoneByGroupe(
+              task,
+              groupesByClasse2[task]
+                ? acc.groupes.filter((groupe) => groupesByClasse2[task].includes(groupe))
+                : acc.groupes,
+              weeksPast,
+            );
             const groupe = findGroupeHowWorkLess(groupesCounter);
             const studentsOfGroupe =
               Number(groupe) > 0 ? students.filter((student) => student.groupe === Number(groupe)) : [];
@@ -141,7 +154,6 @@ export default async function handler(req, res) {
         break;
     }
   } catch (error) {
-    console.log(error)
     res.status(400).json({ error });
   }
 }

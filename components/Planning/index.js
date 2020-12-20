@@ -31,11 +31,12 @@ const Planning = React.forwardRef(({ startAt }, ref) => {
   if (!week.tasks) {
     return (
       <Flex justifyContent="center" alignItems="center">
-        <Button ref={ref} onClick={generateWeekTask}>Generate</Button>
+        <Button ref={ref} onClick={generateWeekTask}>
+          Generate
+        </Button>
       </Flex>
     );
   }
-
 
   return (
     <>
@@ -66,10 +67,12 @@ const Planning = React.forwardRef(({ startAt }, ref) => {
           );
         })}
       </Grid>
-      <Flex justifyContent="center" alignItems="center" sx={{visibility: 'hidden'}}>
-        <Button ref={ref} onClick={generateWeekTask}>Generate</Button>
+      <Flex justifyContent="center" alignItems="center" sx={{ visibility: 'hidden' }}>
+        <Button ref={ref} onClick={generateWeekTask}>
+          Generate
+        </Button>
       </Flex>
-    </>  
+    </>
   );
 });
 

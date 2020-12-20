@@ -22,14 +22,6 @@ class Error extends React.Component {
   }
 
   render() {
-    const { router } = this.props;
-
-    // if (this.props.statusCode === 404) {
-    //   router.replace('/');
-
-    //   return null;
-    // }
-
     return (
       <Box display="flex" alignItems="center" height="100vh" padding="20px">
         <div>
