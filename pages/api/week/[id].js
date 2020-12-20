@@ -12,10 +12,7 @@ export default async function handler(req, res) {
 
     switch (method) {
       case 'GET': {
-        const d = new Date(id);
-        const offsetDate = new Date(d.getTime() - d.getTimezoneOffset() * 60 * 1000);
-
-        const week = await Week.findOne({ startAt: offsetDate.toISOString().slice(0, -1).concat('+00:00') });
+        const week = await Week.findOne({ startAt: id });
 
         res.status(200).json(week || {});
         break;

@@ -6,9 +6,16 @@ import useSWR from 'swr';
 import fetch from '../../utils/fetch';
 
 const Planning = React.forwardRef(({ startAt }, ref) => {
-  const { data: week, error, mutate } = useSWR(`/api/week/${startAt}`, fetch, {
-    initialData: {},
-  });
+  const d = new Date(startAt);
+  const offsetDate = new Date(d.getTime() - d.getTimezoneOffset() * 60 * 1000);
+
+  const { data: week, error, mutate } = useSWR(
+    `/api/week/${offsetDate.toISOString().slice(0, -1).concat('+00:00')}`,
+    fetch,
+    {
+      initialData: {},
+    },
+  );
 
   const generateWeekTask = (event) => {
     event.preventDefault();
