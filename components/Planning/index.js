@@ -10,7 +10,7 @@ const Planning = React.forwardRef(({ startAt }, ref) => {
   const offsetDate = new Date(d.getTime() - d.getTimezoneOffset() * 60 * 1000);
 
   const { data: week, error, mutate } = useSWR(
-    `/api/week/${offsetDate.toISOString().slice(0, -1).concat('+00:00')}`,
+    `/api/week/${encodeURI(offsetDate.toISOString().slice(0, -1).concat('+00:00'))}`,
     fetch,
     {
       initialData: {},

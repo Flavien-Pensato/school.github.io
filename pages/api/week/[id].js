@@ -12,7 +12,7 @@ export default async function handler(req, res) {
 
     switch (method) {
       case 'GET': {
-        const week = await Week.findOne({ startAt: id });
+        const week = await Week.findOne({ startAt: decodeURI(id) });
 
         res.status(200).json(week || {});
         break;
