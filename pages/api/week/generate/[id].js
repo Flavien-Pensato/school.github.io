@@ -8,11 +8,11 @@ export const countTaskDoneByGroupe = (task, groupes, weeks) =>
     (acc, week) => {
       const { groupe } = week.tasks && week.tasks[task] ? week.tasks[task] : {};
 
-      if (groupes.includes(groupe)) {
-        if (acc[groupe]) {
-          acc[groupe] += 1;
+      if (groupes.includes(Number(groupe))) {
+        if (acc[groupe.toString()]) {
+          acc[groupe.toString()] += 1;
         } else {
-          acc[groupe] = 1;
+          acc[groupe.toString()] = 1;
         }
       }
 
@@ -27,8 +27,8 @@ export const countTaskDoneByGroupe = (task, groupes, weeks) =>
 
 export const findGroupeHowWorkLess = (groupes) =>
   Object.keys(groupes).reduce(
-    (acc, groupe) => ((groupes[acc] || Number.POSITIVE_INFINITY) > groupes[groupe] ? groupe : acc),
-    null,
+    (acc, groupe) => ((groupes[acc] >= 0 ? groupes[acc] : Number.POSITIVE_INFINITY) > groupes[groupe] ? groupe : acc),
+    '',
   );
 
 export default async function handler(req, res) {
@@ -69,19 +69,19 @@ export default async function handler(req, res) {
         const students = await Student.find({
           classe: { $in: week.classes },
           groupe: {
-            $ne: null,
+            $ne: [0, null],
           },
         });
         const classes = await Student.find({
           classe: { $in: week.classes },
           groupe: {
-            $ne: null,
+            $ne: [0, null],
           },
         }).distinct('classe');
         const groupes = await Student.find({
           classe: { $in: week.classes },
           groupe: {
-            $ne: null,
+            $ne: [0, null],
           },
         }).distinct('groupe');
 
@@ -90,7 +90,7 @@ export default async function handler(req, res) {
             Student.find({
               classe: { $in: [classe] },
               groupe: {
-                $ne: null,
+                $ne: [0, null],
               },
             }).distinct('groupe'),
           ),
