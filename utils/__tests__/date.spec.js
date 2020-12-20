@@ -1,4 +1,4 @@
-import {setStartOfWeek} from '../date'
+import { setStartOfWeek } from '../date';
 // "01/10/2020"
 const MOCK_NOW = 1578610800000;
 

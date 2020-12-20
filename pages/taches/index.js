@@ -41,7 +41,7 @@ const Tasks = () => {
   return (
     <Layout>
       {tasks.map(({ _id, name }) => (
-        <Flex key={_id} sx={{ justifyContent: "space-between" }} margin="10px 0px">
+        <Flex key={_id} sx={{ justifyContent: 'space-between' }} margin="10px 0px">
           <Text>{name}</Text>
           <IconButton onClick={onDelete(_id)} marginLeft="20px" padding="5px 10px">
             <i className="fas fa-trash" />

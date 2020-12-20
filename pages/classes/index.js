@@ -19,7 +19,7 @@ const Classes = () => {
   const handleRemove = (id) => () => {
     fetch(`/api/student/${id}`, {
       method: 'DELETE',
-    }).then((response) => {
+    }).then(() => {
       mutate(
         {
           data: data.data.filter((element) => element._id !== id),
@@ -51,7 +51,7 @@ const Classes = () => {
 
   return (
     <Layout>
-      <Flex sx={{my: '20px', justifyContent: 'space-between'}}>
+      <Flex sx={{ my: '20px', justifyContent: 'space-between' }}>
         <Link href="/classes/ajout">
           <Button>Ajouter un éléve</Button>
         </Link>
@@ -59,20 +59,20 @@ const Classes = () => {
           <Button>Importer une classe</Button>
         </Link>
       </Flex>
-      <Flex sx={{flexDirection: "column"}}>
+      <Flex sx={{ flexDirection: 'column' }}>
         {Object.keys(classes).map((classe) => (
           <Dropdown
             key={classe}
             name={classe}
             items={classes[classe].map((student) => (
               <Flex key={student._id} variant="cardItem">
-                <Box sx={{width:"100%", textAlign: 'left'}}>{student.fullName}</Box>
-                <Box sx={{width:"auto"}}>
+                <Box sx={{ width: '100%', textAlign: 'left' }}>{student.fullName}</Box>
+                <Box sx={{ width: 'auto' }}>
                   <Input type="number" value={student.groupe} onChange={updateGroupe(student._id)} />
                 </Box>
-                <Box sx={{width:"50px"}}>
+                <Box sx={{ width: '50px' }}>
                   <IconButton onClick={handleRemove(student._id)}>
-                    <i className="fas fa-trash"/>
+                    <i className="fas fa-trash" />
                   </IconButton>
                 </Box>
               </Flex>

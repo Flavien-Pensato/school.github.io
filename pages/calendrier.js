@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import useSWR from 'swr';
 import { sortDates, getAllNextWeekBeforeHoliday } from '../utils/date';
@@ -134,8 +134,7 @@ const Calendrier = () => {
           <Grid>
             <ColFixedLeft>
               {sortDates(nexDates).map((date) => {
-                const dateFound = weeks.find(
-                  (dateWeek) => isDateSame(dateWeek.startAt, date.startAt))
+                const dateFound = weeks.find((dateWeek) => isDateSame(dateWeek.startAt, date.startAt));
 
                 return (
                   <ItemCol key={date.startAt} style={{ justifyContent: 'space-between' }}>
@@ -154,8 +153,8 @@ const Calendrier = () => {
             {classes.map((classe) => (
               <LittleCol key={classe}>
                 {nexDates.map((date) => {
-                  const dateFound = weeks.find((dateWeek) => isDateSame(dateWeek.startAt, date.startAt))
-                  
+                  const dateFound = weeks.find((dateWeek) => isDateSame(dateWeek.startAt, date.startAt));
+
                   if (!dateFound || dateFound.isHolliday) {
                     return (
                       <ItemCol key={date.startAt}>
