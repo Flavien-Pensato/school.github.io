@@ -9,13 +9,9 @@ const Planning = React.forwardRef(({ startAt }, ref) => {
   const d = new Date(startAt);
   const offsetDate = new Date(d.getTime() - d.getTimezoneOffset() * 60 * 1000);
 
-  const { data: week, error, mutate } = useSWR(
-    `/api/week/${encodeURI(offsetDate.toISOString().slice(0, -1).concat('+00:00'))}`,
-    fetch,
-    {
-      initialData: {},
-    },
-  );
+  const { data: week, error, mutate } = useSWR(`/api/week/${offsetDate.toISOString()}`, fetch, {
+    initialData: {},
+  });
 
   const generateWeekTask = (event) => {
     event.preventDefault();
