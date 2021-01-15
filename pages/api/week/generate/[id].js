@@ -66,22 +66,24 @@ export default async function handler(req, res) {
         });
 
         const tasks = await Task.find().distinct('name');
+
         const students = await Student.find({
           classe: { $in: week.classes },
           groupe: {
-            $ne: [0, null],
+            $nin: [0, null],
           },
         });
+
         const classes = await Student.find({
           classe: { $in: week.classes },
           groupe: {
-            $ne: [0, null],
+            $nin: [0, null],
           },
         }).distinct('classe');
         const groupes = await Student.find({
           classe: { $in: week.classes },
           groupe: {
-            $ne: [0, null],
+            $nin: [0, null],
           },
         }).distinct('groupe');
 
@@ -90,7 +92,7 @@ export default async function handler(req, res) {
             Student.find({
               classe: { $in: [classe] },
               groupe: {
-                $ne: [0, null],
+                $nin: [0, null],
               },
             }).distinct('groupe'),
           ),
