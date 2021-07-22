@@ -20,7 +20,7 @@
     "styled-system": "^5.1.5",
     "swr": "^0.3.10",
     "theme-ui": "^0.3.4",
-    "xlsx": "^0.16.9"
+    "xlsx": "^0.17.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
