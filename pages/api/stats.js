@@ -1,14 +1,21 @@
-import db from '../../utils/db';
-import Week from '../../modules/week/week.model';
-import Student from '../../modules/students/student.model';
+import db from "../../utils/db";
+import Week from "../../modules/week/week.model";
+import Student from "../../modules/students/student.model";
 
 export default async function handler(req, res) {
   await db();
 
   try {
-    const classes = await Student.distinct('classe');
+    const classes = await Student.distinct("classe");
     /* find all the data in our database */
-    const weeks = await Week.find({});
+    const weeks = await Week.find({
+      startAt: {
+        $gt: new Date("08/30/2021"),
+      },
+      endAt: {
+        $lt: new Date("07/01/2022"),
+      },
+    });
 
     const stats = weeks.reduce((acc, value) => {
       if (value.tasks) {

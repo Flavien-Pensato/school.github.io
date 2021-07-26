@@ -1,16 +1,29 @@
-import db from '../../utils/db';
-import Student from '../../modules/students/student.model';
-
 export default async function handler(req, res) {
   const { method } = req;
 
   try {
-    await db();
-
     switch (method) {
-      case 'GET': {
+      case "GET": {
         /* find all the data in our database */
-        const classes = await Student.distinct('classe');
+        const classes = [
+          "4eme A",
+          "4eme B",
+          "3eme A",
+          "3eme B",
+          "2nde",
+
+          "Bac 1",
+          "Bac 2",
+
+          "BTS 1",
+          "BTS 2",
+
+          "CAP 1 ISCH",
+          "CAP 1 MacMBC",
+          "CAP 2 ISCH",
+          "CAP 2 Mac MBC",
+        ];
+
         res.status(200).json(classes);
         break;
       }

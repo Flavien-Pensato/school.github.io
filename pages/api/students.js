@@ -1,5 +1,5 @@
-import db from '../../utils/db';
-import Student from '../../modules/students/student.model';
+import db from "../../utils/db";
+import Student from "../../modules/students/student.model";
 
 export default async function handler(req, res) {
   await db();

@@ -1,23 +1,23 @@
-import React, { Fragment } from 'react';
-import useSWR from 'swr';
-import { Grid, Box } from 'theme-ui';
-import Layout from '../components/Layout';
+import React, { Fragment } from "react";
+import useSWR from "swr";
+import { Grid, Box } from "theme-ui";
+import Layout from "../components/Layout";
 
 const sx = {
-  borderTop: '2px dashed',
-  borderBottom: '2px dashed',
-  borderRight: '1px solid',
-  borderLeft: '1px solid',
-  textAlign: 'center',
+  borderTop: "1px solid",
+  borderBottom: "1px solid",
+  borderRight: "1px solid",
+  borderLeft: "1px solid",
+  textAlign: "center",
 };
 
 const Statistiques = () => {
-  const { data: stats } = useSWR('/api/stats', {
+  const { data: stats } = useSWR("/api/stats", {
     initialData: {
       data: {},
     },
   });
-  const { data: tasks } = useSWR('/api/tasks', {
+  const { data: tasks } = useSWR("/api/tasks", {
     initialData: [],
   });
 
@@ -28,8 +28,8 @@ const Statistiques = () => {
         gap="0px"
         mt="20px"
         columns={`1fr 1fr 1fr ${Object.keys(tasks)
-          .map(() => '1fr')
-          .join(' ')}`}
+          .map(() => "1fr")
+          .join(" ")}`}
       >
         <Box sx={sx}>
           <strong>Groupe</strong>
@@ -44,9 +44,9 @@ const Statistiques = () => {
           <Box sx={sx}>
             <strong title={task.name}>
               {task.name
-                .split(' ')
+                .split(" ")
                 .map((name) => name.charAt(0).toUpperCase())
-                .join('.')}
+                .join(".")}
             </strong>
           </Box>
         ))}
