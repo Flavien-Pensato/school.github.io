@@ -1,12 +1,11 @@
-import React from 'react';
-import { useForm, useFieldArray } from 'react-hook-form';
-import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
-import { Label, Input, Flex, Box, Heading, Text, Button } from 'theme-ui';
+import React from "react";
+import { useForm, useFieldArray } from "react-hook-form";
+import dynamic from "next/dynamic";
+import XLSX from "xlsx";
+import { useRouter } from "next/router";
+import { Label, Input, Flex, Box, Heading, Text, Button } from "theme-ui";
 
-import Layout from '../../../components/Layout';
-
-const XLSX = dynamic(() => import('xlsx'));
+import Layout from "../../../components/Layout";
 
 const fetcher = (url, options) =>
   fetch(url, options)
@@ -15,10 +14,18 @@ const fetcher = (url, options) =>
 
 const StudentsForm = () => {
   const router = useRouter();
-  const { register, handleSubmit, reset, setError, clearErrors, control, errors } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setError,
+    clearErrors,
+    control,
+    errors,
+  } = useForm();
   const { fields, append, remove } = useFieldArray({
     control,
-    name: 'students',
+    name: "students",
   });
 
   const handleFile = (event) => {
@@ -27,28 +34,30 @@ const StudentsForm = () => {
     const file = event.target.files[0];
 
     if (file) {
-      const classe = file.name.replace('.xlsx', '').replace('Liste ', '');
+      const classe = file.name.replace(".xlsx", "").replace("Liste ", "");
       const fileReader = new FileReader();
 
       fileReader.onload = (e) => {
         const bytes = new Uint8Array(e.target.result);
         const length = bytes.byteLength;
 
-        let binary = '';
+        let binary = "";
 
         // eslint-disable-next-line
-          for (let i = 0; i < length; i++) {
+        for (let i = 0; i < length; i++) {
           binary += String.fromCharCode(bytes[i]);
         }
 
         const oFile = XLSX.read(binary, {
-          type: 'binary',
+          type: "binary",
         });
 
         const worksheet = oFile.Sheets[oFile.SheetNames[0]];
-        const text = XLSX.utils.sheet_to_csv(worksheet, { raw: true }).replace(new RegExp(',|"', 'g'), ' ');
+        const text = XLSX.utils
+          .sheet_to_csv(worksheet, { raw: true })
+          .replace(new RegExp(',|"', "g"), " ");
 
-        text.split('\n').forEach((line) => {
+        text.split("\n").forEach((line) => {
           const student = {
             fullName: line.trim(),
             classe,
@@ -64,28 +73,34 @@ const StudentsForm = () => {
   };
 
   const onSubmit = async (student) => {
-    fetcher('/api/students', {
-      method: 'POST',
+    fetcher("/api/students", {
+      method: "POST",
       body: JSON.stringify(student),
     }).then(({ error }) => {
       if (error) {
         Object.keys(error.errors).map((errorKey) =>
           setError(errorKey, {
-            type: 'manual',
+            type: "manual",
             message: error.errors[errorKey].message,
-          }),
+          })
         );
       } else {
         clearErrors();
         reset();
-        router.push('/classes');
+        router.push("/classes");
       }
     });
   };
 
   return (
     <Layout>
-      <Box as="form" variant="card" mx="auto" maxWidth="800px" onSubmit={handleSubmit(onSubmit)}>
+      <Box
+        as="form"
+        variant="card"
+        mx="auto"
+        maxWidth="800px"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <Heading as="h3" mb={3}>
           Création d’un&bull;e nouvel éléve
         </Heading>
@@ -141,7 +156,13 @@ const StudentsForm = () => {
               )}
             </Box>
             <Box>
-              <Button type="button" variant="secondary" height="42px" width="42px" onClick={() => remove(index)}>
+              <Button
+                type="button"
+                variant="secondary"
+                height="42px"
+                width="42px"
+                onClick={() => remove(index)}
+              >
                 -
               </Button>
             </Box>
