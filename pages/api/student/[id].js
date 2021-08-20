@@ -17,9 +17,8 @@ export default async function handler(req, res) {
         break;
       }
       case "POST": {
-        console.log(JSON.parse(req.body));
         const student = await Student.insertMany(JSON.parse(req.body));
-        res.status(201).json(...student);
+        res.status(201).json(student);
         break;
       }
       case "PUT": {
