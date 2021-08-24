@@ -1,23 +1,28 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { Grid, Box, Flex, Button } from 'theme-ui';
+import React, { Fragment } from "react";
+import PropTypes from "prop-types";
+import { Grid, Box, Flex, Button } from "theme-ui";
 
-import useSWR from 'swr';
-import fetch from '../../utils/fetch';
+import useSWR from "swr";
+import fetch from "../../utils/fetch";
 
 const Planning = React.forwardRef(({ startAt }, ref) => {
   const d = new Date(startAt);
   const offsetDate = new Date(d.getTime() - d.getTimezoneOffset() * 60 * 1000);
 
-  const { data: week, error, mutate } = useSWR(`/api/week/${offsetDate.toISOString()}`, fetch, {
-    initialData: {},
-  });
+  const { data: week, error, mutate } = useSWR(
+    `/api/week/${d.toISOString()}`,
+    fetch,
+    {
+      initialData: {},
+    }
+  );
+  console.log(week);
 
   const generateWeekTask = (event) => {
     event.preventDefault();
 
     fetch(`/api/week/generate/${week && week._id}`, {
-      method: 'PUT',
+      method: "PUT",
     }).then((newWeek) => {
       mutate(newWeek);
     });
@@ -70,7 +75,11 @@ const Planning = React.forwardRef(({ startAt }, ref) => {
           );
         })}
       </Grid>
-      <Flex justifyContent="center" alignItems="center" sx={{ visibility: 'hidden' }}>
+      <Flex
+        justifyContent="center"
+        alignItems="center"
+        sx={{ visibility: "hidden" }}
+      >
         <Button ref={ref} onClick={generateWeekTask}>
           Generate
         </Button>

@@ -1,7 +1,7 @@
-import React, { Fragment, Component } from 'react';
-import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
-import { numeric } from '../utils/date';
+import React, { Fragment, Component } from "react";
+import PropTypes from "prop-types";
+import styled from "@emotion/styled";
+import { numeric } from "../utils/date";
 
 export const PurpleButton = styled.button`
   height: 40px;
@@ -32,13 +32,15 @@ export class DateComponent extends Component {
     return (
       <Fragment>
         <span>
-          Du&nbsp;{dateFrom.toLocaleDateString('fr-FR', numeric)}
+          Du&nbsp;{dateFrom.toLocaleDateString("fr-FR", numeric)}
           <br />
-          Au&nbsp;{dateTo.toLocaleDateString('fr-FR', numeric)}
+          Au&nbsp;{dateTo.toLocaleDateString("fr-FR", numeric)}
         </span>
 
         {date ? (
-          <PurpleButton onClick={toggleDisable}>{date.isHolliday ? '+' : '-'}</PurpleButton>
+          <PurpleButton onClick={toggleDisable}>
+            {date.isHolliday ? "+" : "-"}
+          </PurpleButton>
         ) : (
           <PurpleButton onClick={this.handleAddDate}>+</PurpleButton>
         )}

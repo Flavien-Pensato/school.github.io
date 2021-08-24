@@ -1,7 +1,7 @@
-import db from '../../../../utils/db';
-import Week from '../../../../modules/week/week.model';
-import Student from '../../../../modules/students/student.model';
-import Task from '../../../../modules/task/task.model';
+import db from "../../../../utils/db";
+import Week from "../../../../modules/week/week.model";
+import Student from "../../../../modules/students/student.model";
+import Task from "../../../../modules/task/task.model";
 
 export const countTaskDoneByGroupe = (task, groupes, weeks) =>
   weeks.reduce(
@@ -22,13 +22,17 @@ export const countTaskDoneByGroupe = (task, groupes, weeks) =>
       acc[groupe] = 0;
 
       return acc;
-    }, {}),
+    }, {})
   );
 
 export const findGroupeHowWorkLess = (groupes) =>
   Object.keys(groupes).reduce(
-    (acc, groupe) => ((groupes[acc] >= 0 ? groupes[acc] : Number.POSITIVE_INFINITY) > groupes[groupe] ? groupe : acc),
-    '',
+    (acc, groupe) =>
+      (groupes[acc] >= 0 ? groupes[acc] : Number.POSITIVE_INFINITY) >
+      groupes[groupe]
+        ? groupe
+        : acc,
+    ""
   );
 
 export default async function handler(req, res) {
@@ -41,9 +45,9 @@ export default async function handler(req, res) {
     await db();
 
     switch (method) {
-      case 'PUT': {
+      case "PUT": {
         if (!id) {
-          res.status(400).json({ error: 'Missing id' });
+          res.status(400).json({ error: "Missing id" });
           break;
         }
 
@@ -52,7 +56,7 @@ export default async function handler(req, res) {
             _id: id,
             isHolliday: false,
           },
-          { $unset: { tasks: '' } },
+          { $unset: { tasks: "" } }
         );
         const week = await Week.findOne({
           _id: id,
@@ -65,7 +69,7 @@ export default async function handler(req, res) {
           isHolliday: false,
         });
 
-        const tasks = await Task.find().distinct('name');
+        const tasks = await Task.find().distinct("name");
 
         const students = await Student.find({
           classe: { $in: week.classes },
@@ -79,13 +83,13 @@ export default async function handler(req, res) {
           groupe: {
             $nin: [0, null],
           },
-        }).distinct('classe');
+        }).distinct("classe");
         const groupes = await Student.find({
           classe: { $in: week.classes },
           groupe: {
             $nin: [0, null],
           },
-        }).distinct('groupe');
+        }).distinct("groupe");
 
         const groupesByClasse = await Promise.all(
           classes.map((classe) =>
@@ -94,8 +98,8 @@ export default async function handler(req, res) {
               groupe: {
                 $nin: [0, null],
               },
-            }).distinct('groupe'),
-          ),
+            }).distinct("groupe")
+          )
         );
         const groupesByClasse2 = classes.reduce((acc, classe, index) => {
           acc[classe] = groupesByClasse[index];
@@ -108,27 +112,37 @@ export default async function handler(req, res) {
             const groupesCounter = countTaskDoneByGroupe(
               task,
               groupesByClasse2[task]
-                ? acc.groupes.filter((groupe) => groupesByClasse2[task].includes(groupe))
+                ? acc.groupes.filter((groupe) =>
+                    groupesByClasse2[task].includes(groupe)
+                  )
                 : acc.groupes,
-              weeksPast,
+              weeksPast
             );
             const groupe = findGroupeHowWorkLess(groupesCounter);
             const studentsOfGroupe =
-              Number(groupe) > 0 ? students.filter((student) => student.groupe === Number(groupe)) : [];
+              Number(groupe) > 0
+                ? students.filter(
+                    (student) => student.groupe === Number(groupe)
+                  )
+                : [];
 
             acc.groupes = acc.groupes.filter((item) => item !== Number(groupe));
 
             acc[task] = {
               groupe,
-              classe: studentsOfGroupe[0] ? studentsOfGroupe[0].classe : 'aucune',
-              students: studentsOfGroupe.map((student) => student.fullName).join(', '),
+              classe: studentsOfGroupe[0]
+                ? studentsOfGroupe[0].classe
+                : "aucune",
+              students: studentsOfGroupe
+                .map((student) => student.fullName)
+                .join(", "),
             };
 
             return acc;
           },
           {
             groupes,
-          },
+          }
         );
 
         delete tasksOfWeek.groupes;
@@ -144,14 +158,14 @@ export default async function handler(req, res) {
           },
           {
             new: true,
-          },
+          }
         );
 
         res.status(200).json(newWeek);
         break;
       }
       default:
-        res.setHeader('Allow', ['PUT']);
+        res.setHeader("Allow", ["PUT"]);
         res.status(405).end(`Method ${method} Not Allowed`);
         break;
     }
