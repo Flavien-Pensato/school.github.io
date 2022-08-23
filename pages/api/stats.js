@@ -10,10 +10,10 @@ export default async function handler(req, res) {
     /* find all the data in our database */
     const weeks = await Week.find({
       startAt: {
-        $gt: new Date("08/30/2021"),
+        $gt: new Date("08/30/2022"),
       },
       endAt: {
-        $lt: new Date("07/01/2022"),
+        $lt: new Date("07/01/2023"),
       },
     });
 
