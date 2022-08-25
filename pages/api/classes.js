@@ -14,9 +14,6 @@ export default async function handler(req, res) {
           "1ere",
           "Termiale",
 
-          "Bac 1",
-          "Bac 2",
-
           "BTS 1",
           "BTS 2",
 
