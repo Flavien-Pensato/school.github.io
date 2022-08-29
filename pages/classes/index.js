@@ -64,7 +64,7 @@ const Classes = () => {
           <Dropdown
             key={classe}
             name={classe}
-            items={classes[classe].map((student) => (
+            items={classes[classe].sort((a, b) => a.fullName.localeCompare(b.fullName)).map((student) => (
               <Flex key={student._id} variant="cardItem">
                 <Box sx={{ width: '100%', textAlign: 'left' }}>{student.fullName}</Box>
                 <Box sx={{ width: 'auto' }}>
