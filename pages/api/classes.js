@@ -6,21 +6,21 @@ export default async function handler(req, res) {
       case "GET": {
         /* find all the data in our database */
         const classes = [
-          "4eme A",
-          "4eme B",
-          "3eme A",
-          "3eme B",
-          "2nde",
-          "1ere",
-          "Termiale",
+          "4eA",
+          "4eB",
+          "3eA",
+          "3eB",
+          "2NDE",
+          "1ERE",
+          "TERM",
 
           "BTS 1",
           "BTS 2",
 
-          "CAP 1 ISCH",
-          "CAP 1 MacMBC",
-          "CAP 2 ISCH",
-          "CAP 2 Mac MBC",
+          "CAP 1 CHARP BOIS + IS",
+          "CAP 1 MACON +IMTB",
+          "CAP 2 CHARP BOIS + is",
+          "CAP 2 MACON + IMTB",
         ];
 
         res.status(200).json(classes);
