@@ -16,7 +16,6 @@ const Planning = React.forwardRef(({ startAt }, ref) => {
       initialData: {},
     }
   );
-  console.log(week);
 
   const generateWeekTask = (event) => {
     event.preventDefault();

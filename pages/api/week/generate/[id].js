@@ -6,15 +6,25 @@ import Task from "../../../../modules/task/task.model";
 export const countTaskDoneByGroupe = (task, groupes, weeks) =>
   weeks.reduce(
     (acc, week) => {
+
+      if (!week.tasks) {
+        return acc
+      }
+
       const { groupe } = week.tasks && week.tasks[task] ? week.tasks[task] : {};
 
       if (groupes.includes(Number(groupe))) {
-        if (acc[groupe.toString()]) {
           acc[groupe.toString()] += 1;
-        } else {
-          acc[groupe.toString()] = 1;
-        }
       }
+
+      Object.keys(week.tasks).forEach(weekTaskName => {
+        const { groupe: groupe2 } = week.tasks && week.tasks[weekTaskName] ? week.tasks[weekTaskName] : {};
+
+        if (groupes.includes(Number(groupe2))) {
+            acc[groupe2.toString()] += 1;
+        }
+      })
+
 
       return acc;
     },
@@ -118,6 +128,7 @@ export default async function handler(req, res) {
                 : acc.groupes,
               weeksPast
             );
+
             const groupe = findGroupeHowWorkLess(groupesCounter);
             const studentsOfGroupe =
               Number(groupe) > 0
