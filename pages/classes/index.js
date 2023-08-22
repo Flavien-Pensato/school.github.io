@@ -64,19 +64,21 @@ const Classes = () => {
           <Dropdown
             key={classe}
             name={classe}
-            items={classes[classe].sort((a, b) => a.fullName.localeCompare(b.fullName)).map((student) => (
-              <Flex key={student._id} variant="cardItem">
-                <Box sx={{ width: '100%', textAlign: 'left' }}>{student.fullName}</Box>
-                <Box sx={{ width: 'auto' }}>
-                  <Input type="number" value={student.groupe} onChange={updateGroupe(student._id)} />
-                </Box>
-                <Box sx={{ width: '50px' }}>
-                  <IconButton onClick={handleRemove(student._id)}>
-                    <i className="fas fa-trash" />
-                  </IconButton>
-                </Box>
-              </Flex>
-            ))}
+            items={classes[classe]
+              .sort((a, b) => a.fullName.localeCompare(b.fullName))
+              .map((student) => (
+                <Flex key={student._id} variant="cardItem">
+                  <Box sx={{ width: '100%', textAlign: 'left' }}>{student.fullName}</Box>
+                  <Box sx={{ width: 'auto' }}>
+                    <Input type="number" value={student.groupe} onChange={updateGroupe(student._id)} />
+                  </Box>
+                  <Box sx={{ width: '50px' }}>
+                    <IconButton onClick={handleRemove(student._id)}>
+                      <i className="fas fa-trash" />
+                    </IconButton>
+                  </Box>
+                </Flex>
+              ))}
           />
         ))}
       </Flex>

@@ -15,11 +15,12 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-hook-form": "^6.13.1",
+    "react-hook-form": "7.45.4",
     "slug": "^4.0.2",
     "styled-system": "^5.1.5",
     "swr": "^0.3.10",
     "theme-ui": "^0.3.4",
+    "@emotion/styled": "^10.0.0",
     "xlsx": "^0.16.9"
   },
   "devDependencies": {
@@ -48,17 +49,12 @@
     "standard-version": "^9.0.0"
   },
   "scripts": {
-    "lint": "eslint --color --cache '*.js' '{pages,config,components,modules,elements,theme}/**/*.js'",
+    "lint": "eslint --color '*.js' '{pages,config,components,modules,elements,theme}/**/*.js'",
     "test": "jest",
     "dev": "next",
     "build": "next build",
     "start": "next start",
     "circle": "circleci config validate -c .circleci/config.yml"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   },
   "config": {
     "commitizen": {

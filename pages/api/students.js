@@ -1,5 +1,5 @@
-import db from "../../utils/db";
-import Student from "../../modules/students/student.model";
+import db from '../../utils/db';
+import Student from '../../modules/students/student.model';
 
 export default async function handler(req, res) {
   await db();
@@ -7,13 +7,13 @@ export default async function handler(req, res) {
 
   try {
     switch (method) {
-      case "GET": {
+      case 'GET': {
         /* find all the data in our database */
         const pets = await Student.find({});
         res.status(200).json({ success: true, data: pets });
         break;
       }
-      case "POST": {
+      case 'POST': {
         const { students } = JSON.parse(req.body);
         await Student.insertMany(students);
         res.status(201).json(...students);

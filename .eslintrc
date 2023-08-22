@@ -1,32 +1,29 @@
 {
-    "env": {
-        "browser": true,
-        "es6": true,
-        "jest": true,
-        "jasmine": true,
-        "node": true
-    },
-    "extends": "plugin:@m6web/default",
-    "plugins": [
-        "@emotion",
-        "jest"
-    ],
-    "parser": "babel-eslint",
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
-    },
-    "parserOptions": {
-        "ecmaVersion": 2018,
-        "sourceType": "module"
-    },
-    "rules": {
-        "class-methods-use-this": "off",
-        "import/prefer-default-export": "off",
-        "global-require": "off",
-        "no-bitwise": "off",
-        "no-underscore-dangle": "off",
-        "jsx-a11y/anchor-is-valid": "off",
-        "react/no-multi-comp": "off"
-    }
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true,
+    "jasmine": true,
+    "node": true
+  },
+  "extends": "plugin:@m6web/default",
+  "plugins": ["@emotion", "jest"],
+  "parser": "babel-eslint",
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "rules": {
+    "class-methods-use-this": "off",
+    "import/prefer-default-export": "off",
+    "global-require": "off",
+    "no-bitwise": "off",
+    "no-underscore-dangle": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "react/no-multi-comp": "off"
+  }
 }

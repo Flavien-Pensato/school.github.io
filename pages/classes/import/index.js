@@ -1,11 +1,10 @@
-import React from "react";
-import { useForm, useFieldArray } from "react-hook-form";
-import dynamic from "next/dynamic";
-import XLSX from "xlsx";
-import { useRouter } from "next/router";
-import { Label, Input, Flex, Box, Heading, Text, Button } from "theme-ui";
+import React from 'react';
+import { useForm, useFieldArray } from 'react-hook-form';
+import XLSX from 'xlsx';
+import { useRouter } from 'next/router';
+import { Label, Input, Flex, Box, Heading, Text, Button } from 'theme-ui';
 
-import Layout from "../../../components/Layout";
+import Layout from '../../../components/Layout';
 
 const fetcher = (url, options) =>
   fetch(url, options)
@@ -21,11 +20,11 @@ const StudentsForm = () => {
     setError,
     clearErrors,
     control,
-    errors,
-  } = useForm();
+    formState: { errors },
+  } = useForm({ defaultValues: { students: [] } });
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "students",
+    name: 'students',
   });
 
   const handleFile = (event) => {
@@ -34,14 +33,14 @@ const StudentsForm = () => {
     const file = event.target.files[0];
 
     if (file) {
-      const classe = file.name.replace(".xlsx", "").replace("Liste ", "");
+      const classe = file.name.replace('.xlsx', '').replace('Liste ', '');
       const fileReader = new FileReader();
 
       fileReader.onload = (e) => {
         const bytes = new Uint8Array(e.target.result);
         const length = bytes.byteLength;
 
-        let binary = "";
+        let binary = '';
 
         // eslint-disable-next-line
         for (let i = 0; i < length; i++) {
@@ -49,22 +48,22 @@ const StudentsForm = () => {
         }
 
         const oFile = XLSX.read(binary, {
-          type: "binary",
+          type: 'binary',
         });
 
         const worksheet = oFile.Sheets[oFile.SheetNames[0]];
-        const text = XLSX.utils
-          .sheet_to_csv(worksheet, { raw: true })
-          .replace(new RegExp(',|"', "g"), " ");
+        const text = XLSX.utils.sheet_to_csv(worksheet, { raw: true }).replace(new RegExp(',|"', 'g'), ' ');
 
-        text.split("\n").forEach((line) => {
+        text.split('\n').forEach((line) => {
           const student = {
             fullName: line.trim(),
             classe,
             groupe: 0,
           };
 
-          append(student);
+          if (classe && line.trim()) {
+            append(student);
+          }
         });
       };
 
@@ -73,34 +72,28 @@ const StudentsForm = () => {
   };
 
   const onSubmit = async (student) => {
-    fetcher("/api/students", {
-      method: "POST",
+    fetcher('/api/students', {
+      method: 'POST',
       body: JSON.stringify(student),
     }).then(({ error }) => {
       if (error) {
         Object.keys(error.errors).map((errorKey) =>
           setError(errorKey, {
-            type: "manual",
+            type: 'manual',
             message: error.errors[errorKey].message,
-          })
+          }),
         );
       } else {
         clearErrors();
         reset();
-        router.push("/classes");
+        router.push('/classes');
       }
     });
   };
 
   return (
     <Layout>
-      <Box
-        as="form"
-        variant="card"
-        mx="auto"
-        maxWidth="800px"
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <Box as="form" variant="card" mx="auto" maxWidth="800px" onSubmit={handleSubmit(onSubmit)}>
         <Heading as="h3" mb={3}>
           Création d’un&bull;e nouvel éléve
         </Heading>
@@ -112,13 +105,7 @@ const StudentsForm = () => {
           <Flex mb={3} key={item.id} alignItems="end">
             <Box mr={1} width="100%">
               {index === 0 && <Label htmlFor="fullName">Nom</Label>}
-              <Input
-                id="fullName"
-                name={`students[${index}].fullName`}
-                placeholder="Tim Burton"
-                ref={register()}
-                defaultValue={item.fullName}
-              />
+              <Input id="fullName" placeholder="Tim Burton" {...register(`students.${index}.fullName`)} />
               {errors.fullName && (
                 <Text as="p" variant="error">
                   {errors.fullName.message}
@@ -127,13 +114,7 @@ const StudentsForm = () => {
             </Box>
             <Box mr={1}>
               {index === 0 && <Label htmlFor="classe">Classe</Label>}
-              <Input
-                id="classe"
-                name={`students[${index}].classe`}
-                defaultValue={item.classe}
-                readOnly
-                ref={register()}
-              />
+              <Input id="classe" {...register(`students.${index}.classe`)} readOnly />
               {errors.fullName && (
                 <Text as="p" variant="error">
                   {errors.fullName.message}
@@ -142,13 +123,7 @@ const StudentsForm = () => {
             </Box>
             <Box mr={1}>
               {index === 0 && <Label htmlFor="groupe">Groupe</Label>}
-              <Input
-                id="groupe"
-                name={`students[${index}].groupe`}
-                type="number"
-                defaultValue={item.groupe}
-                ref={register()}
-              />
+              <Input id="groupe" type="number" {...register(`students.${index}.groupe`)} />
               {errors.groupe && (
                 <Text as="p" variant="error">
                   {errors.groupe.message}
@@ -156,13 +131,7 @@ const StudentsForm = () => {
               )}
             </Box>
             <Box>
-              <Button
-                type="button"
-                variant="secondary"
-                height="42px"
-                width="42px"
-                onClick={() => remove(index)}
-              >
+              <Button type="button" variant="secondary" height="42px" width="42px" onClick={() => remove(index)}>
                 -
               </Button>
             </Box>

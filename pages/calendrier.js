@@ -1,14 +1,14 @@
-import React from "react";
-import styled from "@emotion/styled";
-import useSWR from "swr";
-import { sortDates, getAllNextWeekBeforeHoliday } from "../utils/date";
-import { DateComponent } from "../components/date";
-import { isDateSame } from "../modules/week/week.utils";
+import React from 'react';
+import styled from '@emotion/styled';
+import useSWR from 'swr';
+import { sortDates, getAllNextWeekBeforeHoliday } from '../utils/date';
+import { DateComponent } from '../components/date';
+import { isDateSame } from '../modules/week/week.utils';
 
-import PresenceCase from "../components/presenceCase";
+import PresenceCase from '../components/presenceCase';
 
-import fetcher from "../utils/fetch";
-import Layout from "../components/Layout";
+import fetcher from '../utils/fetch';
+import Layout from '../components/Layout';
 
 export const Container = styled.div`
   display: grid;
@@ -80,40 +80,40 @@ export const ColFixedTop = styled.div`
 const Calendrier = () => {
   const nexDates = getAllNextWeekBeforeHoliday();
 
-  const { data: weeks, mutate } = useSWR("/api/weeks", {
+  const { data: weeks, mutate } = useSWR('/api/weeks', {
     initialData: [],
   });
 
-  const { data: classes } = useSWR("/api/classes", {
+  const { data: classes } = useSWR('/api/classes', {
     initialData: [],
   });
 
   const toggleDisable = (weekId) => () => {
     fetcher(`/api/week/toggleHoliday/${weekId}`, {
-      method: "PUT",
+      method: 'PUT',
     }).then((newWeek) => {
       mutate(
         weeks.map((element) => (element._id === weekId ? newWeek : element)),
-        false
+        false,
       );
     });
   };
 
   const toggleClasse = (weekId, classe) => () => {
     fetcher(`/api/week/toggleClasse/${weekId}`, {
-      method: "PUT",
+      method: 'PUT',
       body: classe,
     }).then((newWeek) => {
       mutate(
         weeks.map((element) => (element._id === weekId ? newWeek : element)),
-        false
+        false,
       );
     });
   };
 
   const addWeek = (week) => {
-    fetcher("/api/week/new", {
-      method: "POST",
+    fetcher('/api/week/new', {
+      method: 'POST',
       body: JSON.stringify(week),
     }).then((response) => {
       if (response) {
@@ -129,10 +129,10 @@ const Calendrier = () => {
           <ColFixedTop>
             <Item
               style={{
-                width: "200px",
-                backgroundColor: "white",
+                width: '200px',
+                backgroundColor: 'white',
                 zIndex: 10001,
-                position: "sticky",
+                position: 'sticky',
                 left: 0,
               }}
             >
@@ -142,8 +142,8 @@ const Calendrier = () => {
               <Item
                 key={classe}
                 style={{
-                  width: "75px",
-                  backgroundColor: "white",
+                  width: '75px',
+                  backgroundColor: 'white',
                   zIndex: 10000,
                 }}
               >
@@ -154,15 +154,10 @@ const Calendrier = () => {
           <Grid>
             <ColFixedLeft>
               {sortDates(nexDates).map((date) => {
-                const dateFound = weeks.find((dateWeek) =>
-                  isDateSame(dateWeek.startAt, date.startAt)
-                );
+                const dateFound = weeks.find((dateWeek) => isDateSame(dateWeek.startAt, date.startAt));
 
                 return (
-                  <ItemCol
-                    key={date.startAt}
-                    style={{ justifyContent: "space-between" }}
-                  >
+                  <ItemCol key={date.startAt} style={{ justifyContent: 'space-between' }}>
                     <DateComponent
                       startAt={date.startAt}
                       endAt={date.endAt}
@@ -178,9 +173,7 @@ const Calendrier = () => {
             {classes.map((classe) => (
               <LittleCol key={classe}>
                 {nexDates.map((date) => {
-                  const dateFound = weeks.find((dateWeek) =>
-                    isDateSame(dateWeek.startAt, date.startAt)
-                  );
+                  const dateFound = weeks.find((dateWeek) => isDateSame(dateWeek.startAt, date.startAt));
 
                   if (!dateFound || dateFound.i1sHolliday) {
                     return (
@@ -191,17 +184,11 @@ const Calendrier = () => {
                   }
 
                   return (
-                    <ItemCol
-                      key={date.startAt}
-                      presence={dateFound.classes.includes(classe)}
-                    >
+                    <ItemCol key={date.startAt} presence={dateFound.classes.includes(classe)}>
                       <PresenceCase
                         date={dateFound}
                         presence={dateFound.classes.includes(classe)}
-                        toggleClasse={toggleClasse(
-                          dateFound && dateFound._id,
-                          classe
-                        )}
+                        toggleClasse={toggleClasse(dateFound && dateFound._id, classe)}
                         classeId={classe}
                         key={dateFound.startAt + classe}
                         id={dateFound.startAt}

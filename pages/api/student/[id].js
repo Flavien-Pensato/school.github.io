@@ -1,5 +1,5 @@
-import db from "../../../utils/db";
-import Student from "../../../modules/students/student.model";
+import db from '../../../utils/db';
+import Student from '../../../modules/students/student.model';
 
 export default async function handler(req, res) {
   const {
@@ -11,17 +11,17 @@ export default async function handler(req, res) {
     await db();
 
     switch (method) {
-      case "GET": {
+      case 'GET': {
         const student = await Student.find({ _id: id });
         res.status(200).json(student);
         break;
       }
-      case "POST": {
+      case 'POST': {
         const student = await Student.insertMany(JSON.parse(req.body));
         res.status(201).json(student);
         break;
       }
-      case "PUT": {
+      case 'PUT': {
         const student = await Student.findOneAndUpdate(
           {
             _id: id,
@@ -29,12 +29,12 @@ export default async function handler(req, res) {
           {
             $set: JSON.parse(req.body),
           },
-          { new: true }
+          { new: true },
         );
         res.status(200).json(student);
         break;
       }
-      case "DELETE": {
+      case 'DELETE': {
         await Student.deleteOne({ _id: id });
         res.status(200).json();
         break;
