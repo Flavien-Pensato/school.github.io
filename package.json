@@ -5,6 +5,7 @@
   "author": "Flavien-Pensato <flavien.pensato@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@emotion/styled": "^10.0.0",
     "@styled-system/should-forward-prop": "^5.1.4",
     "bcryptjs": "^2.4.3",
     "deepmerge": "^4.2.2",
@@ -20,7 +21,6 @@
     "styled-system": "^5.1.5",
     "swr": "^0.3.10",
     "theme-ui": "^0.3.4",
-    "@emotion/styled": "^10.0.0",
     "xlsx": "^0.16.9"
   },
   "devDependencies": {
