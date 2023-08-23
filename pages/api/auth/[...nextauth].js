@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth';
-import Providers from 'next-auth/providers';
 import bcrypt from 'bcryptjs';
+import CredentialsProvider from 'next-auth/providers/credentials';
 import Account from '../../../modules/account/account.model';
 
 const isBacon = (password, hash) =>
@@ -18,10 +18,10 @@ const isBacon = (password, hash) =>
     });
   });
 
-const options = {
+export default NextAuth({
   // Configure one or more authentication providers
   providers: [
-    Providers.Credentials({
+    CredentialsProvider({
       // The name to display on the sign in form (e.g. 'Sign in with...')
       name: 'Credentials',
       // The credentials is used to generate a suitable form on the sign in page.
@@ -56,10 +56,11 @@ const options = {
          * @param  {string} baseUrl  Default base URL of site (can be used as fallback)
          * @return {string}          URL the client will be redirect to
          */
-        redirect: async (url, baseUrl) => (url.startsWith(baseUrl) ? Promise.resolve(url) : Promise.resolve(baseUrl)),
+        redirect: async (url, baseUrl) =>
+          url.startsWith(baseUrl)
+            ? Promise.resolve(url)
+            : Promise.resolve(baseUrl),
       },
     }),
   ],
-};
-
-export default (req, res) => NextAuth(req, res, options);
+});

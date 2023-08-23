@@ -2,7 +2,7 @@ import React from 'react';
 import useSWR from 'swr';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
-import { Label, Input, Box, Heading, Text, Button } from 'theme-ui';
+import { Label, Input, Box, Heading, Text, Button } from '@chakra-ui/react';
 
 import fetch from '../../../utils/fetch';
 
@@ -13,7 +13,14 @@ const TaskForm = () => {
     },
   });
   const router = useRouter();
-  const { register, handleSubmit, reset, setError, clearErrors, errors } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setError,
+    clearErrors,
+    errors,
+  } = useForm();
 
   const onSubmit = async (student) => {
     fetch('/api/task/new', {
@@ -25,7 +32,7 @@ const TaskForm = () => {
           setError(errorKey, {
             type: 'manual',
             message: error.errors[errorKey].message,
-          }),
+          })
         );
       } else {
         clearErrors();
@@ -36,7 +43,13 @@ const TaskForm = () => {
   };
 
   return (
-    <Box as="form" variant="card" mx="auto" maxWidth="500px" onSubmit={handleSubmit(onSubmit)}>
+    <Box
+      as="form"
+      variant="card"
+      mx="auto"
+      maxWidth="500px"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <Heading as="h3" mb={3}>
         Création d’une nouvelle tâche
       </Heading>

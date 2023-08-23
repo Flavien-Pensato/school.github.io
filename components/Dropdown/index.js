@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { Box, Flex, Text } from 'theme-ui';
+import { Box, Flex, Text } from '@chakra-ui/react';
 
 const Dropdown = ({ name, items }) => {
   const [active, setActive] = useState(false);

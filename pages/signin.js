@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Flex, Button } from 'theme-ui';
-import { signIn, useSession } from 'next-auth/client';
+import { Flex, Button } from '@chakra-ui/react';
+import { signIn, useSession } from 'next-auth/react';
 import { withRouter } from 'next/router';
 
 const Signin = ({ router }) => {
-  const [session] = useSession();
+  const { data: session } = useSession();
 
   useEffect(() => {
     if (session) {

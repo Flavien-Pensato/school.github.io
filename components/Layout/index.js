@@ -1,15 +1,18 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useSession, signOut } from 'next-auth/client';
+import { useSession, signOut } from 'next-auth/react';
 import { withRouter } from 'next/router';
-import { IconButton, NavLink, Box, Flex } from 'theme-ui';
+import { IconButton, Link as NavLink, Box, Flex } from '@chakra-ui/react';
 import Link from 'next/link';
 
 import Loading from '../Loading';
 import Title from '../Title';
 
 const Layout = ({ children, router }) => {
-  const [session, loading] = useSession();
+  const { data: session, ...rest } = useSession();
+  const loading = false;
+
+  console.log(rest);
 
   useEffect(() => {
     if (!loading && !session) {

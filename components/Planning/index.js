@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Box, Flex, Button } from 'theme-ui';
+import { Grid, Box, Flex, Button } from '@chakra-ui/react';
 
 import useSWR from 'swr';
 import fetch from '../../utils/fetch';

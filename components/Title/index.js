@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Heading } from 'theme-ui';
+import { Flex, Heading } from '@chakra-ui/react';
 
 const Title = () => (
   <Flex sx={{ justifyContent: 'center' }} my={[3, 4]}>

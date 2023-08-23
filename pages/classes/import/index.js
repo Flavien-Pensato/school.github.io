@@ -2,7 +2,15 @@ import React from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import XLSX from 'xlsx';
 import { useRouter } from 'next/router';
-import { Label, Input, Flex, Box, Heading, Text, Button } from 'theme-ui';
+import {
+  Label,
+  Input,
+  Flex,
+  Box,
+  Heading,
+  Text,
+  Button,
+} from '@chakra-ui/react';
 
 import Layout from '../../../components/Layout';
 
@@ -52,7 +60,9 @@ const StudentsForm = () => {
         });
 
         const worksheet = oFile.Sheets[oFile.SheetNames[0]];
-        const text = XLSX.utils.sheet_to_csv(worksheet, { raw: true }).replace(new RegExp(',|"', 'g'), ' ');
+        const text = XLSX.utils
+          .sheet_to_csv(worksheet, { raw: true })
+          .replace(new RegExp(',|"', 'g'), ' ');
 
         text.split('\n').forEach((line) => {
           const student = {
@@ -81,7 +91,7 @@ const StudentsForm = () => {
           setError(errorKey, {
             type: 'manual',
             message: error.errors[errorKey].message,
-          }),
+          })
         );
       } else {
         clearErrors();
@@ -93,7 +103,13 @@ const StudentsForm = () => {
 
   return (
     <Layout>
-      <Box as="form" variant="card" mx="auto" maxWidth="800px" onSubmit={handleSubmit(onSubmit)}>
+      <Box
+        as="form"
+        variant="card"
+        mx="auto"
+        maxWidth="800px"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <Heading as="h3" mb={3}>
           Création d’un&bull;e nouvel éléve
         </Heading>
@@ -105,7 +121,11 @@ const StudentsForm = () => {
           <Flex mb={3} key={item.id} alignItems="end">
             <Box mr={1} width="100%">
               {index === 0 && <Label htmlFor="fullName">Nom</Label>}
-              <Input id="fullName" placeholder="Tim Burton" {...register(`students.${index}.fullName`)} />
+              <Input
+                id="fullName"
+                placeholder="Tim Burton"
+                {...register(`students.${index}.fullName`)}
+              />
               {errors.fullName && (
                 <Text as="p" variant="error">
                   {errors.fullName.message}
@@ -114,7 +134,11 @@ const StudentsForm = () => {
             </Box>
             <Box mr={1}>
               {index === 0 && <Label htmlFor="classe">Classe</Label>}
-              <Input id="classe" {...register(`students.${index}.classe`)} readOnly />
+              <Input
+                id="classe"
+                {...register(`students.${index}.classe`)}
+                readOnly
+              />
               {errors.fullName && (
                 <Text as="p" variant="error">
                   {errors.fullName.message}
@@ -123,7 +147,11 @@ const StudentsForm = () => {
             </Box>
             <Box mr={1}>
               {index === 0 && <Label htmlFor="groupe">Groupe</Label>}
-              <Input id="groupe" type="number" {...register(`students.${index}.groupe`)} />
+              <Input
+                id="groupe"
+                type="number"
+                {...register(`students.${index}.groupe`)}
+              />
               {errors.groupe && (
                 <Text as="p" variant="error">
                   {errors.groupe.message}
@@ -131,7 +159,13 @@ const StudentsForm = () => {
               )}
             </Box>
             <Box>
-              <Button type="button" variant="secondary" height="42px" width="42px" onClick={() => remove(index)}>
+              <Button
+                type="button"
+                variant="secondary"
+                height="42px"
+                width="42px"
+                onClick={() => remove(index)}
+              >
                 -
               </Button>
             </Box>

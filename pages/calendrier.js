@@ -80,13 +80,9 @@ export const ColFixedTop = styled.div`
 const Calendrier = () => {
   const nexDates = getAllNextWeekBeforeHoliday();
 
-  const { data: weeks, mutate } = useSWR('/api/weeks', {
-    initialData: [],
-  });
+  const { data: weeks = [], mutate } = useSWR('/api/weeks');
 
-  const { data: classes } = useSWR('/api/classes', {
-    initialData: [],
-  });
+  const { data: classes = [] } = useSWR('/api/classes');
 
   const toggleDisable = (weekId) => () => {
     fetcher(`/api/week/toggleHoliday/${weekId}`, {
@@ -94,7 +90,7 @@ const Calendrier = () => {
     }).then((newWeek) => {
       mutate(
         weeks.map((element) => (element._id === weekId ? newWeek : element)),
-        false,
+        false
       );
     });
   };
@@ -106,7 +102,7 @@ const Calendrier = () => {
     }).then((newWeek) => {
       mutate(
         weeks.map((element) => (element._id === weekId ? newWeek : element)),
-        false,
+        false
       );
     });
   };
@@ -154,10 +150,15 @@ const Calendrier = () => {
           <Grid>
             <ColFixedLeft>
               {sortDates(nexDates).map((date) => {
-                const dateFound = weeks.find((dateWeek) => isDateSame(dateWeek.startAt, date.startAt));
+                const dateFound = weeks.find((dateWeek) =>
+                  isDateSame(dateWeek.startAt, date.startAt)
+                );
 
                 return (
-                  <ItemCol key={date.startAt} style={{ justifyContent: 'space-between' }}>
+                  <ItemCol
+                    key={date.startAt}
+                    style={{ justifyContent: 'space-between' }}
+                  >
                     <DateComponent
                       startAt={date.startAt}
                       endAt={date.endAt}
@@ -173,7 +174,9 @@ const Calendrier = () => {
             {classes.map((classe) => (
               <LittleCol key={classe}>
                 {nexDates.map((date) => {
-                  const dateFound = weeks.find((dateWeek) => isDateSame(dateWeek.startAt, date.startAt));
+                  const dateFound = weeks.find((dateWeek) =>
+                    isDateSame(dateWeek.startAt, date.startAt)
+                  );
 
                   if (!dateFound || dateFound.i1sHolliday) {
                     return (
@@ -184,11 +187,17 @@ const Calendrier = () => {
                   }
 
                   return (
-                    <ItemCol key={date.startAt} presence={dateFound.classes.includes(classe)}>
+                    <ItemCol
+                      key={date.startAt}
+                      presence={dateFound.classes.includes(classe)}
+                    >
                       <PresenceCase
                         date={dateFound}
                         presence={dateFound.classes.includes(classe)}
-                        toggleClasse={toggleClasse(dateFound && dateFound._id, classe)}
+                        toggleClasse={toggleClasse(
+                          dateFound && dateFound._id,
+                          classe
+                        )}
                         classeId={classe}
                         key={dateFound.startAt + classe}
                         id={dateFound.startAt}

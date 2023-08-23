@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Text, Button, Box, Flex } from 'theme-ui';
+import { Text, Button, Box, Flex } from '@chakra-ui/react';
 import { useStateMachine } from 'little-state-machine';
 
 import Layout from '../components/Layout';
@@ -78,7 +78,11 @@ const Landing = () => {
             <i className="fas fa-sync-alt" />
             <span>&nbsp;&nbsp;Régénérer</span>
           </Button>
-          <Button onClick={handlePrint} marginLeft="10px" display={['none', 'initial']}>
+          <Button
+            onClick={handlePrint}
+            marginLeft="10px"
+            display={['none', 'initial']}
+          >
             <i className="fas fa-print" color="primary" />
             <span>&nbsp;&nbsp;Imprimer</span>
           </Button>

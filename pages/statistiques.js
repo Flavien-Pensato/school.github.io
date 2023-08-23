@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import useSWR from 'swr';
-import { Grid, Box } from 'theme-ui';
+import { Grid, Box } from '@chakra-ui/react';
 import Layout from '../components/Layout';
 
 const sx = {
@@ -12,14 +12,8 @@ const sx = {
 };
 
 const Statistiques = () => {
-  const { data: stats } = useSWR('/api/stats', {
-    initialData: {
-      data: {},
-    },
-  });
-  const { data: tasks } = useSWR('/api/tasks', {
-    initialData: [],
-  });
+  const { data: stats = { data: [] } } = useSWR('/api/stats');
+  const { data: tasks = [] } = useSWR('/api/tasks');
 
   return (
     <Layout>
@@ -27,7 +21,7 @@ const Statistiques = () => {
         id="planning"
         gap="0px"
         mt="20px"
-        columns={`1fr 1fr 1fr ${Object.keys(tasks)
+        columns={`1fr 1fr 1fr ${new Array(tasks.length)
           .map(() => '1fr')
           .join(' ')}`}
       >

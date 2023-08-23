@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'next/router';
 import Link from 'next/link';
-import { Box } from 'theme-ui';
+import { Box } from '@chakra-ui/react';
 
 class Error extends React.Component {
   static getInitialProps({ res, err }) {
