@@ -57,6 +57,9 @@ const StudentForm = () => {
       <Box mb={3}>
         <Label htmlFor="classe">Classe</Label>
         <Select id="classe" {...register('classe')}>
+          <option value="" selected disabled hidden>
+            Choisir
+          </option>
           {classes.map((classe) => (
             <option key={classe} value={classe}>
               {classe}
