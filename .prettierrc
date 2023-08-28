@@ -1,0 +1,15 @@
+{
+  "tabWidth": 2,
+  "printWidth": 120,
+  "endOfLine": "auto",
+  "singleQuote": true,
+  "trailingComma": "all",
+  "overrides": [
+    {
+      "files": ["*.md", "*.json"],
+      "options": {
+        "tabWidth": 2
+      }
+    }
+  ]
+}

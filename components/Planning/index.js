@@ -8,13 +8,9 @@ import fetch from '../../utils/fetch';
 const Planning = React.forwardRef(({ startAt }, ref) => {
   const d = new Date(startAt);
 
-  const { data: week, error, mutate } = useSWR(
-    `/api/week/${d.toISOString()}`,
-    fetch,
-    {
-      initialData: {},
-    }
-  );
+  const { data: week, error, mutate } = useSWR(`/api/week/${d.toISOString()}`, fetch, {
+    initialData: {},
+  });
 
   const generateWeekTask = (event) => {
     event.preventDefault();
@@ -73,11 +69,7 @@ const Planning = React.forwardRef(({ startAt }, ref) => {
           );
         })}
       </Grid>
-      <Flex
-        justifyContent="center"
-        alignItems="center"
-        sx={{ visibility: 'hidden' }}
-      >
+      <Flex justifyContent="center" alignItems="center" sx={{ visibility: 'hidden' }}>
         <Button ref={ref} onClick={generateWeekTask}>
           Generate
         </Button>

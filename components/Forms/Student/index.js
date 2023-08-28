@@ -11,7 +11,14 @@ const StudentForm = () => {
     initialData: [],
   });
   const router = useRouter();
-  const { register, handleSubmit, reset, setError, clearErrors, errors } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setError,
+    clearErrors,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = async (student) => {
     fetch('/api/student/new', {
@@ -34,13 +41,13 @@ const StudentForm = () => {
   };
 
   return (
-    <Box as="form" variant="card" mx="auto" maxWidth="500px" onSubmit={handleSubmit(onSubmit)}>
+    <Box as="form" mt={3} mx="auto" maxWidth="500px" onSubmit={handleSubmit(onSubmit)}>
       <Heading as="h3" mb={3}>
         Création d’un&bull;e nouvel éléve
       </Heading>
       <Box mb={3}>
         <Label htmlFor="fullName">Nom</Label>
-        <Input id="fullName" name="fullName" placeholder="Tim Burton" ref={register} />
+        <Input id="fullName" placeholder="Tim Burton" {...register('fullName')} />
         {errors.fullName && (
           <Text as="p" variant="error">
             {errors.fullName.message}
@@ -49,7 +56,7 @@ const StudentForm = () => {
       </Box>
       <Box mb={3}>
         <Label htmlFor="classe">Classe</Label>
-        <Select id="classe" name="classe" ref={register}>
+        <Select id="classe" {...register('classe')}>
           {classes.map((classe) => (
             <option key={classe} value={classe}>
               {classe}
@@ -64,7 +71,7 @@ const StudentForm = () => {
       </Box>
       <Box mb={3}>
         <Label htmlFor="groupe">Groupe</Label>
-        <Input id="groupe" name="groupe" type="number" ref={register} />
+        <Input id="groupe" type="number" {...register('groupe')} />
         {errors.groupe && (
           <Text as="p" variant="error">
             {errors.groupe.message}

@@ -6,6 +6,7 @@ import { Box } from 'theme-ui';
 
 class Error extends React.Component {
   static getInitialProps({ res, err }) {
+    console.log(res);
     if (res) {
       return {
         statusCode: res.statusCode,
