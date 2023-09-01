@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import useSWR from 'swr';
-import { Grid, Box } from 'theme-ui';
+import { Grid, GridItem } from '@chakra-ui/react';
 import Layout from '../components/Layout';
 
 const sx = {
@@ -12,43 +12,30 @@ const sx = {
 };
 
 const Statistiques = () => {
-  const { data: stats } = useSWR('/api/stats', {
-    initialData: {
-      data: {},
-    },
-  });
-  const { data: tasks } = useSWR('/api/tasks', {
-    initialData: [],
-  });
+  const { data: stats = { data: [] } } = useSWR('/api/stats');
+  const { data: tasks = [] } = useSWR('/api/tasks');
 
   return (
     <Layout>
-      <Grid
-        id="planning"
-        gap="0px"
-        mt="20px"
-        columns={`1fr 1fr 1fr ${Object.keys(tasks)
-          .map(() => '1fr')
-          .join(' ')}`}
-      >
-        <Box sx={sx}>
+      <Grid id="planning" gap="0px" mt="20px" templateColumns={`repeat(${tasks.length + 3}, 1fr)`}>
+        <GridItem sx={sx}>
           <strong>Groupe</strong>
-        </Box>
-        <Box sx={sx}>
+        </GridItem>
+        <GridItem sx={sx}>
           <strong>Total</strong>
-        </Box>
-        <Box sx={sx}>
+        </GridItem>
+        <GridItem sx={sx}>
           <strong>Classe</strong>
-        </Box>
+        </GridItem>
         {tasks.map((task) => (
-          <Box sx={sx}>
+          <GridItem sx={sx} key={task.name}>
             <strong title={task.name}>
               {task.name
                 .split(' ')
                 .map((name) => name.charAt(0).toUpperCase())
                 .join('.')}
             </strong>
-          </Box>
+          </GridItem>
         ))}
 
         {Object.keys(stats.data).map((groupe) => {
@@ -56,13 +43,13 @@ const Statistiques = () => {
 
           return (
             <Fragment key={groupe}>
-              <Box sx={sx}>{groupe}</Box>
-              <Box sx={sx}>{taskStats.total}</Box>
-              <Box sx={sx}>{taskStats.classe}</Box>
+              <GridItem sx={sx}>{groupe}</GridItem>
+              <GridItem sx={sx}>{taskStats.total}</GridItem>
+              <GridItem sx={sx}>{taskStats.classe}</GridItem>
               {tasks.map((task) => (
-                <Box sx={sx}>
+                <GridItem sx={sx} key={task.name}>
                   <strong title={task.name}>{taskStats[task.name]}</strong>
-                </Box>
+                </GridItem>
               ))}
             </Fragment>
           );

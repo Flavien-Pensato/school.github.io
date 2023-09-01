@@ -2,23 +2,26 @@ import React from 'react';
 import useSWR from 'swr';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
-import { Label, Select, Input, Box, Heading, Text, Button } from 'theme-ui';
+import { Select, Input, Box, Heading, Text, Button } from '@chakra-ui/react';
 
 import fetch from '../../../utils/fetch';
 
 const StudentForm = () => {
-  const { data: classes } = useSWR('/api/classes', fetch, {
-    initialData: [],
-  });
+  const { data: classes } = useSWR('/api/classes');
   const router = useRouter();
   const {
     register,
     handleSubmit,
     reset,
-    setError,
     clearErrors,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      groupe: 0,
+      fullName: '',
+      classe: '',
+    },
+  });
 
   const onSubmit = async (student) => {
     fetch('/api/student/new', {
@@ -31,12 +34,7 @@ const StudentForm = () => {
         router.push('/classes');
       })
       .catch((error) => {
-        Object.keys(error.errors).map((errorKey) =>
-          setError(errorKey, {
-            type: 'manual',
-            message: error.errors[errorKey].message,
-          }),
-        );
+        alert(error?.message);
       });
   };
 
@@ -46,7 +44,9 @@ const StudentForm = () => {
         Création d’un&bull;e nouvel éléve
       </Heading>
       <Box mb={3}>
-        <Label htmlFor="fullName">Nom</Label>
+        <Text as="label" htmlFor="fullName">
+          Nom
+        </Text>
         <Input id="fullName" placeholder="Tim Burton" {...register('fullName')} />
         {errors.fullName && (
           <Text as="p" variant="error">
@@ -55,12 +55,14 @@ const StudentForm = () => {
         )}
       </Box>
       <Box mb={3}>
-        <Label htmlFor="classe">Classe</Label>
+        <Text as="label" htmlFor="classe">
+          Classe
+        </Text>
         <Select id="classe" {...register('classe')}>
           <option value="" selected disabled hidden>
             Choisir
           </option>
-          {classes.map((classe) => (
+          {classes?.map((classe) => (
             <option key={classe} value={classe}>
               {classe}
             </option>
@@ -73,11 +75,13 @@ const StudentForm = () => {
         )}
       </Box>
       <Box mb={3}>
-        <Label htmlFor="groupe">Groupe</Label>
+        <Text as="label" htmlFor="groupe">
+          Groupe
+        </Text>
         <Input id="groupe" type="number" {...register('groupe')} />
         {errors.groupe && (
           <Text as="p" variant="error">
-            {errors.groupe.message}
+            {errors?.groupe?.message}
           </Text>
         )}
       </Box>

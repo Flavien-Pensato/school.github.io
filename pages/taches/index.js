@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import useSwr from 'swr';
-import { Text, Box, Flex, Button, IconButton } from 'theme-ui';
+import { Text, Box, Flex, Button, IconButton } from '@chakra-ui/react';
 
 import Layout from '../../components/Layout';
 import fetch from '../../utils/fetch';
@@ -16,7 +16,7 @@ const Tasks = () => {
 
     if (
       window.confirm(
-        'Êtes-vous sûre de vouloir supprimer cette classe (Tous les élèves et groupes concernés seront supprimé !) ?',
+        'Êtes-vous sûre de vouloir supprimer cette classe (Tous les élèves et groupes concernés seront supprimé !) ?'
       )
     ) {
       fetch(`/api/task/${id}`, {
@@ -24,7 +24,7 @@ const Tasks = () => {
       }).then(() => {
         mutate(
           tasks.filter((element) => element._id !== id),
-          false,
+          false
         );
       });
     }
@@ -41,16 +41,26 @@ const Tasks = () => {
   return (
     <Layout>
       {tasks.map(({ _id, name }) => (
-        <Flex key={_id} sx={{ justifyContent: 'space-between' }} margin="10px 0px">
+        <Flex
+          key={_id}
+          sx={{ justifyContent: 'space-between' }}
+          margin="10px 0px"
+        >
           <Text>{name}</Text>
-          <IconButton onClick={onDelete(_id)} marginLeft="20px" padding="5px 10px">
+          <IconButton
+            onClick={onDelete(_id)}
+            marginLeft="20px"
+            padding="5px 10px"
+          >
             <i className="fas fa-trash" />
           </IconButton>
         </Flex>
       ))}
       <Box margin={['20px 0px', '15px 0px']}>
         <Link href="/taches/ajout">
-          <Button marginBottom={['10px', '0px']}>Créer une nouvelle tâche</Button>
+          <Button marginBottom={['10px', '0px']}>
+            Créer une nouvelle tâche
+          </Button>
         </Link>
       </Box>
     </Layout>

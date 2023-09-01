@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Text, Button, Box, Flex } from 'theme-ui';
+import { Text, Button, Box, Flex } from '@chakra-ui/react';
 import { useStateMachine } from 'little-state-machine';
 
 import Layout from '../components/Layout';
@@ -74,7 +74,7 @@ const Landing = () => {
           </Button>
         </Flex>
         <Flex ml="auto">
-          <Button onClick={handleClick} variant="primary">
+          <Button onClick={handleClick}>
             <i className="fas fa-sync-alt" />
             <span>&nbsp;&nbsp;Régénérer</span>
           </Button>

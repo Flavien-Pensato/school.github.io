@@ -1,7 +1,7 @@
 import React from 'react';
 import useSwr from 'swr';
 import Link from 'next/link';
-import { Input, Box, Flex, Button, IconButton } from 'theme-ui';
+import { Input, Box, Flex, Button, IconButton } from '@chakra-ui/react';
 
 import Dropdown from '../../components/Dropdown';
 import { groupeByClassesFromStudents } from '../../modules/students/students.utils';
@@ -10,11 +10,7 @@ import fetch from '../../utils/fetch';
 import Layout from '../../components/Layout';
 
 const Classes = () => {
-  const { data, mutate } = useSwr(`/api/students`, fetch, {
-    initialData: {
-      data: [],
-    },
-  });
+  const { data, mutate } = useSwr(`/api/students`);
 
   const handleRemove = (id) => () => {
     fetch(`/api/student/${id}`, {
@@ -40,14 +36,14 @@ const Classes = () => {
     }).then((response) => {
       mutate(
         {
-          data: data.data.map((element) => (element._id === id ? response : element)),
+          data: data?.data.map((element) => (element._id === id ? response : element)),
         },
         false,
       );
     });
   };
 
-  const classes = groupeByClassesFromStudents(data.data);
+  const classes = groupeByClassesFromStudents(data?.data);
 
   return (
     <Layout>
@@ -67,13 +63,20 @@ const Classes = () => {
             items={classes[classe]
               .sort((a, b) => a.fullName.localeCompare(b.fullName))
               .map((student) => (
-                <Flex key={student._id} variant="cardItem">
+                <Flex
+                  key={student._id}
+                  sx={{
+                    alignItems: 'center',
+                    backgroundColor: 'rgba(0, 0, 0, 0.024)',
+                    marginTop: '20px',
+                  }}
+                >
                   <Box sx={{ width: '100%', textAlign: 'left' }}>{student.fullName}</Box>
                   <Box sx={{ width: 'auto' }}>
                     <Input type="number" value={student.groupe} onChange={updateGroupe(student._id)} />
                   </Box>
                   <Box sx={{ width: '50px' }}>
-                    <IconButton onClick={handleRemove(student._id)}>
+                    <IconButton aria-label="trash-button" onClick={handleRemove(student._id)}>
                       <i className="fas fa-trash" />
                     </IconButton>
                   </Box>

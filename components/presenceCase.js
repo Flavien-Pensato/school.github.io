@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Box } from 'theme-ui';
+import { Box } from '@chakra-ui/react';
 
 class PresenceCase extends Component {
   onClickTogglePresence = (event) => {
@@ -16,7 +16,10 @@ class PresenceCase extends Component {
     const { presence } = this.props;
 
     return (
-      <Box onClick={this.onClickTogglePresence} color={presence ? 'white' : 'black'}>
+      <Box
+        onClick={this.onClickTogglePresence}
+        color={presence ? 'white' : 'black'}
+      >
         {presence ? 'Présent' : 'Absent'}
       </Box>
     );
