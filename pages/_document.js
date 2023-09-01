@@ -12,7 +12,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <script src="https://kit.fontawesome.com/68f3b8a9e2.js" crossOrigin="anonymous" />
+          <script async src="https://kit.fontawesome.com/68f3b8a9e2.js" crossOrigin="anonymous" />
         </Head>
         <body>
           <Main />

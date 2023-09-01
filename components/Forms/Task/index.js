@@ -2,7 +2,7 @@ import React from 'react';
 import useSWR from 'swr';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
-import { Label, Input, Box, Heading, Text, Button } from '@chakra-ui/react';
+import { Input, Box, Heading, Text, Button } from '@chakra-ui/react';
 
 import fetch from '../../../utils/fetch';
 
@@ -13,14 +13,7 @@ const TaskForm = () => {
     },
   });
   const router = useRouter();
-  const {
-    register,
-    handleSubmit,
-    reset,
-    setError,
-    clearErrors,
-    errors,
-  } = useForm();
+  const { register, handleSubmit, reset, setError, clearErrors, errors } = useForm();
 
   const onSubmit = async (student) => {
     fetch('/api/task/new', {
@@ -32,7 +25,7 @@ const TaskForm = () => {
           setError(errorKey, {
             type: 'manual',
             message: error.errors[errorKey].message,
-          })
+          }),
         );
       } else {
         clearErrors();
@@ -45,7 +38,14 @@ const TaskForm = () => {
   return (
     <Box
       as="form"
-      variant="card"
+      sx={{
+        boxSizing: 'border-box',
+        padding: '15px',
+        border: '1px solid black',
+        borderRadius: '4px',
+        textAlign: 'right',
+        my: '7px',
+      }}
       mx="auto"
       maxWidth="500px"
       onSubmit={handleSubmit(onSubmit)}
@@ -54,7 +54,9 @@ const TaskForm = () => {
         Création d’une nouvelle tâche
       </Heading>
       <Box mb={3}>
-        <Label htmlFor="name">Nom</Label>
+        <Text as="label" htmlFor="name">
+          Nom
+        </Text>
         <Input id="name" name="name" placeholder="Tim Burton" ref={register} />
         {errors.name && (
           <Text as="p" variant="error">

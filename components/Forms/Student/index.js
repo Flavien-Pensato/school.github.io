@@ -13,10 +13,15 @@ const StudentForm = () => {
     register,
     handleSubmit,
     reset,
-    setError,
     clearErrors,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      groupe: 0,
+      fullName: '',
+      classe: '',
+    },
+  });
 
   const onSubmit = async (student) => {
     fetch('/api/student/new', {
@@ -29,12 +34,7 @@ const StudentForm = () => {
         router.push('/classes');
       })
       .catch((error) => {
-        Object.keys(error.errors).map((errorKey) =>
-          setError(errorKey, {
-            type: 'manual',
-            message: error.errors[errorKey].message,
-          }),
-        );
+        alert(error?.message);
       });
   };
 
@@ -62,7 +62,7 @@ const StudentForm = () => {
           <option value="" selected disabled hidden>
             Choisir
           </option>
-          {classes.map((classe) => (
+          {classes?.map((classe) => (
             <option key={classe} value={classe}>
               {classe}
             </option>
@@ -81,7 +81,7 @@ const StudentForm = () => {
         <Input id="groupe" type="number" {...register('groupe')} />
         {errors.groupe && (
           <Text as="p" variant="error">
-            {errors.groupe.message}
+            {errors?.groupe?.message}
           </Text>
         )}
       </Box>

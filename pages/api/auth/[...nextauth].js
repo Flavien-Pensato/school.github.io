@@ -56,10 +56,7 @@ export default NextAuth({
          * @param  {string} baseUrl  Default base URL of site (can be used as fallback)
          * @return {string}          URL the client will be redirect to
          */
-        redirect: async (url, baseUrl) =>
-          url.startsWith(baseUrl)
-            ? Promise.resolve(url)
-            : Promise.resolve(baseUrl),
+        redirect: async (url, baseUrl) => (url.startsWith(baseUrl) ? Promise.resolve(url) : Promise.resolve(baseUrl)),
       },
     }),
   ],

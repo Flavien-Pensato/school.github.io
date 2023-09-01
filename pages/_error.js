@@ -6,7 +6,6 @@ import { Box } from '@chakra-ui/react';
 
 class Error extends React.Component {
   static getInitialProps({ res, err }) {
-    console.log(res);
     if (res) {
       return {
         statusCode: res.statusCode,

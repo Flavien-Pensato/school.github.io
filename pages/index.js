@@ -74,15 +74,11 @@ const Landing = () => {
           </Button>
         </Flex>
         <Flex ml="auto">
-          <Button onClick={handleClick} variant="primary">
+          <Button onClick={handleClick}>
             <i className="fas fa-sync-alt" />
             <span>&nbsp;&nbsp;Régénérer</span>
           </Button>
-          <Button
-            onClick={handlePrint}
-            marginLeft="10px"
-            display={['none', 'initial']}
-          >
+          <Button onClick={handlePrint} marginLeft="10px" display={['none', 'initial']}>
             <i className="fas fa-print" color="primary" />
             <span>&nbsp;&nbsp;Imprimer</span>
           </Button>

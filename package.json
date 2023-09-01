@@ -25,11 +25,15 @@
   },
   "devDependencies": {
     "@emotion/eslint-plugin": "^11.0.0",
-    "@typescript-eslint/eslint-plugin": "^6.4.1",
-    "@typescript-eslint/parser": "^6.4.1",
-    "eslint": "^8.47.0",
+    "@next/eslint-plugin-next": "^13.4.19",
+    "@types/jest": "^29.5.4",
+    "@typescript-eslint/eslint-plugin": "^6.5.0",
+    "@typescript-eslint/parser": "^6.5.0",
+    "eslint": "^8.48.0",
+    "eslint-plugin-jest": "^27.2.3",
     "eslint-plugin-react": "^7.33.2",
-    "prettier": "2.2.1"
+    "prettier": "2.2.1",
+    "typescript": "^5.2.2"
   },
   "scripts": {
     "lint": "eslint --color '*.js' '{pages,config,components,modules,elements,theme}/**/*.js'",

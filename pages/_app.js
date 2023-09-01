@@ -7,8 +7,6 @@ import { StateMachineProvider, createStore } from 'little-state-machine';
 import { setStartOfWeek } from '../utils/date';
 import fetcher from '../utils/fetch';
 
-import theme from '../theme';
-
 const currentWeek = new Date();
 
 setStartOfWeek(currentWeek);
@@ -20,11 +18,10 @@ createStore({
 class App extends AppExtend {
   render() {
     const { Component, layout, pageProps } = this.props;
-
     const LayoutComponent = Component.Layout || layout;
 
     return (
-      <ChakraProvider theme={theme}>
+      <ChakraProvider>
         <StateMachineProvider>
           <SWRConfig
             value={{
@@ -32,7 +29,7 @@ class App extends AppExtend {
               fetcher,
             }}
           >
-            <SessionProvider session={pageProps.session}>
+            <SessionProvider session={pageProps.session} refetchInterval={0}>
               <LayoutComponent>
                 <Component {...pageProps} />
               </LayoutComponent>

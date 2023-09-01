@@ -2,15 +2,7 @@ import React from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import XLSX from 'xlsx';
 import { useRouter } from 'next/router';
-import {
-  Label,
-  Input,
-  Flex,
-  Box,
-  Heading,
-  Text,
-  Button,
-} from '@chakra-ui/react';
+import { Input, Flex, Box, Heading, Text, Button } from '@chakra-ui/react';
 
 import Layout from '../../../components/Layout';
 
@@ -21,15 +13,9 @@ const fetcher = (url, options) =>
 
 const StudentsForm = () => {
   const router = useRouter();
-  const {
-    register,
-    handleSubmit,
-    reset,
-    setError,
-    clearErrors,
-    control,
-    formState: { errors },
-  } = useForm({ defaultValues: { students: [] } });
+  const { register, handleSubmit, reset, clearErrors, control } = useForm({
+    defaultValues: { students: [{ fullName: '', classe: '', groupe: 0 }] },
+  });
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'students',
@@ -45,6 +31,8 @@ const StudentsForm = () => {
       const fileReader = new FileReader();
 
       fileReader.onload = (e) => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         const bytes = new Uint8Array(e.target.result);
         const length = bytes.byteLength;
 
@@ -60,9 +48,9 @@ const StudentsForm = () => {
         });
 
         const worksheet = oFile.Sheets[oFile.SheetNames[0]];
-        const text = XLSX.utils
-          .sheet_to_csv(worksheet, { raw: true })
-          .replace(new RegExp(',|"', 'g'), ' ');
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        const text = XLSX.utils.sheet_to_csv(worksheet, { raw: true }).replace(new RegExp(',|"', 'g'), ' ');
 
         text.split('\n').forEach((line) => {
           const student = {
@@ -87,12 +75,7 @@ const StudentsForm = () => {
       body: JSON.stringify(student),
     }).then(({ error }) => {
       if (error) {
-        Object.keys(error.errors).map((errorKey) =>
-          setError(errorKey, {
-            type: 'manual',
-            message: error.errors[errorKey].message,
-          })
-        );
+        alert(error?.message);
       } else {
         clearErrors();
         reset();
@@ -105,7 +88,14 @@ const StudentsForm = () => {
     <Layout>
       <Box
         as="form"
-        variant="card"
+        sx={{
+          boxSizing: 'border-box',
+          padding: '15px',
+          border: '1px solid black',
+          borderRadius: '4px',
+          textAlign: 'right',
+          my: '7px',
+        }}
         mx="auto"
         maxWidth="800px"
         onSubmit={handleSubmit(onSubmit)}
@@ -114,58 +104,39 @@ const StudentsForm = () => {
           Création d’un&bull;e nouvel éléve
         </Heading>
         <Box mb={3}>
-          <Label htmlFor="file">Fichier d&apos;import</Label>
+          <Text as="label" htmlFor="file">
+            Fichier d&apos;import
+          </Text>
           <Input name="file" type="file" onChange={handleFile} />
         </Box>
         {fields.map((item, index) => (
           <Flex mb={3} key={item.id} alignItems="end">
             <Box mr={1} width="100%">
-              {index === 0 && <Label htmlFor="fullName">Nom</Label>}
-              <Input
-                id="fullName"
-                placeholder="Tim Burton"
-                {...register(`students.${index}.fullName`)}
-              />
-              {errors.fullName && (
-                <Text as="p" variant="error">
-                  {errors.fullName.message}
+              {index === 0 && (
+                <Text as="label" htmlFor="fullName">
+                  Nom
                 </Text>
               )}
+              <Input id="fullName" placeholder="Tim Burton" {...register(`students.${index}.fullName`)} />
             </Box>
             <Box mr={1}>
-              {index === 0 && <Label htmlFor="classe">Classe</Label>}
-              <Input
-                id="classe"
-                {...register(`students.${index}.classe`)}
-                readOnly
-              />
-              {errors.fullName && (
-                <Text as="p" variant="error">
-                  {errors.fullName.message}
+              {index === 0 && (
+                <Text as="label" htmlFor="classe">
+                  Classe
                 </Text>
               )}
+              <Input id="classe" {...register(`students.${index}.classe`)} readOnly />
             </Box>
             <Box mr={1}>
-              {index === 0 && <Label htmlFor="groupe">Groupe</Label>}
-              <Input
-                id="groupe"
-                type="number"
-                {...register(`students.${index}.groupe`)}
-              />
-              {errors.groupe && (
-                <Text as="p" variant="error">
-                  {errors.groupe.message}
+              {index === 0 && (
+                <Text as="label" htmlFor="groupe">
+                  Groupe
                 </Text>
               )}
+              <Input id="groupe" type="number" {...register(`students.${index}.groupe`)} />
             </Box>
             <Box>
-              <Button
-                type="button"
-                variant="secondary"
-                height="42px"
-                width="42px"
-                onClick={() => remove(index)}
-              >
+              <Button type="button" variant="secondary" height="42px" width="42px" onClick={() => remove(index)}>
                 -
               </Button>
             </Box>

@@ -2,17 +2,15 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSession, signOut } from 'next-auth/react';
 import { withRouter } from 'next/router';
-import { IconButton, Link as NavLink, Box, Flex } from '@chakra-ui/react';
+import { IconButton, Link as NavLink, Box, HStack, Container } from '@chakra-ui/react';
 import Link from 'next/link';
 
 import Loading from '../Loading';
 import Title from '../Title';
 
 const Layout = ({ children, router }) => {
-  const { data: session, ...rest } = useSession();
-  const loading = false;
-
-  console.log(rest);
+  const { data: session, status } = useSession();
+  const loading = status === 'loading';
 
   useEffect(() => {
     if (!loading && !session) {
@@ -29,10 +27,12 @@ const Layout = ({ children, router }) => {
   }
 
   return (
-    <>
+    <Container maxW="container.xl">
       <Title />
-      <Flex
+      <HStack
         as="nav"
+        spacing={10}
+        justifyContent="center"
         sx={{
           borderBottom: '1px solid black',
           borderTop: '1px solid black',
@@ -59,9 +59,9 @@ const Layout = ({ children, router }) => {
         <IconButton onClick={signOut}>
           <i className="fas fa-sign-out-alt" />
         </IconButton>
-      </Flex>
+      </HStack>
       {children}
-    </>
+    </Container>
   );
 };
 

@@ -7,7 +7,17 @@ const Dropdown = ({ name, items }) => {
   const toggleActive = useCallback(() => setActive(!active));
 
   return (
-    <Box variant="card" active={active}>
+    <Box
+      sx={{
+        boxSizing: 'border-box',
+        padding: '15px',
+        border: '1px solid black',
+        borderRadius: '4px',
+        textAlign: 'right',
+        my: '7px',
+      }}
+      active={active}
+    >
       <Flex onClick={toggleActive}>
         <Text as="strong" variant={active && 'primary'}>
           {name}

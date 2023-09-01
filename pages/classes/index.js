@@ -20,7 +20,7 @@ const Classes = () => {
         {
           data: data.data.filter((element) => element._id !== id),
         },
-        false
+        false,
       );
     });
   };
@@ -36,11 +36,9 @@ const Classes = () => {
     }).then((response) => {
       mutate(
         {
-          data: data.data.map((element) =>
-            element._id === id ? response : element
-          ),
+          data: data?.data.map((element) => (element._id === id ? response : element)),
         },
-        false
+        false,
       );
     });
   };
@@ -65,19 +63,20 @@ const Classes = () => {
             items={classes[classe]
               .sort((a, b) => a.fullName.localeCompare(b.fullName))
               .map((student) => (
-                <Flex key={student._id} variant="cardItem">
-                  <Box sx={{ width: '100%', textAlign: 'left' }}>
-                    {student.fullName}
-                  </Box>
+                <Flex
+                  key={student._id}
+                  sx={{
+                    alignItems: 'center',
+                    backgroundColor: 'rgba(0, 0, 0, 0.024)',
+                    marginTop: '20px',
+                  }}
+                >
+                  <Box sx={{ width: '100%', textAlign: 'left' }}>{student.fullName}</Box>
                   <Box sx={{ width: 'auto' }}>
-                    <Input
-                      type="number"
-                      value={student.groupe}
-                      onChange={updateGroupe(student._id)}
-                    />
+                    <Input type="number" value={student.groupe} onChange={updateGroupe(student._id)} />
                   </Box>
                   <Box sx={{ width: '50px' }}>
-                    <IconButton onClick={handleRemove(student._id)}>
+                    <IconButton aria-label="trash-button" onClick={handleRemove(student._id)}>
                       <i className="fas fa-trash" />
                     </IconButton>
                   </Box>

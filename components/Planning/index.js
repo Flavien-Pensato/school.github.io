@@ -1,16 +1,29 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { Grid, Box, Flex, Button } from '@chakra-ui/react';
+import React, { forwardRef } from 'react';
+import {
+  Th,
+  Tr,
+  Tbody,
+  Thead,
+  TableContainer,
+  TableCaption,
+  Table,
+  Box,
+  Flex,
+  Button,
+  useMediaQuery,
+} from '@chakra-ui/react';
 
 import useSWR from 'swr';
 import fetch from '../../utils/fetch';
 
-const Planning = React.forwardRef(({ startAt }, ref) => {
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+// eslint-disable-next-line react/prop-types
+const Planning = forwardRef(function Planning2({ startAt }, ref) {
   const d = new Date(startAt);
 
-  const { data: week, error, mutate } = useSWR(`/api/week/${d.toISOString()}`, fetch, {
-    initialData: {},
-  });
+  const [isDisplayingInPrint] = useMediaQuery(['(display-mode: browser)']);
+  const { data: week, error, mutate } = useSWR(`/api/week/${d.toISOString()}`);
 
   const generateWeekTask = (event) => {
     event.preventDefault();
@@ -41,45 +54,38 @@ const Planning = React.forwardRef(({ startAt }, ref) => {
   }
 
   return (
-    <>
-      <Grid id="planning" gap="0px" columns="2fr 1fr 1fr 5fr">
-        <Box>
-          <strong>Tâche</strong>
-        </Box>
-        <Box>
-          <strong>Classe</strong>
-        </Box>
-        <Box>
-          <strong>Groupe</strong>
-        </Box>
-        <Box>
-          <strong>Étudiants</strong>
-        </Box>
+    <TableContainer whiteSpace="pre-wrap">
+      <Table variant="simple">
+        <TableCaption>
+          <Button ref={ref} onClick={generateWeekTask}>
+            Generate
+          </Button>
+        </TableCaption>
+        <Thead>
+          <Tr>
+            <Th color={isDisplayingInPrint ? 'red' : ''}>Tâche</Th>
+            <Th>Classe</Th>
+            <Th>Groupe</Th>
+            <Th>Étudiants</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {Object.keys(week.tasks).map((taskId) => {
+            const task = week.tasks[taskId];
 
-        {Object.keys(week.tasks).map((taskId) => {
-          const task = week.tasks[taskId];
-
-          return (
-            <Fragment key={taskId}>
-              <Box>{taskId}</Box>
-              <Box>{task.classe}</Box>
-              <Box>{task.groupe}</Box>
-              <Box>{task.students}</Box>
-            </Fragment>
-          );
-        })}
-      </Grid>
-      <Flex justifyContent="center" alignItems="center" sx={{ visibility: 'hidden' }}>
-        <Button ref={ref} onClick={generateWeekTask}>
-          Generate
-        </Button>
-      </Flex>
-    </>
+            return (
+              <Tr key={taskId}>
+                <Th>{taskId}</Th>
+                <Th>{task.classe}</Th>
+                <Th>{task.groupe}</Th>
+                <Th>{task.students}</Th>
+              </Tr>
+            );
+          })}
+        </Tbody>
+      </Table>
+    </TableContainer>
   );
 });
-
-Planning.propTypes = {
-  startAt: PropTypes.string.isRequired,
-};
 
 export default Planning;
