@@ -38,6 +38,8 @@ const StudentForm = () => {
       });
   };
 
+  console.log(errors);
+
   return (
     <Box as="form" mt={3} mx="auto" maxWidth="500px" onSubmit={handleSubmit(onSubmit)}>
       <Heading as="h3" mb={3}>
@@ -86,7 +88,9 @@ const StudentForm = () => {
         )}
       </Box>
       <Box display="flex" justifyContent="space-between">
-        <Button variant="primary">Créer</Button>
+        <Button variant="primary" type="submit">
+          Créer
+        </Button>
       </Box>
     </Box>
   );
