@@ -38,8 +38,6 @@ const StudentForm = () => {
       });
   };
 
-  console.log(errors);
-
   return (
     <Box as="form" mt={3} mx="auto" maxWidth="500px" onSubmit={handleSubmit(onSubmit)}>
       <Heading as="h3" mb={3}>

@@ -32,7 +32,7 @@ const Landing = () => {
 
   if (printMode) {
     return (
-      <>
+      <Box  sx={{'*':{fontSize: '0.5rem', paddingBlock: '0.225rem', paddingInline: '1rem'}}}>
         <Box mb="20px">
           Semaine du{' '}
           <Text as="strong" color="primary">
@@ -46,7 +46,7 @@ const Landing = () => {
         <Box display="flex" alignItems="center" flexDirection="column">
           <Planning startAt={from.toISOString()} />
         </Box>
-      </>
+      </Box>
     );
   }
 
