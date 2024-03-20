@@ -1,5 +1,6 @@
 import db from '../../../utils/db';
 import Week from '../../../modules/week/week.model';
+import Student from '../../../modules/students/student.model';
 
 export default async function handler(req, res) {
   const {
@@ -16,7 +17,24 @@ export default async function handler(req, res) {
           startAt: id.slice(0, -1).concat('+00:00'),
         });
 
-        res.status(200).json(week || {});
+        if (!week) {
+          res.status(200).json({});
+        } else {
+
+          const students = await Student.find({ classe: { $in: week.classes } });
+          const tasks = Object.keys(week.tasks).reduce((acc, taskName) => {
+            const task = week.tasks[taskName];
+            task.students = students.filter((student) => task.groupe.toString() === student.groupe.toString()).map((student) => student.fullName).join(', ');
+
+            acc[taskName] = task;
+
+            return acc;
+          }, {});
+
+
+          res.status(200).json({ ...week, tasks });
+        }
+
         break;
       }
       case 'POST': {
