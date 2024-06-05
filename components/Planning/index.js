@@ -28,7 +28,11 @@ const Planning = forwardRef(function Planning2({ startAt }, ref) {
   const generateWeekTask = (event) => {
     event.preventDefault();
 
-    fetch(`/api/week/generate/${week && week._id}`, {
+    if (!week?._doc?._id) {
+      return;
+    }
+
+    fetch(`/api/week/generate/${week?._doc?._id}`, {
       method: 'PUT',
     }).then((newWeek) => {
       mutate(newWeek);
