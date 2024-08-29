@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Text, Button, Box, Flex } from "@chakra-ui/react";
 import { useStateMachine } from "little-state-machine";
 
@@ -8,7 +8,6 @@ import { nextWeek, prevWeek } from "../utils/store";
 import { numeric } from "../utils/date";
 
 const Landing = () => {
-	const refElement = useRef();
 	const [printMode, setPrintMode] = useState();
 	const {
 		actions,
